@@ -1,0 +1,8 @@
+book_filename: "Computational Probability and Statistics"
+output_dir: "docs"
+new_session: yes
+before_chapter_script: "library_load.R"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
