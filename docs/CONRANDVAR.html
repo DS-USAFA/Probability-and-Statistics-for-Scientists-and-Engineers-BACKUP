@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-07-27" />
+<meta name="date" content="2021-07-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -899,16 +899,16 @@ Figure 11.5: Probability represented by shaded area
 2. Find the random variable <span class="math inline">\(X\)</span> from <span class="math inline">\(F_{X}^{-1}(U)\)</span>.<br />
 In <code>R</code> for our example, this looks like the following.</p>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="CONRANDVAR.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">1</span>))</span></code></pre></div>
-<pre><code>## [1] 0.8366807</code></pre>
+<pre><code>## [1] 0.9037442</code></pre>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="CONRANDVAR.html#cb261-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">1</span>))</span></code></pre></div>
 <div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="CONRANDVAR.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class         min       Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.005761724 0.491496 0.7010275 0.8626666 0.9998669 0.6618854
+##      name   class         min        Q1    median        Q3      max      mean
+## ...1 sqrt numeric 0.001957412 0.4998315 0.7051814 0.8676992 0.999982 0.6665437
 ##             sd     n missing
-## ...1 0.2355419 10000       0</code></pre>
+## ...1 0.2350326 10000       0</code></pre>
 <div style="page-break-after: always;"></div>
 <p>Figure <a href="CONRANDVAR.html#fig:plot116-fig">11.6</a> is a density plot of the simulated density function.</p>
 <div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="CONRANDVAR.html#cb264-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
@@ -961,7 +961,7 @@ Consider the random variable <span class="math inline">\(X\)</span> from above. 
 <pre><code>## [1] 0.6666667</code></pre>
 <p>Using our simulation.</p>
 <div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="CONRANDVAR.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="sc">~</span>sqrt,<span class="at">data=</span>results)</span></code></pre></div>
-<pre><code>## [1] 0.6618854</code></pre>
+<pre><code>## [1] 0.6665437</code></pre>
 <p><span class="math display">\[
 \sigma^2_X = \mbox{Var}(X)= \mbox{E}(X^2)-\mbox{E}(X)^2 = \int_0^1 x^2\cdot 2x\mathop{}\!\mathrm{d}x - \left(\frac{2}{3}\right)^2 = \frac{2x^4}{4}\bigg|_0^1-\frac{4}{9}=\frac{1}{2}-\frac{4}{9}=\frac{1}{18}=0.056
 \]</span></p>
@@ -972,7 +972,7 @@ Consider the random variable <span class="math inline">\(X\)</span> from above. 
 <span id="cb273-2"><a href="CONRANDVAR.html#cb273-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Vx</span>(<span class="dv">1</span>)<span class="sc">-</span><span class="fu">Vx</span>(<span class="dv">0</span>)<span class="sc">-</span>(<span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>)<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 0.05555556</code></pre>
 <div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="CONRANDVAR.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(<span class="sc">~</span>sqrt,<span class="at">data=</span>results)<span class="sc">*</span><span class="dv">9999</span><span class="sc">/</span><span class="dv">10000</span></span></code></pre></div>
-<pre><code>## [1] 0.05547444</code></pre>
+<pre><code>## [1] 0.05523481</code></pre>
 <p>And finally, the standard deviation of <span class="math inline">\(X\)</span> is <span class="math inline">\(\sigma_X = \sqrt{\sigma^2_X}=\sqrt{1/18}=0.236\)</span>.</p>
 </div>
 </div>

@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-07-27" />
+<meta name="date" content="2021-07-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -925,10 +925,10 @@ f_Y(y)=f_X(\sqrt{y})\bigg|\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y} \
 <div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="TRANS.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class         min        Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.002271613 0.5036971 0.7088191 0.8697358 0.9999924 0.6687142
+##      name   class        min        Q1   median        Q3       max      mean
+## ...1 sqrt numeric 0.01806641 0.5002041 0.709045 0.8706378 0.9999344 0.6679462
 ##             sd     n missing
-## ...1 0.2361862 10000       0</code></pre>
+## ...1 0.2381779 10000       0</code></pre>
 <p>Figure <a href="TRANS.html#fig:dens161-fig">16.2</a> is a density plot of the simulated original random variable.</p>
 <div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="TRANS.html#cb400-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
 <span id="cb400-2"><a href="TRANS.html#cb400-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_density</span>(<span class="sc">~</span>sqrt,<span class="at">xlab=</span><span class="st">&quot;X&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -957,10 +957,10 @@ Figure 16.3: The density plot of the transformed random variable from the simula
 <div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="TRANS.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(y_results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class       min         Q1     median         Q3           max
-## ...1    y numeric -6.087265 -0.6857802 -0.3441549 -0.1395658 -7.588823e-06
-##            mean        sd     n missing
-## ...1 -0.4962726 0.4973428 10000       0</code></pre>
+##      name   class       min        Q1     median         Q3           max
+## ...1    y numeric -4.013701 -0.692739 -0.3438362 -0.1385293 -6.558583e-05
+##            mean       sd     n missing
+## ...1 -0.4999373 0.503692 10000       0</code></pre>
 </div>
 <div id="multivariate-transformations" class="section level3" number="16.2.6">
 <h3><span class="header-section-number">16.2.6</span> Multivariate Transformations</h3>

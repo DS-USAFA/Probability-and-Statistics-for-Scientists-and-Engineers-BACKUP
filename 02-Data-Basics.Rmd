@@ -13,13 +13,13 @@ Effective presentation and description of data is a first step in most analyses.
 
 ### Observations, variables, and data matrices
 
-For reference we will be using a data set concerning 50 emails received in 2012. These observations will be referred to as the `email50` data set, and they are a random sample from a larger data set. This data is in the **openintro** package so let's load our packages.
+For reference we will be using a data set concerning 50 emails received in 2012. These observations will be referred to as the `email50` data set, and they are a random sample from a larger data set. This data is in the **openintro** package so let's load this package.
 
 ```{r message=FALSE,results='hide'}
-library(usdata)
+library(openintro)
 ```
 
-Table \@ref(tab:db1-tab) shows 5 rows of the `email50` data set concerning 50 emails from 2012. The data object `email50` is a subset of `email` and we have selected to only list 5 rows and 5 variables for ease of observation. 
+Table \@ref(tab:db1-tab) shows 4 rows of the `email50` data set and we have selected to only list 5 variables for ease of observation. 
 
 Each row in the table represents a single email or **case**.^[A case is also sometimes called a **unit of observation** or an **observational unit**] The columns represent characteristics, called **variables**, for each of the emails. For example, the first row represents email 1, which is not spam, contains 21,705 characters, 551 line breaks, is written in HTML format, and contains only small numbers.
 
@@ -76,24 +76,24 @@ Why ensure that your data is tidy? There are two main advantages:
 
 1. There’s a general advantage to picking one consistent way of storing data. If you have a consistent data structure, it’s easier to learn the tools that work with it because they have an underlying uniformity.
 
-2. There’s a specific advantage to placing variables in columns because it allows `R`’s vectorised nature to shine. This will be more clear as the semester progresses. Since most built-in `R` functions work with vectors of values, it makes transforming tidy data feel particularly natural.
+2. There’s a specific advantage to placing variables in columns because it allows `R`’s vectorized nature to shine. This will be more clear as we progress in our studies. Since most built-in `R` functions work with vectors of values, it makes transforming tidy data feel particularly natural.
 
 
 
 Data frames are a convenient way to record and store data. If another individual or case is added to the data set, an additional row can be easily added. Similarly, another column can be added for a new variable.
 
 > **Exercise**:    
-We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called `county_M377` data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics, we create this data object next. The parent data set is part of the `usdata` library and is called `county_complete`. The variables are summarized in help menu built into the **usdata** package^[[These data were collected from the US Census website.](http://quickfacts.census.gov/qfd/index.html)]. How might these data be organized in a data matrix? ^[Each county may be viewed as a case, and there are ten pieces of information recorded for each case. A table with 3,142 rows and 10 columns could hold these data, where each row represents a county and each column represents a particular piece of information.]
+We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called `county_M377` data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics, we create this data object in the code following this description. The parent data set is part of the `usdata` library and is called `county_complete`. The variables are summarized in help menu built into the `usdata` package^[[These data were collected from the US Census website.](http://quickfacts.census.gov/qfd/index.html)]. How might these data be organized in a data matrix? ^[Each county may be viewed as a case, and there are ten pieces of information recorded for each case. A table with 3,142 rows and 10 columns could hold these data, where each row represents a county and each column represents a particular piece of information.]
 
 
-Using `R` we will create our data object.
+Using `R` we will create our data object. First we load the library `usdata`.
 
 ```{r message=FALSE,eval=FALSE}
 library(usdata)
 ```
 
 
-We only want a subset of the columns and we will use the `select` verb in `dplyr` to select and rename columns. We also create a new variable which is federal spending per capita.  
+We only want a subset of the columns and we will use the `select` verb in `dplyr` to select and rename columns. We also create a new variable which is federal spending per capita using the `mutate` function.  
 
 ```{r warning=FALSE}
 county_M377 <- county_complete %>% 
@@ -113,13 +113,13 @@ head(county_M377,n=7)
 ### Types of variables
 
 
-Examine the `fed_spend`, `pop2010`, and `state` variables in the `county` data set. Each of these variables is inherently different from the other two yet many of them share certain characteristics.
+Examine the `fed_spend`, `pop2010`, and `state` variables in the `county` data set. Each of these variables is inherently different from the others, yet many of them share certain characteristics.
 
-First consider `fed_spend`, which is said to be a **numerical variable** since it can take a wide range of numerical values, and it is sensible to add, subtract, or take averages with those values. On the other hand, we would not classify a variable reporting telephone area codes as numerical; even though area codes are made up of numerical digits, their average, sum, and difference have no clear meaning.
+First consider `fed_spend`, it is said to be a **numerical variable** since it can take a wide range of numerical values, and it is sensible to add, subtract, or take averages with those values. On the other hand, we would not classify a variable reporting telephone area codes as numerical; even though area codes are made up of numerical digits, their average, sum, and difference have no clear meaning.
 
-The `pop2010` variable is also numerical; it is sensible to add, subtract, or take averages with those values, although it seems to be a little different than `fed_spend`. This variable of the population count can only be a whole non-negative number ($0$, $1$, $2$, $...$). For this reason, the population variable is said to be **discrete** since it can only take specific numerical values. On the other hand, the federal spending variable is said to be **continuous**. Now technically, there are no truly continuous numerical variables since all measurements are finite up to some level of accuracy or measurement precision. However, in this course we will treat both variables types of numerical variables the same, that is as continuous variables. The only place this will be different is in probability models which we see in the next block.
+The `pop2010` variable is also numerical; it is sensible to add, subtract, or take averages with those values, although it seems to be a little different than `fed_spend`. This variable of the population count can only be a whole non-negative number ($0$, $1$, $2$, $...$). For this reason, the population variable is said to be **discrete** since it can only take specific numerical values. On the other hand, the federal spending variable is said to be **continuous**. Now technically, there are no truly continuous numerical variables since all measurements are finite up to some level of accuracy or measurement precision. However, in this course we will treat both variables types of numerical variables the same, that is as continuous variables for statistical modeling. The only place this will be different in this course is in probability models which we see in the probability modeling section.
 
-The variable **state** can take up to 51 values after accounting for Washington, DC: *AL*, ..., and *WY*. Because the responses themselves are categories, `state` is called a **categorical** variable,^[Sometimes also called a **nominal** variable.] and the possible values are called the variable's **levels**.
+The variable **state** can take up to 51 values, after accounting for Washington, DC, and are summarized as: *AL*, ..., and *WY*. Because the responses themselves are categories, `state` is called a **categorical** variable,^[Sometimes also called a **nominal** variable.] and the possible values are called the variable's **levels**.
 
 ```{r tax-fig,echo=FALSE,fig.cap="Taxonomy of Variables."}
 plot(c(-0.15,1.3),0:1,type='n',axes=FALSE,xlab='',ylab='')
@@ -153,9 +153,9 @@ arrows(1.02, 0.38, 1.1, 0.22, length=0.08, col=COL[6])
 ```
 
 
-Finally, consider a hypothetical variable on education, which describes the highest level of education completed and takes on one of the values *noHS*, *HS*, *College* or *Graduate_school*. This variable seems to be a hybrid: it is a categorical variable but the levels have a natural ordering. A variable with these properties is called an **ordinal** variable. To simplify analyses, any ordinal variables in this course will be treated as categorical variables. In `R` categorical variables can be treated in different ways; one of the key differences is that we can leave them as character values or as factors. When `R` handles factors, it is only concerned about the *levels* of values of the factors. We will learn more about this as the semester progresses.
+Finally, consider a hypothetical variable on education, which describes the highest level of education completed and takes on one of the values *noHS*, *HS*, *College* or *Graduate_school*. This variable seems to be a hybrid: it is a categorical variable but the levels have a natural ordering. A variable with these properties is called an **ordinal** variable. To simplify analyses, any ordinal variables in this course will be treated as categorical variables. In `R` categorical variables can be treated in different ways; one of the key differences is that we can leave them as character values or as factors. When `R` handles factors, it is only concerned about the *levels* of values of the factors. We will learn more about this as we progress.
 
-Figure \@ref(fig:tax-fig) captures this classification of variables.
+Figure \@ref(fig:tax-fig) captures this classification of variables we have described.
 
 > **Exercise**:    
 Data were collected about students in a statistics course. Three variables were recorded for each student: number of siblings, student height, and whether the student had previously taken a statistics course. Classify each of the variables as continuous numerical, discrete numerical, or categorical.
