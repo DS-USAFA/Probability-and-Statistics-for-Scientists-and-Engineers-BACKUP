@@ -5,8 +5,8 @@
 ## Objectives
 
 1) Define and use properly in context all new terminology.  
-2) From a description of a research project, at a minimum be able to describe the population of interest, the generalizability of the study, the response and predictor variables, differentiate whether it is observational or experimental, and determine the type of sample. 
-
+2) From a description of a research project, at a minimum be able to describe the population of interest, the generalizability of the study, the response and predictor variables, differentiate whether it is observational or experimental, and determine the type of sample.  
+3) Explain in the context of a problem how to conduct a sample for the different types of sampling procedures.  
 
 
 ## Overview of data collection principles
