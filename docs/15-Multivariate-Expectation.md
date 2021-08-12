@@ -228,7 +228,14 @@ Yuck!! But we will continue because we are determined to integrate after so much
 
 $$
 =\int_0^2\int_0^1 \left(x^3y^3-\frac{16x^2y^2}{9}+\frac{64xy}{81}\right)\diff y \diff x 
-=\int_0^2 \frac{x^3y^4}{4}-\frac{16x^2y^3}{27}+\frac{32xy^2}{81}\bigg|_0^1 \diff x = \int_0^2 \frac{x^3}{4}-\frac{16x^2}{27}+\frac{32x}{81}\diff x 
+$$
+
+$$
+=\int_0^2 \frac{x^3y^4}{4}-\frac{16x^2y^3}{27}+\frac{32xy^2}{81}\bigg|_0^1 \diff x 
+$$
+
+$$
+= \int_0^2 \frac{x^3}{4}-\frac{16x^2}{27}+\frac{32x}{81}\diff x 
 $$
 
 
