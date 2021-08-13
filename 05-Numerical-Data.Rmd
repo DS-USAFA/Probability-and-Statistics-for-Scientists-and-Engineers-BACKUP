@@ -535,7 +535,7 @@ Transformations other than the logarithm can be useful, too. For instance, the s
 
 ## Homework Problems
 
-Create an Rmd file for the work including headers, file creation data, and explanation of your work. Make sure your plots have a title and the axes are labeled. We are asking you to do more in this application to get ready for your Oral Board.
+Create an Rmd file for the work including headers, file creation data, and explanation of your work. Make sure your plots have a title and the axes are labeled. 
 
 1. **Mammals exploratory**  
 
