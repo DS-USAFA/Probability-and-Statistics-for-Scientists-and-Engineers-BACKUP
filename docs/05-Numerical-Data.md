@@ -71,7 +71,7 @@ The **mean**, sometimes called the average, is a common way to measure the cente
 
 $$\bar{x} = \frac{21.7 + 7.0 + \cdots + 15.8}{50} = 11.6$$
 
-The sample mean is often labeled $\bar{x}$, and the letter $x$ is being used as a generic placeholder for the variable of interest, `num_char`. 
+The sample mean is often labeled $\bar{x}$, a bar over the letter, and the letter $x$ is being used as a generic placeholder for the variable of interest, `num_char`. 
 
 > **Mean**  
 The sample mean of a numerical variable is the sum of all of the observations divided by the number of observations, Equation \@ref(eq:mean5).

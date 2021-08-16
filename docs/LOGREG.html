@@ -1377,7 +1377,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <span id="cb1087-2"><a href="LOGREG.html#cb1087-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data=</span><span class="fu">resample</span>(mariokart),</span>
 <span id="cb1087-3"><a href="LOGREG.html#cb1087-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>)</span></code></pre></div>
 <pre><code>##   Intercept stock_photoyes  total_pr .row .index
-## 1 -11.11773       1.456764 0.1966372    1      1</code></pre>
+## 1 -12.09971       1.827144 0.2275548    1      1</code></pre>
 <p>Again, it looks like what we expect. Now let’s bootstrap the coefficients and summarize the results.</p>
 <div class="sourceCode" id="cb1089"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1089-1"><a href="LOGREG.html#cb1089-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5011</span>)</span>
 <span id="cb1089-2"><a href="LOGREG.html#cb1089-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">glm</span>(cond<span class="sc">==</span><span class="st">&quot;new&quot;</span><span class="sc">~</span>stock_photo<span class="sc">+</span>total_pr,</span>
