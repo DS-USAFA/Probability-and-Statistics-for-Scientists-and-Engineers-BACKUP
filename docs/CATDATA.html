@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-08-13" />
+<meta name="date" content="2021-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -967,9 +967,9 @@ Figure 6.1: Bar chart of the <code>number</code> variable.
 <span id="cb74-3"><a href="CATDATA.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb74-4"><a href="CATDATA.html#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Size of Number&quot;</span>,<span class="at">y=</span><span class="st">&quot;Proportion&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:bar62-fig"></span>
-<img src="06-Categorical-Data_files/figure-html/bar62-fig-1.png" alt="(ref:quote62" width="672" />
+<img src="06-Categorical-Data_files/figure-html/bar62-fig-1.png" alt="Bar chart of the number variable as a proportion." width="672" />
 <p class="caption">
-Figure 6.2: (ref:quote62
+Figure 6.2: Bar chart of the <code>number</code> variable as a proportion.
 </p>
 </div>
 <p>Again, let’s clean up the plot into a style that we could use in a report.</p>
@@ -1024,7 +1024,7 @@ Data scientists use statistics to filter spam from incoming email messages. By n
 <p>In constructing a table, we need to think about which variable we want in the column and which in the row. The formula format in some way makes us think about the response and predictor variables. However in some cases, it is not clear which variable should be in the column and row and the analyst must decide the point to be made with the table. Before settling on one form for a table, it is important to consider the audience and the message they are to receive from the table.</p>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
-Create two tables with <code>number</code> and <code>spam</code> where each are in the column, so two table where you change which variable is in the column. Which would be more useful to someone hoping to identify spam emails using the <code>number</code> variable?<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a></p>
+Create two tables with <code>number</code> and <code>spam</code> where each are in the column, so two tables where you change which variable is in the column. Which would be more useful to someone hoping to identify spam emails using the <code>number</code> variable?<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a></p>
 </blockquote>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="CATDATA.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(spam<span class="sc">~</span>number,email,<span class="at">format=</span><span class="st">&#39;proportion&#39;</span>,<span class="at">margin=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##           number

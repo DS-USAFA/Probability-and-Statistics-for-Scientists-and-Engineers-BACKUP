@@ -222,8 +222,8 @@ email %>%
 ```
 
 <div class="figure">
-<img src="06-Categorical-Data_files/figure-html/bar62-fig-1.png" alt="(ref:quote62" width="672" />
-<p class="caption">(\#fig:bar62-fig)(ref:quote62</p>
+<img src="06-Categorical-Data_files/figure-html/bar62-fig-1.png" alt="(ref:quote62)" width="672" />
+<p class="caption">(\#fig:bar62-fig)(ref:quote62)</p>
 </div>
 
 Again, let's clean up the plot into a style that we could use in a report.
@@ -315,7 +315,7 @@ In generating the column proportions, we can see that a higher fraction of plain
 In constructing a table, we need to think about which variable we want in the column and which in the row. The formula format in some way makes us think about the response and predictor variables. However in some cases, it is not clear which variable should be in the column and row and the analyst must decide the point to be made with the table. Before settling on one form for a table, it is important to consider the audience and the message they are to receive from the table.
 
 > **Exercise**:  
-Create two tables with `number` and `spam` where each are in the column, so two table where you change which variable is in the column. Which would be more useful to someone hoping to identify spam emails using the `number` variable?^[The column proportions with `number` in the columns will probably be most useful, which makes it easier to see that emails with small numbers are spam about 5.9\% of the time (relatively rare). We would also see that about 27.1\% of emails with no numbers are spam, and 9.2\% of emails with big numbers are spam.]
+Create two tables with `number` and `spam` where each are in the column, so two tables where you change which variable is in the column. Which would be more useful to someone hoping to identify spam emails using the `number` variable?^[The column proportions with `number` in the columns will probably be most useful, which makes it easier to see that emails with small numbers are spam about 5.9\% of the time (relatively rare). We would also see that about 27.1\% of emails with no numbers are spam, and 9.2\% of emails with big numbers are spam.]
 
 
 ```r
