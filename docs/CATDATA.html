@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-08-18" />
+<meta name="date" content="2021-08-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -982,7 +982,7 @@ Figure 6.2: Bar chart of the <code>number</code> variable as a proportion.
 </div>
 <div id="column-proportions" class="section level3" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Column proportions</h3>
-<p>The table below shows the column proportions. The <strong>column proportions</strong> are computed as the counts divided by their column totals. The value 149 at the intersection of <em>spam</em> and <em>none</em> is replaced by <span class="math inline">\(149/549=0.271\)</span>, i.e. 149 divided by its row total, 549. So what does 0.271 represent? It corresponds to the proportion of emails in the sample with no numbers that are spam. We are <strong>conditioning</strong>, restricting, on emails with no number. This rate of spam is much higher than emails with only small numbers (5.9%) or big numbers (9.2%). Because these spam rates vary between the three levels of <code>number</code> (<em>none</em>, <em>small</em>, <em>big</em>), this provides evidence that the <code>spam</code> and <code>number</code> variables are associated.</p>
+<p>The table below shows the column proportions. The <strong>column proportions</strong> are computed as the counts divided by their column totals. The value 149 at the intersection of <em>spam</em> and <em>none</em> is replaced by <span class="math inline">\(149/549=0.271\)</span>, i.e. 149 divided by its column total, 549. So what does 0.271 represent? It corresponds to the proportion of emails in the sample with no numbers that are spam. We are <strong>conditioning</strong>, restricting, on emails with no number. This rate of spam is much higher than emails with only small numbers (5.9%) or big numbers (9.2%). Because these spam rates vary between the three levels of <code>number</code> (<em>none</em>, <em>small</em>, <em>big</em>), this provides evidence that the <code>spam</code> and <code>number</code> variables are associated.</p>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="CATDATA.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(spam<span class="sc">~</span>number,<span class="at">data=</span>email,<span class="at">margins =</span> <span class="cn">TRUE</span>,<span class="at">format=</span><span class="st">&#39;proportion&#39;</span>)</span></code></pre></div>
 <pre><code>##           number
 ## spam             none      small        big
