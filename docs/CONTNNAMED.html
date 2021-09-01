@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-08-20" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -809,8 +809,8 @@ f_X(x)=\left\{\begin{array}{ll} \frac{1}{b-a}, &amp; a\leq x \leq b \\ 0, &amp; 
 \]</span></p>
 <p>The mean of <span class="math inline">\(X\)</span> is <span class="math inline">\(\mbox{E}(X)=\frac{a+b}{2}\)</span> and the variance is <span class="math inline">\(\mbox{Var}(X)=\frac{(b-a)^2}{12}\)</span>. The derivation of the mean is left to the Application.</p>
 <p>The most common uniform distribution is <span class="math inline">\(U(0,1)\)</span> which we have already used several times in this course. Again, notice in Figure <a href="CONTNNAMED.html#fig:uni-fig">13.1</a> that the plot of the <strong>pdf</strong> is a constant or uniform value.</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="CONTNNAMED.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;unif&quot;</span>,<span class="at">title=</span><span class="st">&quot;Pdf of Uniform random variable&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;f(x)&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb339-2"><a href="CONTNNAMED.html#cb339-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="CONTNNAMED.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;unif&quot;</span>,<span class="at">title=</span><span class="st">&quot;Pdf of Uniform random variable&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;f(x)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb341-2"><a href="CONTNNAMED.html#cb341-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span id="fig:uni-fig"></span>
 <img src="13-Named-Continuous-Distributions_files/figure-html/uni-fig-1.png" alt="The pdf of Uniform random variable." width="672" />
 <p class="caption">
@@ -818,7 +818,7 @@ Figure 13.1: The pdf of Uniform random variable.
 </p>
 </div>
 <p>To check it is a proper pdf, all values must be non-negative and the total probability must be 1. In <code>R</code> the function for probability density will start with the letter <strong>d</strong> and have some short descriptor for the distribution. For the uniform we use <code>dunif()</code>.</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="CONTNNAMED.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)<span class="fu">dunif</span>(x),<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="CONTNNAMED.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)<span class="fu">dunif</span>(x),<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## 1 with absolute error &lt; 1.1e-14</code></pre>
 </div>
 <div id="exponential-distribution" class="section level3" number="13.2.2">
@@ -845,29 +845,29 @@ Suppose at a local retail store, customers arrive to a checkout counter accordin
 <p><span class="math display">\[\lim_{a \to +\infty} -e^{-\frac{1}{3}y}\bigg|_5^a=\lim_{a \to +\infty} -e^{-\frac{a}{3}}-(-e^{-\frac{5}{3}})= 0 + 0.189 = 0.189
 \]</span></p>
 <p>Alternatively, we could use <code>R</code>:</p>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="CONTNNAMED.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Prob(Y&gt;5)=1-Prob(Y&lt;=5)</span></span>
-<span id="cb342-2"><a href="CONTNNAMED.html#cb342-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pexp</span>(<span class="dv">5</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="CONTNNAMED.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Prob(Y&gt;5)=1-Prob(Y&lt;=5)</span></span>
+<span id="cb344-2"><a href="CONTNNAMED.html#cb344-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pexp</span>(<span class="dv">5</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1888756</code></pre>
 <p>Or using <code>integrate()</code></p>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="CONTNNAMED.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span><span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span><span class="sc">*</span>x),<span class="dv">5</span>,<span class="cn">Inf</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="CONTNNAMED.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span><span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span><span class="sc">*</span>x),<span class="dv">5</span>,<span class="cn">Inf</span>)</span></code></pre></div>
 <pre><code>## 0.1888756 with absolute error &lt; 8.5e-05</code></pre>
 <p>For the remaining probabilities, we will use <code>R</code>:</p>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="CONTNNAMED.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Prob(Y&lt;=3)</span></span>
-<span id="cb346-2"><a href="CONTNNAMED.html#cb346-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pexp</span>(<span class="dv">3</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="CONTNNAMED.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Prob(Y&lt;=3)</span></span>
+<span id="cb348-2"><a href="CONTNNAMED.html#cb348-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pexp</span>(<span class="dv">3</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.6321206</code></pre>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="CONTNNAMED.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Prob(1&lt;=Y&lt;5)</span></span>
-<span id="cb348-2"><a href="CONTNNAMED.html#cb348-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pexp</span>(<span class="dv">5</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)<span class="sc">-</span><span class="fu">pexp</span>(<span class="dv">1</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="CONTNNAMED.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Prob(1&lt;=Y&lt;5)</span></span>
+<span id="cb350-2"><a href="CONTNNAMED.html#cb350-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pexp</span>(<span class="dv">5</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)<span class="sc">-</span><span class="fu">pexp</span>(<span class="dv">1</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.5276557</code></pre>
 <p>The median is <span class="math inline">\(y\)</span> such that <span class="math inline">\(\mbox{P}(Y\leq y)=0.5\)</span>. We can find this by solving the following for <span class="math inline">\(y\)</span>:
 <span class="math display">\[
 \int_0^y \frac{1}{3}e^{-\frac{1}{3}y}\mathop{}\!\mathrm{d}y = 0.5
 \]</span></p>
 <p>Alternatively, we can use <code>qexp</code> in <code>R</code>:</p>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="CONTNNAMED.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="do">##median</span></span>
-<span id="cb350-2"><a href="CONTNNAMED.html#cb350-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qexp</span>(<span class="fl">0.5</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="CONTNNAMED.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="do">##median</span></span>
+<span id="cb352-2"><a href="CONTNNAMED.html#cb352-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qexp</span>(<span class="fl">0.5</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 2.079442</code></pre>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="CONTNNAMED.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="do">##95th percentile</span></span>
-<span id="cb352-2"><a href="CONTNNAMED.html#cb352-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qexp</span>(<span class="fl">0.95</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="CONTNNAMED.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="do">##95th percentile</span></span>
+<span id="cb354-2"><a href="CONTNNAMED.html#cb354-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qexp</span>(<span class="fl">0.95</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 8.987197</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:exp-fig"></span>
 <img src="13-Named-Continuous-Distributions_files/figure-html/exp-fig-1.png" alt="pdf of exponential random varible $Y$" width="672" />
@@ -929,17 +929,17 @@ Figure 13.4: pdf of Gamma for various values of alpha and lambda
 Let <span class="math inline">\(X \sim \textsf{Gamma}(\alpha=5,\lambda=1)\)</span>. Find the mean and variance of <span class="math inline">\(X\)</span>. Also, compute <span class="math inline">\(\mbox{P}(X\leq 2)\)</span> and <span class="math inline">\(\mbox{P}(1\leq X &lt; 8)\)</span>. Find the median and 95th percentile of <span class="math inline">\(X\)</span>.</p>
 </blockquote>
 <p>The mean and variance of <span class="math inline">\(X\)</span> are <span class="math inline">\(\mbox{E}(X)=5\)</span> and <span class="math inline">\(\mbox{Var}(X)=5\)</span>. To find probabilities and quantiles, integration will be difficult, so it’s best to use the built-in <code>R</code> functions:</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="CONTNNAMED.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Prob(X&lt;=2)</span></span>
-<span id="cb354-2"><a href="CONTNNAMED.html#cb354-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pgamma</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="CONTNNAMED.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Prob(X&lt;=2)</span></span>
+<span id="cb356-2"><a href="CONTNNAMED.html#cb356-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pgamma</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 0.05265302</code></pre>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="CONTNNAMED.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Prob(1 &lt;= X &lt; 8)</span></span>
-<span id="cb356-2"><a href="CONTNNAMED.html#cb356-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pgamma</span>(<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">1</span>)<span class="sc">-</span><span class="fu">pgamma</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="CONTNNAMED.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Prob(1 &lt;= X &lt; 8)</span></span>
+<span id="cb358-2"><a href="CONTNNAMED.html#cb358-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pgamma</span>(<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">1</span>)<span class="sc">-</span><span class="fu">pgamma</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 0.8967078</code></pre>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="CONTNNAMED.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="do">## median</span></span>
-<span id="cb358-2"><a href="CONTNNAMED.html#cb358-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qgamma</span>(<span class="fl">0.5</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="CONTNNAMED.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="do">## median</span></span>
+<span id="cb360-2"><a href="CONTNNAMED.html#cb360-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qgamma</span>(<span class="fl">0.5</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 4.670909</code></pre>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="CONTNNAMED.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 95th percentile</span></span>
-<span id="cb360-2"><a href="CONTNNAMED.html#cb360-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qgamma</span>(<span class="fl">0.95</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="CONTNNAMED.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 95th percentile</span></span>
+<span id="cb362-2"><a href="CONTNNAMED.html#cb362-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qgamma</span>(<span class="fl">0.95</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 9.153519</code></pre>
 </div>
 </div>
@@ -986,20 +986,20 @@ Z=\frac{X-\mu}{\sigma} \sim \textsf{Norm}(0,1)
 Let <span class="math inline">\(X \sim \textsf{Norm}(\mu=200,\sigma=15)\)</span>. Compute <span class="math inline">\(\mbox{P}(X\leq 160)\)</span>, <span class="math inline">\(\mbox{P}(180\leq X &lt; 230)\)</span>, and <span class="math inline">\(\mbox{P}(X&gt;\mu+\sigma)\)</span>. Find the median and 95th percentile of <span class="math inline">\(X\)</span>.</p>
 </blockquote>
 <p>As with the gamma distribution, to find probabilities and quantiles, integration will be difficult, so it’s best to use the built-in <code>R</code> functions:</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="CONTNNAMED.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Prob(X&lt;=160)</span></span>
-<span id="cb362-2"><a href="CONTNNAMED.html#cb362-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">160</span>,<span class="dv">200</span>,<span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="CONTNNAMED.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Prob(X&lt;=160)</span></span>
+<span id="cb364-2"><a href="CONTNNAMED.html#cb364-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">160</span>,<span class="dv">200</span>,<span class="dv">15</span>)</span></code></pre></div>
 <pre><code>## [1] 0.003830381</code></pre>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="CONTNNAMED.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Prob(180 &lt;= X &lt; 230)</span></span>
-<span id="cb364-2"><a href="CONTNNAMED.html#cb364-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">230</span>,<span class="dv">200</span>,<span class="dv">15</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">180</span>,<span class="dv">200</span>,<span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="CONTNNAMED.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Prob(180 &lt;= X &lt; 230)</span></span>
+<span id="cb366-2"><a href="CONTNNAMED.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">230</span>,<span class="dv">200</span>,<span class="dv">15</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">180</span>,<span class="dv">200</span>,<span class="dv">15</span>)</span></code></pre></div>
 <pre><code>## [1] 0.8860386</code></pre>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="CONTNNAMED.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Prob(X&gt;mu+sig)</span></span>
-<span id="cb366-2"><a href="CONTNNAMED.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">215</span>,<span class="dv">200</span>,<span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="CONTNNAMED.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Prob(X&gt;mu+sig)</span></span>
+<span id="cb368-2"><a href="CONTNNAMED.html#cb368-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">215</span>,<span class="dv">200</span>,<span class="dv">15</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1586553</code></pre>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="CONTNNAMED.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="do">## median</span></span>
-<span id="cb368-2"><a href="CONTNNAMED.html#cb368-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.5</span>,<span class="dv">200</span>,<span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="CONTNNAMED.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="do">## median</span></span>
+<span id="cb370-2"><a href="CONTNNAMED.html#cb370-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.5</span>,<span class="dv">200</span>,<span class="dv">15</span>)</span></code></pre></div>
 <pre><code>## [1] 200</code></pre>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="CONTNNAMED.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 95th percentile</span></span>
-<span id="cb370-2"><a href="CONTNNAMED.html#cb370-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.95</span>,<span class="dv">200</span>,<span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="CONTNNAMED.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 95th percentile</span></span>
+<span id="cb372-2"><a href="CONTNNAMED.html#cb372-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.95</span>,<span class="dv">200</span>,<span class="dv">15</span>)</span></code></pre></div>
 <pre><code>## [1] 224.6728</code></pre>
 </div>
 </div>

@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-08-20" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -894,14 +894,14 @@ We only have <span class="math inline">\(n-2\)</span> degrees of freedom because
 <h3><span class="header-section-number">27.3.1</span> Starbucks</h3>
 <p>That was a great deal of mathematics and theory. Let’s put it to use on the example from Starbucks. In the file <code>data/starbucks.csv</code> we have nutritional facts for several Starbucks’ food items. We used this data in the homework for last lesson. We will use this data again to illustrate the ideas we have introduced in this section.</p>
 <p>Read in the data.</p>
-<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb807-1"><a href="LRINF.html#cb807-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/starbucks.csv&quot;</span>)  <span class="sc">%&gt;%</span></span>
-<span id="cb807-2"><a href="LRINF.html#cb807-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type=</span><span class="fu">factor</span>(type))</span></code></pre></div>
+<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb809-1"><a href="LRINF.html#cb809-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/starbucks.csv&quot;</span>)  <span class="sc">%&gt;%</span></span>
+<span id="cb809-2"><a href="LRINF.html#cb809-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type=</span><span class="fu">factor</span>(type))</span></code></pre></div>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
 Summarize and explore the data.</p>
 </blockquote>
 <p>Let’s look at a summary of the data.</p>
-<div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb808-1"><a href="LRINF.html#cb808-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(starbucks)</span></code></pre></div>
+<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb810-1"><a href="LRINF.html#cb810-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(starbucks)</span></code></pre></div>
 <pre><code>## Rows: 77
 ## Columns: 7
 ## $ item     &lt;chr&gt; &quot;8-Grain Roll&quot;, &quot;Apple Bran Muffin&quot;, &quot;Apple Fritter&quot;, &quot;Banana…
@@ -911,7 +911,7 @@ Summarize and explore the data.</p>
 ## $ fiber    &lt;dbl&gt; 5, 7, 0, 4, 0, 5, 2, 0, 0, 0, 2, 3, 2, 2, 3, 3, 2, 3, 0, 2, 0…
 ## $ protein  &lt;dbl&gt; 10, 6, 5, 7, 0, 6, 7, 6, 5, 7, 4, 6, 5, 5, 12, 7, 8, 6, 0, 10…
 ## $ type     &lt;fct&gt; bakery, bakery, bakery, bakery, bakery, bakery, bakery, baker…</code></pre>
-<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb810-1"><a href="LRINF.html#cb810-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(starbucks)</span></code></pre></div>
+<div class="sourceCode" id="cb812"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb812-1"><a href="LRINF.html#cb812-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(starbucks)</span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
 ##   name     class levels  n missing
@@ -934,10 +934,10 @@ Summarize and explore the data.</p>
 Create a scatterplot of calories and carbohydrate, carbs, content.</p>
 </blockquote>
 <p>Figure <a href="LRINF.html#fig:scat271-fig">27.2</a> is the scatterplot.</p>
-<div class="sourceCode" id="cb812"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb812-1"><a href="LRINF.html#cb812-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="sc">%&gt;%</span></span>
-<span id="cb812-2"><a href="LRINF.html#cb812-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(calories<span class="sc">~</span>carb) <span class="sc">%&gt;%</span></span>
-<span id="cb812-3"><a href="LRINF.html#cb812-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Carbohydrates&quot;</span>,<span class="at">y=</span><span class="st">&quot;Calories&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb812-4"><a href="LRINF.html#cb812-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb814-1"><a href="LRINF.html#cb814-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="sc">%&gt;%</span></span>
+<span id="cb814-2"><a href="LRINF.html#cb814-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(calories<span class="sc">~</span>carb) <span class="sc">%&gt;%</span></span>
+<span id="cb814-3"><a href="LRINF.html#cb814-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Carbohydrates&quot;</span>,<span class="at">y=</span><span class="st">&quot;Calories&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb814-4"><a href="LRINF.html#cb814-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
 <div class="figure"><span id="fig:scat271-fig"></span>
 <img src="27-Regression-Inference_files/figure-html/scat271-fig-1.png" alt="Scatterplot of calories and carbohydrate content in Starbucks' products." width="672" />
 <p class="caption">
@@ -949,8 +949,8 @@ Figure 27.2: Scatterplot of calories and carbohydrate content in Starbucks’ pr
 Use <code>R</code> to fit a linear regression model by regressing <code>calories</code> on <code>carb</code>.</p>
 </blockquote>
 <p>The results of fitting a linear least squares model is stored in the <code>star_mod</code> object.</p>
-<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="LRINF.html#cb813-1" aria-hidden="true" tabindex="-1"></a>star_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> calories <span class="sc">~</span> carb, <span class="at">data =</span> starbucks)</span></code></pre></div>
-<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb814-1"><a href="LRINF.html#cb814-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(star_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb815-1"><a href="LRINF.html#cb815-1" aria-hidden="true" tabindex="-1"></a>star_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> calories <span class="sc">~</span> carb, <span class="at">data =</span> starbucks)</span></code></pre></div>
+<div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb816-1"><a href="LRINF.html#cb816-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(star_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = calories ~ carb, data = starbucks)
@@ -980,35 +980,35 @@ Use <code>R</code> to fit a linear regression model by regressing <code>calories
 {\hat{\beta}_1-0 \over {\hat \sigma \over \sqrt{ \sum (x_i-\bar{x})^2}}}
 \]</span>
 The denominator is the standard error of the estimate. The estimate of the residual standard deviation is reported in the last line as 78.26. But it is just the square root of the sum of squared residuals divided by the degrees of freedom.</p>
-<div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb816-1"><a href="LRINF.html#cb816-1" aria-hidden="true" tabindex="-1"></a>sighat<span class="ot">&lt;-</span><span class="fu">sqrt</span>(<span class="fu">sum</span>((star_mod<span class="sc">$</span>residuals)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">75</span>)</span>
-<span id="cb816-2"><a href="LRINF.html#cb816-2" aria-hidden="true" tabindex="-1"></a>sighat</span></code></pre></div>
+<div class="sourceCode" id="cb818"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb818-1"><a href="LRINF.html#cb818-1" aria-hidden="true" tabindex="-1"></a>sighat<span class="ot">&lt;-</span><span class="fu">sqrt</span>(<span class="fu">sum</span>((star_mod<span class="sc">$</span>residuals)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">75</span>)</span>
+<span id="cb818-2"><a href="LRINF.html#cb818-2" aria-hidden="true" tabindex="-1"></a>sighat</span></code></pre></div>
 <pre><code>## [1] 78.25956</code></pre>
 <p>The standard error of the slope estimate is, and confirmed in the table:</p>
-<div class="sourceCode" id="cb818"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb818-1"><a href="LRINF.html#cb818-1" aria-hidden="true" tabindex="-1"></a>std_er<span class="ot">&lt;-</span>sighat<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sum</span>((starbucks<span class="sc">$</span>carb<span class="sc">-</span><span class="fu">mean</span>(starbucks<span class="sc">$</span>carb))<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb818-2"><a href="LRINF.html#cb818-2" aria-hidden="true" tabindex="-1"></a>std_er</span></code></pre></div>
+<div class="sourceCode" id="cb820"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb820-1"><a href="LRINF.html#cb820-1" aria-hidden="true" tabindex="-1"></a>std_er<span class="ot">&lt;-</span>sighat<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sum</span>((starbucks<span class="sc">$</span>carb<span class="sc">-</span><span class="fu">mean</span>(starbucks<span class="sc">$</span>carb))<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb820-2"><a href="LRINF.html#cb820-2" aria-hidden="true" tabindex="-1"></a>std_er</span></code></pre></div>
 <pre><code>## [1] 0.5423626</code></pre>
 <p>The test statistic is</p>
-<div class="sourceCode" id="cb820"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb820-1"><a href="LRINF.html#cb820-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">4.2971</span><span class="dv">-0</span>)<span class="sc">/</span>std_er</span></code></pre></div>
+<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="LRINF.html#cb822-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">4.2971</span><span class="dv">-0</span>)<span class="sc">/</span>std_er</span></code></pre></div>
 <pre><code>## [1] 7.922928</code></pre>
 <p>And the p-value</p>
-<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="LRINF.html#cb822-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>((<span class="fl">4.2971</span><span class="dv">-0</span>)<span class="sc">/</span>std_er,<span class="dv">73</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb824-1"><a href="LRINF.html#cb824-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>((<span class="fl">4.2971</span><span class="dv">-0</span>)<span class="sc">/</span>std_er,<span class="dv">73</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## [1] 1.965319e-11</code></pre>
 <p>This is slightly different from the table value because of the precision of the computer and the small p-value.</p>
 <p>We reject <span class="math inline">\(H_0\)</span> in favor of <span class="math inline">\(H_A\)</span> because the data provide strong evidence that the true slope parameter is greater than zero.</p>
 <p>The computer software uses zero in the null hypothesis, if you wanted to test another value of the slope then you would have to do the calculations step by step like we did above.</p>
 <p>By the way, this was not a <code>tidy</code> way to do the calculation. The <code>broom</code> package makes it easier to use <code>tidy</code> ideas on the regression model. We used these ideas in the last lesson.</p>
 <p>As a reminder:</p>
-<div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb824-1"><a href="LRINF.html#cb824-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
-<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="LRINF.html#cb825-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(star_mod) </span></code></pre></div>
+<div class="sourceCode" id="cb826"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb826-1"><a href="LRINF.html#cb826-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
+<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="LRINF.html#cb827-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(star_mod) </span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)   146.      25.9        5.63 2.93e- 7
 ## 2 carb            4.30     0.542      7.92 1.67e-11</code></pre>
 <p>And step by step:</p>
-<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="LRINF.html#cb827-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(star_mod) <span class="sc">%&gt;%</span></span>
-<span id="cb827-2"><a href="LRINF.html#cb827-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&quot;carb&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb827-3"><a href="LRINF.html#cb827-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">test_stat=</span>(estimate<span class="dv">-0</span>)<span class="sc">/</span>std.error,<span class="at">p_value=</span><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(test_stat,<span class="at">df=</span><span class="dv">73</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="LRINF.html#cb829-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(star_mod) <span class="sc">%&gt;%</span></span>
+<span id="cb829-2"><a href="LRINF.html#cb829-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&quot;carb&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb829-3"><a href="LRINF.html#cb829-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">test_stat=</span>(estimate<span class="dv">-0</span>)<span class="sc">/</span>std.error,<span class="at">p_value=</span><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(test_stat,<span class="at">df=</span><span class="dv">73</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
 ##   test_stat  p_value
 ##       &lt;dbl&gt;    &lt;dbl&gt;
@@ -1017,7 +1017,7 @@ The denominator is the standard error of the estimate. The estimate of the resid
 <div id="confidence-interval-1" class="section level4" number="27.3.1.2">
 <h4><span class="header-section-number">27.3.1.2</span> Confidence interval</h4>
 <p>We could calculate the confidence interval from the point estimate, standard error, and critical value but we will let <code>R</code> do it for us.</p>
-<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="LRINF.html#cb829-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(star_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="LRINF.html#cb831-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(star_mod)</span></code></pre></div>
 <pre><code>##                 2.5 %     97.5 %
 ## (Intercept) 94.387896 197.652967
 ## carb         3.216643   5.377526</code></pre>
@@ -1040,12 +1040,12 @@ Y_{new}\in \left(\hat Y_* \pm t_{\alpha/2,n-2}\hat \sigma \sqrt{1+{1\over n}+{(x
 <div id="starbucks-1" class="section level3" number="27.4.1">
 <h3><span class="header-section-number">27.4.1</span> Starbucks</h3>
 <p>Continuing with the <code>Starbucks</code> example. In plotting the data, we can have <code>R</code> plot the confidence and prediction bands, Figure <a href="LRINF.html#fig:ci271-fig">27.3</a>. We will observe the width of both of these intervals increase as we move away from the center of the data and also that prediction intervals are wider than the confidence interval.</p>
-<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="LRINF.html#cb831-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="sc">%&gt;%</span></span>
-<span id="cb831-2"><a href="LRINF.html#cb831-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(calories<span class="sc">~</span>carb) <span class="sc">%&gt;%</span></span>
-<span id="cb831-3"><a href="LRINF.html#cb831-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Carbohydrates&quot;</span>,<span class="at">y=</span><span class="st">&quot;Calories&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb831-4"><a href="LRINF.html#cb831-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_lm</span>(<span class="at">stat=</span><span class="st">&quot;lm&quot;</span>,<span class="at">interval=</span><span class="st">&quot;confidence&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb831-5"><a href="LRINF.html#cb831-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_lm</span>(<span class="at">stat=</span><span class="st">&quot;lm&quot;</span>,<span class="at">interval=</span><span class="st">&quot;prediction&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb831-6"><a href="LRINF.html#cb831-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="LRINF.html#cb833-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="sc">%&gt;%</span></span>
+<span id="cb833-2"><a href="LRINF.html#cb833-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(calories<span class="sc">~</span>carb) <span class="sc">%&gt;%</span></span>
+<span id="cb833-3"><a href="LRINF.html#cb833-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Carbohydrates&quot;</span>,<span class="at">y=</span><span class="st">&quot;Calories&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb833-4"><a href="LRINF.html#cb833-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_lm</span>(<span class="at">stat=</span><span class="st">&quot;lm&quot;</span>,<span class="at">interval=</span><span class="st">&quot;confidence&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb833-5"><a href="LRINF.html#cb833-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_lm</span>(<span class="at">stat=</span><span class="st">&quot;lm&quot;</span>,<span class="at">interval=</span><span class="st">&quot;prediction&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb833-6"><a href="LRINF.html#cb833-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
 <div class="figure"><span id="fig:ci271-fig"></span>
 <img src="27-Regression-Inference_files/figure-html/ci271-fig-1.png" alt="Confidence and predictions bands for linear regression model of calories and carbs in Starbucks' products." width="672" />
 <p class="caption">
@@ -1054,8 +1054,8 @@ Figure 27.3: Confidence and predictions bands for linear regression model of cal
 </div>
 <p>We have not done diagnostics yet and it may be that using a linear regression model for this data may not be appropriate. But for the sake of learning we will continue. To find these confidence intervals we need a value for <code>carb</code> so let’s use 60 and 70.</p>
 <p>We create a data frame with the new values of <code>carb</code> in it. Then we will use the <code>predict</code> function to find the confidence interval. Using the option <code>interval</code> set to <code>confidence</code> will return a confidence interval for the average calorie content for each value in the new data frame.</p>
-<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb832-1"><a href="LRINF.html#cb832-1" aria-hidden="true" tabindex="-1"></a>new_carb <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">carb=</span><span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">70</span>))</span>
-<span id="cb832-2"><a href="LRINF.html#cb832-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(star_mod, <span class="at">newdata =</span> new_carb, <span class="at">interval =</span> <span class="st">&#39;confidence&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="LRINF.html#cb834-1" aria-hidden="true" tabindex="-1"></a>new_carb <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">carb=</span><span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">70</span>))</span>
+<span id="cb834-2"><a href="LRINF.html#cb834-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(star_mod, <span class="at">newdata =</span> new_carb, <span class="at">interval =</span> <span class="st">&#39;confidence&#39;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 403.8455 379.7027 427.9883
 ## 2 446.8163 414.3687 479.2640</code></pre>
@@ -1066,8 +1066,8 @@ Give the 95% confidence interval of average calories for 70 grams of carbohydrat
 </blockquote>
 <p>We are 95% confident that the average calories in a Starbucks’ menu item with 70 grams carbs is between 414.4 and 479.3.</p>
 <p>For the prediction interval, we simply need to change the option in <code>interval</code>:</p>
-<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="LRINF.html#cb834-1" aria-hidden="true" tabindex="-1"></a>new_carb <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">carb=</span><span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">70</span>))</span>
-<span id="cb834-2"><a href="LRINF.html#cb834-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(star_mod, <span class="at">newdata =</span> new_carb, <span class="at">interval =</span> <span class="st">&#39;prediction&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb836-1"><a href="LRINF.html#cb836-1" aria-hidden="true" tabindex="-1"></a>new_carb <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">carb=</span><span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">70</span>))</span>
+<span id="cb836-2"><a href="LRINF.html#cb836-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(star_mod, <span class="at">newdata =</span> new_carb, <span class="at">interval =</span> <span class="st">&#39;prediction&#39;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 403.8455 246.0862 561.6048
 ## 2 446.8163 287.5744 606.0582</code></pre>
@@ -1077,7 +1077,7 @@ Give the 95% confidence interval of average calories for 70 grams of carbohydrat
 Give the 90% prediction interval of average calories for 70 grams of carbohydrates.</p>
 </blockquote>
 <p>We changed the confidence level. Since we are less confident, the interval will be narrower than the 95% prediction interval we just calculated.</p>
-<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb836-1"><a href="LRINF.html#cb836-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(star_mod, <span class="at">newdata =</span> new_carb, <span class="at">level=</span><span class="fl">0.9</span>, <span class="at">interval =</span> <span class="st">&#39;prediction&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb838"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb838-1"><a href="LRINF.html#cb838-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(star_mod, <span class="at">newdata =</span> new_carb, <span class="at">level=</span><span class="fl">0.9</span>, <span class="at">interval =</span> <span class="st">&#39;prediction&#39;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 403.8455 271.9565 535.7345
 ## 2 446.8163 313.6879 579.9448</code></pre>

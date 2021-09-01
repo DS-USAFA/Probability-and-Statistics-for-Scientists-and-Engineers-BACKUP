@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-08-20" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -969,20 +969,26 @@ What is the number of possibilities for 18 people so that no one has the same bi
 <pre><code>##  [1] 0.0000000 0.9972603 0.9999925 1.0000000 1.0000000 1.0000000 1.0000000
 ##  [8] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000
 ## [15] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000</code></pre>
-<p>It only uses the first value. Let’s vectorize it.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="CS2.html#cb151-1" aria-hidden="true" tabindex="-1"></a>birthday_prob <span class="ot">&lt;-</span> <span class="fu">Vectorize</span>(birthday_prob)</span></code></pre></div>
+<p>It only uses the first value. There are several ways to solve this problem. We can use the <code>map()</code> function in the <strong>purrr</strong> package. This idea of mapping a function to a vector is important in data science. It is used in scenarios where there is a lot of data. In this case the idea of map-reduce is used to make the analysis amenable to parallel computing.</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="CS2.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,birthday_prob)</span></code></pre></div>
+<pre><code>##  [1] 0.000000000 0.002739726 0.008204166 0.016355912 0.027135574 0.040462484
+##  [7] 0.056235703 0.074335292 0.094623834 0.116948178 0.141141378 0.167024789
+## [13] 0.194410275 0.223102512 0.252901320 0.283604005 0.315007665 0.346911418
+## [19] 0.379118526 0.411438384</code></pre>
+<p>We could also just vectorize the function.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="CS2.html#cb153-1" aria-hidden="true" tabindex="-1"></a>birthday_prob <span class="ot">&lt;-</span> <span class="fu">Vectorize</span>(birthday_prob)</span></code></pre></div>
 <p>Now notice what happens.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="CS2.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">birthday_prob</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="CS2.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">birthday_prob</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span></code></pre></div>
 <pre><code>##  [1] 0.000000000 0.002739726 0.008204166 0.016355912 0.027135574 0.040462484
 ##  [7] 0.056235703 0.074335292 0.094623834 0.116948178 0.141141378 0.167024789
 ## [13] 0.194410275 0.223102512 0.252901320 0.283604005 0.315007665 0.346911418
 ## [19] 0.379118526 0.411438384</code></pre>
 <p>We are good to go. Let’s create our line plot, Figure <a href="CS2.html#fig:line71-fig">7.2</a>.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="CS2.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_line</span>(<span class="fu">birthday_prob</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)<span class="sc">~</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">100</span>),</span>
-<span id="cb154-2"><a href="CS2.html#cb154-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">&quot;Number of People&quot;</span>,</span>
-<span id="cb154-3"><a href="CS2.html#cb154-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">&quot;Probability of Match&quot;</span>,</span>
-<span id="cb154-4"><a href="CS2.html#cb154-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">title=</span><span class="st">&quot;Probability of at least 2 people with matching birthdays&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb154-5"><a href="CS2.html#cb154-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="CS2.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_line</span>(<span class="fu">birthday_prob</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)<span class="sc">~</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">100</span>),</span>
+<span id="cb156-2"><a href="CS2.html#cb156-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">&quot;Number of People&quot;</span>,</span>
+<span id="cb156-3"><a href="CS2.html#cb156-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">&quot;Probability of Match&quot;</span>,</span>
+<span id="cb156-4"><a href="CS2.html#cb156-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">title=</span><span class="st">&quot;Probability of at least 2 people with matching birthdays&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb156-5"><a href="CS2.html#cb156-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span id="fig:line71-fig"></span>
 <img src="07-Probability-Case-Study_files/figure-html/line71-fig-1.png" alt="The probability of at least 2 people having mathcing birthdays" width="672" />
 <p class="caption">
@@ -994,7 +1000,7 @@ Figure 7.2: The probability of at least 2 people having mathcing birthdays
 <div id="data-science-approach" class="section level3" number="7.4.6">
 <h3><span class="header-section-number">7.4.6</span> Data science approach</h3>
 <p>The final approach we will take is one based on data, a data science approach. In the <strong>mosaicData</strong> package is a data set called <code>Births</code> that contains the number of births in the US from 1969 to 1988. This data will allow us to estimate the number of births on any day of the year. This allows us to eliminate the reliance on the assumption that each day is equally likely. Let’s first <code>inspect()</code> the data object.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="CS2.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(Births)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="CS2.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(Births)</span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
 ##   name   class levels    n missing
@@ -1022,11 +1028,11 @@ Figure 7.2: The probability of at least 2 people having mathcing birthdays
 ## ...5 7305       0
 ## ...6 7305       0</code></pre>
 <p>It could be argued that we could randomly pick one year and use it. Let’s see what happens if we just used 1969. Figure <a href="CS2.html#fig:scat71-fig">7.3</a> is a scatter plot of the number of births in 1969 for each day of the year.</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="CS2.html#cb157-1" aria-hidden="true" tabindex="-1"></a>Births <span class="sc">%&gt;%</span></span>
-<span id="cb157-2"><a href="CS2.html#cb157-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1969</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb157-3"><a href="CS2.html#cb157-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(births<span class="sc">~</span>day_of_year) <span class="sc">%&gt;%</span></span>
-<span id="cb157-4"><a href="CS2.html#cb157-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb157-5"><a href="CS2.html#cb157-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Day of the Year&quot;</span>,<span class="at">y=</span><span class="st">&quot;Number of Births&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="CS2.html#cb159-1" aria-hidden="true" tabindex="-1"></a>Births <span class="sc">%&gt;%</span></span>
+<span id="cb159-2"><a href="CS2.html#cb159-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1969</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb159-3"><a href="CS2.html#cb159-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(births<span class="sc">~</span>day_of_year) <span class="sc">%&gt;%</span></span>
+<span id="cb159-4"><a href="CS2.html#cb159-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb159-5"><a href="CS2.html#cb159-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Day of the Year&quot;</span>,<span class="at">y=</span><span class="st">&quot;Number of Births&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:scat71-fig"></span>
 <img src="07-Probability-Case-Study_files/figure-html/scat71-fig-1.png" alt="The number of births for each day of the year in 1969" width="672" />
 <p class="caption">
@@ -1039,11 +1045,11 @@ What patterns do you see in Figure <a href="CS2.html#fig:scat71-fig">7.3</a>? Wh
 </blockquote>
 <p>There are definitely bands appearing in the data which could be the day of the week; there are less birthdays on the weekend. There is also seasonality with more birthdays in the summer and fall. There is also probably an impact from holidays.</p>
 <p>Quickly, let’s look at the impact of day of the week by using color for day of the week. Figure <a href="CS2.html#fig:scat72-fig">7.4</a> makes it clear that the weekends have less number of births as compared to the work week.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="CS2.html#cb158-1" aria-hidden="true" tabindex="-1"></a>Births <span class="sc">%&gt;%</span></span>
-<span id="cb158-2"><a href="CS2.html#cb158-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1969</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb158-3"><a href="CS2.html#cb158-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(births<span class="sc">~</span>day_of_year,<span class="at">color=</span><span class="sc">~</span><span class="fu">factor</span>(day_of_week)) <span class="sc">%&gt;%</span></span>
-<span id="cb158-4"><a href="CS2.html#cb158-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Day of the Year&quot;</span>,<span class="at">col=</span><span class="st">&quot;Day of Week&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb158-5"><a href="CS2.html#cb158-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="CS2.html#cb160-1" aria-hidden="true" tabindex="-1"></a>Births <span class="sc">%&gt;%</span></span>
+<span id="cb160-2"><a href="CS2.html#cb160-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1969</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb160-3"><a href="CS2.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(births<span class="sc">~</span>day_of_year,<span class="at">color=</span><span class="sc">~</span><span class="fu">factor</span>(day_of_week)) <span class="sc">%&gt;%</span></span>
+<span id="cb160-4"><a href="CS2.html#cb160-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Day of the Year&quot;</span>,<span class="at">col=</span><span class="st">&quot;Day of Week&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb160-5"><a href="CS2.html#cb160-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span id="fig:scat72-fig"></span>
 <img src="07-Probability-Case-Study_files/figure-html/scat72-fig-1.png" alt="The number of births for each day of the year in 1969 broken down by day of the week" width="672" />
 <p class="caption">
@@ -1051,9 +1057,9 @@ Figure 7.4: The number of births for each day of the year in 1969 broken down by
 </p>
 </div>
 <p>By only using one year, this data might give poor results since holidays will fall on certain days of the week and the weekends will also be impacted. Note that we also still have the problem of leap years.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="CS2.html#cb159-1" aria-hidden="true" tabindex="-1"></a>Births <span class="sc">%&gt;%</span></span>
-<span id="cb159-2"><a href="CS2.html#cb159-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb159-3"><a href="CS2.html#cb159-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">n</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="CS2.html#cb161-1" aria-hidden="true" tabindex="-1"></a>Births <span class="sc">%&gt;%</span></span>
+<span id="cb161-2"><a href="CS2.html#cb161-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb161-3"><a href="CS2.html#cb161-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">n</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 20 × 2
 ##     year     n
 ##    &lt;int&gt; &lt;int&gt;
@@ -1078,10 +1084,10 @@ Figure 7.4: The number of births for each day of the year in 1969 broken down by
 ## 19  1987   365
 ## 20  1988   366</code></pre>
 <p>The years 1972, 1976, 1980, 1984, and 1988 are all leap years. At this point, to make the analysis easier, we will drop those years.</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="CS2.html#cb161-1" aria-hidden="true" tabindex="-1"></a>Births <span class="sc">%&gt;%</span></span>
-<span id="cb161-2"><a href="CS2.html#cb161-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1972</span>,<span class="dv">1976</span>,<span class="dv">1980</span>,<span class="dv">1984</span>,<span class="dv">1988</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb161-3"><a href="CS2.html#cb161-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb161-4"><a href="CS2.html#cb161-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">n</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="CS2.html#cb163-1" aria-hidden="true" tabindex="-1"></a>Births <span class="sc">%&gt;%</span></span>
+<span id="cb163-2"><a href="CS2.html#cb163-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1972</span>,<span class="dv">1976</span>,<span class="dv">1980</span>,<span class="dv">1984</span>,<span class="dv">1988</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb163-3"><a href="CS2.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb163-4"><a href="CS2.html#cb163-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">n</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 15 × 2
 ##     year     n
 ##    &lt;int&gt; &lt;int&gt;
@@ -1102,11 +1108,11 @@ Figure 7.4: The number of births for each day of the year in 1969 broken down by
 ## 15  1987   365</code></pre>
 <p>Notice in <code>filter()</code> we used the <code>%in%</code> argument. This is a <strong>logical</strong> argument checking if <code>year</code> is one of the values. The <code>!</code> at the front negates this in a sense requiring <code>year</code> not to be one of those values.`</p>
 <p>We are almost ready to simulate. We need to get the count of <code>births</code> on each day of the year for the non-leap years.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="CS2.html#cb163-1" aria-hidden="true" tabindex="-1"></a>birth_data <span class="ot">&lt;-</span> Births <span class="sc">%&gt;%</span></span>
-<span id="cb163-2"><a href="CS2.html#cb163-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1972</span>,<span class="dv">1976</span>,<span class="dv">1980</span>,<span class="dv">1984</span>,<span class="dv">1988</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb163-3"><a href="CS2.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(day_of_year) <span class="sc">%&gt;%</span></span>
-<span id="cb163-4"><a href="CS2.html#cb163-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">sum</span>(births)) </span></code></pre></div>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="CS2.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(birth_data)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="CS2.html#cb165-1" aria-hidden="true" tabindex="-1"></a>birth_data <span class="ot">&lt;-</span> Births <span class="sc">%&gt;%</span></span>
+<span id="cb165-2"><a href="CS2.html#cb165-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1972</span>,<span class="dv">1976</span>,<span class="dv">1980</span>,<span class="dv">1984</span>,<span class="dv">1988</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb165-3"><a href="CS2.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(day_of_year) <span class="sc">%&gt;%</span></span>
+<span id="cb165-4"><a href="CS2.html#cb165-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">sum</span>(births)) </span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="CS2.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(birth_data)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##   day_of_year      n
 ##         &lt;int&gt;  &lt;int&gt;
@@ -1117,11 +1123,11 @@ Figure 7.4: The number of births for each day of the year in 1969 broken down by
 ## 5           5 137319
 ## 6           6 140044</code></pre>
 <p>Let’s look at a plot of the number of births versus day of the year. We combined years in Figure <a href="CS2.html#fig:scat73-fig">7.5</a>.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="CS2.html#cb166-1" aria-hidden="true" tabindex="-1"></a>birth_data <span class="sc">%&gt;%</span></span>
-<span id="cb166-2"><a href="CS2.html#cb166-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(n<span class="sc">~</span>day_of_year,</span>
-<span id="cb166-3"><a href="CS2.html#cb166-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">xlab=</span><span class="st">&quot;Day of the year&quot;</span>,</span>
-<span id="cb166-4"><a href="CS2.html#cb166-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylab=</span><span class="st">&quot;Number of births&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb166-5"><a href="CS2.html#cb166-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="CS2.html#cb168-1" aria-hidden="true" tabindex="-1"></a>birth_data <span class="sc">%&gt;%</span></span>
+<span id="cb168-2"><a href="CS2.html#cb168-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(n<span class="sc">~</span>day_of_year,</span>
+<span id="cb168-3"><a href="CS2.html#cb168-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">xlab=</span><span class="st">&quot;Day of the year&quot;</span>,</span>
+<span id="cb168-4"><a href="CS2.html#cb168-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylab=</span><span class="st">&quot;Number of births&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb168-5"><a href="CS2.html#cb168-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span id="fig:scat73-fig"></span>
 <img src="07-Probability-Case-Study_files/figure-html/scat73-fig-1.png" alt="Number of births by day of the year for all years." width="672" />
 <p class="caption">
@@ -1130,15 +1136,15 @@ Figure 7.5: Number of births by day of the year for all years.
 </div>
 <p>This curve has the seasonal cycling we would expect. The smaller scale cycling is unexpected. Maybe because we are dropping the leap years, we are getting some days appearing in our time interval more frequently on weekends. We leave it to you to investigate this phenomenon.</p>
 <p>We use these counts as weights in a sampling process. Days with more births will have a higher probability of being selected. Days such as Christmas and Christmas Eve have a lower probability of being selected. Let’s save the weights in an object to use in the <code>sample()</code> function.</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="CS2.html#cb167-1" aria-hidden="true" tabindex="-1"></a>birth_data_weights <span class="ot">&lt;-</span> birth_data <span class="sc">%&gt;%</span></span>
-<span id="cb167-2"><a href="CS2.html#cb167-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(n) <span class="sc">%&gt;%</span></span>
-<span id="cb167-3"><a href="CS2.html#cb167-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="CS2.html#cb169-1" aria-hidden="true" tabindex="-1"></a>birth_data_weights <span class="ot">&lt;-</span> birth_data <span class="sc">%&gt;%</span></span>
+<span id="cb169-2"><a href="CS2.html#cb169-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(n) <span class="sc">%&gt;%</span></span>
+<span id="cb169-3"><a href="CS2.html#cb169-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>()</span></code></pre></div>
 <p>The <code>pull()</code> function pulls the vectors of values out of the data frame format into a vector format which the <code>sample()</code> needs.</p>
 <p>Now let’s simulate the problem. The probability of a match should change slightly, maybe go down slightly?, but not much since most of the days have about the same probability or number of occurrences.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="CS2.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20</span>)</span>
-<span id="cb168-2"><a href="CS2.html#cb168-2" aria-hidden="true" tabindex="-1"></a>(<span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">length</span>(<span class="fu">unique</span>(<span class="fu">sample</span>(days,<span class="at">size=</span><span class="dv">18</span>,<span class="at">replace =</span> <span class="cn">TRUE</span>,<span class="at">prob=</span>birth_data_weights)))) <span class="sc">%&gt;%</span></span>
-<span id="cb168-3"><a href="CS2.html#cb168-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">match=</span><span class="fu">if_else</span>(length<span class="sc">==</span><span class="dv">18</span>,<span class="dv">0</span>,<span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb168-4"><a href="CS2.html#cb168-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">prob=</span><span class="fu">mean</span>(match))</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="CS2.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20</span>)</span>
+<span id="cb170-2"><a href="CS2.html#cb170-2" aria-hidden="true" tabindex="-1"></a>(<span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">length</span>(<span class="fu">unique</span>(<span class="fu">sample</span>(days,<span class="at">size=</span><span class="dv">18</span>,<span class="at">replace =</span> <span class="cn">TRUE</span>,<span class="at">prob=</span>birth_data_weights)))) <span class="sc">%&gt;%</span></span>
+<span id="cb170-3"><a href="CS2.html#cb170-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">match=</span><span class="fu">if_else</span>(length<span class="sc">==</span><span class="dv">18</span>,<span class="dv">0</span>,<span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb170-4"><a href="CS2.html#cb170-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">prob=</span><span class="fu">mean</span>(match))</span></code></pre></div>
 <pre><code>##    prob
 ## 1 0.352</code></pre>
 <p>We could not solve this problem of varying frequency of birth days using mathematics, at least as far as we know.</p>

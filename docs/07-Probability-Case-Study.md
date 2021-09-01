@@ -365,7 +365,24 @@ birthday_prob(1:20)
 ## [15] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000
 ```
 
-It only uses the first value. Let's vectorize it.
+It only uses the first value. There are several ways to solve this problem. We can use the `map()` function in the **purrr** package. This idea of mapping a function to a vector is important in data science. It is used in scenarios where there is a lot of data. In this case the idea of map-reduce is used to make the analysis amenable to parallel computing.
+
+
+
+
+```r
+map_dbl(1:20,birthday_prob)
+```
+
+```
+##  [1] 0.000000000 0.002739726 0.008204166 0.016355912 0.027135574 0.040462484
+##  [7] 0.056235703 0.074335292 0.094623834 0.116948178 0.141141378 0.167024789
+## [13] 0.194410275 0.223102512 0.252901320 0.283604005 0.315007665 0.346911418
+## [19] 0.379118526 0.411438384
+```
+
+
+We could also just vectorize the function.
 
 
 ```r

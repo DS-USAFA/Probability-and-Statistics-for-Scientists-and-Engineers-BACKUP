@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-08-20" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -826,14 +826,14 @@ Let <span class="math inline">\(X\)</span> be a continuous random variable with 
 </blockquote>
 <p>To verify that <span class="math inline">\(f\)</span> is a valid pdf, we simply note that <span class="math inline">\(f_X(x) \geq 0\)</span> on the range <span class="math inline">\(0 \leq x \leq 1\)</span>. Also, we note that <span class="math inline">\(\int_0^1 2x \mathop{}\!\mathrm{d}x = x^2\bigg|_0^1 = 1\)</span>.</p>
 <p>Using <code>R</code>, we find</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="CONRANDVAR.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)<span class="dv">2</span><span class="sc">*</span>x,<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="CONRANDVAR.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)<span class="dv">2</span><span class="sc">*</span>x,<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## 1 with absolute error &lt; 1.1e-14</code></pre>
 <p>Or we can use the <strong>mosaicCalc</strong> package to find the anti-derivative. If the package is not installed, you can use the <code>Packages</code> tab in <code>RStudio</code> or type <code>install.packages("mosaicCalc")</code> at the command prompt. Load the library.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="CONRANDVAR.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaicCalc)</span></code></pre></div>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="CONRANDVAR.html#cb249-1" aria-hidden="true" tabindex="-1"></a>(Fx<span class="ot">&lt;-</span><span class="fu">antiD</span>(<span class="dv">2</span><span class="sc">*</span>x<span class="sc">~</span>x))</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="CONRANDVAR.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaicCalc)</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="CONRANDVAR.html#cb251-1" aria-hidden="true" tabindex="-1"></a>(Fx<span class="ot">&lt;-</span><span class="fu">antiD</span>(<span class="dv">2</span><span class="sc">*</span>x<span class="sc">~</span>x))</span></code></pre></div>
 <pre><code>## function (x, C = 0) 
 ## 1 * x^2 + C</code></pre>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="CONRANDVAR.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Fx</span>(<span class="dv">1</span>)<span class="sc">-</span><span class="fu">Fx</span>(<span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="CONRANDVAR.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Fx</span>(<span class="dv">1</span>)<span class="sc">-</span><span class="fu">Fx</span>(<span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 Graphically, the pdf is displayed in Figure <a href="CONRANDVAR.html#fig:plot111-fig">11.1</a>:
 <div class="figure" style="text-align: center"><span id="fig:plot111-fig"></span>
@@ -875,10 +875,10 @@ Figure 11.4: Probability represented by shaded area
 </p>
 </div>
 <p><span class="math inline">\(\mbox{P}(0.1\leq X &lt; 0.75) = \int_{0.1}^{0.75}2x\mathop{}\!\mathrm{d}x = 0.75^2 - 0.1^2 = 0.553\)</span> See Figure <a href="CONRANDVAR.html#fig:plot115-fig">11.5</a>.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="CONRANDVAR.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)<span class="dv">2</span><span class="sc">*</span>x,.<span class="dv">1</span>,.<span class="dv">75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="CONRANDVAR.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)<span class="dv">2</span><span class="sc">*</span>x,.<span class="dv">1</span>,.<span class="dv">75</span>)</span></code></pre></div>
 <pre><code>## 0.5525 with absolute error &lt; 6.1e-15</code></pre>
 <p>Alternatively, <span class="math inline">\(\mbox{P}(0.1\leq X &lt; 0.75) = \mbox{P}(X &lt; 0.75) -\mbox{P}(x \leq 0.1) = F(0.75)-F(0.1)=0.75^2-0.1^2 =0.553\)</span></p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="CONRANDVAR.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Fx</span>(<span class="fl">0.75</span>)<span class="sc">-</span><span class="fu">Fx</span>(<span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="CONRANDVAR.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Fx</span>(<span class="fl">0.75</span>)<span class="sc">-</span><span class="fu">Fx</span>(<span class="fl">0.1</span>)</span></code></pre></div>
 <pre><code>## [1] 0.5525</code></pre>
 <p>Notice for a continuous random variable, we are loose with the use of the <code>=</code> sign. This is because for a continuous random variable <span class="math inline">\(\mbox{P}(X=x)=0\)</span>. Do not get sloppy when working with discrete random variables.</p>
 <div class="figure" style="text-align: center"><span id="fig:plot115-fig"></span>
@@ -889,7 +889,7 @@ Figure 11.5: Probability represented by shaded area
 </div>
 <p>The median of <span class="math inline">\(X\)</span> is the value <span class="math inline">\(x\)</span> such that <span class="math inline">\(\mbox{P}(X\leq x)=0.5\)</span>, the area under a single point is 0. So we simply solve <span class="math inline">\(x^2=0.5\)</span> for <span class="math inline">\(x\)</span>. Thus, the median of <span class="math inline">\(X\)</span> is <span class="math inline">\(\sqrt{0.5}=0.707\)</span>.</p>
 <p>Or using <code>R</code></p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="CONRANDVAR.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(<span class="cf">function</span>(x)(<span class="fu">Fx</span>(x)<span class="sc">-</span>.<span class="dv">5</span>),<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))<span class="sc">$</span>root</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="CONRANDVAR.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(<span class="cf">function</span>(x)(<span class="fu">Fx</span>(x)<span class="sc">-</span>.<span class="dv">5</span>),<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))<span class="sc">$</span>root</span></code></pre></div>
 <pre><code>## [1] 0.7071067</code></pre>
 </div>
 <div id="simulation-1" class="section level3" number="11.2.4">
@@ -898,23 +898,23 @@ Figure 11.5: Probability represented by shaded area
 1. Generate a random number in the interval <span class="math inline">\([0,1]\)</span>, <span class="math inline">\(U\)</span>.<br />
 2. Find the random variable <span class="math inline">\(X\)</span> from <span class="math inline">\(F_{X}^{-1}(U)\)</span>.<br />
 In <code>R</code> for our example, this looks like the following.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="CONRANDVAR.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">1</span>))</span></code></pre></div>
-<pre><code>## [1] 0.5226247</code></pre>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="CONRANDVAR.html#cb261-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="CONRANDVAR.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## [1] 0.297749</code></pre>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="CONRANDVAR.html#cb263-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">1</span>))</span></code></pre></div>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="CONRANDVAR.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="CONRANDVAR.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class        min        Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.01116636 0.5000739 0.7114062 0.8658665 0.9999099 0.6680561
-##             sd     n missing
-## ...1 0.2353618 10000       0</code></pre>
+##      name   class        min        Q1   median        Q3       max      mean
+## ...1 sqrt numeric 0.01096796 0.4979851 0.707638 0.8668525 0.9999902 0.6671696
+##            sd     n missing
+## ...1 0.236745 10000       0</code></pre>
 <div style="page-break-after: always;"></div>
 <p>Figure <a href="CONRANDVAR.html#fig:plot116-fig">11.6</a> is a density plot of the simulated density function.</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="CONRANDVAR.html#cb264-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb264-2"><a href="CONRANDVAR.html#cb264-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_density</span>(<span class="sc">~</span>sqrt,<span class="at">xlab=</span><span class="st">&quot;X&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb264-3"><a href="CONRANDVAR.html#cb264-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb264-4"><a href="CONRANDVAR.html#cb264-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;X&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="CONRANDVAR.html#cb266-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb266-2"><a href="CONRANDVAR.html#cb266-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_density</span>(<span class="sc">~</span>sqrt,<span class="at">xlab=</span><span class="st">&quot;X&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb266-3"><a href="CONRANDVAR.html#cb266-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb266-4"><a href="CONRANDVAR.html#cb266-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;X&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:plot116-fig"></span>
 <img src="11-Continuous-Random-Variables_files/figure-html/plot116-fig-1.png" alt="Density plot of the simulated random varialbe." width="672" />
 <p class="caption">
@@ -953,26 +953,26 @@ Consider the random variable <span class="math inline">\(X\)</span> from above. 
 </blockquote>
 <p>Side note: Since the mean of <span class="math inline">\(X\)</span> is smaller than the median of <span class="math inline">\(X\)</span>, we say that <span class="math inline">\(X\)</span> is skewed to the left, or negatively skewed.</p>
 <p>Using <code>R</code>.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="CONRANDVAR.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)x<span class="sc">*</span><span class="dv">2</span><span class="sc">*</span>x,<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="CONRANDVAR.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)x<span class="sc">*</span><span class="dv">2</span><span class="sc">*</span>x,<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## 0.6666667 with absolute error &lt; 7.4e-15</code></pre>
 <p>Or using <code>antiD()</code></p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="CONRANDVAR.html#cb267-1" aria-hidden="true" tabindex="-1"></a>Ex<span class="ot">&lt;-</span><span class="fu">antiD</span>(<span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span><span class="sc">~</span>x)</span>
-<span id="cb267-2"><a href="CONRANDVAR.html#cb267-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Ex</span>(<span class="dv">1</span>)<span class="sc">-</span><span class="fu">Ex</span>(<span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="CONRANDVAR.html#cb269-1" aria-hidden="true" tabindex="-1"></a>Ex<span class="ot">&lt;-</span><span class="fu">antiD</span>(<span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span><span class="sc">~</span>x)</span>
+<span id="cb269-2"><a href="CONRANDVAR.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Ex</span>(<span class="dv">1</span>)<span class="sc">-</span><span class="fu">Ex</span>(<span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## [1] 0.6666667</code></pre>
 <p>Using our simulation.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="CONRANDVAR.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="sc">~</span>sqrt,<span class="at">data=</span>results)</span></code></pre></div>
-<pre><code>## [1] 0.6680561</code></pre>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="CONRANDVAR.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="sc">~</span>sqrt,<span class="at">data=</span>results)</span></code></pre></div>
+<pre><code>## [1] 0.6671696</code></pre>
 <p><span class="math display">\[
 \sigma^2_X = \mbox{Var}(X)= \mbox{E}(X^2)-\mbox{E}(X)^2 = \int_0^1 x^2\cdot 2x\mathop{}\!\mathrm{d}x - \left(\frac{2}{3}\right)^2 = \frac{2x^4}{4}\bigg|_0^1-\frac{4}{9}=\frac{1}{2}-\frac{4}{9}=\frac{1}{18}=0.056
 \]</span></p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="CONRANDVAR.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)x<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">2</span><span class="sc">*</span>x,<span class="dv">0</span>,<span class="dv">1</span>)<span class="sc">$</span>value<span class="sc">-</span>(<span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>)<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="CONRANDVAR.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)x<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">2</span><span class="sc">*</span>x,<span class="dv">0</span>,<span class="dv">1</span>)<span class="sc">$</span>value<span class="sc">-</span>(<span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>)<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 0.05555556</code></pre>
 <p>or</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="CONRANDVAR.html#cb273-1" aria-hidden="true" tabindex="-1"></a>Vx<span class="ot">&lt;-</span><span class="fu">antiD</span>(x<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">2</span><span class="sc">*</span>x<span class="sc">~</span>x)</span>
-<span id="cb273-2"><a href="CONRANDVAR.html#cb273-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Vx</span>(<span class="dv">1</span>)<span class="sc">-</span><span class="fu">Vx</span>(<span class="dv">0</span>)<span class="sc">-</span>(<span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>)<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="CONRANDVAR.html#cb275-1" aria-hidden="true" tabindex="-1"></a>Vx<span class="ot">&lt;-</span><span class="fu">antiD</span>(x<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">2</span><span class="sc">*</span>x<span class="sc">~</span>x)</span>
+<span id="cb275-2"><a href="CONRANDVAR.html#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Vx</span>(<span class="dv">1</span>)<span class="sc">-</span><span class="fu">Vx</span>(<span class="dv">0</span>)<span class="sc">-</span>(<span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>)<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 0.05555556</code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="CONRANDVAR.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(<span class="sc">~</span>sqrt,<span class="at">data=</span>results)<span class="sc">*</span><span class="dv">9999</span><span class="sc">/</span><span class="dv">10000</span></span></code></pre></div>
-<pre><code>## [1] 0.05538963</code></pre>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="CONRANDVAR.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(<span class="sc">~</span>sqrt,<span class="at">data=</span>results)<span class="sc">*</span><span class="dv">9999</span><span class="sc">/</span><span class="dv">10000</span></span></code></pre></div>
+<pre><code>## [1] 0.0560426</code></pre>
 <p>And finally, the standard deviation of <span class="math inline">\(X\)</span> is <span class="math inline">\(\sigma_X = \sqrt{\sigma^2_X}=\sqrt{1/18}=0.236\)</span>.</p>
 </div>
 </div>

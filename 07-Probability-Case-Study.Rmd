@@ -259,7 +259,16 @@ First notice what happens if we input a vector into our function.
 birthday_prob(1:20)
 ```
 
-It only uses the first value. Let's vectorize it.
+It only uses the first value. There are several ways to solve this problem. We can use the `map()` function in the **purrr** package. This idea of mapping a function to a vector is important in data science. It is used in scenarios where there is a lot of data. In this case the idea of map-reduce is used to make the analysis amenable to parallel computing.
+
+
+
+```{r}
+map_dbl(1:20,birthday_prob)
+```
+
+
+We could also just vectorize the function.
 
 ```{r}
 birthday_prob <- Vectorize(birthday_prob)

@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-08-20" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -820,24 +820,24 @@ div.csl-indent {
 <p><strong>Exercise</strong>
 Using both an asymptotic method, via the CLT, and the bootstrap method, find 95% confidence intervals for <span class="math inline">\(\mu\)</span>. Compare the two intervals.</p>
 </blockquote>
-<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="BOOT.html#cb621-1" aria-hidden="true" tabindex="-1"></a>heights<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">62.0</span>,<span class="fl">73.8</span>,<span class="fl">59.8</span>,<span class="fl">66.9</span>,<span class="fl">75.6</span>,<span class="fl">63.3</span>,<span class="fl">64.0</span>,<span class="fl">63.1</span>,<span class="fl">65.0</span>,<span class="fl">67.2</span>,<span class="fl">73.0</span>,</span>
-<span id="cb621-2"><a href="BOOT.html#cb621-2" aria-hidden="true" tabindex="-1"></a>     <span class="fl">62.3</span>,<span class="fl">60.8</span>,<span class="fl">65.7</span>,<span class="fl">60.8</span>,<span class="fl">65.8</span>,<span class="fl">63.3</span>,<span class="fl">54.9</span>,<span class="fl">67.8</span>,<span class="fl">65.1</span>,<span class="fl">74.8</span>,<span class="fl">75.0</span>,</span>
-<span id="cb621-3"><a href="BOOT.html#cb621-3" aria-hidden="true" tabindex="-1"></a>     <span class="fl">77.8</span>,<span class="fl">73.7</span>,<span class="fl">74.3</span>,<span class="fl">68.4</span>,<span class="fl">77.5</span>,<span class="fl">77.9</span>,<span class="fl">66.5</span>,<span class="fl">65.5</span>,<span class="fl">71.7</span>,<span class="fl">75.9</span>,<span class="fl">81.7</span>,</span>
-<span id="cb621-4"><a href="BOOT.html#cb621-4" aria-hidden="true" tabindex="-1"></a>     <span class="fl">76.5</span>,<span class="fl">77.8</span>,<span class="fl">75.0</span>,<span class="fl">64.6</span>,<span class="fl">59.4</span>,<span class="fl">60.7</span>,<span class="fl">69.2</span>,<span class="fl">78.2</span>,<span class="fl">65.7</span>,<span class="fl">69.6</span>,<span class="fl">80.0</span>,</span>
-<span id="cb621-5"><a href="BOOT.html#cb621-5" aria-hidden="true" tabindex="-1"></a>     <span class="fl">67.6</span>,<span class="fl">73.0</span>,<span class="fl">65.3</span>,<span class="fl">67.6</span>,<span class="fl">66.2</span>,<span class="fl">69.6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="BOOT.html#cb623-1" aria-hidden="true" tabindex="-1"></a>heights<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">62.0</span>,<span class="fl">73.8</span>,<span class="fl">59.8</span>,<span class="fl">66.9</span>,<span class="fl">75.6</span>,<span class="fl">63.3</span>,<span class="fl">64.0</span>,<span class="fl">63.1</span>,<span class="fl">65.0</span>,<span class="fl">67.2</span>,<span class="fl">73.0</span>,</span>
+<span id="cb623-2"><a href="BOOT.html#cb623-2" aria-hidden="true" tabindex="-1"></a>     <span class="fl">62.3</span>,<span class="fl">60.8</span>,<span class="fl">65.7</span>,<span class="fl">60.8</span>,<span class="fl">65.8</span>,<span class="fl">63.3</span>,<span class="fl">54.9</span>,<span class="fl">67.8</span>,<span class="fl">65.1</span>,<span class="fl">74.8</span>,<span class="fl">75.0</span>,</span>
+<span id="cb623-3"><a href="BOOT.html#cb623-3" aria-hidden="true" tabindex="-1"></a>     <span class="fl">77.8</span>,<span class="fl">73.7</span>,<span class="fl">74.3</span>,<span class="fl">68.4</span>,<span class="fl">77.5</span>,<span class="fl">77.9</span>,<span class="fl">66.5</span>,<span class="fl">65.5</span>,<span class="fl">71.7</span>,<span class="fl">75.9</span>,<span class="fl">81.7</span>,</span>
+<span id="cb623-4"><a href="BOOT.html#cb623-4" aria-hidden="true" tabindex="-1"></a>     <span class="fl">76.5</span>,<span class="fl">77.8</span>,<span class="fl">75.0</span>,<span class="fl">64.6</span>,<span class="fl">59.4</span>,<span class="fl">60.7</span>,<span class="fl">69.2</span>,<span class="fl">78.2</span>,<span class="fl">65.7</span>,<span class="fl">69.6</span>,<span class="fl">80.0</span>,</span>
+<span id="cb623-5"><a href="BOOT.html#cb623-5" aria-hidden="true" tabindex="-1"></a>     <span class="fl">67.6</span>,<span class="fl">73.0</span>,<span class="fl">65.3</span>,<span class="fl">67.6</span>,<span class="fl">66.2</span>,<span class="fl">69.6</span>)</span></code></pre></div>
 <p>Let’s look at the data; Figures <a href="BOOT.html#fig:box231-fig">23.1</a> and <a href="BOOT.html#fig:dens231-fig">23.2</a>.</p>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="BOOT.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_boxplot</span>(<span class="sc">~</span>heights) <span class="sc">%&gt;%</span></span>
-<span id="cb622-2"><a href="BOOT.html#cb622-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb622-3"><a href="BOOT.html#cb622-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">y=</span><span class="st">&quot;Heights (in)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="BOOT.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_boxplot</span>(<span class="sc">~</span>heights) <span class="sc">%&gt;%</span></span>
+<span id="cb624-2"><a href="BOOT.html#cb624-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb624-3"><a href="BOOT.html#cb624-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">y=</span><span class="st">&quot;Heights (in)&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:box231-fig"></span>
 <img src="23-Bootstrap_files/figure-html/box231-fig-1.png" alt="Boxplot of heights of local college students." width="672" />
 <p class="caption">
 Figure 23.1: Boxplot of heights of local college students.
 </p>
 </div>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="BOOT.html#cb623-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_density</span>(<span class="sc">~</span>heights,<span class="at">fill=</span><span class="st">&quot;lightgrey&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb623-2"><a href="BOOT.html#cb623-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb623-3"><a href="BOOT.html#cb623-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Heights (in)&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="BOOT.html#cb625-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_density</span>(<span class="sc">~</span>heights,<span class="at">fill=</span><span class="st">&quot;lightgrey&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb625-2"><a href="BOOT.html#cb625-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb625-3"><a href="BOOT.html#cb625-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Heights (in)&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:dens231-fig"></span>
 <img src="23-Bootstrap_files/figure-html/dens231-fig-1.png" alt="Density plot of heights of local college students." width="672" />
 <p class="caption">
@@ -845,26 +845,26 @@ Figure 23.2: Density plot of heights of local college students.
 </p>
 </div>
 <p>It looks bimodal since there are probably both men and women in this sample and thus we have two different population distributions of heights.</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="BOOT.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>heights)</span></code></pre></div>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="BOOT.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>heights)</span></code></pre></div>
 <pre><code>##   min   Q1 median     Q3  max   mean       sd  n missing
 ##  54.9 64.7   67.6 74.675 81.7 68.938 6.345588 50       0</code></pre>
 <div id="using-clt" class="section level3" number="23.4.1">
 <h3><span class="header-section-number">23.4.1</span> Using CLT</h3>
 <p>The data comes from less that 10% of the population so we feel good about the assumption of independence. However, the data is bimodal and clearly does not come from a normal distribution. The sample size is larger, so this may help us. Let’s continue and generate a confidence interval using the CLT and then compare with the bootstrap.</p>
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="BOOT.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(<span class="fu">t_test</span>(<span class="sc">~</span>heights))</span></code></pre></div>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="BOOT.html#cb628-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(<span class="fu">t_test</span>(<span class="sc">~</span>heights))</span></code></pre></div>
 <pre><code>##   mean of x   lower   upper level
 ## 1    68.938 67.1346 70.7414  0.95</code></pre>
 <p>We can also calculate by hand.</p>
-<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="BOOT.html#cb628-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Asymptotically</span></span>
-<span id="cb628-2"><a href="BOOT.html#cb628-2" aria-hidden="true" tabindex="-1"></a>xbar<span class="ot">&lt;-</span><span class="fu">mean</span>(heights)</span>
-<span id="cb628-3"><a href="BOOT.html#cb628-3" aria-hidden="true" tabindex="-1"></a>sd<span class="ot">&lt;-</span><span class="fu">sd</span>(heights)</span>
-<span id="cb628-4"><a href="BOOT.html#cb628-4" aria-hidden="true" tabindex="-1"></a>n<span class="ot">&lt;-</span><span class="fu">length</span>(heights)</span>
-<span id="cb628-5"><a href="BOOT.html#cb628-5" aria-hidden="true" tabindex="-1"></a>tval<span class="ot">&lt;-</span><span class="fu">qt</span>(<span class="fl">0.975</span>,n<span class="dv">-1</span>)</span>
-<span id="cb628-6"><a href="BOOT.html#cb628-6" aria-hidden="true" tabindex="-1"></a>xbar<span class="sc">+</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span>tval<span class="sc">*</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(n)</span></code></pre></div>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="BOOT.html#cb630-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Asymptotically</span></span>
+<span id="cb630-2"><a href="BOOT.html#cb630-2" aria-hidden="true" tabindex="-1"></a>xbar<span class="ot">&lt;-</span><span class="fu">mean</span>(heights)</span>
+<span id="cb630-3"><a href="BOOT.html#cb630-3" aria-hidden="true" tabindex="-1"></a>sd<span class="ot">&lt;-</span><span class="fu">sd</span>(heights)</span>
+<span id="cb630-4"><a href="BOOT.html#cb630-4" aria-hidden="true" tabindex="-1"></a>n<span class="ot">&lt;-</span><span class="fu">length</span>(heights)</span>
+<span id="cb630-5"><a href="BOOT.html#cb630-5" aria-hidden="true" tabindex="-1"></a>tval<span class="ot">&lt;-</span><span class="fu">qt</span>(<span class="fl">0.975</span>,n<span class="dv">-1</span>)</span>
+<span id="cb630-6"><a href="BOOT.html#cb630-6" aria-hidden="true" tabindex="-1"></a>xbar<span class="sc">+</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span>tval<span class="sc">*</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(n)</span></code></pre></div>
 <pre><code>## [1] 67.1346 70.7414</code></pre>
 <p>If we want to use the <code>tidyverse</code>, we must convert to a <code>dataframe</code>.</p>
-<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="BOOT.html#cb630-1" aria-hidden="true" tabindex="-1"></a>heights <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">height=</span>heights)</span></code></pre></div>
-<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="BOOT.html#cb631-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(heights)</span></code></pre></div>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="BOOT.html#cb632-1" aria-hidden="true" tabindex="-1"></a>heights <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">height=</span>heights)</span></code></pre></div>
+<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="BOOT.html#cb633-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(heights)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 1
 ##   height
 ##    &lt;dbl&gt;
@@ -874,9 +874,9 @@ Figure 23.2: Density plot of heights of local college students.
 ## 4   66.9
 ## 5   75.6
 ## 6   63.3</code></pre>
-<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="BOOT.html#cb633-1" aria-hidden="true" tabindex="-1"></a>heights <span class="sc">%&gt;%</span></span>
-<span id="cb633-2"><a href="BOOT.html#cb633-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean=</span><span class="fu">mean</span>(height),<span class="at">stand_dev=</span><span class="fu">sd</span>(height),<span class="at">n=</span><span class="fu">n</span>(),</span>
-<span id="cb633-3"><a href="BOOT.html#cb633-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">ci=</span>mean<span class="sc">+</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qt</span>(<span class="fl">0.975</span>,n<span class="dv">-1</span>)<span class="sc">*</span>stand_dev<span class="sc">/</span><span class="fu">sqrt</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="BOOT.html#cb635-1" aria-hidden="true" tabindex="-1"></a>heights <span class="sc">%&gt;%</span></span>
+<span id="cb635-2"><a href="BOOT.html#cb635-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean=</span><span class="fu">mean</span>(height),<span class="at">stand_dev=</span><span class="fu">sd</span>(height),<span class="at">n=</span><span class="fu">n</span>(),</span>
+<span id="cb635-3"><a href="BOOT.html#cb635-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">ci=</span>mean<span class="sc">+</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qt</span>(<span class="fl">0.975</span>,n<span class="dv">-1</span>)<span class="sc">*</span>stand_dev<span class="sc">/</span><span class="fu">sqrt</span>(n))</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##    mean stand_dev     n    ci
 ##   &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
@@ -889,20 +889,20 @@ Figure 23.2: Density plot of heights of local college students.
 <p>When applied to a data frame, the <code>resample()</code> function samples rows with replacement to produce a new data
 frame with the same number of rows as the original, but some rows will be duplicated and others missing.</p>
 <p>To illustrate, let’s use <code>resample()</code> on the first 10 positive integers.</p>
-<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="BOOT.html#cb635-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">305</span>)</span>
-<span id="cb635-2"><a href="BOOT.html#cb635-2" aria-hidden="true" tabindex="-1"></a><span class="fu">resample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="BOOT.html#cb637-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">305</span>)</span>
+<span id="cb637-2"><a href="BOOT.html#cb637-2" aria-hidden="true" tabindex="-1"></a><span class="fu">resample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##  [1] 8 7 8 1 4 4 2 2 6 9</code></pre>
 <p>Notice that 8, 4 and 2 appeared at least twice. The number 3 did not appear. This is a single bootstrap replicate of the data.</p>
 <p>We then calculate a point estimate of the result. We repeat a large number of times, 1000 or maybe even 10000. The collection of the point estimates is called the bootstrap distribution. For the sample mean, ideally, the bootstrap distribution should be unimodal, roughly symmetric, and centered at the original estimate</p>
 <p>Here we go with our problem.</p>
-<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="BOOT.html#cb637-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2115</span>)</span>
-<span id="cb637-2"><a href="BOOT.html#cb637-2" aria-hidden="true" tabindex="-1"></a>boot_results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">mean</span>(<span class="sc">~</span>height,<span class="at">data=</span><span class="fu">resample</span>(heights))</span></code></pre></div>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="BOOT.html#cb639-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2115</span>)</span>
+<span id="cb639-2"><a href="BOOT.html#cb639-2" aria-hidden="true" tabindex="-1"></a>boot_results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">mean</span>(<span class="sc">~</span>height,<span class="at">data=</span><span class="fu">resample</span>(heights))</span></code></pre></div>
 <p>Figure <a href="BOOT.html#fig:boot231-fig">23.3</a> is a plot of the bootstrap sampling distribution.</p>
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="BOOT.html#cb638-1" aria-hidden="true" tabindex="-1"></a>boot_results <span class="sc">%&gt;%</span></span>
-<span id="cb638-2"><a href="BOOT.html#cb638-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>mean,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb638-3"><a href="BOOT.html#cb638-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> <span class="fl">68.938</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb638-4"><a href="BOOT.html#cb638-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_classic) <span class="sc">%&gt;%</span></span>
-<span id="cb638-5"><a href="BOOT.html#cb638-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Sample mean&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="BOOT.html#cb640-1" aria-hidden="true" tabindex="-1"></a>boot_results <span class="sc">%&gt;%</span></span>
+<span id="cb640-2"><a href="BOOT.html#cb640-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>mean,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb640-3"><a href="BOOT.html#cb640-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> <span class="fl">68.938</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb640-4"><a href="BOOT.html#cb640-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_classic) <span class="sc">%&gt;%</span></span>
+<span id="cb640-5"><a href="BOOT.html#cb640-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Sample mean&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:boot231-fig"></span>
 <img src="23-Bootstrap_files/figure-html/boot231-fig-1.png" alt="The sampling distribution approximated using a bootstrap distribution." width="672" />
 <p class="caption">
@@ -910,37 +910,37 @@ Figure 23.3: The sampling distribution approximated using a bootstrap distributi
 </p>
 </div>
 <p>And a summary of the bootstrap distribution:</p>
-<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="BOOT.html#cb639-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>mean,<span class="at">data=</span>boot_results)</span></code></pre></div>
+<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="BOOT.html#cb641-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>mean,<span class="at">data=</span>boot_results)</span></code></pre></div>
 <pre><code>##     min      Q1 median    Q3  max     mean        sd    n missing
 ##  65.684 68.3915 68.976 69.55 72.3 68.96724 0.9040555 1000       0</code></pre>
 <p>Now there are two ways we could go from here to calculate a confidence interval. The first is called the percentile method where we go into the bootstrap distribution and find the appropriate quantiles. The second is call the t interval with bootstrap error. In this second method you construct a confidence interval like you would using the CLT except you use the bootstrap estimate of standard error.</p>
 <div id="bootstrap-percentile" class="section level4" number="23.4.2.1">
 <h4><span class="header-section-number">23.4.2.1</span> Bootstrap percentile</h4>
 <p>The function <code>cdata()</code> makes this easy for us.</p>
-<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="BOOT.html#cb641-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cdata</span>(<span class="sc">~</span>mean,<span class="at">data=</span>boot_results,<span class="at">p=</span><span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="BOOT.html#cb643-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cdata</span>(<span class="sc">~</span>mean,<span class="at">data=</span>boot_results,<span class="at">p=</span><span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>##        lower   upper central.p
 ## 2.5% 67.2197 70.7964      0.95</code></pre>
 <p>Or we can use the <code>qdata()</code>.</p>
-<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="BOOT.html#cb643-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qdata</span>(<span class="sc">~</span>mean,<span class="at">data=</span>boot_results,<span class="at">p=</span><span class="fu">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="BOOT.html#cb645-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qdata</span>(<span class="sc">~</span>mean,<span class="at">data=</span>boot_results,<span class="at">p=</span><span class="fu">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##    2.5%   97.5% 
 ## 67.2197 70.7964</code></pre>
 </div>
 <div id="t-interval-with-bootstrap-standard-error" class="section level4" number="23.4.2.2">
 <h4><span class="header-section-number">23.4.2.2</span> t interval with bootstrap standard error</h4>
 <p>Since the bootstrap distribution looks like a <span class="math inline">\(t\)</span> distribution, we can use a <span class="math inline">\(t\)</span> interval with the bootstrap standard error. The standard deviation of the bootstrap distribution is the standard error of the sample mean. We will not have to divide by <span class="math inline">\(\sqrt{n}\)</span> since we are dealing with the distribution of the mean directly.</p>
-<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="BOOT.html#cb645-1" aria-hidden="true" tabindex="-1"></a>xbar<span class="ot">&lt;-</span><span class="fu">mean</span>(boot_results<span class="sc">$</span>mean)</span>
-<span id="cb645-2"><a href="BOOT.html#cb645-2" aria-hidden="true" tabindex="-1"></a>SE<span class="ot">&lt;-</span><span class="fu">sd</span>(boot_results<span class="sc">$</span>mean)</span>
-<span id="cb645-3"><a href="BOOT.html#cb645-3" aria-hidden="true" tabindex="-1"></a>xbar<span class="sc">+</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qt</span>(.<span class="dv">975</span>,<span class="dv">49</span>)<span class="sc">*</span>SE</span></code></pre></div>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="BOOT.html#cb647-1" aria-hidden="true" tabindex="-1"></a>xbar<span class="ot">&lt;-</span><span class="fu">mean</span>(boot_results<span class="sc">$</span>mean)</span>
+<span id="cb647-2"><a href="BOOT.html#cb647-2" aria-hidden="true" tabindex="-1"></a>SE<span class="ot">&lt;-</span><span class="fu">sd</span>(boot_results<span class="sc">$</span>mean)</span>
+<span id="cb647-3"><a href="BOOT.html#cb647-3" aria-hidden="true" tabindex="-1"></a>xbar<span class="sc">+</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qt</span>(.<span class="dv">975</span>,<span class="dv">49</span>)<span class="sc">*</span>SE</span></code></pre></div>
 <pre><code>## [1] 67.15047 70.78401</code></pre>
 <p>You could of course use <code>tidyverse</code> but we must change the column name.</p>
-<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="BOOT.html#cb647-1" aria-hidden="true" tabindex="-1"></a>boot_results <span class="sc">%&gt;%</span></span>
-<span id="cb647-2"><a href="BOOT.html#cb647-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">stat=</span>mean) <span class="sc">%&gt;%</span></span>
-<span id="cb647-3"><a href="BOOT.html#cb647-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean=</span><span class="fu">mean</span>(stat),<span class="at">stand_dev=</span><span class="fu">sd</span>(stat),<span class="at">ci=</span>mean<span class="sc">+</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">49</span>)<span class="sc">*</span>stand_dev)</span></code></pre></div>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="BOOT.html#cb649-1" aria-hidden="true" tabindex="-1"></a>boot_results <span class="sc">%&gt;%</span></span>
+<span id="cb649-2"><a href="BOOT.html#cb649-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">stat=</span>mean) <span class="sc">%&gt;%</span></span>
+<span id="cb649-3"><a href="BOOT.html#cb649-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean=</span><span class="fu">mean</span>(stat),<span class="at">stand_dev=</span><span class="fu">sd</span>(stat),<span class="at">ci=</span>mean<span class="sc">+</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">49</span>)<span class="sc">*</span>stand_dev)</span></code></pre></div>
 <pre><code>##       mean stand_dev       ci
 ## 1 68.96724 0.9040555 67.15047
 ## 2 68.96724 0.9040555 70.78401</code></pre>
 <p>Of course there is a function to make this easier for us.</p>
-<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="BOOT.html#cb649-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(boot_results, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;percentile&quot;</span>, <span class="st">&quot;stderr&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="BOOT.html#cb651-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(boot_results, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;percentile&quot;</span>, <span class="st">&quot;stderr&quot;</span>))</span></code></pre></div>
 <pre><code>##   name    lower    upper level     method estimate margin.of.error df
 ## 1 mean 67.21970 70.79640  0.95 percentile   68.938              NA NA
 ## 2 mean 67.15047 70.78401  0.95     stderr   68.938        1.816768 49</code></pre>
@@ -958,13 +958,13 @@ Figure 23.3: The sampling distribution approximated using a bootstrap distributi
 <p><strong>Exercise</strong>:<br />
 Find a 90% confidence interval for the median height of the students at a local college.</p>
 </blockquote>
-<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="BOOT.html#cb651-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">427</span>)</span>
-<span id="cb651-2"><a href="BOOT.html#cb651-2" aria-hidden="true" tabindex="-1"></a>boot_results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">median</span>(<span class="sc">~</span>height,<span class="at">data=</span><span class="fu">resample</span>(heights))</span></code></pre></div>
-<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="BOOT.html#cb652-1" aria-hidden="true" tabindex="-1"></a>boot_results <span class="sc">%&gt;%</span></span>
-<span id="cb652-2"><a href="BOOT.html#cb652-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>median,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb652-3"><a href="BOOT.html#cb652-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> <span class="fl">67.6</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb652-4"><a href="BOOT.html#cb652-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_classic) <span class="sc">%&gt;%</span></span>
-<span id="cb652-5"><a href="BOOT.html#cb652-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Sample median&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="BOOT.html#cb653-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">427</span>)</span>
+<span id="cb653-2"><a href="BOOT.html#cb653-2" aria-hidden="true" tabindex="-1"></a>boot_results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">median</span>(<span class="sc">~</span>height,<span class="at">data=</span><span class="fu">resample</span>(heights))</span></code></pre></div>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="BOOT.html#cb654-1" aria-hidden="true" tabindex="-1"></a>boot_results <span class="sc">%&gt;%</span></span>
+<span id="cb654-2"><a href="BOOT.html#cb654-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>median,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb654-3"><a href="BOOT.html#cb654-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> <span class="fl">67.6</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb654-4"><a href="BOOT.html#cb654-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_classic) <span class="sc">%&gt;%</span></span>
+<span id="cb654-5"><a href="BOOT.html#cb654-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Sample median&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:boot232-fig"></span>
 <img src="23-Bootstrap_files/figure-html/boot232-fig-1.png" alt="The sampling distribution approximated using a bootstrap distribution." width="672" />
 <p class="caption">
@@ -972,10 +972,10 @@ Figure 23.4: The sampling distribution approximated using a bootstrap distributi
 </p>
 </div>
 <p>From Figure <a href="BOOT.html#fig:boot232-fig">23.4</a>, the bootstrap sampling distribution is not symmetrical so we would not want to use the t interval approach. We will still calculate the confidence interval based on the assumption of symmetry.</p>
-<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="BOOT.html#cb653-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cdata</span>(<span class="sc">~</span>median,<span class="at">data=</span>boot_results,<span class="at">p=</span><span class="fl">0.90</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="BOOT.html#cb655-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cdata</span>(<span class="sc">~</span>median,<span class="at">data=</span>boot_results,<span class="at">p=</span><span class="fl">0.90</span>)</span></code></pre></div>
 <pre><code>##    lower upper central.p
 ## 5%  65.8 70.65       0.9</code></pre>
-<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="BOOT.html#cb655-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(boot_results, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;percentile&quot;</span>, <span class="st">&quot;stderr&quot;</span>),<span class="at">level=</span><span class="fl">0.9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="BOOT.html#cb657-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(boot_results, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;percentile&quot;</span>, <span class="st">&quot;stderr&quot;</span>),<span class="at">level=</span><span class="fl">0.9</span>)</span></code></pre></div>
 <pre><code>##     name   lower   upper level     method estimate margin.of.error
 ## 1 median 65.8000 70.6500   0.9 percentile     67.6              NA
 ## 2 median 65.4648 70.1297   0.9     stderr     67.6        2.332455</code></pre>
@@ -992,27 +992,27 @@ Figure 23.4: The sampling distribution approximated using a bootstrap distributi
 <h3><span class="header-section-number">23.6.1</span> Health evaluation and linkage of primary care</h3>
 <p>The HELP study was a clinical trial for adult inpatients recruited from a detoxification unit. Patients with no primary care physician were randomized to receive a multidisciplinary assessment and a brief motivational intervention or usual care, with the goal of linking them to primary medical care.</p>
 <p>We are interested if there is a difference between male and female ages.</p>
-<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="BOOT.html#cb657-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;HELPrct&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="BOOT.html#cb658-1" aria-hidden="true" tabindex="-1"></a>HELP_sub <span class="ot">&lt;-</span> HELPrct <span class="sc">%&gt;%</span></span>
-<span id="cb658-2"><a href="BOOT.html#cb658-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age,sex)</span></code></pre></div>
-<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="BOOT.html#cb659-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(age<span class="sc">~</span>sex,<span class="at">data=</span>HELP_sub)</span></code></pre></div>
+<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="BOOT.html#cb659-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;HELPrct&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="BOOT.html#cb660-1" aria-hidden="true" tabindex="-1"></a>HELP_sub <span class="ot">&lt;-</span> HELPrct <span class="sc">%&gt;%</span></span>
+<span id="cb660-2"><a href="BOOT.html#cb660-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age,sex)</span></code></pre></div>
+<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="BOOT.html#cb661-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(age<span class="sc">~</span>sex,<span class="at">data=</span>HELP_sub)</span></code></pre></div>
 <pre><code>##      sex min Q1 median   Q3 max     mean       sd   n missing
 ## 1 female  21 31     35 40.5  58 36.25234 7.584858 107       0
 ## 2   male  19 30     35 40.0  60 35.46821 7.750110 346       0</code></pre>
-<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="BOOT.html#cb661-1" aria-hidden="true" tabindex="-1"></a>HELP_sub <span class="sc">%&gt;%</span></span>
-<span id="cb661-2"><a href="BOOT.html#cb661-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_boxplot</span>(age<span class="sc">~</span>sex) <span class="sc">%&gt;%</span></span>
-<span id="cb661-3"><a href="BOOT.html#cb661-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb661-4"><a href="BOOT.html#cb661-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Gender&quot;</span>,<span class="at">y=</span><span class="st">&quot;Age (years)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="BOOT.html#cb663-1" aria-hidden="true" tabindex="-1"></a>HELP_sub <span class="sc">%&gt;%</span></span>
+<span id="cb663-2"><a href="BOOT.html#cb663-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_boxplot</span>(age<span class="sc">~</span>sex) <span class="sc">%&gt;%</span></span>
+<span id="cb663-3"><a href="BOOT.html#cb663-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb663-4"><a href="BOOT.html#cb663-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Gender&quot;</span>,<span class="at">y=</span><span class="st">&quot;Age (years)&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:box232-fig"></span>
 <img src="23-Bootstrap_files/figure-html/box232-fig-1.png" alt="The distribution of age in the HELP study by gender." width="672" />
 <p class="caption">
 Figure 23.5: The distribution of age in the HELP study by gender.
 </p>
 </div>
-<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="BOOT.html#cb662-1" aria-hidden="true" tabindex="-1"></a>HELP_sub <span class="sc">%&gt;%</span></span>
-<span id="cb662-2"><a href="BOOT.html#cb662-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dhistogram</span>(<span class="sc">~</span>age<span class="sc">|</span>sex,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb662-3"><a href="BOOT.html#cb662-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb662-4"><a href="BOOT.html#cb662-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Age&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="BOOT.html#cb664-1" aria-hidden="true" tabindex="-1"></a>HELP_sub <span class="sc">%&gt;%</span></span>
+<span id="cb664-2"><a href="BOOT.html#cb664-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dhistogram</span>(<span class="sc">~</span>age<span class="sc">|</span>sex,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb664-3"><a href="BOOT.html#cb664-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb664-4"><a href="BOOT.html#cb664-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Age&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:hist232-fig"></span>
 <img src="23-Bootstrap_files/figure-html/hist232-fig-1.png" alt="The distribution of age in the HELP study by gender." width="672" />
 <p class="caption">
@@ -1028,28 +1028,28 @@ Figure 23.6: The distribution of age in the HELP study by gender.
 <p><span class="math inline">\(H_0\)</span>: There is no difference in average age for men and women in the detoxification unit. In statistical notation: <span class="math inline">\(\mu_{male} - \mu_{female} = 0\)</span>, where <span class="math inline">\(\mu_{female}\)</span> represents female inpatients and <span class="math inline">\(\mu_{male}\)</span> represents the male inpatients.<br />
 <span class="math inline">\(H_A\)</span>: There is some difference in average age for men and women in the detoxification unit (<span class="math inline">\(\mu_{male} - \mu_{female} \neq 0\)</span>).</p>
 <p>Let’s perform a randomization, permutation, test.</p>
-<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="BOOT.html#cb663-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(age<span class="sc">~</span>sex,<span class="at">data=</span>HELP_sub)</span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="BOOT.html#cb665-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(age<span class="sc">~</span>sex,<span class="at">data=</span>HELP_sub)</span></code></pre></div>
 <pre><code>##      sex min Q1 median   Q3 max     mean       sd   n missing
 ## 1 female  21 31     35 40.5  58 36.25234 7.584858 107       0
 ## 2   male  19 30     35 40.0  60 35.46821 7.750110 346       0</code></pre>
-<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="BOOT.html#cb665-1" aria-hidden="true" tabindex="-1"></a>obs_stat<span class="ot">&lt;-</span><span class="fu">diffmean</span>(age<span class="sc">~</span>sex,<span class="at">data=</span>HELP_sub)</span>
-<span id="cb665-2"><a href="BOOT.html#cb665-2" aria-hidden="true" tabindex="-1"></a>obs_stat</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="BOOT.html#cb667-1" aria-hidden="true" tabindex="-1"></a>obs_stat<span class="ot">&lt;-</span><span class="fu">diffmean</span>(age<span class="sc">~</span>sex,<span class="at">data=</span>HELP_sub)</span>
+<span id="cb667-2"><a href="BOOT.html#cb667-2" aria-hidden="true" tabindex="-1"></a>obs_stat</span></code></pre></div>
 <pre><code>##   diffmean 
 ## -0.7841284</code></pre>
-<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="BOOT.html#cb667-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">345</span>)</span>
-<span id="cb667-2"><a href="BOOT.html#cb667-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">diffmean</span>(age<span class="sc">~</span><span class="fu">shuffle</span>(sex),<span class="at">data=</span>HELP_sub)</span></code></pre></div>
-<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="BOOT.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>diffmean,<span class="at">data=</span>results)</span></code></pre></div>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="BOOT.html#cb669-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">345</span>)</span>
+<span id="cb669-2"><a href="BOOT.html#cb669-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">diffmean</span>(age<span class="sc">~</span><span class="fu">shuffle</span>(sex),<span class="at">data=</span>HELP_sub)</span></code></pre></div>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="BOOT.html#cb670-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>diffmean,<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>##        min         Q1     median     Q3      max        mean        sd     n
 ##  -3.378154 -0.5638809 0.01120955 0.5863 3.486224 0.009350908 0.8492454 10000
 ##  missing
 ##        0</code></pre>
 <p>The sampling distribution is centered on the null value of 0, more or less, and the standard deviation is 0.849. This is an estimate of the variability of the difference in mean ages.</p>
-<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="BOOT.html#cb670-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb670-2"><a href="BOOT.html#cb670-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>diffmean,<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb670-3"><a href="BOOT.html#cb670-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept=</span>obs_stat,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb670-4"><a href="BOOT.html#cb670-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb670-5"><a href="BOOT.html#cb670-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Difference of means&quot;</span>,<span class="at">title=</span><span class="st">&quot;Sampling distribution of difference of two means&quot;</span>,</span>
-<span id="cb670-6"><a href="BOOT.html#cb670-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">subtitle=</span><span class="st">&quot;Null assumes equal means&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="BOOT.html#cb672-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb672-2"><a href="BOOT.html#cb672-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>diffmean,<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb672-3"><a href="BOOT.html#cb672-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept=</span>obs_stat,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb672-4"><a href="BOOT.html#cb672-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb672-5"><a href="BOOT.html#cb672-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Difference of means&quot;</span>,<span class="at">title=</span><span class="st">&quot;Sampling distribution of difference of two means&quot;</span>,</span>
+<span id="cb672-6"><a href="BOOT.html#cb672-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">subtitle=</span><span class="st">&quot;Null assumes equal means&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:hist233-fig"></span>
 <img src="23-Bootstrap_files/figure-html/hist233-fig-1.png" alt="The approximate sampling distribution of the difference of means from a bootstrap process." width="672" />
 <p class="caption">
@@ -1057,12 +1057,12 @@ Figure 23.7: The approximate sampling distribution of the difference of means fr
 </p>
 </div>
 <p>Our test statistic does not appear to be too extreme, Figure <a href="BOOT.html#fig:hist233-fig">23.7</a>.</p>
-<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="BOOT.html#cb671-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">prop1</span>(<span class="sc">~</span>(diffmean <span class="sc">&lt;=</span> obs_stat),<span class="at">data=</span>results)</span></code></pre></div>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="BOOT.html#cb673-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">prop1</span>(<span class="sc">~</span>(diffmean <span class="sc">&lt;=</span> obs_stat),<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>## prop_TRUE 
 ## 0.3523648</code></pre>
 <p>Based on this p-value, we would fail to reject the null hypothesis.</p>
 <p>Now to construct a confidence interval we have to be careful and think about this. The object <code>results</code> has the distribution of difference in means assuming there is no difference. To get a confidence interval, we want to center this difference on the observed difference in means and not on zero.</p>
-<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="BOOT.html#cb673-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cdata</span>(<span class="sc">~</span>(diffmean<span class="sc">+</span>obs_stat),<span class="at">data=</span>results)</span></code></pre></div>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="BOOT.html#cb675-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cdata</span>(<span class="sc">~</span>(diffmean<span class="sc">+</span>obs_stat),<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>##          lower     upper central.p
 ## 2.5% -2.449246 0.8789368      0.95</code></pre>
 <p>We are 95% confident that the true difference in mean ages between female and male participants in the study is between -2.45 and 0.88. Since 0 in in the confidence interval, we would fail to reject the null hypothesis.</p>
@@ -1096,10 +1096,10 @@ For a difference of means when the data are not paired: each sample mean must se
 <div id="results" class="section level4" number="23.6.5.1">
 <h4><span class="header-section-number">23.6.5.1</span> Results</h4>
 <p>Back to our study, the men and women were independent of each other. Additionally, the distributions in each population don’t show any clear deviations from normality, some slight skewness but the sample size reduces this concern, Figure <a href="BOOT.html#fig:qq231-fig">23.8</a>. Finally, within each group we also need independence. If they represent less that 10% of the population, we are good to go on this. This condition might be difficult to verify.</p>
-<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="BOOT.html#cb675-1" aria-hidden="true" tabindex="-1"></a>HELP_sub <span class="sc">%&gt;%</span></span>
-<span id="cb675-2"><a href="BOOT.html#cb675-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_qq</span>(<span class="sc">~</span>age<span class="sc">|</span>sex) <span class="sc">%&gt;%</span></span>
-<span id="cb675-3"><a href="BOOT.html#cb675-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_qqline</span>(<span class="sc">~</span>age<span class="sc">|</span>sex) <span class="sc">%&gt;%</span></span>
-<span id="cb675-4"><a href="BOOT.html#cb675-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="BOOT.html#cb677-1" aria-hidden="true" tabindex="-1"></a>HELP_sub <span class="sc">%&gt;%</span></span>
+<span id="cb677-2"><a href="BOOT.html#cb677-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_qq</span>(<span class="sc">~</span>age<span class="sc">|</span>sex) <span class="sc">%&gt;%</span></span>
+<span id="cb677-3"><a href="BOOT.html#cb677-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_qqline</span>(<span class="sc">~</span>age<span class="sc">|</span>sex) <span class="sc">%&gt;%</span></span>
+<span id="cb677-4"><a href="BOOT.html#cb677-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span id="fig:qq231-fig"></span>
 <img src="23-Bootstrap_files/figure-html/qq231-fig-1.png" alt="The quantile-quantile plots to check normality assumption." width="672" />
 <p class="caption">
@@ -1107,12 +1107,12 @@ Figure 23.8: The quantile-quantile plots to check normality assumption.
 </p>
 </div>
 <p>The distribution of males tends to have longer tails than a normal and the female distribution is skewed to the right. The sample sizes are large enough that this does not worry us.</p>
-<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="BOOT.html#cb676-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(age<span class="sc">~</span>sex,<span class="at">data=</span>HELP_sub)</span></code></pre></div>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="BOOT.html#cb678-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(age<span class="sc">~</span>sex,<span class="at">data=</span>HELP_sub)</span></code></pre></div>
 <pre><code>##      sex min Q1 median   Q3 max     mean       sd   n missing
 ## 1 female  21 31     35 40.5  58 36.25234 7.584858 107       0
 ## 2   male  19 30     35 40.0  60 35.46821 7.750110 346       0</code></pre>
 <p>Let’s find the confidence interval first.</p>
-<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="BOOT.html#cb678-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">35.47-36.25</span>)<span class="sc">+</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qt</span>(.<span class="dv">975</span>,<span class="dv">106</span>)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="fl">7.58</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">107</span><span class="fl">+7.75</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">346</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="BOOT.html#cb680-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">35.47-36.25</span>)<span class="sc">+</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qt</span>(.<span class="dv">975</span>,<span class="dv">106</span>)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="fl">7.58</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">107</span><span class="fl">+7.75</span><span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">346</span>)</span></code></pre></div>
 <pre><code>## [1] -2.4512328  0.8912328</code></pre>
 <p>This result is very close to what we got with the permutation test.</p>
 <p>Now let’s find the p-value for the hypothesis test.</p>
@@ -1121,10 +1121,10 @@ Figure 23.8: The quantile-quantile plots to check normality assumption.
 <p><span class="math display">\[ = \frac{(35.47 - 36.25) - 0}{\sqrt{\left( \frac{7.58^2}{107}+ \frac{7.75^2}{346}\right)}} = - 0.92976 \]</span>
 We use the smaller of <span class="math inline">\(n_1-1\)</span> and <span class="math inline">\(n_2-1\)</span> as the degrees of freedom: <span class="math inline">\(df=106\)</span>.</p>
 <p>The p-value is:</p>
-<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="BOOT.html#cb680-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">0.92976</span>,<span class="dv">106</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="BOOT.html#cb682-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">0.92976</span>,<span class="dv">106</span>)</span></code></pre></div>
 <pre><code>## [1] 0.3546079</code></pre>
 <p>Of course, there is a function that does this for us.</p>
-<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="BOOT.html#cb682-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t_test</span>(age<span class="sc">~</span>sex,<span class="at">data=</span>HELP_sub)</span></code></pre></div>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="BOOT.html#cb684-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t_test</span>(age<span class="sc">~</span>sex,<span class="at">data=</span>HELP_sub)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -1152,7 +1152,7 @@ Pooling standard deviations should be done only after careful research</p>
 </blockquote>
 <p>A pooled standard deviation is only appropriate when background research indicates the population standard deviations are nearly equal. When the sample size is large and the condition may be adequately checked with data, the benefits of pooling the standard deviations greatly diminishes.</p>
 <p>In <code>R</code> we can before the difference of two means with equal variance using <code>var.equal</code>.</p>
-<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="BOOT.html#cb684-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t_test</span>(age<span class="sc">~</span>sex,<span class="at">data=</span>HELP_sub,<span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="BOOT.html#cb686-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t_test</span>(age<span class="sc">~</span>sex,<span class="at">data=</span>HELP_sub,<span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -1170,31 +1170,31 @@ Pooling standard deviations should be done only after careful research</p>
 <div id="bootstrap-1" class="section level3" number="23.6.6">
 <h3><span class="header-section-number">23.6.6</span> Bootstrap</h3>
 <p>Finally, we will construct a confidence interval through the use of the bootstrap distribution. In this problem we have to be careful and sample within each group. Compare the following two sets of samples.</p>
-<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="BOOT.html#cb686-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(age <span class="sc">~</span> sex, <span class="at">data =</span> <span class="fu">resample</span>(HELP_sub))</span></code></pre></div>
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="BOOT.html#cb688-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(age <span class="sc">~</span> sex, <span class="at">data =</span> <span class="fu">resample</span>(HELP_sub))</span></code></pre></div>
 <pre><code>##      sex min Q1 median    Q3 max     mean       sd   n missing
 ## 1 female  21 30     33 38.75  50 34.64706 6.267387 102       0
 ## 2   male  19 29     33 39.00  59 34.74359 7.833066 351       0</code></pre>
 <p>and</p>
-<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="BOOT.html#cb688-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(age <span class="sc">~</span> sex, <span class="at">data =</span> <span class="fu">resample</span>(HELP_sub,<span class="at">groups=</span>sex))</span></code></pre></div>
+<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="BOOT.html#cb690-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(age <span class="sc">~</span> sex, <span class="at">data =</span> <span class="fu">resample</span>(HELP_sub,<span class="at">groups=</span>sex))</span></code></pre></div>
 <pre><code>##      sex min Q1 median   Q3 max     mean       sd   n missing
 ## 1 female  22 31     34 39.5  57 35.60748 6.901951 107       0
 ## 2   male  20 31     35 41.0  60 35.94798 8.039227 346       0</code></pre>
 <p>Notice in the second line of code, we are keeping the samples the same size within the <code>sex</code> variable.</p>
 <p>Let’s get our bootstrap distribution.</p>
-<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="BOOT.html#cb690-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2527</span>)</span>
-<span id="cb690-2"><a href="BOOT.html#cb690-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>) <span class="sc">*</span> <span class="fu">diffmean</span>(age <span class="sc">~</span> sex, <span class="at">data =</span> <span class="fu">resample</span>(HELP_sub, <span class="at">groups =</span> sex))</span></code></pre></div>
+<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="BOOT.html#cb692-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2527</span>)</span>
+<span id="cb692-2"><a href="BOOT.html#cb692-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>) <span class="sc">*</span> <span class="fu">diffmean</span>(age <span class="sc">~</span> sex, <span class="at">data =</span> <span class="fu">resample</span>(HELP_sub, <span class="at">groups =</span> sex))</span></code></pre></div>
 <p>Figure <a href="BOOT.html#fig:boot235-fig">23.9</a> is our sampling distribution from the bootstrap.</p>
-<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="BOOT.html#cb691-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb691-2"><a href="BOOT.html#cb691-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>diffmean,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb691-3"><a href="BOOT.html#cb691-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_classic) <span class="sc">%&gt;%</span></span>
-<span id="cb691-4"><a href="BOOT.html#cb691-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Difference in means&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="BOOT.html#cb693-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb693-2"><a href="BOOT.html#cb693-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>diffmean,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb693-3"><a href="BOOT.html#cb693-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_classic) <span class="sc">%&gt;%</span></span>
+<span id="cb693-4"><a href="BOOT.html#cb693-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Difference in means&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:boot235-fig"></span>
 <img src="23-Bootstrap_files/figure-html/boot235-fig-1.png" alt="Sampling distribution of the difference in means." width="672" />
 <p class="caption">
 Figure 23.9: Sampling distribution of the difference in means.
 </p>
 </div>
-<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="BOOT.html#cb692-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cdata</span>( <span class="sc">~</span> diffmean, <span class="at">p =</span> <span class="fl">0.95</span>, <span class="at">data =</span> results)</span></code></pre></div>
+<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="BOOT.html#cb694-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cdata</span>( <span class="sc">~</span> diffmean, <span class="at">p =</span> <span class="fl">0.95</span>, <span class="at">data =</span> results)</span></code></pre></div>
 <pre><code>##          lower     upper central.p
 ## 2.5% -2.394406 0.8563786      0.95</code></pre>
 <p>Again, similar results.</p>

@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-08-20" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -920,41 +920,41 @@ Figure 10.2: Cumulative Distribution Function of <span class="math inline">\(X\)
 Simulate a random variable for the number of heads in flipping a coin three times.</p>
 </blockquote>
 <p>First we will create the pmf.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="RANDVAR.html#cb221-1" aria-hidden="true" tabindex="-1"></a>pmf <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>,<span class="dv">3</span><span class="sc">/</span><span class="dv">8</span>,<span class="dv">3</span><span class="sc">/</span><span class="dv">8</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>)</span>
-<span id="cb221-2"><a href="RANDVAR.html#cb221-2" aria-hidden="true" tabindex="-1"></a>values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb221-3"><a href="RANDVAR.html#cb221-3" aria-hidden="true" tabindex="-1"></a>pmf</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="RANDVAR.html#cb223-1" aria-hidden="true" tabindex="-1"></a>pmf <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>,<span class="dv">3</span><span class="sc">/</span><span class="dv">8</span>,<span class="dv">3</span><span class="sc">/</span><span class="dv">8</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>)</span>
+<span id="cb223-2"><a href="RANDVAR.html#cb223-2" aria-hidden="true" tabindex="-1"></a>values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb223-3"><a href="RANDVAR.html#cb223-3" aria-hidden="true" tabindex="-1"></a>pmf</span></code></pre></div>
 <pre><code>## [1] 0.125 0.375 0.375 0.125</code></pre>
 <p>We get the cdf from the cumulative sum.</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="RANDVAR.html#cb223-1" aria-hidden="true" tabindex="-1"></a>cdf <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(pmf)</span>
-<span id="cb223-2"><a href="RANDVAR.html#cb223-2" aria-hidden="true" tabindex="-1"></a>cdf</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="RANDVAR.html#cb225-1" aria-hidden="true" tabindex="-1"></a>cdf <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(pmf)</span>
+<span id="cb225-2"><a href="RANDVAR.html#cb225-2" aria-hidden="true" tabindex="-1"></a>cdf</span></code></pre></div>
 <pre><code>## [1] 0.125 0.500 0.875 1.000</code></pre>
 <p>Next, we will generate a random number between 0 and 1.</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="RANDVAR.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1153</span>)</span>
-<span id="cb225-2"><a href="RANDVAR.html#cb225-2" aria-hidden="true" tabindex="-1"></a>ran_num <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
-<span id="cb225-3"><a href="RANDVAR.html#cb225-3" aria-hidden="true" tabindex="-1"></a>ran_num</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="RANDVAR.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1153</span>)</span>
+<span id="cb227-2"><a href="RANDVAR.html#cb227-2" aria-hidden="true" tabindex="-1"></a>ran_num <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
+<span id="cb227-3"><a href="RANDVAR.html#cb227-3" aria-hidden="true" tabindex="-1"></a>ran_num</span></code></pre></div>
 <pre><code>## [1] 0.7381891</code></pre>
 <p>Finally, we will find the value of the random variable. We will do each step separately first so you can understand the code.</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="RANDVAR.html#cb227-1" aria-hidden="true" tabindex="-1"></a>ran_num <span class="sc">&lt;</span> cdf</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="RANDVAR.html#cb229-1" aria-hidden="true" tabindex="-1"></a>ran_num <span class="sc">&lt;</span> cdf</span></code></pre></div>
 <pre><code>## [1] FALSE FALSE  TRUE  TRUE</code></pre>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="RANDVAR.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(ran_num <span class="sc">&lt;</span> cdf)</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="RANDVAR.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(ran_num <span class="sc">&lt;</span> cdf)</span></code></pre></div>
 <pre><code>## [1] 3 4</code></pre>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="RANDVAR.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(ran_num <span class="sc">&lt;</span> cdf)[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="RANDVAR.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(ran_num <span class="sc">&lt;</span> cdf)[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="RANDVAR.html#cb233-1" aria-hidden="true" tabindex="-1"></a>values[<span class="fu">which</span>(ran_num <span class="sc">&lt;</span> cdf)[<span class="dv">1</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="RANDVAR.html#cb235-1" aria-hidden="true" tabindex="-1"></a>values[<span class="fu">which</span>(ran_num <span class="sc">&lt;</span> cdf)[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>Let’s make this a function.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="RANDVAR.html#cb235-1" aria-hidden="true" tabindex="-1"></a>simple_rv <span class="ot">&lt;-</span> <span class="cf">function</span>(values,cdf){</span>
-<span id="cb235-2"><a href="RANDVAR.html#cb235-2" aria-hidden="true" tabindex="-1"></a>ran_num <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
-<span id="cb235-3"><a href="RANDVAR.html#cb235-3" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(values[<span class="fu">which</span>(ran_num <span class="sc">&lt;</span> cdf)[<span class="dv">1</span>]])</span>
-<span id="cb235-4"><a href="RANDVAR.html#cb235-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="RANDVAR.html#cb237-1" aria-hidden="true" tabindex="-1"></a>simple_rv <span class="ot">&lt;-</span> <span class="cf">function</span>(values,cdf){</span>
+<span id="cb237-2"><a href="RANDVAR.html#cb237-2" aria-hidden="true" tabindex="-1"></a>ran_num <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
+<span id="cb237-3"><a href="RANDVAR.html#cb237-3" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(values[<span class="fu">which</span>(ran_num <span class="sc">&lt;</span> cdf)[<span class="dv">1</span>]])</span>
+<span id="cb237-4"><a href="RANDVAR.html#cb237-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now let’s generate 10000 values from this random variable.</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="RANDVAR.html#cb236-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">simple_rv</span>(values,cdf)</span>
-<span id="cb236-2"><a href="RANDVAR.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="RANDVAR.html#cb238-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">simple_rv</span>(values,cdf)</span>
+<span id="cb238-2"><a href="RANDVAR.html#cb238-2" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
 ##           name   class min Q1 median Q3 max   mean       sd     n missing
 ## ...1 simple_rv numeric   0  1      2  2   3 1.5048 0.860727 10000       0</code></pre>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="RANDVAR.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>simple_rv,<span class="at">data=</span>results,<span class="at">format=</span><span class="st">&quot;proportion&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="RANDVAR.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>simple_rv,<span class="at">data=</span>results,<span class="at">format=</span><span class="st">&quot;proportion&quot;</span>)</span></code></pre></div>
 <pre><code>## simple_rv
 ##      0      1      2      3 
 ## 0.1207 0.3785 0.3761 0.1247</code></pre>
@@ -987,7 +987,7 @@ Find the expected value (or mean) of <span class="math inline">\(X\)</span>: the
 </blockquote>
 <p>We are using <span class="math inline">\(\mu\)</span> because it is a population parameter.</p>
 <p>From our simulation above, we can find the mean as an estimate of the expected value. This is really a statistic since our simulation is data from the population and thus will have variance from sample to sample.</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="RANDVAR.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="sc">~</span>simple_rv,<span class="at">data=</span>results)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="RANDVAR.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="sc">~</span>simple_rv,<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>## [1] 1.5048</code></pre>
 </div>
 <div id="variance" class="section level3" number="10.3.3">
@@ -1009,11 +1009,11 @@ Find the variance of <span class="math inline">\(X\)</span>: the number of heads
 \mbox{Var}(X)=\sum_x (x-\mu_X)^2 \cdot f_X(x) = (0-1.5)^2 \times \frac{1}{8} + (1-1.5)^2 \times \frac{3}{8}+(2-1.5)^2 \times \frac{3}{8} + (3-1.5)^2\times \frac{1}{8}
 \]</span></p>
 </blockquote>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="RANDVAR.html#cb242-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">1</span><span class="sc">/</span><span class="dv">8</span> <span class="sc">+</span> (<span class="dv">1</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">3</span><span class="sc">/</span><span class="dv">8</span> <span class="sc">+</span> (<span class="dv">2</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">3</span><span class="sc">/</span><span class="dv">8</span> <span class="sc">+</span> (<span class="dv">3</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">1</span><span class="sc">/</span><span class="dv">8</span></span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="RANDVAR.html#cb244-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">1</span><span class="sc">/</span><span class="dv">8</span> <span class="sc">+</span> (<span class="dv">1</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">3</span><span class="sc">/</span><span class="dv">8</span> <span class="sc">+</span> (<span class="dv">2</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">3</span><span class="sc">/</span><span class="dv">8</span> <span class="sc">+</span> (<span class="dv">3</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">1</span><span class="sc">/</span><span class="dv">8</span></span></code></pre></div>
 <pre><code>## [1] 0.75</code></pre>
 <p>The variance of <span class="math inline">\(X\)</span> is 0.75.</p>
 <p>We can find the variance of the simulation but <code>R</code> uses the sample variance and this is the population variance. So we need to multiply by <span class="math inline">\(\frac{n-1}{n}\)</span></p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="RANDVAR.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(<span class="sc">~</span>simple_rv,<span class="at">data=</span>results)<span class="sc">*</span>(<span class="dv">10000-1</span>)<span class="sc">/</span><span class="dv">10000</span></span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="RANDVAR.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(<span class="sc">~</span>simple_rv,<span class="at">data=</span>results)<span class="sc">*</span>(<span class="dv">10000-1</span>)<span class="sc">/</span><span class="dv">10000</span></span></code></pre></div>
 <pre><code>## [1] 0.740777</code></pre>
 </div>
 <div id="mean-and-variance-of-linear-transformations" class="section level3" number="10.3.4">

@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-08-20" />
+<meta name="date" content="2021-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -934,9 +934,9 @@ f_{X,Y}(x,y)=xy
 \int_0^1 \int_0^2 xy \mathop{}\!\mathrm{d}x \mathop{}\!\mathrm{d}y = \int_0^1 \frac{x^2y}{2}\bigg|_0^2 \mathop{}\!\mathrm{d}y = \int_0^1 2y\mathop{}\!\mathrm{d}y = y^2\bigg|_0^1 = 1
 \]</span></p>
 <p>Using <code>R</code> to do this requires a new package <strong>cubature</strong>. You can install it from <code>RStudio</code> package tab or the command line using <code>install.packages("cubature")</code>. Then we can use it as follows:</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="MULTIDISTS.html#cb372-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">library</span>(cubature) <span class="co"># load the package &quot;cubature&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="MULTIDISTS.html#cb373-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { (x[<span class="dv">1</span>] <span class="sc">*</span> x[<span class="dv">2</span>]) } <span class="co"># &quot;x&quot; is vector</span></span>
-<span id="cb373-2"><a href="MULTIDISTS.html#cb373-2" aria-hidden="true" tabindex="-1"></a><span class="fu">adaptIntegrate</span>(f, <span class="at">lowerLimit =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">upperLimit =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="MULTIDISTS.html#cb374-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">library</span>(cubature) <span class="co"># load the package &quot;cubature&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="MULTIDISTS.html#cb375-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { (x[<span class="dv">1</span>] <span class="sc">*</span> x[<span class="dv">2</span>]) } <span class="co"># &quot;x&quot; is vector</span></span>
+<span id="cb375-2"><a href="MULTIDISTS.html#cb375-2" aria-hidden="true" tabindex="-1"></a><span class="fu">adaptIntegrate</span>(f, <span class="at">lowerLimit =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">upperLimit =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## $integral
 ## [1] 1
 ## 
@@ -958,8 +958,8 @@ f_{X,Y}(x,y)=xy
 = \frac{3y^2}{4}\bigg|_0^{0.5}=0.1875
 \]</span></li>
 </ol>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="MULTIDISTS.html#cb375-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { (x[<span class="dv">1</span>] <span class="sc">*</span> x[<span class="dv">2</span>]) } <span class="co"># &quot;x&quot; is vector</span></span>
-<span id="cb375-2"><a href="MULTIDISTS.html#cb375-2" aria-hidden="true" tabindex="-1"></a><span class="fu">adaptIntegrate</span>(f, <span class="at">lowerLimit =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), <span class="at">upperLimit =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="MULTIDISTS.html#cb377-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { (x[<span class="dv">1</span>] <span class="sc">*</span> x[<span class="dv">2</span>]) } <span class="co"># &quot;x&quot; is vector</span></span>
+<span id="cb377-2"><a href="MULTIDISTS.html#cb377-2" aria-hidden="true" tabindex="-1"></a><span class="fu">adaptIntegrate</span>(f, <span class="at">lowerLimit =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), <span class="at">upperLimit =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## $integral
 ## [1] 0.1875
 ## 
