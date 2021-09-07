@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-09-01" />
+<meta name="date" content="2021-09-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -852,6 +852,14 @@ Suppose a doctor has developed a blood test for a certain rare disease (only one
 </blockquote>
 <p><strong>Sensitivity</strong> is the probability of detecting the disease for those who actually have it. Note that this is a conditional probability.</p>
 <p><strong>Specificity</strong> is the probability of correctly identifying “no disease” for those who do not have it. Again, another conditional probability.</p>
+<p>See Figure <a href="CONDPROB.html#fig:sens">9.1</a> for a visual representation of these terms and others related to what is termed a <strong>confusion matrix</strong>.</p>
+
+<div class="figure" style="text-align: center"><span id="fig:sens"></span>
+<img src="figures/sensitivity-specificity_corrected.jpg" alt="A table of true results and test results for a hypothetical disease. The terminology is included in the table. These ideas are important when evaluating machine learning classification models." width="360" />
+<p class="caption">
+Figure 9.1: A table of true results and test results for a hypothetical disease. The terminology is included in the table. These ideas are important when evaluating machine learning classification models.
+</p>
+</div>
 <p>In fact, this test had a sensitivity of 100% and a specificity of 99.9%. Now suppose a patient walks in, the doctor administers the blood test, and it returns positive. What is the probability that that patient actually has the disease?</p>
 <p>This is a classic example of how probability could be misunderstood. Upon reading this question, you might guess that the answer to our question is quite high. After all, this is a nearly perfect test. After exploring the problem more in depth, we find a different result.</p>
 <div id="approach-using-whole-numbers" class="section level3" number="9.4.1">

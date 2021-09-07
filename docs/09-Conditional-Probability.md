@@ -80,6 +80,15 @@ Suppose a doctor has developed a blood test for a certain rare disease (only one
 
 **Specificity** is the probability of correctly identifying "no disease" for those who do not have it. Again, another conditional probability.  
 
+See Figure \@ref(fig:sens) for a visual representation of these terms and others related to what is termed a **confusion matrix**.
+
+(ref:quote2) A table of true results and test results for a hypothetical disease. The terminology is included in the table. These ideas are important when evaluating machine learning classification models.
+
+<div class="figure" style="text-align: center">
+<img src="./figures/sensitivity-specificity_corrected.jpg" alt="(ref:quote2)" width="360" />
+<p class="caption">(\#fig:sens)(ref:quote2)</p>
+</div>
+
 In fact, this test had a sensitivity of 100% and a specificity of 99.9%. Now suppose a patient walks in, the doctor administers the blood test, and it returns positive. What is the probability that that patient actually has the disease? 
 
 This is a classic example of how probability could be misunderstood. Upon reading this question, you might guess that the answer to our question is quite high. After all, this is a nearly perfect test. After exploring the problem more in depth, we find a different result. 

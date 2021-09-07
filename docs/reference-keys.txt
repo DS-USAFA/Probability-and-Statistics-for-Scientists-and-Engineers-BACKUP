@@ -52,6 +52,7 @@ fig:scat71-fig
 fig:scat72-fig
 fig:scat73-fig
 fig:bar81-fig
+fig:sens
 fig:pmf101-fig
 fig:cdf101-fig
 fig:plot111-fig
