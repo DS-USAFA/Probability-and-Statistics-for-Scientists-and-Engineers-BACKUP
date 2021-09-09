@@ -44,7 +44,7 @@ $$
 \Prob(\mbox{at least two heads})= \Prob(\{\mbox{HHH},\mbox{HHT},\mbox{HTH},\mbox{THH}\})
 $$
 
-In the context of our random variable, this simply becomes $\Prob(X\geq 2)$. It may not seem important in a case like this, but imagine if we were flipping a coin 50 times and wanted to know the probability of obtaining at least 30 heads. It would be unfeasible to write out all possible ways to obtain at least 30 heads. It is much easier to write $\Prob(X\geq 30)$ and explore the distribution of $X$ (more on that in Lesson 6). 
+In the context of our random variable, this simply becomes $\Prob(X\geq 2)$. It may not seem important in a case like this, but imagine if we were flipping a coin 50 times and wanted to know the probability of obtaining at least 30 heads. It would be unfeasible to write out all possible ways to obtain at least 30 heads. It is much easier to write $\Prob(X\geq 30)$ and explore the distribution of $X$. 
 
 Essentially, a random variable often helps us reduce a complex random experiment to a simple variable that is easy to characterize.  
 
