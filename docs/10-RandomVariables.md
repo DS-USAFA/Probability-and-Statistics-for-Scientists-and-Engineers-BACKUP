@@ -50,11 +50,11 @@ Essentially, a random variable often helps us reduce a complex random experiment
 
 ### Discrete vs Continuous
 
-A *discrete* random variable has a sample space that consists of a countable set of values. $X$ in our example above is a discrete random variable. Note that "countable" does not necessarily mean "finite". For example, a random variable with a Poisson distribution (a topic for a later lesson) has a sample space of $\{0,1,2,...\}$. This sample space stretches to infinity, but it is considered *countably* infinite, and thus the random variable would be considered discrete. 
+A *discrete* random variable has a sample space that consists of a countable set of values. $X$ in our example above is a discrete random variable. Note that "countable" does not necessarily mean "finite". For example, a random variable with a Poisson distribution (a topic for a later lesson) has a sample space of $\{0,1,2,...\}$. This sample space is unbounded, but it is considered *countably* infinite, and thus the random variable would be considered discrete. 
 
 A *continuous* random variable has a sample space that is a continuous interval. For example, let $Y$ be the random variable corresponding to the height of a randomly selected individual. $Y$ is a continuous random variable because a person could measure 68.1 inches, 68.2 inches, or perhaps any value in between. Note that when we measure height, our precision is limited by our measuring device, so we are technically "discretizing" height. However, even in these cases, we typically consider height to be a continuous random variable. 
 
-A *mixed* random variable is exactly what it sounds like. It has a sample space that is both discrete and continuous. How could such a thing occur? Consider an experiment where a person rolls a standard six-sided die. If it lands on anything other than one, the result of the die roll is recorded. If it lands on one, the person spins a wheel, and the angle in degrees of the resulting spin, divided by 360, is recorded. If our random variable $Z$ is the number that is recorded in this experiment, the sample space of $Z$ is $[0,1] \cup \{2,3,4,5,6\}$. We will not be spending much time on mixed random variables. However they do occur in practice, consider the job of analyzing bomb data error. If the bomb hits within a certain radius, the error is 0. Otherwise it is measured in a radial direction. This data is mixed.
+A *mixed* random variable is exactly what it sounds like. It has a sample space that is both discrete and continuous. How could such a thing occur? Consider an experiment where a person rolls a standard six-sided die. If it lands on anything other than one, the result of the die roll is recorded. If it lands on one, the person spins a wheel, and the angle in degrees of the resulting spin, divided by 360, is recorded. If our random variable $Z$ is the number that is recorded in this experiment, the sample space of $Z$ is $[0,1] \cup \{2,3,4,5,6\}$. We will not be spending much time on mixed random variables. However they do occur in practice, consider the job of analyzing bomb eroor data. If the bomb hits within a certain radius, the error is 0. Otherwise it is measured in a radial direction. This data is mixed.
 
 
 ### Discrete distribution functions
@@ -65,7 +65,7 @@ Once we have defined a random variable, we need a way to describe its behavior a
 
 ### Probability mass function
 
-Let $X$ be a discrete random variable. The probability mass function (pmf) of $X$, given by $f_X(x)$ is a function that assigns probability to each possible outcome of $X$. 
+Let $X$ be a discrete random variable. The probability mass function (pmf) of $X$, given by $f_X(x)$, is a function that assigns probability to each possible outcome of $X$. 
 $$
 f_X(x)=\Prob(X=x)
 $$
@@ -110,7 +110,7 @@ Alternatively, we can recognize that $\Prob(X\geq 1)=1-\Prob(X=0)=1-\frac{1}{8}=
 
 ### Cumulative distribution function
 
-Let $X$ be a discrete random variable. The cumulative distribution function (cdf) of $X$, given by $F_X(x)$ is a function that assigns to each value of $X$ the probability that $X$ takes that value or lower:
+Let $X$ be a discrete random variable. The cumulative distribution function (cdf) of $X$, given by $F_X(x)$, is a function that assigns to each value of $X$ the probability that $X$ takes that value or lower:
 $$
 F_X(x)=\Prob(X\leq x)
 $$
@@ -145,7 +145,7 @@ Visually, the cdf of a discrete random variable has a stairstep appearance. In t
 
 We can simulate values from a random variable using the cdf, we will use a similar idea for continuous random variables. Since the range of the cdf is in the interval $[0,1]$ we will generate a random number in that same interval and then use the inverse function to find the value of the random variable. The pseudo code is:  
 1) Generate a random number, $U$.  
-2) Find the index $k$ such that $\sum_{j=1}^{k-1}x_{j} \leq U < \sum_{j=1}^{k}x_{j}$ or $F_x(k-1) \leq U < F_{x}(k)$.
+2) Find the index $k$ such that $\sum_{j=1}^{k-1}f_X(x_{j}) \leq U < \sum_{j=1}^{k}f_X(x_{j})$ or $F_x(k-1) \leq U < F_{x}(k)$.
 
 > *Example*:  
 Simulate a random variable for the number of heads in flipping a coin three times.
@@ -322,9 +322,15 @@ The square root of $\Var(X)$ is denoted as $\sigma_X$, the standard deviation of
 
 > *Example*:  
 Find the variance of $X$: the number of heads in three flips of a fair coin. 
+
 $$
-\Var(X)=\sum_x (x-\mu_X)^2 \cdot f_X(x) = (0-1.5)^2 \times \frac{1}{8} + (1-1.5)^2 \times \frac{3}{8}+(2-1.5)^2 \times \frac{3}{8} + (3-1.5)^2\times \frac{1}{8}
+\Var(X)=\sum_x (x-\mu_X)^2 \cdot f_X(x) 
+$$ 
+
 $$
+= (0-1.5)^2 \times \frac{1}{8} + (1-1.5)^2 \times \frac{3}{8}+(2-1.5)^2 \times \frac{3}{8} + (3-1.5)^2\times \frac{1}{8}
+$$
+In `R` this is:
 
 
 ```r
@@ -360,11 +366,11 @@ $$
 \Var(aX+b)=a^2\Var(X)
 $$
 
-The proof of this is left as an Application problem. 
+The proof of this is left as a homework problem. 
 
 ## Homework Problems
 
-\indent 1. Suppose we are flipping a fair coin, and the result of a single coin flip is either heads or tails. Let $X$ be a random variable representing the number of flips until the first heads. 
+1. Suppose we are flipping a fair coin, and the result of a single coin flip is either heads or tails. Let $X$ be a random variable representing the number of flips until the first heads. 
 
 a. Is $X$ discrete or continuous? What is the domain, support, of $X$?  
 b. What values do you *expect* $X$ to take? What do you think is the average of $X$? Don't actually do any formal math, just think about if you were flipping a regular coin, how long it would take you to get the first heads.  
@@ -381,14 +387,14 @@ d. Find the theoretical distribution, use math to come up with a closed for solu
 &nbsp;
 
 
-\indent 2. Repeat Problem 1,except part d, but with a different random variable, $Y$: the number of coin flips until the *fifth* heads.  
+2. Repeat Problem 1,except part d, but with a different random variable, $Y$: the number of coin flips until the *fifth* heads.  
 
 
 &nbsp;
 
 \pagebreak 
 
-\indent 3. Suppose you are a data analyst for a large international airport. Your boss, the head of the airport, is dismayed that this airport has received negative attention in the press for inefficiencies and sluggishness. In a staff meeting, your boss gives you a week to build a report addressing the "timeliness" at the airport. Your boss is in a big hurry and gives you no further information or guidance on this task. 
+3. Suppose you are a data analyst for a large international airport. Your boss, the head of the airport, is dismayed that this airport has received negative attention in the press for inefficiencies and sluggishness. In a staff meeting, your boss gives you a week to build a report addressing the "timeliness" at the airport. Your boss is in a big hurry and gives you no further information or guidance on this task. 
 
 Prior to building the report, you will need to conduct some analysis. To aid you in this, create a list of at least three random variables that will help you address timeliness at the airport. For each of your random variables, 
 
@@ -401,7 +407,7 @@ We will provide one example:
 
 Let $D$ be the difference between a flight's actual departure and its scheduled departure. This is a continuous random variable, since time can be measured in fractions of minutes. A flight can be early or late, so domain is any real number. The experimental unit is each individual (non-canceled) flight. This is a useful random variable because the average value of $D$ will describe whether flights take off on time. We could also find out how often $D$ exceeds 0 (implying late departure) or how often $D$ exceeds 30 minutes, which could indicate a "very late" departure. 
 
-\indent 4. Consider the experiment of rolling two fair six-sided dice. Let the random variable $Y$ be the absolute difference between the two numbers that appear upon rolling the dice. 
+4. Consider the experiment of rolling two fair six-sided dice. Let the random variable $Y$ be the absolute difference between the two numbers that appear upon rolling the dice. 
 
 a. What is the domain/support of $Y$?   
 b. What values do you *expect* $Y$ to take? What do you think is the average of $Y$? Don't actually do any formal math, just think about the experiment.  
@@ -413,11 +419,11 @@ e. Advanced: In `R`, obtain 10,000 realizations of $Y$. In other words, simulate
 &nbsp;
 
 
-\indent 5. Prove the Lemma from the Notes: Let $X$ be a discrete random variable, and let $a$ and $b$ be constants. Show $\E(aX + b)=a\E(X)+b$.   
+5. Prove the Lemma from the Notes: Let $X$ be a discrete random variable, and let $a$ and $b$ be constants. Show $\E(aX + b)=a\E(X)+b$.   
 
 
 
 &nbsp;
 
 
-\indent 6. In the Notes, we saw that $\Var(X)=\E[(X-\mu_X)^2]$. Show that $\Var(X)$ is also equal to $\E(X^2)-[\E(X)]^2$. 
+6. We saw that $\Var(X)=\E[(X-\mu_X)^2]$. Show that $\Var(X)$ is also equal to $\E(X^2)-[\E(X)]^2$. 

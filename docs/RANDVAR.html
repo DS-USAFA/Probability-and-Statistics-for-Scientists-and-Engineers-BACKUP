@@ -827,9 +827,9 @@ S_X=\{0,1,2,3\}
 </div>
 <div id="discrete-vs-continuous" class="section level3" number="10.2.2">
 <h3><span class="header-section-number">10.2.2</span> Discrete vs Continuous</h3>
-<p>A <em>discrete</em> random variable has a sample space that consists of a countable set of values. <span class="math inline">\(X\)</span> in our example above is a discrete random variable. Note that “countable” does not necessarily mean “finite.” For example, a random variable with a Poisson distribution (a topic for a later lesson) has a sample space of <span class="math inline">\(\{0,1,2,...\}\)</span>. This sample space stretches to infinity, but it is considered <em>countably</em> infinite, and thus the random variable would be considered discrete.</p>
+<p>A <em>discrete</em> random variable has a sample space that consists of a countable set of values. <span class="math inline">\(X\)</span> in our example above is a discrete random variable. Note that “countable” does not necessarily mean “finite.” For example, a random variable with a Poisson distribution (a topic for a later lesson) has a sample space of <span class="math inline">\(\{0,1,2,...\}\)</span>. This sample space is unbounded, but it is considered <em>countably</em> infinite, and thus the random variable would be considered discrete.</p>
 <p>A <em>continuous</em> random variable has a sample space that is a continuous interval. For example, let <span class="math inline">\(Y\)</span> be the random variable corresponding to the height of a randomly selected individual. <span class="math inline">\(Y\)</span> is a continuous random variable because a person could measure 68.1 inches, 68.2 inches, or perhaps any value in between. Note that when we measure height, our precision is limited by our measuring device, so we are technically “discretizing” height. However, even in these cases, we typically consider height to be a continuous random variable.</p>
-<p>A <em>mixed</em> random variable is exactly what it sounds like. It has a sample space that is both discrete and continuous. How could such a thing occur? Consider an experiment where a person rolls a standard six-sided die. If it lands on anything other than one, the result of the die roll is recorded. If it lands on one, the person spins a wheel, and the angle in degrees of the resulting spin, divided by 360, is recorded. If our random variable <span class="math inline">\(Z\)</span> is the number that is recorded in this experiment, the sample space of <span class="math inline">\(Z\)</span> is <span class="math inline">\([0,1] \cup \{2,3,4,5,6\}\)</span>. We will not be spending much time on mixed random variables. However they do occur in practice, consider the job of analyzing bomb data error. If the bomb hits within a certain radius, the error is 0. Otherwise it is measured in a radial direction. This data is mixed.</p>
+<p>A <em>mixed</em> random variable is exactly what it sounds like. It has a sample space that is both discrete and continuous. How could such a thing occur? Consider an experiment where a person rolls a standard six-sided die. If it lands on anything other than one, the result of the die roll is recorded. If it lands on one, the person spins a wheel, and the angle in degrees of the resulting spin, divided by 360, is recorded. If our random variable <span class="math inline">\(Z\)</span> is the number that is recorded in this experiment, the sample space of <span class="math inline">\(Z\)</span> is <span class="math inline">\([0,1] \cup \{2,3,4,5,6\}\)</span>. We will not be spending much time on mixed random variables. However they do occur in practice, consider the job of analyzing bomb eroor data. If the bomb hits within a certain radius, the error is 0. Otherwise it is measured in a radial direction. This data is mixed.</p>
 </div>
 <div id="discrete-distribution-functions" class="section level3" number="10.2.3">
 <h3><span class="header-section-number">10.2.3</span> Discrete distribution functions</h3>
@@ -838,7 +838,7 @@ S_X=\{0,1,2,3\}
 </div>
 <div id="probability-mass-function" class="section level3" number="10.2.4">
 <h3><span class="header-section-number">10.2.4</span> Probability mass function</h3>
-<p>Let <span class="math inline">\(X\)</span> be a discrete random variable. The probability mass function (pmf) of <span class="math inline">\(X\)</span>, given by <span class="math inline">\(f_X(x)\)</span> is a function that assigns probability to each possible outcome of <span class="math inline">\(X\)</span>.
+<p>Let <span class="math inline">\(X\)</span> be a discrete random variable. The probability mass function (pmf) of <span class="math inline">\(X\)</span>, given by <span class="math inline">\(f_X(x)\)</span>, is a function that assigns probability to each possible outcome of <span class="math inline">\(X\)</span>.
 <span class="math display">\[
 f_X(x)=\mbox{P}(X=x)
 \]</span></p>
@@ -881,7 +881,7 @@ We can use a pmf to answer questions about an experiment. For example, consider 
 </div>
 <div id="cumulative-distribution-function" class="section level3" number="10.2.5">
 <h3><span class="header-section-number">10.2.5</span> Cumulative distribution function</h3>
-<p>Let <span class="math inline">\(X\)</span> be a discrete random variable. The cumulative distribution function (cdf) of <span class="math inline">\(X\)</span>, given by <span class="math inline">\(F_X(x)\)</span> is a function that assigns to each value of <span class="math inline">\(X\)</span> the probability that <span class="math inline">\(X\)</span> takes that value or lower:
+<p>Let <span class="math inline">\(X\)</span> be a discrete random variable. The cumulative distribution function (cdf) of <span class="math inline">\(X\)</span>, given by <span class="math inline">\(F_X(x)\)</span>, is a function that assigns to each value of <span class="math inline">\(X\)</span> the probability that <span class="math inline">\(X\)</span> takes that value or lower:
 <span class="math display">\[
 F_X(x)=\mbox{P}(X\leq x)
 \]</span></p>
@@ -914,7 +914,7 @@ Figure 10.2: Cumulative Distribution Function of <span class="math inline">\(X\)
 <h3><span class="header-section-number">10.2.6</span> Simulating random variables</h3>
 <p>We can simulate values from a random variable using the cdf, we will use a similar idea for continuous random variables. Since the range of the cdf is in the interval <span class="math inline">\([0,1]\)</span> we will generate a random number in that same interval and then use the inverse function to find the value of the random variable. The pseudo code is:<br />
 1) Generate a random number, <span class="math inline">\(U\)</span>.<br />
-2) Find the index <span class="math inline">\(k\)</span> such that <span class="math inline">\(\sum_{j=1}^{k-1}x_{j} \leq U &lt; \sum_{j=1}^{k}x_{j}\)</span> or <span class="math inline">\(F_x(k-1) \leq U &lt; F_{x}(k)\)</span>.</p>
+2) Find the index <span class="math inline">\(k\)</span> such that <span class="math inline">\(\sum_{j=1}^{k-1}f_X(x_{j}) \leq U &lt; \sum_{j=1}^{k}f_X(x_{j})\)</span> or <span class="math inline">\(F_x(k-1) \leq U &lt; F_{x}(k)\)</span>.</p>
 <blockquote>
 <p><em>Example</em>:<br />
 Simulate a random variable for the number of heads in flipping a coin three times.</p>
@@ -1004,11 +1004,15 @@ Find the expected value (or mean) of <span class="math inline">\(X\)</span>: the
 <p>The square root of <span class="math inline">\(\mbox{Var}(X)\)</span> is denoted as <span class="math inline">\(\sigma_X\)</span>, the standard deviation of <span class="math inline">\(X\)</span>. The standard deviation is often reported because it is measured in the same units as <span class="math inline">\(X\)</span>, while the variance is measured in squared units and is thus harder to interpret.</p>
 <blockquote>
 <p><em>Example</em>:<br />
-Find the variance of <span class="math inline">\(X\)</span>: the number of heads in three flips of a fair coin.
-<span class="math display">\[
-\mbox{Var}(X)=\sum_x (x-\mu_X)^2 \cdot f_X(x) = (0-1.5)^2 \times \frac{1}{8} + (1-1.5)^2 \times \frac{3}{8}+(2-1.5)^2 \times \frac{3}{8} + (3-1.5)^2\times \frac{1}{8}
-\]</span></p>
+Find the variance of <span class="math inline">\(X\)</span>: the number of heads in three flips of a fair coin.</p>
 </blockquote>
+<p><span class="math display">\[
+\mbox{Var}(X)=\sum_x (x-\mu_X)^2 \cdot f_X(x) 
+\]</span></p>
+<p><span class="math display">\[
+= (0-1.5)^2 \times \frac{1}{8} + (1-1.5)^2 \times \frac{3}{8}+(2-1.5)^2 \times \frac{3}{8} + (3-1.5)^2\times \frac{1}{8}
+\]</span>
+In <code>R</code> this is:</p>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="RANDVAR.html#cb244-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">1</span><span class="sc">/</span><span class="dv">8</span> <span class="sc">+</span> (<span class="dv">1</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">3</span><span class="sc">/</span><span class="dv">8</span> <span class="sc">+</span> (<span class="dv">2</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">3</span><span class="sc">/</span><span class="dv">8</span> <span class="sc">+</span> (<span class="dv">3</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">1</span><span class="sc">/</span><span class="dv">8</span></span></code></pre></div>
 <pre><code>## [1] 0.75</code></pre>
 <p>The variance of <span class="math inline">\(X\)</span> is 0.75.</p>
@@ -1026,12 +1030,14 @@ and
 <span class="math display">\[
 \mbox{Var}(aX+b)=a^2\mbox{Var}(X)
 \]</span></p>
-<p>The proof of this is left as an Application problem.</p>
+<p>The proof of this is left as a homework problem.</p>
 </div>
 </div>
 <div id="homework-problems-9" class="section level2" number="10.4">
 <h2><span class="header-section-number">10.4</span> Homework Problems</h2>
-<p>. Suppose we are flipping a fair coin, and the result of a single coin flip is either heads or tails. Let <span class="math inline">\(X\)</span> be a random variable representing the number of flips until the first heads.</p>
+<ol style="list-style-type: decimal">
+<li>Suppose we are flipping a fair coin, and the result of a single coin flip is either heads or tails. Let <span class="math inline">\(X\)</span> be a random variable representing the number of flips until the first heads.</li>
+</ol>
 <ol style="list-style-type: lower-alpha">
 <li>Is <span class="math inline">\(X\)</span> discrete or continuous? What is the domain, support, of <span class="math inline">\(X\)</span>?<br />
 </li>
@@ -1048,10 +1054,14 @@ and
 <li>Find the theoretical distribution, use math to come up with a closed for solution for the pmf.</li>
 </ol>
 <p> </p>
-<p>. Repeat Problem 1,except part d, but with a different random variable, <span class="math inline">\(Y\)</span>: the number of coin flips until the <em>fifth</em> heads.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Repeat Problem 1,except part d, but with a different random variable, <span class="math inline">\(Y\)</span>: the number of coin flips until the <em>fifth</em> heads.</li>
+</ol>
 <p> </p>
 <div style="page-break-after: always;"></div>
-<p>. Suppose you are a data analyst for a large international airport. Your boss, the head of the airport, is dismayed that this airport has received negative attention in the press for inefficiencies and sluggishness. In a staff meeting, your boss gives you a week to build a report addressing the “timeliness” at the airport. Your boss is in a big hurry and gives you no further information or guidance on this task.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Suppose you are a data analyst for a large international airport. Your boss, the head of the airport, is dismayed that this airport has received negative attention in the press for inefficiencies and sluggishness. In a staff meeting, your boss gives you a week to build a report addressing the “timeliness” at the airport. Your boss is in a big hurry and gives you no further information or guidance on this task.</li>
+</ol>
 <p>Prior to building the report, you will need to conduct some analysis. To aid you in this, create a list of at least three random variables that will help you address timeliness at the airport. For each of your random variables,</p>
 <ol style="list-style-type: lower-alpha">
 <li>Determine whether it is discrete or continuous.<br />
@@ -1064,7 +1074,9 @@ and
 </ol>
 <p>We will provide one example:</p>
 <p>Let <span class="math inline">\(D\)</span> be the difference between a flight’s actual departure and its scheduled departure. This is a continuous random variable, since time can be measured in fractions of minutes. A flight can be early or late, so domain is any real number. The experimental unit is each individual (non-canceled) flight. This is a useful random variable because the average value of <span class="math inline">\(D\)</span> will describe whether flights take off on time. We could also find out how often <span class="math inline">\(D\)</span> exceeds 0 (implying late departure) or how often <span class="math inline">\(D\)</span> exceeds 30 minutes, which could indicate a “very late” departure.</p>
-<p>. Consider the experiment of rolling two fair six-sided dice. Let the random variable <span class="math inline">\(Y\)</span> be the absolute difference between the two numbers that appear upon rolling the dice.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Consider the experiment of rolling two fair six-sided dice. Let the random variable <span class="math inline">\(Y\)</span> be the absolute difference between the two numbers that appear upon rolling the dice.</li>
+</ol>
 <ol style="list-style-type: lower-alpha">
 <li>What is the domain/support of <span class="math inline">\(Y\)</span>?<br />
 </li>
@@ -1077,9 +1089,13 @@ and
 <li>Advanced: In <code>R</code>, obtain 10,000 realizations of <span class="math inline">\(Y\)</span>. In other words, simulate the roll of two fair dice, record the absolute difference and repeat this 10,000 times. Construct a frequency table of your results (what percentage of time did you get a difference of 0? difference of 1? etc.) Find the mean and variance of your simulated sample of <span class="math inline">\(Y\)</span>. Were they close to your answers in part d?</li>
 </ol>
 <p> </p>
-<p>. Prove the Lemma from the Notes: Let <span class="math inline">\(X\)</span> be a discrete random variable, and let <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> be constants. Show <span class="math inline">\(\mbox{E}(aX + b)=a\mbox{E}(X)+b\)</span>.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Prove the Lemma from the Notes: Let <span class="math inline">\(X\)</span> be a discrete random variable, and let <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> be constants. Show <span class="math inline">\(\mbox{E}(aX + b)=a\mbox{E}(X)+b\)</span>.</li>
+</ol>
 <p> </p>
-<p>. In the Notes, we saw that <span class="math inline">\(\mbox{Var}(X)=\mbox{E}[(X-\mu_X)^2]\)</span>. Show that <span class="math inline">\(\mbox{Var}(X)\)</span> is also equal to <span class="math inline">\(\mbox{E}(X^2)-[\mbox{E}(X)]^2\)</span>.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>We saw that <span class="math inline">\(\mbox{Var}(X)=\mbox{E}[(X-\mu_X)^2]\)</span>. Show that <span class="math inline">\(\mbox{Var}(X)\)</span> is also equal to <span class="math inline">\(\mbox{E}(X^2)-[\mbox{E}(X)]^2\)</span>.</li>
+</ol>
 
 </div>
 </div>

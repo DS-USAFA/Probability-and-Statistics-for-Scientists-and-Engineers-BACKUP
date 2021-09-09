@@ -925,10 +925,10 @@ f_Y(y)=f_X(\sqrt{y})\bigg|\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y} \
 <div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="TRANS.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class        min        Q1    median        Q3       max     mean
-## ...1 sqrt numeric 0.01405576 0.5020791 0.7107816 0.8666349 0.9999864 0.666738
+##      name   class        min        Q1    median        Q3       max      mean
+## ...1 sqrt numeric 0.01386871 0.4998366 0.7025987 0.8654328 0.9998707 0.6654827
 ##             sd     n missing
-## ...1 0.2372603 10000       0</code></pre>
+## ...1 0.2352157 10000       0</code></pre>
 <p>Figure <a href="TRANS.html#fig:dens161-fig">16.2</a> is a density plot of the simulated original random variable.</p>
 <div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="TRANS.html#cb402-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
 <span id="cb402-2"><a href="TRANS.html#cb402-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_density</span>(<span class="sc">~</span>sqrt,<span class="at">xlab=</span><span class="st">&quot;X&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -957,10 +957,10 @@ Figure 16.3: The density plot of the transformed random variable from the simula
 <div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="TRANS.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(y_results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class       min         Q1   median         Q3           max
-## ...1    y numeric -4.264723 -0.6889976 -0.34139 -0.1431375 -1.361205e-05
+##      name   class      min        Q1     median         Q3           max
+## ...1    y numeric -4.27812 -0.693474 -0.3529693 -0.1445256 -0.0001293055
 ##            mean        sd     n missing
-## ...1 -0.5030385 0.5115938 10000       0</code></pre>
+## ...1 -0.5011198 0.4969063 10000       0</code></pre>
 </div>
 <div id="multivariate-transformations" class="section level3" number="16.2.6">
 <h3><span class="header-section-number">16.2.6</span> Multivariate Transformations</h3>
