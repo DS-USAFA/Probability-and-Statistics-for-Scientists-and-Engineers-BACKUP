@@ -133,7 +133,7 @@ $\Prob(X > 0.5) = 1-\Prob(X\leq 0.5)=1-0.25 = 0.75$ See Figure \@ref(fig:plot114
 <p class="caption">(\#fig:plot114-fig)Probability represented by shaded area</p>
 </div>
 
-$\Prob(0.1\leq X < 0.75) = \int_{0.1}^{0.75}2x\diff x = 0.75^2 - 0.1^2 = 0.553$ See Figure \@ref(fig:plot115-fig).
+$\Prob(0.1\leq X < 0.75) = \int_{0.1}^{0.75}2x\diff x = 0.75^2 - 0.1^2 = 0.5525$ See Figure \@ref(fig:plot115-fig).
 
 
 ```r
@@ -145,7 +145,7 @@ integrate(function(x)2*x,.1,.75)
 ```
 
 
-Alternatively, $\Prob(0.1\leq X < 0.75) = \Prob(X < 0.75) -\Prob(x \leq  0.1) = F(0.75)-F(0.1)=0.75^2-0.1^2 =0.553$
+Alternatively, $\Prob(0.1\leq X < 0.75) = \Prob(X < 0.75) -\Prob(x \leq  0.1) = F(0.75)-F(0.1)=0.75^2-0.1^2 =0.5525$
 
 
 ```r
@@ -191,7 +191,7 @@ sqrt(runif(1))
 ```
 
 ```
-## [1] 0.2617607
+## [1] 0.7786271
 ```
 
 
@@ -209,10 +209,10 @@ inspect(results)
 ```
 ## 
 ## quantitative variables:  
-##      name   class         min        Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.003555953 0.5078522 0.7092326 0.8657721 0.9999784 0.6692669
+##      name   class         min       Q1    median       Q3       max      mean
+## ...1 sqrt numeric 0.007170413 0.502453 0.7084898 0.867724 0.9999987 0.6675242
 ##             sd     n missing
-## ...1 0.2338306 10000       0
+## ...1 0.2355846 10000       0
 ```
 
 \pagebreak 
@@ -254,7 +254,7 @@ $$
 \sigma^2_X = \Var(X)=\E[(X-\mu_X)^2]= \int_{S_X} (x-\mu_X)^2\cdot f_X(x) \diff x
 $$
 
-Recall Application problem 6 from last lesson. In this problem, you showed that $\Var(X)=\E(X^2)-\E(X)^2$. Thus,
+Recall homework problem 6 from the last chapter. In this problem, you showed that $\Var(X)=\E(X^2)-\E(X)^2$. Thus,
 $$
 \Var(X)=\E(X^2)-\E(X)^2 = \int_{S_X} x^2\cdot f_X(x)\diff x - \mu_X^2 
 $$
@@ -299,7 +299,7 @@ mean(~sqrt,data=results)
 ```
 
 ```
-## [1] 0.6692669
+## [1] 0.6675242
 ```
 
 
@@ -335,7 +335,7 @@ var(~sqrt,data=results)*9999/10000
 ```
 
 ```
-## [1] 0.05467127
+## [1] 0.05549455
 ```
 
 

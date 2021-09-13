@@ -120,14 +120,14 @@ plot(x,y,type="l",ylab="f(x)",main="P(X>0.5)")
 polygon(c(0.5,1,1,0.5),c(0,0,2,1),density=15,angle=135)
 ```
 
-$\Prob(0.1\leq X < 0.75) = \int_{0.1}^{0.75}2x\diff x = 0.75^2 - 0.1^2 = 0.553$ See Figure \@ref(fig:plot115-fig).
+$\Prob(0.1\leq X < 0.75) = \int_{0.1}^{0.75}2x\diff x = 0.75^2 - 0.1^2 = 0.5525$ See Figure \@ref(fig:plot115-fig).
 
 ```{r}
 integrate(function(x)2*x,.1,.75)
 ```
 
 
-Alternatively, $\Prob(0.1\leq X < 0.75) = \Prob(X < 0.75) -\Prob(x \leq  0.1) = F(0.75)-F(0.1)=0.75^2-0.1^2 =0.553$
+Alternatively, $\Prob(0.1\leq X < 0.75) = \Prob(X < 0.75) -\Prob(x \leq  0.1) = F(0.75)-F(0.1)=0.75^2-0.1^2 =0.5525$
 
 ```{r}
 Fx(0.75)-Fx(0.1)
@@ -206,7 +206,7 @@ $$
 \sigma^2_X = \Var(X)=\E[(X-\mu_X)^2]= \int_{S_X} (x-\mu_X)^2\cdot f_X(x) \diff x
 $$
 
-Recall Application problem 6 from last lesson. In this problem, you showed that $\Var(X)=\E(X^2)-\E(X)^2$. Thus,
+Recall homework problem 6 from the last chapter. In this problem, you showed that $\Var(X)=\E(X^2)-\E(X)^2$. Thus,
 $$
 \Var(X)=\E(X^2)-\E(X)^2 = \int_{S_X} x^2\cdot f_X(x)\diff x - \mu_X^2 
 $$
