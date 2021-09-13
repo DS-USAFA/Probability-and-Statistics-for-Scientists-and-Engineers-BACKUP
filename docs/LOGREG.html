@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-09-09" />
+<meta name="date" content="2021-09-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1377,7 +1377,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <span id="cb1089-2"><a href="LOGREG.html#cb1089-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data=</span><span class="fu">resample</span>(mariokart),</span>
 <span id="cb1089-3"><a href="LOGREG.html#cb1089-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>)</span></code></pre></div>
 <pre><code>##   Intercept stock_photoyes  total_pr .row .index
-## 1 -13.51024       3.242007 0.2134071    1      1</code></pre>
+## 1 -8.809209       2.274097 0.1365844    1      1</code></pre>
 <p>Again, it looks like what we expect. Now let’s bootstrap the coefficients and summarize the results.</p>
 <div class="sourceCode" id="cb1091"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1091-1"><a href="LOGREG.html#cb1091-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5011</span>)</span>
 <span id="cb1091-2"><a href="LOGREG.html#cb1091-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">glm</span>(cond<span class="sc">==</span><span class="st">&quot;new&quot;</span><span class="sc">~</span>stock_photo<span class="sc">+</span>total_pr,</span>
@@ -1438,7 +1438,9 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 </div>
 <div id="homework-problems-30" class="section level2" number="31.6">
 <h2><span class="header-section-number">31.6</span> Homework Problems</h2>
-<p>. Possum classification</p>
+<ol style="list-style-type: decimal">
+<li>Possum classification</li>
+</ol>
 <p>Let’s investigate the <code>possum</code> data set again. This time we want to model a binary outcome variable. As a reminder, the common brushtail possum of the Australia region is a bit cuter than its distant cousin, the American opossum. We consider 104 brushtail possums from two regions in Australia, where the possums may be considered a random sample from the population. The first region is Victoria, which is in the eastern half of Australia and traverses the southern coast. The second region consists of New South Wales and Queensland, which make up eastern and northeastern Australia.</p>
 <p>We use logistic regression to differentiate between possums in these two regions. The outcome variable, called <code>pop</code>, takes value <code>Vic</code> when a possum is from Victoria and <code>other</code> when it is from New South Wales or Queensland. We consider five predictors: <code>sex</code>, <code>head_l</code>, <code>skull_w</code>, <code>total_l</code>, and <code>tail_l</code>.</p>
 <ol style="list-style-type: lower-alpha">
@@ -1457,7 +1459,9 @@ Are there any outliers that are likely to have a very large influence on the log
 </li>
 <li>Suppose we see a brushtail possum at a zoo in the US, and a sign says the possum had been captured in the wild in Australia, but it doesn’t say which part of Australia. However, the sign does indicate that the possum is male, its skull is about 63 mm wide, its tail is 37 cm long, and its total length is 83 cm. What is the reduced model’s computed probability that this possum is from Victoria? How confident are you in the model’s accuracy of this probability calculation?</li>
 </ol>
-<p>. Medical school admission</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Medical school admission</li>
+</ol>
 <p>The file <code>MedGPA.csv</code> in the <code>data</code> folder has information on medical school admission status and GPA and standardized test scores gathered on 55 medical school applicants from a liberal arts college in the Midwest.</p>
 <p>The variables are:</p>
 <p><code>Accept Status</code>: A=accepted to medical school or D=denied admission<br />

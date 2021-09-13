@@ -307,7 +307,7 @@ For each of the problems below, **_1)_** define a random variable that will help
 
 We will demonstrate using 1a and 1b. 
 
-\indent 1. The T-6 training aircraft is used during UPT. Suppose that on each training sortie, aircraft return with a maintenance-related failure at a rate of 1 per 100 sorties. 
+1. The T-6 training aircraft is used during UPT. Suppose that on each training sortie, aircraft return with a maintenance-related failure at a rate of 1 per 100 sorties. 
 
 a. Find the probability of no maintenance failures in 15 sorties. 
 
@@ -357,13 +357,13 @@ c. Find the probability of at least 30 successful (no mx failures) sorties befor
 d. Find the probability of at least 50 successful sorties before the third failure. 
 
 
-\indent 2. On a given Saturday, suppose vehicles arrive at the USAFA North Gate according to a Poisson process at a rate of 40 arrivals per hour. 
+2. On a given Saturday, suppose vehicles arrive at the USAFA North Gate according to a Poisson process at a rate of 40 arrivals per hour. 
 
 a. Find the probability no vehicles arrive in 10 minutes.  
 b. Find the probability at least 50 vehicles arrive in an hour.  
 c. Find the probability that at least 5 minutes will pass before the next arrival.
 
-\indent 3. Suppose there are 12 male and 7 female cadets in a classroom. I select 5 completely at random (without replacement). 
+3. Suppose there are 12 male and 7 female cadets in a classroom. I select 5 completely at random (without replacement). 
 
 a. Find the probability I select no female cadets.  
 b. Find the probability I select more than 2 female cadets. 

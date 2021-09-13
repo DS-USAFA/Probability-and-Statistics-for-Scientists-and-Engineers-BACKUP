@@ -211,10 +211,10 @@ inspect(results)
 ```
 ## 
 ## quantitative variables:  
-##      name   class        min        Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.01386871 0.4998366 0.7025987 0.8654328 0.9998707 0.6654827
+##      name   class         min        Q1    median        Q3       max      mean
+## ...1 sqrt numeric 0.002949015 0.4949832 0.7065717 0.8664281 0.9999993 0.6648854
 ##             sd     n missing
-## ...1 0.2352157 10000       0
+## ...1 0.2381974 10000       0
 ```
 
 Figure \@ref(fig:dens161-fig) is a density plot of the simulated original random variable.
@@ -264,10 +264,10 @@ inspect(y_results)
 ```
 ## 
 ## quantitative variables:  
-##      name   class      min        Q1     median         Q3           max
-## ...1    y numeric -4.27812 -0.693474 -0.3529693 -0.1445256 -0.0001293055
+##      name   class       min         Q1     median         Q3           max
+## ...1    y numeric -5.826284 -0.7032314 -0.3473307 -0.1433761 -7.000058e-07
 ##            mean        sd     n missing
-## ...1 -0.5011198 0.4969063 10000       0
+## ...1 -0.5062298 0.5117316 10000       0
 ```
 
 ### Multivariate Transformations 
@@ -423,20 +423,20 @@ So it is actually 0.292 hours, 17.5 minutes. So round up and wait 18 minutes.
 
 ## Homework Problems
 
-\indent 1. Let $X$ be a random variable and let $g$ be a function. By this point, it should be clear that $\E[g(X)]$ is not necessarily equal to $g(\E[X])$. 
+1. Let $X$ be a random variable and let $g$ be a function. By this point, it should be clear that $\E[g(X)]$ is not necessarily equal to $g(\E[X])$. 
 
 Let $X\sim \textsf{Expon}(\lambda=0.5)$ and $g(X)=X^2$. We know that $\E(X)=\frac{1}{0.5}=2$ so $g(\E(X))=\E(X)^2=4$. Use `R` to find $\E[g(X)]$. Make use of the fact that `R` has `rexp()` built into it, so you don't have to create your own random variable generator.
 
 
-\indent 2. Let $X\sim \textsf{Binom}(n,\pi)$. What is the pmf for $Y = X+3$? Make sure you specify the domain of $Y$. [Note, we have used $p$ for the probability of success in a binomial distribution in past chapters but some references use $\pi$ instead.]
+2. Let $X\sim \textsf{Binom}(n,\pi)$. What is the pmf for $Y = X+3$? Make sure you specify the domain of $Y$. [Note, we have used $p$ for the probability of success in a binomial distribution in past chapters but some references use $\pi$ instead.]
 
 
-\indent 3. Let $X\sim \textsf{Expon}(\lambda)$. Let $Y=X^2$. Find the pdf of $Y$. 
+3. Let $X\sim \textsf{Expon}(\lambda)$. Let $Y=X^2$. Find the pdf of $Y$. 
 
 
-\indent 4. OPTIONAL: In exercise 3, you found the pdf of $Y=X^2$ when $X\sim \textsf{Expon}(\lambda)$. Rearrange the pdf to show that $Y\sim \textsf{Weibull}$ and find the parameters of that distribution. 
+4. OPTIONAL: In exercise 3, you found the pdf of $Y=X^2$ when $X\sim \textsf{Expon}(\lambda)$. Rearrange the pdf to show that $Y\sim \textsf{Weibull}$ and find the parameters of that distribution. 
 
-\indent 5. You are on a team of two. You are both tasked to complete an exercise. The time it takes you, $T_1$, and likewise, your teammate, $T_2$, to complete the exercise are independent random variables. Exercise completion time, in minutes, is distributed with the following pdf:
+5. You are on a team of two. You are both tasked to complete an exercise. The time it takes you, $T_1$, and likewise, your teammate, $T_2$, to complete the exercise are independent random variables. Exercise completion time, in minutes, is distributed with the following pdf:
 
 $$
 f_T(t)= \frac{-t}{200}+\frac{3}{20}; 10 \leq t \leq30

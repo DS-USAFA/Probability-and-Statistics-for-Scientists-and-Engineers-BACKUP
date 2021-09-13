@@ -499,7 +499,7 @@ when we want to reduce the effects of Monte Carlo variability.
 
 ## Homework Problems
 
-\indent 1. Poker  
+1. Poker  
 An aspiring poker player recorded her winnings and losses over 50 evenings of play, the data is in the `data` folder in the file `poker.csv`. The poker player would like to better understand the volatility in her long term play.
 
 a. Load the data and plot a histogram.  
@@ -512,7 +512,7 @@ e. Plot a histogram of the bootstrap distribution.
 f. Report a 95% confidence interval on the MAD.  
 g. ADVANCED: Do you think sample MAD is an unbiased estimator of population MAD? Why or why not?   
 
-\indent 2. Bootstrap hypothesis testing  
+2. Bootstrap hypothesis testing  
 
 Bootstrap hypothesis testing is relatively undeveloped, and is generally not as accurate as permutation testing. Therefore in general avoid it. But for our problem in the notes, it may work. We will sample in a way that is consistent with the null hypothesis, then calculate a P-value as a tail probability like we do in permutation tests. This example does not generalize well to other applications like relative risk, correlation, regression, or categorical data.
 
@@ -524,7 +524,7 @@ e. Plot the bootstrap distribution and a line at the observed difference in samp
 f. Find a p-value.  
 g. How does the p-value compare with those in the notes.
 
-\indent 3. Paired data  
+3. Paired data  
 
 Are textbooks actually cheaper online? Here we compare the price of textbooks at the University of California, Los Angeles' (UCLA's) bookstore and prices at Amazon.com. Seventy-three UCLA courses were randomly sampled in Spring 2010, representing less than 10\% of all UCLA courses. When a class had multiple books, only the most expensive text was considered.
 

@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-09-09" />
+<meta name="date" content="2021-09-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1219,8 +1219,10 @@ when we want to reduce the effects of Monte Carlo variability.</p>
 </div>
 <div id="homework-problems-22" class="section level2" number="23.8">
 <h2><span class="header-section-number">23.8</span> Homework Problems</h2>
-<p>. Poker<br />
-An aspiring poker player recorded her winnings and losses over 50 evenings of play, the data is in the <code>data</code> folder in the file <code>poker.csv</code>. The poker player would like to better understand the volatility in her long term play.</p>
+<ol style="list-style-type: decimal">
+<li>Poker<br />
+An aspiring poker player recorded her winnings and losses over 50 evenings of play, the data is in the <code>data</code> folder in the file <code>poker.csv</code>. The poker player would like to better understand the volatility in her long term play.</li>
+</ol>
 <ol style="list-style-type: lower-alpha">
 <li>Load the data and plot a histogram.<br />
 </li>
@@ -1238,7 +1240,9 @@ Write a function and find the <em>MAD</em> of the data.<br />
 </li>
 <li>ADVANCED: Do you think sample MAD is an unbiased estimator of population MAD? Why or why not?</li>
 </ol>
-<p>. Bootstrap hypothesis testing</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Bootstrap hypothesis testing</li>
+</ol>
 <p>Bootstrap hypothesis testing is relatively undeveloped, and is generally not as accurate as permutation testing. Therefore in general avoid it. But for our problem in the notes, it may work. We will sample in a way that is consistent with the null hypothesis, then calculate a P-value as a tail probability like we do in permutation tests. This example does not generalize well to other applications like relative risk, correlation, regression, or categorical data.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Using the <code>HELPrct</code> data, the null hypothesis requires the means of each group to be equal. Pick one group to adjust, either <code>male</code> or <code>female</code>. First zero the mean of the selected group by subtracting the sample mean of this group from data points only in this group. Then add the sample mean of the other group to each data point in the selected group. Store in a new object called <code>HELP_null</code>. set, store the observed value of the difference of means for male and female.</li>
@@ -1254,7 +1258,9 @@ Write a function and find the <em>MAD</em> of the data.<br />
 </li>
 <li>How does the p-value compare with those in the notes.</li>
 </ol>
-<p>. Paired data</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Paired data</li>
+</ol>
 <p>Are textbooks actually cheaper online? Here we compare the price of textbooks at the University of California, Los Angeles’ (UCLA’s) bookstore and prices at Amazon.com. Seventy-three UCLA courses were randomly sampled in Spring 2010, representing less than 10% of all UCLA courses. When a class had multiple books, only the most expensive text was considered.</p>
 <p>The data is in the file <code>textbooks.csv</code> under the data folder.</p>
 <p>Each textbook has two corresponding prices in the data set: one for the UCLA bookstore and one for Amazon. Therefore, each textbook price from the UCLA bookstore has a natural correspondence with a textbook price from Amazon. When two sets of observations have this special correspondence, they are said to be <strong>paired</strong>.</p>

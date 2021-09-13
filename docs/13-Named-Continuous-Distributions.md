@@ -399,7 +399,7 @@ It is the uniform. It is easy to verify that $\Gamma(1)=1$ so that $B(1,1)=1$.
 
 For problems 1-3 below, **_1)_** define a random variable that will help you answer the question, **_2)_** state the distribution and parameters of that random variable; **_3)_** determine the expected value and variance of that random variable, and **_4)_** use that random variable to answer the question. 
 
-\indent 1. On a given Saturday, suppose vehicles arrive at the USAFA North Gate according to a Poisson process at a rate of 40 arrivals per hour. 
+1. On a given Saturday, suppose vehicles arrive at the USAFA North Gate according to a Poisson process at a rate of 40 arrivals per hour. 
 
 a. Find the probability no vehicles arrive in 10 minutes.   
 b. Find the probability that at least 5 minutes will pass before the next arrival.  
@@ -408,7 +408,7 @@ d. Find the probability that at least 7 minutes will pass before the next arriva
 e. Fill in the blank. There is a probability of 90% that the next vehicle will arrive within __ minutes. This value is known as the 90% percentile of the random variable.  
 f. Use the function `stripplot()` to visualize the arrival of 30 vehicles using a random sample from the appropriate exponential distribution.
 
-\indent 2. Suppose time until computer errors on the F-35 follows a Gamma distribution with mean 20 hours and variance 10.  
+2. Suppose time until computer errors on the F-35 follows a Gamma distribution with mean 20 hours and variance 10.  
 
 a. Find the probability that 20 hours pass without a computer error.  
 b. Find the probability that 45 hours pass without a computer error, given that 25 hours have already passed. Does the memoryless property apply to the Gamma distribution?   
@@ -417,7 +417,7 @@ c. Find $a$ and $b$: There is a 95% probability time until next computer error w
 
 \pagebreak
 
-\indent 3. Suppose PFT scores in the cadet wing follow a normal distribution with mean 330 and standard deviation 50. 
+3. Suppose PFT scores in the cadet wing follow a normal distribution with mean 330 and standard deviation 50. 
 
 a. Find the probability a randomly selected cadet has a PFT score higher than 450.   
 b. Find the probability a randomly selected cadet has a PFT score within 2 standard deviations of the mean.  
@@ -425,10 +425,10 @@ c. Find $a$ and $b$ such that 90% of PFT scores will be between $a$ and $b$.
 d. Find the probability a randomly selected cadet has a PFT score higher than 450 given he/she is among the top 10% of cadets. 
 
 
-\indent 4. Let $X \sim \textsf{Beta}(\alpha=1,\beta=1)$. Show that $X\sim \textsf{Unif}(0,1)$. Hint: write out the beta distribution pdf where $\alpha=1$ and $\beta=1$.
+4. Let $X \sim \textsf{Beta}(\alpha=1,\beta=1)$. Show that $X\sim \textsf{Unif}(0,1)$. Hint: write out the beta distribution pdf where $\alpha=1$ and $\beta=1$.
 
 
-\indent 5. When using `R` to calculate probabilities related to the gamma distribution, we often use `pgamma`. Recall that `pgamma` is equivalent to the cdf of the gamma distribution. If $X\sim\textsf{Gamma}(\alpha,\lambda)$, then
+5. When using `R` to calculate probabilities related to the gamma distribution, we often use `pgamma`. Recall that `pgamma` is equivalent to the cdf of the gamma distribution. If $X\sim\textsf{Gamma}(\alpha,\lambda)$, then
 $$
 \Prob(X\leq x)=\textsf{pgamma(x,alpha,lambda)}
 $$

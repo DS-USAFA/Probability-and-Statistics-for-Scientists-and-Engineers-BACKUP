@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-09-09" />
+<meta name="date" content="2021-09-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -925,10 +925,10 @@ f_Y(y)=f_X(\sqrt{y})\bigg|\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y} \
 <div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="TRANS.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class        min        Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.01386871 0.4998366 0.7025987 0.8654328 0.9998707 0.6654827
+##      name   class         min        Q1    median        Q3       max      mean
+## ...1 sqrt numeric 0.002949015 0.4949832 0.7065717 0.8664281 0.9999993 0.6648854
 ##             sd     n missing
-## ...1 0.2352157 10000       0</code></pre>
+## ...1 0.2381974 10000       0</code></pre>
 <p>Figure <a href="TRANS.html#fig:dens161-fig">16.2</a> is a density plot of the simulated original random variable.</p>
 <div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="TRANS.html#cb402-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
 <span id="cb402-2"><a href="TRANS.html#cb402-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_density</span>(<span class="sc">~</span>sqrt,<span class="at">xlab=</span><span class="st">&quot;X&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -957,10 +957,10 @@ Figure 16.3: The density plot of the transformed random variable from the simula
 <div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="TRANS.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(y_results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class      min        Q1     median         Q3           max
-## ...1    y numeric -4.27812 -0.693474 -0.3529693 -0.1445256 -0.0001293055
+##      name   class       min         Q1     median         Q3           max
+## ...1    y numeric -5.826284 -0.7032314 -0.3473307 -0.1433761 -7.000058e-07
 ##            mean        sd     n missing
-## ...1 -0.5011198 0.4969063 10000       0</code></pre>
+## ...1 -0.5062298 0.5117316 10000       0</code></pre>
 </div>
 <div id="multivariate-transformations" class="section level3" number="16.2.6">
 <h3><span class="header-section-number">16.2.6</span> Multivariate Transformations</h3>
@@ -1047,12 +1047,16 @@ How long should the first person wait so that there is at least a 50% probabilit
 </div>
 <div id="homework-problems-15" class="section level2" number="16.3">
 <h2><span class="header-section-number">16.3</span> Homework Problems</h2>
-<p>. Let <span class="math inline">\(X\)</span> be a random variable and let <span class="math inline">\(g\)</span> be a function. By this point, it should be clear that <span class="math inline">\(\mbox{E}[g(X)]\)</span> is not necessarily equal to <span class="math inline">\(g(\mbox{E}[X])\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li>Let <span class="math inline">\(X\)</span> be a random variable and let <span class="math inline">\(g\)</span> be a function. By this point, it should be clear that <span class="math inline">\(\mbox{E}[g(X)]\)</span> is not necessarily equal to <span class="math inline">\(g(\mbox{E}[X])\)</span>.</li>
+</ol>
 <p>Let <span class="math inline">\(X\sim \textsf{Expon}(\lambda=0.5)\)</span> and <span class="math inline">\(g(X)=X^2\)</span>. We know that <span class="math inline">\(\mbox{E}(X)=\frac{1}{0.5}=2\)</span> so <span class="math inline">\(g(\mbox{E}(X))=\mbox{E}(X)^2=4\)</span>. Use <code>R</code> to find <span class="math inline">\(\mbox{E}[g(X)]\)</span>. Make use of the fact that <code>R</code> has <code>rexp()</code> built into it, so you don’t have to create your own random variable generator.</p>
-<p>. Let <span class="math inline">\(X\sim \textsf{Binom}(n,\pi)\)</span>. What is the pmf for <span class="math inline">\(Y = X+3\)</span>? Make sure you specify the domain of <span class="math inline">\(Y\)</span>. [Note, we have used <span class="math inline">\(p\)</span> for the probability of success in a binomial distribution in past chapters but some references use <span class="math inline">\(\pi\)</span> instead.]</p>
-<p>. Let <span class="math inline">\(X\sim \textsf{Expon}(\lambda)\)</span>. Let <span class="math inline">\(Y=X^2\)</span>. Find the pdf of <span class="math inline">\(Y\)</span>.</p>
-<p>. OPTIONAL: In exercise 3, you found the pdf of <span class="math inline">\(Y=X^2\)</span> when <span class="math inline">\(X\sim \textsf{Expon}(\lambda)\)</span>. Rearrange the pdf to show that <span class="math inline">\(Y\sim \textsf{Weibull}\)</span> and find the parameters of that distribution.</p>
-<p>. You are on a team of two. You are both tasked to complete an exercise. The time it takes you, <span class="math inline">\(T_1\)</span>, and likewise, your teammate, <span class="math inline">\(T_2\)</span>, to complete the exercise are independent random variables. Exercise completion time, in minutes, is distributed with the following pdf:</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Let <span class="math inline">\(X\sim \textsf{Binom}(n,\pi)\)</span>. What is the pmf for <span class="math inline">\(Y = X+3\)</span>? Make sure you specify the domain of <span class="math inline">\(Y\)</span>. [Note, we have used <span class="math inline">\(p\)</span> for the probability of success in a binomial distribution in past chapters but some references use <span class="math inline">\(\pi\)</span> instead.]</p></li>
+<li><p>Let <span class="math inline">\(X\sim \textsf{Expon}(\lambda)\)</span>. Let <span class="math inline">\(Y=X^2\)</span>. Find the pdf of <span class="math inline">\(Y\)</span>.</p></li>
+<li><p>OPTIONAL: In exercise 3, you found the pdf of <span class="math inline">\(Y=X^2\)</span> when <span class="math inline">\(X\sim \textsf{Expon}(\lambda)\)</span>. Rearrange the pdf to show that <span class="math inline">\(Y\sim \textsf{Weibull}\)</span> and find the parameters of that distribution.</p></li>
+<li><p>You are on a team of two. You are both tasked to complete an exercise. The time it takes you, <span class="math inline">\(T_1\)</span>, and likewise, your teammate, <span class="math inline">\(T_2\)</span>, to complete the exercise are independent random variables. Exercise completion time, in minutes, is distributed with the following pdf:</p></li>
+</ol>
 <p><span class="math display">\[
 f_T(t)= \frac{-t}{200}+\frac{3}{20}; 10 \leq t \leq30
 \]</span></p>

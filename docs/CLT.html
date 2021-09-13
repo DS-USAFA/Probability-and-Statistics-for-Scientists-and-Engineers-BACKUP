@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-09-09" />
+<meta name="date" content="2021-09-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1115,7 +1115,9 @@ Figure 21.8: Q-Q plot for body temperature data.
 </div>
 <div id="homework-problems-20" class="section level2" number="21.6">
 <h2><span class="header-section-number">21.6</span> Homework Problems</h2>
-<p>. Suppose we roll a fair six-sided die and let <span class="math inline">\(X\)</span> be the resulting number. The distribution of <span class="math inline">\(X\)</span> is discrete uniform. (Each of the six discrete outcomes is equally likely.)</p>
+<ol style="list-style-type: decimal">
+<li>Suppose we roll a fair six-sided die and let <span class="math inline">\(X\)</span> be the resulting number. The distribution of <span class="math inline">\(X\)</span> is discrete uniform. (Each of the six discrete outcomes is equally likely.)</li>
+</ol>
 <ol style="list-style-type: lower-alpha">
 <li>Suppose we roll the fair die 5 times and record the value of <span class="math inline">\(\bar{X}\)</span>, the <em>mean</em> of the resulting rolls. Under the central limit theorem, what should be the distribution of <span class="math inline">\(\bar{X}\)</span>?<br />
 </li>
@@ -1123,7 +1125,9 @@ Figure 21.8: Q-Q plot for body temperature data.
 </ol>
 <p>(HINT: You can simulate a die roll using the <code>sample</code> function. Be careful and make sure you use it properly.)<br />
 c. Repeat parts a) and b) for <span class="math inline">\(n=20\)</span> and <span class="math inline">\(n=50\)</span>. Describe what you notice. Make sure all three plots are plotted on the same <span class="math inline">\(x\)</span>-axis scale. You can use facets if you combine your data into one <code>tibble</code>.</p>
-<p>. The nutrition label on a bag of potato chips says that a one ounce (28 gram) serving of potato chips has 130 calories and contains ten grams of fat, with three grams of saturated fat. A random sample of 35 bags yielded a sample mean of 134 calories with a standard deviation of 17 calories. Is there evidence that the nutrition label does not provide an accurate measure of calories in the bags of potato chips? The conditions necessary for applying the normal model have been checked and are satisfied.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>The nutrition label on a bag of potato chips says that a one ounce (28 gram) serving of potato chips has 130 calories and contains ten grams of fat, with three grams of saturated fat. A random sample of 35 bags yielded a sample mean of 134 calories with a standard deviation of 17 calories. Is there evidence that the nutrition label does not provide an accurate measure of calories in the bags of potato chips? The conditions necessary for applying the normal model have been checked and are satisfied.</li>
+</ol>
 <p>The question has been framed in terms of two possibilities: the nutrition label accurately lists the correct average calories per bag of chips or it does not, which may be framed as a hypothesis test.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Write the null and alternative hypothesis.<br />
@@ -1136,14 +1140,18 @@ c. Repeat parts a) and b) for <span class="math inline">\(n=20\)</span> and <sp
 </li>
 <li>Draw a conclusion.</li>
 </ol>
-<p>. Exploration of the chi-squared and <span class="math inline">\(t\)</span> distributions.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Exploration of the chi-squared and <span class="math inline">\(t\)</span> distributions.</li>
+</ol>
 <ol style="list-style-type: lower-alpha">
 <li>In <code>R</code>, plot the pdf of a random variable with the chi-squared distribution with 1 degree of freedom. On the same plot, include the pdfs with degrees of freedom of 5, 10 and 50. Describe how the behavior of the pdf changes with increasing degrees of freedom.<br />
 </li>
 <li>Repeat part (a) with the <span class="math inline">\(t\)</span> distribution. Add the pdf of a standard normal random variable as well. What do you notice?</li>
 </ol>
-<p>. In this lesson, we have used the expression <em>degrees of freedom</em> a lot. What does this expression mean? When we have sample of size <span class="math inline">\(n\)</span>, why are there <span class="math inline">\(n-1\)</span> degrees of freedom for the <span class="math inline">\(t\)</span> distribution? Give a short concise answer (about one paragraph). You will likely have to do a little research on your own.</p>
-<p>. Deborah Toohey is running for Congress, and her campaign manager claims she has more than 50% support from the district’s electorate. Ms. Toohey’s opponent claimed that Ms. Toohey has <strong>less</strong> than 50%. Set up a hypothesis test to evaluate who is right.</p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>In this lesson, we have used the expression <em>degrees of freedom</em> a lot. What does this expression mean? When we have sample of size <span class="math inline">\(n\)</span>, why are there <span class="math inline">\(n-1\)</span> degrees of freedom for the <span class="math inline">\(t\)</span> distribution? Give a short concise answer (about one paragraph). You will likely have to do a little research on your own.</p></li>
+<li><p>Deborah Toohey is running for Congress, and her campaign manager claims she has more than 50% support from the district’s electorate. Ms. Toohey’s opponent claimed that Ms. Toohey has <strong>less</strong> than 50%. Set up a hypothesis test to evaluate who is right.</p></li>
+</ol>
 <ol style="list-style-type: lower-alpha">
 <li>Should we run a one-sided or two-sided hypothesis test?<br />
 </li>

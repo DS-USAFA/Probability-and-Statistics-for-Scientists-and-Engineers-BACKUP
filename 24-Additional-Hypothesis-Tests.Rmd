@@ -566,11 +566,11 @@ a. Load the data and tally the data into a table. The data is in `golf_balls.csv
 b. Using the function `chisq.test()`, conduct a hypothesis test of equally likely distribution of balls. You may have to read the help menu.   
 c. Repeat part b. but assume balls with the numbers 1 and 2 occur 30\% of the time and balls with 3 and 4 occur 20\%. 
 
-\indent 2. Bootstrap hypothesis testing  
+2. Bootstrap hypothesis testing  
 
 Repeat the analysis of the MLB data from the lesson but this time generate a bootstrap distribution of the $F$ statistic.  
 
-\indent 3. Test of variance
+3. Test of variance
 
 We have not performed a test of variance so we will create our own.
 

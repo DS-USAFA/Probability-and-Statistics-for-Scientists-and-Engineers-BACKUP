@@ -504,10 +504,10 @@ In this lesson we have extended the linear regression model by allowing multiple
 
 ## Homework Problems  
 
-\indent 1. The `mtcars` data set contains average mileage (mpg) and other information about specific makes and models of cars. (This data set is built-in to `R`; for more information about this data set, reference the documentation with `?mtcars`). 
+1. The `mtcars` data set contains average mileage (mpg) and other information about specific makes and models of cars. (This data set is built-in to `R`; for more information about this data set, reference the documentation with `?mtcars`). 
 
 a. Build and interpret the coefficients of a model fitting `mpg` against displacement (`disp`), horsepower (`hp`), rear axle ratio (`drat`), and weight in 1000 lbs (`wt`).   
 b. Given your model, what is the expected mpg for a vehicle with a displacement of 170, a horsepower of 100, a `drat` of 3.80 and a wt of 2,900 lbs. Construct a 95% confidence interval and prediction interval for that expected mpg.   
 c. Repeat part (b) with a bootstrap for the confidence interval.
 
-\indent 2. Is that the best model for predicting mpg? Try a variety of different models. You could explore higher order terms or even interactions. One place to start is by using the `pairs()` function on `mtcars` to plot a large pairwise scatterplot. How high could you get adjusted $R$-squared? Keep in mind that is only one measure of fit. 
+2. Is that the best model for predicting mpg? Try a variety of different models. You could explore higher order terms or even interactions. One place to start is by using the `pairs()` function on `mtcars` to plot a large pairwise scatterplot. How high could you get adjusted $R$-squared? Keep in mind that is only one measure of fit. 

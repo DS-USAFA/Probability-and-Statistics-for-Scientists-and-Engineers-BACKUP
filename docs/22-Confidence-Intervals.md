@@ -554,7 +554,7 @@ c. Identify each of the following statements as true or false. Provide an explan
 
 \pagebreak 
 
-\indent 2. Vegetarian college students 
+2. Vegetarian college students 
 
 Suppose that 8\% of college students are vegetarians. Determine if the following statements are true or false, and explain your reasoning.
 
@@ -566,7 +566,7 @@ e. The standard error would be reduced by one-half if we increased the sample si
 f. A 99\% confidence will be wider than a 95\% because to have a higher confidence level requires a wider interval.
 
 
-\indent 3. Orange tabbies 
+3. Orange tabbies 
 
 Suppose that 90\% of orange tabby cats are male. Determine if the following statements are true or false, and explain your reasoning.  
 a. The distribution of sample proportions of random samples of size 30 is left skewed.  
@@ -574,13 +574,13 @@ b. Using a sample size that is 4 times as large will reduce the standard error o
 c. The distribution of sample proportions of random samples of size 140 is approximately normal.    
   
 
-\indent 4. Working backwards 
+4. Working backwards 
 
 A 90\% confidence interval for a population mean is (65,77). The population distribution is approximately normal and the population standard deviation is unknown. This confidence interval is based on a simple random sample of 25 observations. Calculate the sample mean, the margin of error, and the sample standard deviation.
 
 
 
-\indent 5. Find the p-value 
+5. Find the p-value 
 
 An independent random sample is selected from an approximately normal population with an unknown standard deviation. Find the p-value for the given set of hypotheses and $T$ test statistic. Also determine if the null hypothesis would be rejected at $\alpha = 0.05$.
 
@@ -592,7 +592,7 @@ d. $H_{A}: \mu > \mu_{0}$, $n = 28$, $T = 2.13$
  
 \pagebreak 
 
-\indent 6. Sleep habits of New Yorkers  
+6. Sleep habits of New Yorkers  
 
 New York is known as "the city that never sleeps". A random sample of 25 New Yorkers were asked how much sleep they get per night. Statistical summaries of these data are shown below. Do these data provide strong evidence that New Yorkers sleep less than 8 hours a night on average?
 
@@ -624,7 +624,7 @@ d. What is the conclusion of the hypothesis test?
 e. Construct a 95\% confidence interval that corresponded to this hypothesis test, would you expect 8 hours to be in the interval?
 
 
-\indent 7. Vegetarian college students II
+7. Vegetarian college students II
 
 From problem 2 part c, suppose that it has been reported that 8\% of college students are vegetarians. We think USAFA is not typical because of their fitness and health awareness, we think there are more vegetarians. We collect a random sample of 125 cadets and find 12\% claimed they are vegetarians. Is there enough evidence to claim that USAFA cadets are different?
 

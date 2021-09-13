@@ -191,7 +191,7 @@ sqrt(runif(1))
 ```
 
 ```
-## [1] 0.9949866
+## [1] 0.2617607
 ```
 
 
@@ -209,10 +209,10 @@ inspect(results)
 ```
 ## 
 ## quantitative variables:  
-##      name   class         min        Q1    median        Q3       max     mean
-## ...1 sqrt numeric 0.008287489 0.5000726 0.7083143 0.8653525 0.9999892 0.666269
+##      name   class         min        Q1    median        Q3       max      mean
+## ...1 sqrt numeric 0.003555953 0.5078522 0.7092326 0.8657721 0.9999784 0.6692669
 ##             sd     n missing
-## ...1 0.2361267 10000       0
+## ...1 0.2338306 10000       0
 ```
 
 \pagebreak 
@@ -299,7 +299,7 @@ mean(~sqrt,data=results)
 ```
 
 ```
-## [1] 0.666269
+## [1] 0.6692669
 ```
 
 
@@ -335,7 +335,7 @@ var(~sqrt,data=results)*9999/10000
 ```
 
 ```
-## [1] 0.05575022
+## [1] 0.05467127
 ```
 
 
@@ -343,7 +343,7 @@ And finally, the standard deviation of $X$ is $\sigma_X = \sqrt{\sigma^2_X}=\sqr
 
 ## Homework Problems
 
-\indent 1. Let $X$ be a continuous random variable on the domain $-k \leq X \leq k$. Also, let $f(x)=\frac{x^2}{18}$. 
+1. Let $X$ be a continuous random variable on the domain $-k \leq X \leq k$. Also, let $f(x)=\frac{x^2}{18}$. 
 
 a. Assume that $f(x)$ is a valid pdf. Find the value of $k$.  
 b. Plot the pdf of $X$.   
@@ -356,5 +356,5 @@ h. Find the mean and variance of $X$.
 i. Simulate 10000 values from this distribution and plot the density.
 
 
-\indent 2. Let $X$ be a continuous random variable. Prove that the cdf of $X$, $F_X(x)$ is a non-decreasing function. (Hint: show that for any $a < b$, $F_X(a) \leq F_X(b)$.)
+2. Let $X$ be a continuous random variable. Prove that the cdf of $X$, $F_X(x)$ is a non-decreasing function. (Hint: show that for any $a < b$, $F_X(a) \leq F_X(b)$.)
 

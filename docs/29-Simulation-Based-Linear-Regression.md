@@ -823,7 +823,7 @@ We have three points that might be outliers but they are not too extreme, Figure
 
 We will use the `loans` data set again to create linear models. Remember this data set represents thousands of loans made through the Lending Club platform, which is a platform that allows individuals to lend to other individuals.
 
-\indent 1. Loans  
+1. Loans  
 
 In this exercise we will examine the relationship between interest rate and loan amount.  
 
@@ -837,7 +837,7 @@ e. Using the $t$ distribution:
 f. Repeat part e using a bootstrap.  
 g. Check the assumptions of linear regression.
 
-\indent 2. Loans II
+2. Loans II
 
 Using the `loans` data set of 200 observations from the previous exercise, use the variable `term` to determine if there is a difference in interest rates for the two different loan lengths.
 

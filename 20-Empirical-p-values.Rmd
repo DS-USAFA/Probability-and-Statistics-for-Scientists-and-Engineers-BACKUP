@@ -428,7 +428,7 @@ In this next lesson we will learn about mathematical solutions to finding the sa
 
 ## Homework Problems
 
-\indent 1. Repeat the analysis of the yawning data from last lesson but this time use the hypergeometric distribution.
+1. Repeat the analysis of the yawning data from last lesson but this time use the hypergeometric distribution.
 
 Is yawning contagious? 
 
@@ -452,7 +452,7 @@ d. Plot the the sampling distribution.
 e. Determine the conclusion of the hypothesis test.  
 f. Compare your results with the randomization test.  
 
-\indent 2. Repeat the golf ball example using a different test statistic.
+2. Repeat the golf ball example using a different test statistic.
 
 Use a level of significance of 0.05.
 
@@ -462,7 +462,7 @@ c. Determine the p-value.
 d. Draw a conclusion.  
 
 
-\indent 3. Body Temperature
+3. Body Temperature
 
 Shoemaker^[L. Shoemaker Allen (1996) What's Normal? – Temperature, Gender, and Heart Rate, Journal of Statistics Education, 4:2] cites a paper from the American Medical Association^[Mackowiak, P. A., Wasserman, S. S., and Levine, M. M. (1992), "A Critical Appraisal of 98.6 Degrees F, the Upper Limit of the Normal Body Temperature, and Other Legacies of Carl Reinhold August Wunderlich," Journal of the American Medical Association, 268, 1578-1580.] that questions conventional wisdom that the average body temperature of a human is 98.6. One of the main points of the original article – the traditional mean of 98.6 is, in essence, 100 years out of date. The authors cite problems with Wunderlich's original methodology, diurnal fluctuations (up to 0.9 degrees F per day), and unreliable thermometers. The authors believe the average temperature is less than 98.6. Test the hypothesis.
 

@@ -268,7 +268,7 @@ where $0 \leq y \leq 1$.
 
 ## Homework Problems
 
-\indent 1. Let $X$ and $Y$ be continuous random variables with joint pmf: 
+1. Let $X$ and $Y$ be continuous random variables with joint pmf: 
 $$
 f_{X,Y}(x,y)=x + y
 $$
@@ -283,12 +283,12 @@ d. Find the following probabilities: $\Prob(X<0.5)$; $\Prob(Y>0.8)$; $\Prob(X<0.
 &nbsp;
 
 
-\indent 2. In the Notes, we saw an example where $f_X(x)=f_{X|Y=y}(x)$ and $f_Y(y)=f_{Y|X=x}(y)$. This is not common and is important. What does this imply about $X$ and $Y$?  
+2. In the Notes, we saw an example where $f_X(x)=f_{X|Y=y}(x)$ and $f_Y(y)=f_{Y|X=x}(y)$. This is not common and is important. What does this imply about $X$ and $Y$?  
 
 
 \newpage
 
-\indent 3. ADVANCED: Recall on an earlier assignment, we came up with random variables to describe timeliness at an airport. Suppose over the course of 210 days, on each day we recorded the number of customer complaints regarding timeliness. Also on each day, we recorded the weather (our airport is located somewhere without snow and without substantial wind). The data are displayed below. 
+3. ADVANCED: Recall on an earlier assignment, we came up with random variables to describe timeliness at an airport. Suppose over the course of 210 days, on each day we recorded the number of customer complaints regarding timeliness. Also on each day, we recorded the weather (our airport is located somewhere without snow and without substantial wind). The data are displayed below. 
 
 
 
@@ -319,7 +319,7 @@ d. Find the probability of fewer than 3 complaints given there is no rain.
 
 **Optional** for those of you that like Calc III and want a challenge. 
 
-\indent 4. Let $X$ and $Y$ be continuous random variables with joint pmf: 
+4. Let $X$ and $Y$ be continuous random variables with joint pmf: 
 $$
 f_{X,Y}(x,y)=1
 $$

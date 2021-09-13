@@ -362,7 +362,7 @@ This case study introduced simple linear regression. We look at the criteria to 
 
 ## Homework Problems
 
-\indent 1. HFI   
+1. HFI   
 
 Choose another freedom variable and a variable you think would strongly correlate with it. The `openintro` package contains the data set `hfi`. Type `?openintro::hfi` in the Console window in `RStudio` to learn more about the variables. 
     

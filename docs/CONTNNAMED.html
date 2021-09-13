@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-09-09" />
+<meta name="date" content="2021-09-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1029,7 +1029,9 @@ What is the distribution if <span class="math inline">\(\alpha=\beta=1\)</span>?
 <div id="homework-problems-12" class="section level2" number="13.3">
 <h2><span class="header-section-number">13.3</span> Homework Problems</h2>
 <p>For problems 1-3 below, <strong><em>1)</em></strong> define a random variable that will help you answer the question, <strong><em>2)</em></strong> state the distribution and parameters of that random variable; <strong><em>3)</em></strong> determine the expected value and variance of that random variable, and <strong><em>4)</em></strong> use that random variable to answer the question.</p>
-<p>. On a given Saturday, suppose vehicles arrive at the USAFA North Gate according to a Poisson process at a rate of 40 arrivals per hour.</p>
+<ol style="list-style-type: decimal">
+<li>On a given Saturday, suppose vehicles arrive at the USAFA North Gate according to a Poisson process at a rate of 40 arrivals per hour.</li>
+</ol>
 <ol style="list-style-type: lower-alpha">
 <li>Find the probability no vehicles arrive in 10 minutes.<br />
 </li>
@@ -1043,7 +1045,9 @@ What is the distribution if <span class="math inline">\(\alpha=\beta=1\)</span>?
 </li>
 <li>Use the function <code>stripplot()</code> to visualize the arrival of 30 vehicles using a random sample from the appropriate exponential distribution.</li>
 </ol>
-<p>. Suppose time until computer errors on the F-35 follows a Gamma distribution with mean 20 hours and variance 10.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Suppose time until computer errors on the F-35 follows a Gamma distribution with mean 20 hours and variance 10.</li>
+</ol>
 <ol style="list-style-type: lower-alpha">
 <li>Find the probability that 20 hours pass without a computer error.<br />
 </li>
@@ -1052,7 +1056,9 @@ What is the distribution if <span class="math inline">\(\alpha=\beta=1\)</span>?
 <li>Find <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>: There is a 95% probability time until next computer error will be between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. (note: technically, there are many answers to this question, but find <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> such that each tail has equal probability.)</li>
 </ol>
 <div style="page-break-after: always;"></div>
-<p>. Suppose PFT scores in the cadet wing follow a normal distribution with mean 330 and standard deviation 50.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Suppose PFT scores in the cadet wing follow a normal distribution with mean 330 and standard deviation 50.</li>
+</ol>
 <ol style="list-style-type: lower-alpha">
 <li>Find the probability a randomly selected cadet has a PFT score higher than 450.<br />
 </li>
@@ -1062,11 +1068,13 @@ What is the distribution if <span class="math inline">\(\alpha=\beta=1\)</span>?
 </li>
 <li>Find the probability a randomly selected cadet has a PFT score higher than 450 given he/she is among the top 10% of cadets.</li>
 </ol>
-<p>. Let <span class="math inline">\(X \sim \textsf{Beta}(\alpha=1,\beta=1)\)</span>. Show that <span class="math inline">\(X\sim \textsf{Unif}(0,1)\)</span>. Hint: write out the beta distribution pdf where <span class="math inline">\(\alpha=1\)</span> and <span class="math inline">\(\beta=1\)</span>.</p>
-<p>. When using <code>R</code> to calculate probabilities related to the gamma distribution, we often use <code>pgamma</code>. Recall that <code>pgamma</code> is equivalent to the cdf of the gamma distribution. If <span class="math inline">\(X\sim\textsf{Gamma}(\alpha,\lambda)\)</span>, then
+<ol start="4" style="list-style-type: decimal">
+<li><p>Let <span class="math inline">\(X \sim \textsf{Beta}(\alpha=1,\beta=1)\)</span>. Show that <span class="math inline">\(X\sim \textsf{Unif}(0,1)\)</span>. Hint: write out the beta distribution pdf where <span class="math inline">\(\alpha=1\)</span> and <span class="math inline">\(\beta=1\)</span>.</p></li>
+<li><p>When using <code>R</code> to calculate probabilities related to the gamma distribution, we often use <code>pgamma</code>. Recall that <code>pgamma</code> is equivalent to the cdf of the gamma distribution. If <span class="math inline">\(X\sim\textsf{Gamma}(\alpha,\lambda)\)</span>, then
 <span class="math display">\[
 \mbox{P}(X\leq x)=\textsf{pgamma(x,alpha,lambda)}
-\]</span></p>
+\]</span></p></li>
+</ol>
 
 </div>
 </div>

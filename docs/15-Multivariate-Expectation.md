@@ -514,7 +514,7 @@ These ideas are going to be similar for continuous random variables. Note that w
 
 ##  Homework Problems
 
-\indent 1. Let $X$ and $Y$ be continuous random variables with joint pdf: 
+1. Let $X$ and $Y$ be continuous random variables with joint pdf: 
 $$
 f_{X,Y}(x,y)=x + y
 $$
@@ -530,7 +530,7 @@ d. Find $\Var(3X+2Y)$.
 
 &nbsp;
 
-\indent 2. Optional - not difficult but does have small Calc III idea. Let $X$ and $Y$ be continuous random variables with joint pmf: 
+2. Optional - not difficult but does have small Calc III idea. Let $X$ and $Y$ be continuous random variables with joint pmf: 
 $$
 f_{X,Y}(x,y)=1
 $$

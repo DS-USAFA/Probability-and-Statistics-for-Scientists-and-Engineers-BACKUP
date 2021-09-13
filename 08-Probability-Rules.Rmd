@@ -455,7 +455,7 @@ We have just determined that a full house has a lower probability of occurring t
 
 ## Homework Problems
 
-\indent 1. Let $A$, $B$ and $C$ be events such that $\Prob(A)=0.5$, $\Prob(B)=0.3$, and $\Prob(C)=0.4$. Also, we know that $\Prob(A \cap B)=0.2$, $\Prob(B \cap C)=0.12$, $\Prob(A \cap C)=0.1$, and $\Prob(A \cap B \cap C)=0.05$. Find the following: 
+1. Let $A$, $B$ and $C$ be events such that $\Prob(A)=0.5$, $\Prob(B)=0.3$, and $\Prob(C)=0.4$. Also, we know that $\Prob(A \cap B)=0.2$, $\Prob(B \cap C)=0.12$, $\Prob(A \cap C)=0.1$, and $\Prob(A \cap B \cap C)=0.05$. Find the following: 
 
   a. $\Prob(A\cup B)$  
   b. $\Prob(A\cup B \cup C)$  
@@ -463,41 +463,41 @@ We have just determined that a full house has a lower probability of occurring t
   d. $\Prob(A\cup (B\cap C))$  
   e. $\Prob((A\cup B \cup C)\cap (A\cap B \cap C)')$
 
-\indent 2. Consider the example of the family in the reading. What is the probability that the family has at least one boy? 
+2. Consider the example of the family in the reading. What is the probability that the family has at least one boy? 
 
 
-\indent 3. The Birthday Problem Revisited. 
+3. The Birthday Problem Revisited. 
 
 a. Suppose there are $n=20$ students in a classroom. My birthday, the instructor, is April 3rd. What is the probability that at least one student shares my birthday? Assume only 365 days in a year and assume that all birthdays are equally likely.   
 b. In `R`, find the probability that at least one other person shares my birthday for each value of $n$ from 1 to 80. Plot these probabilities with $n$ on the $x$-axis and probability on the $y$-axis. At what value of $n$ would the probability be at least 50%?   
 
 
-\indent 4. Thinking of the cards again. Answer the following questions:
+4. Thinking of the cards again. Answer the following questions:
 
 a. Define two events that are mutually exclusive.  
 b. Define two events that are independent.  
 c. Define an event and its complement.  
 
-\indent 5. Consider the license plate example from the reading. 
+5. Consider the license plate example from the reading. 
 
 a. What is the probability that a license plate contains **exactly** one "B"?   
 b. What is the probability that a license plate contains **at least one** "B"?  
 
 
 
-\indent 6. Consider the party example in the reading. 
+6. Consider the party example in the reading. 
 
 a. Suppose 8 people showed up to the party dressed as zombies. What is the probability that all three awards are won by people dressed as zombies?   
 b. What is the probability that zombies win "most creative" and "funniest" but not "scariest"? 
 
 
 
-\indent 7. Consider the cards example from the reading. 
+7. Consider the cards example from the reading. 
 
 a. How many ways can we obtain a "two pairs" (2 of one number, 2 of another, and the final different)?   
 b.  What is the probability of drawing a "four of a kind" (four cards of the same value)?   
 
-\indent 8. Advanced Question: Consider rolling 5 dice. What is the **probability** of a pour resulting in a full house?
+8. Advanced Question: Consider rolling 5 dice. What is the **probability** of a pour resulting in a full house?
 
 
 
