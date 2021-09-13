@@ -191,7 +191,7 @@ sqrt(runif(1))
 ```
 
 ```
-## [1] 0.7786271
+## [1] 0.814679
 ```
 
 
@@ -209,10 +209,10 @@ inspect(results)
 ```
 ## 
 ## quantitative variables:  
-##      name   class         min       Q1    median       Q3       max      mean
-## ...1 sqrt numeric 0.007170413 0.502453 0.7084898 0.867724 0.9999987 0.6675242
+##      name   class         min        Q1    median        Q3       max      mean
+## ...1 sqrt numeric 0.004051862 0.4963565 0.7065356 0.8656298 0.9999692 0.6653024
 ##             sd     n missing
-## ...1 0.2355846 10000       0
+## ...1 0.2365278 10000       0
 ```
 
 \pagebreak 
@@ -228,8 +228,8 @@ results %>%
 ```
 
 <div class="figure">
-<img src="11-Continuous-Random-Variables_files/figure-html/plot116-fig-1.png" alt="Density plot of the simulated random varialbe." width="672" />
-<p class="caption">(\#fig:plot116-fig)Density plot of the simulated random varialbe.</p>
+<img src="11-Continuous-Random-Variables_files/figure-html/plot116-fig-1.png" alt="Density plot of the simulated random variable." width="672" />
+<p class="caption">(\#fig:plot116-fig)Density plot of the simulated random variable.</p>
 </div>
 
 
@@ -299,7 +299,7 @@ mean(~sqrt,data=results)
 ```
 
 ```
-## [1] 0.6675242
+## [1] 0.6653024
 ```
 
 
@@ -335,7 +335,7 @@ var(~sqrt,data=results)*9999/10000
 ```
 
 ```
-## [1] 0.05549455
+## [1] 0.05593981
 ```
 
 

@@ -177,7 +177,7 @@ inspect(results)
 
 Figure \@ref(fig:plot116-fig) is a density plot of the simulated density function.
 
-```{r plot116-fig,fig.cap="Density plot of the simulated random varialbe."}
+```{r plot116-fig,fig.cap="Density plot of the simulated random variable."}
 results %>%
   gf_density(~sqrt,xlab="X") %>%
   gf_theme(theme_bw()) %>%
