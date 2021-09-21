@@ -9,7 +9,7 @@
 
 ## Objectives
 
-1) Recognize when to use common continuous distributions (Uniform, Exponential, Gamma, Normal, Beta), identify parameters, and find moments.   
+1) Recognize when to use common continuous distributions (Uniform, Exponential, Gamma, Normal, Weibull, and Beta), identify parameters, and find moments.   
 2) Use `R` to calculate probabilities and quantiles involving random variables with common continuous distributions.  
 3) Understand the relationship between the Poisson process and the Poisson & Exponential distributions.   
 4) Know when to apply and then use the memoryless property. 
@@ -31,16 +31,16 @@ $$
 f_X(x)=\left\{\begin{array}{ll} \frac{1}{b-a}, & a\leq x \leq b \\ 0, & \mbox{otherwise} \end{array}\right.
 $$
 
-The mean of $X$ is $\E(X)=\frac{a+b}{2}$ and the variance is $\Var(X)=\frac{(b-a)^2}{12}$. The derivation of the mean is left to the Application. 
+The mean of $X$ is $\E(X)=\frac{a+b}{2}$ and the variance is $\Var(X)=\frac{(b-a)^2}{12}$. The derivation of the mean is left to the exercises.   
 
-The most common uniform distribution is $U(0,1)$ which we have already used several times in this course. Again, notice in Figure \@ref(fig:uni-fig) that the plot of the **pdf** is a constant or uniform value.
+The most common uniform distribution is $U(0,1)$ which we have already used several times in this book. Again, notice in Figure \@ref(fig:uni-fig) that the plot of the **pdf** is a constant or uniform value.
 
 ```{r uni-fig,fig.cap="The pdf of Uniform random variable."}
 gf_dist("unif",title="Pdf of Uniform random variable",ylab="f(x)") %>%
   gf_theme(theme_bw())
 ```
 
-To check it is a proper pdf, all values must be non-negative and the total probability must be 1. In `R` the function for probability density will start with the letter **d** and have some short descriptor for the distribution. For the uniform we use `dunif()`.
+To check that it is a proper pdf, all values must be non-negative and the total probability must be 1. In `R` the function for probability density will start with the letter **d** and have some short descriptor for the distribution. For the uniform we use `dunif()`.
 
 ```{r}
 integrate(function(x)dunif(x),0,1)
@@ -69,7 +69,7 @@ The mean and variance of $Y$ are: $\E(Y)=\frac{1}{\lambda}$ and $\Var(Y)=\frac{1
 > *Example*:  
 Suppose at a local retail store, customers arrive to a checkout counter according to a Poisson process with an average of one arrival every three minutes. Let $Y$ be the time (in minutes) until the next customer arrives to the counter. What is the distribution (and parameter) of $Y$? What are $\E(Y)$ and $\Var(Y)$? Find $\Prob(Y>5)$, $\Prob(Y\leq 3)$, and $\Prob(1 \leq Y < 5)$? Also, find the median and 95th percentile of $Y$. Finally, plot the pdf of $Y$. 
 
-Since one arrival shows every three minutes, the average number of arrivals per unit time is 1/3 arrival per minute. Thus, $Y\sim \textsf{Expon}(\lambda=1/3)$. This means that $\E(Y)=3$ and $\Var(Y)=9$. 
+Since one arrival shows up every three minutes, the average number of arrivals per unit time is 1/3 arrival per minute. Thus, $Y\sim \textsf{Expon}(\lambda=1/3)$. This means that $\E(Y)=3$ and $\Var(Y)=9$. 
 
 To find $\Prob(Y>5)$, we could integrate the pdf of $Y$:
 $$
@@ -225,7 +225,7 @@ qgamma(0.95,5,1)
 
 ### Weibull distribution
 
-The last common distribution we will explore is the Weibull distribution. Like the gamma, the Weibull distribution is a generalization of the exponential distribution and is meant to model wait times. A random variable with the Weibull distribution has parameters $\alpha$ and $\beta$. In `R`, these are referred to as `shape` and `scale` respectively. Note that in some resources, these are represented by $k$ and $\lambda$ or even $k$ and $\theta$. 
+Another common distribution used in modeling is the Weibull distribution. Like the gamma, the Weibull distribution is a generalization of the exponential distribution and is meant to model wait times. A random variable with the Weibull distribution has parameters $\alpha$ and $\beta$. In `R`, these are referred to as `shape` and `scale` respectively. Note that in some resources, these are represented by $k$ and $\lambda$ or even $k$ and $\theta$. 
 Let $X \sim \textsf{Weibull}(\alpha,\beta)$. The pdf of $X$ is given by:
 $$
 f_X(x)=\frac{\alpha}{\beta} \left(\frac{x}{\beta}\right)^{\alpha-1} e^{-\left(\frac{x}{\beta}\right)^\alpha}, \hspace{0.3cm} x\geq 0
@@ -298,7 +298,7 @@ qnorm(0.95,200,15)
 
 ### Beta distribution
 
-Another common continuous distribution is the beta distribution. This has a unique application in that the domain of a random variable with the beta distribution is $[0,1]$. Thus it is typically used to model proportions. The beta distribution has two parameters, $\alpha$ and $\beta$. (In `R`, these are denoted not so cleverly as `shape1` and `shape2`.) 
+The last common continuous distribution we will study is the beta distribution. This has a unique application in that the domain of a random variable with the beta distribution is $[0,1]$. Thus it is typically used to model proportions. The beta distribution has two parameters, $\alpha$ and $\beta$. (In `R`, these are denoted not so cleverly as `shape1` and `shape2`.) 
 
 Let $X \sim \textsf{Beta}(\alpha,\beta)$. The pdf of $X$ is given by: 
 $$

@@ -14,7 +14,7 @@
 
 ## Multivariate distributions  
 
-Multivariate situations are the more common in practice. We are often dealing with more than one variable. We have seen this in the previous block of material and will see multivariate distributions in the remainder of the course and through Math 378.
+Multivariate situations are the more common in practice. We are often dealing with more than one variable. We have seen this in the previous block of material and will see multivariate distributions in the remainder of the book.
 
 The basic idea is that we want to determine the relationship between two or more variables to include variable(s) conditional on variables. 
 

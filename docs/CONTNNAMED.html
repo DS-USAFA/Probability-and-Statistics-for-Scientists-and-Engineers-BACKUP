@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-09-13" />
+<meta name="date" content="2021-09-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -786,7 +786,7 @@ div.csl-indent {
 <div id="objectives-12" class="section level2" number="13.1">
 <h2><span class="header-section-number">13.1</span> Objectives</h2>
 <ol style="list-style-type: decimal">
-<li>Recognize when to use common continuous distributions (Uniform, Exponential, Gamma, Normal, Beta), identify parameters, and find moments.<br />
+<li>Recognize when to use common continuous distributions (Uniform, Exponential, Gamma, Normal, Weibull, and Beta), identify parameters, and find moments.<br />
 </li>
 <li>Use <code>R</code> to calculate probabilities and quantiles involving random variables with common continuous distributions.<br />
 </li>
@@ -807,8 +807,8 @@ div.csl-indent {
 <span class="math display">\[
 f_X(x)=\left\{\begin{array}{ll} \frac{1}{b-a}, &amp; a\leq x \leq b \\ 0, &amp; \mbox{otherwise} \end{array}\right.
 \]</span></p>
-<p>The mean of <span class="math inline">\(X\)</span> is <span class="math inline">\(\mbox{E}(X)=\frac{a+b}{2}\)</span> and the variance is <span class="math inline">\(\mbox{Var}(X)=\frac{(b-a)^2}{12}\)</span>. The derivation of the mean is left to the Application.</p>
-<p>The most common uniform distribution is <span class="math inline">\(U(0,1)\)</span> which we have already used several times in this course. Again, notice in Figure <a href="CONTNNAMED.html#fig:uni-fig">13.1</a> that the plot of the <strong>pdf</strong> is a constant or uniform value.</p>
+<p>The mean of <span class="math inline">\(X\)</span> is <span class="math inline">\(\mbox{E}(X)=\frac{a+b}{2}\)</span> and the variance is <span class="math inline">\(\mbox{Var}(X)=\frac{(b-a)^2}{12}\)</span>. The derivation of the mean is left to the exercises.</p>
+<p>The most common uniform distribution is <span class="math inline">\(U(0,1)\)</span> which we have already used several times in this book. Again, notice in Figure <a href="CONTNNAMED.html#fig:uni-fig">13.1</a> that the plot of the <strong>pdf</strong> is a constant or uniform value.</p>
 <div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="CONTNNAMED.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;unif&quot;</span>,<span class="at">title=</span><span class="st">&quot;Pdf of Uniform random variable&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;f(x)&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb341-2"><a href="CONTNNAMED.html#cb341-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span id="fig:uni-fig"></span>
@@ -817,7 +817,7 @@ f_X(x)=\left\{\begin{array}{ll} \frac{1}{b-a}, &amp; a\leq x \leq b \\ 0, &amp; 
 Figure 13.1: The pdf of Uniform random variable.
 </p>
 </div>
-<p>To check it is a proper pdf, all values must be non-negative and the total probability must be 1. In <code>R</code> the function for probability density will start with the letter <strong>d</strong> and have some short descriptor for the distribution. For the uniform we use <code>dunif()</code>.</p>
+<p>To check that it is a proper pdf, all values must be non-negative and the total probability must be 1. In <code>R</code> the function for probability density will start with the letter <strong>d</strong> and have some short descriptor for the distribution. For the uniform we use <code>dunif()</code>.</p>
 <div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="CONTNNAMED.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)<span class="fu">dunif</span>(x),<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## 1 with absolute error &lt; 1.1e-14</code></pre>
 </div>
@@ -838,7 +838,7 @@ f_Y(y)=\lambda e^{-\lambda y}, \hspace{0.3cm} y&gt;0
 <p><em>Example</em>:<br />
 Suppose at a local retail store, customers arrive to a checkout counter according to a Poisson process with an average of one arrival every three minutes. Let <span class="math inline">\(Y\)</span> be the time (in minutes) until the next customer arrives to the counter. What is the distribution (and parameter) of <span class="math inline">\(Y\)</span>? What are <span class="math inline">\(\mbox{E}(Y)\)</span> and <span class="math inline">\(\mbox{Var}(Y)\)</span>? Find <span class="math inline">\(\mbox{P}(Y&gt;5)\)</span>, <span class="math inline">\(\mbox{P}(Y\leq 3)\)</span>, and <span class="math inline">\(\mbox{P}(1 \leq Y &lt; 5)\)</span>? Also, find the median and 95th percentile of <span class="math inline">\(Y\)</span>. Finally, plot the pdf of <span class="math inline">\(Y\)</span>.</p>
 </blockquote>
-<p>Since one arrival shows every three minutes, the average number of arrivals per unit time is 1/3 arrival per minute. Thus, <span class="math inline">\(Y\sim \textsf{Expon}(\lambda=1/3)\)</span>. This means that <span class="math inline">\(\mbox{E}(Y)=3\)</span> and <span class="math inline">\(\mbox{Var}(Y)=9\)</span>.</p>
+<p>Since one arrival shows up every three minutes, the average number of arrivals per unit time is 1/3 arrival per minute. Thus, <span class="math inline">\(Y\sim \textsf{Expon}(\lambda=1/3)\)</span>. This means that <span class="math inline">\(\mbox{E}(Y)=3\)</span> and <span class="math inline">\(\mbox{Var}(Y)=9\)</span>.</p>
 <p>To find <span class="math inline">\(\mbox{P}(Y&gt;5)\)</span>, we could integrate the pdf of <span class="math inline">\(Y\)</span>:
 <span class="math display">\[
 \mbox{P}(Y&gt;5)=\int_5^\infty \frac{1}{3}e^{-\frac{1}{3}y}\mathop{}\!\mathrm{d}y = \lim_{a \to +\infty}\int_5^a \frac{1}{3}e^{-\frac{1}{3}y}\mathop{}\!\mathrm{d}y = \]</span></p>
@@ -945,7 +945,7 @@ Let <span class="math inline">\(X \sim \textsf{Gamma}(\alpha=5,\lambda=1)\)</spa
 </div>
 <div id="weibull-distribution" class="section level3" number="13.2.5">
 <h3><span class="header-section-number">13.2.5</span> Weibull distribution</h3>
-<p>The last common distribution we will explore is the Weibull distribution. Like the gamma, the Weibull distribution is a generalization of the exponential distribution and is meant to model wait times. A random variable with the Weibull distribution has parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. In <code>R</code>, these are referred to as <code>shape</code> and <code>scale</code> respectively. Note that in some resources, these are represented by <span class="math inline">\(k\)</span> and <span class="math inline">\(\lambda\)</span> or even <span class="math inline">\(k\)</span> and <span class="math inline">\(\theta\)</span>.
+<p>Another common distribution used in modeling is the Weibull distribution. Like the gamma, the Weibull distribution is a generalization of the exponential distribution and is meant to model wait times. A random variable with the Weibull distribution has parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. In <code>R</code>, these are referred to as <code>shape</code> and <code>scale</code> respectively. Note that in some resources, these are represented by <span class="math inline">\(k\)</span> and <span class="math inline">\(\lambda\)</span> or even <span class="math inline">\(k\)</span> and <span class="math inline">\(\theta\)</span>.
 Let <span class="math inline">\(X \sim \textsf{Weibull}(\alpha,\beta)\)</span>. The pdf of <span class="math inline">\(X\)</span> is given by:
 <span class="math display">\[
 f_X(x)=\frac{\alpha}{\beta} \left(\frac{x}{\beta}\right)^{\alpha-1} e^{-\left(\frac{x}{\beta}\right)^\alpha}, \hspace{0.3cm} x\geq 0
@@ -1005,7 +1005,7 @@ Let <span class="math inline">\(X \sim \textsf{Norm}(\mu=200,\sigma=15)\)</span>
 </div>
 <div id="beta-distribution" class="section level3" number="13.2.7">
 <h3><span class="header-section-number">13.2.7</span> Beta distribution</h3>
-<p>Another common continuous distribution is the beta distribution. This has a unique application in that the domain of a random variable with the beta distribution is <span class="math inline">\([0,1]\)</span>. Thus it is typically used to model proportions. The beta distribution has two parameters, <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. (In <code>R</code>, these are denoted not so cleverly as <code>shape1</code> and <code>shape2</code>.)</p>
+<p>The last common continuous distribution we will study is the beta distribution. This has a unique application in that the domain of a random variable with the beta distribution is <span class="math inline">\([0,1]\)</span>. Thus it is typically used to model proportions. The beta distribution has two parameters, <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. (In <code>R</code>, these are denoted not so cleverly as <code>shape1</code> and <code>shape2</code>.)</p>
 <p>Let <span class="math inline">\(X \sim \textsf{Beta}(\alpha,\beta)\)</span>. The pdf of <span class="math inline">\(X\)</span> is given by:
 <span class="math display">\[
 f_X(x)=\frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}, \hspace{0.3cm} 0\leq x \leq 1
