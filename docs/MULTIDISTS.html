@@ -800,7 +800,7 @@ div.csl-indent {
 </div>
 <div id="joint-probability" class="section level2" number="14.3">
 <h2><span class="header-section-number">14.3</span> Joint probability</h2>
-<p>Thus far, we have only considered situations involving one random variable. In some cases, we might be concerned with the behavior of multiple random variables simultaneously. The next three lessons are dedicated to jointly distributed random variables.</p>
+<p>Thus far, we have only considered situations involving one random variable. In some cases, we might be concerned with the behavior of multiple random variables simultaneously. This chapter and the next are dedicated to jointly distributed random variables.</p>
 <div id="discrete-random-variables" class="section level3" number="14.3.1">
 <h3><span class="header-section-number">14.3.1</span> Discrete random variables</h3>
 <p>In the discrete case, joint probability is described by the <em>joint probability mass function</em>. In the bivariate case, suppose <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are discrete random variables. The joint pmf is given by <span class="math inline">\(f_{X,Y}(x,y)\)</span> and represents <span class="math inline">\(\mbox{P}(X=x,Y=y) = \mbox{P}(X=x \cap Y=y)\)</span>. Note: it is common in statistical and probability models to use a comma to represent <strong>and</strong>, in fact the <code>select()</code> function in <code>tidyverse</code> does this.</p>
@@ -891,7 +891,7 @@ f_{Y|X=2}(x)=\left\{\begin{array}{ll} \frac{0.18}{0.50}, &amp; y=0 \\
 0, &amp; \mbox{otherwise} 
 \end{array}\right.
 \]</span></p>
-<p>Together, these pmfs can be used to find relevant probabilities. For example, see the practical application exercises.</p>
+<p>Together, these pmfs can be used to find relevant probabilities. For example, see the homework exercises.</p>
 </div>
 <div id="continuous-random-variables-1" class="section level3" number="14.3.2">
 <h3><span class="header-section-number">14.3.2</span> Continuous random variables</h3>
@@ -919,16 +919,16 @@ f_{Y|X=x}(y)=\frac{f_{X,Y}(x,y)}{f_X(x)}
 <p>Note that we are working with the pdf and not probabilities in this case. That is because we can’t determine the probability at a point for a continuous random variable. Thus we work with conditional pdfs to find probabilities for conditional statements.</p>
 <blockquote>
 <p><em>Example</em>:<br />
-Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be continuous random variables with joint pdf:</p>
-</blockquote>
-<p><span class="math display">\[
+Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be continuous random variables with joint pdf:<br />
+<span class="math display">\[
 f_{X,Y}(x,y)=xy
-\]</span></p>
-<p>for <span class="math inline">\(0\leq x \leq 2\)</span> and <span class="math inline">\(0 \leq y \leq 1\)</span>.</p>
+\]</span>
+for <span class="math inline">\(0\leq x \leq 2\)</span> and <span class="math inline">\(0 \leq y \leq 1\)</span>.</p>
+</blockquote>
 <ol style="list-style-type: lower-alpha">
 <li>Verify <span class="math inline">\(f\)</span> is a valid joint pdf.</li>
 </ol>
-<p>We need to ensure the total volume under the pdf is 1. Note that the double integral with constant limits of integration is just like doing single integrals. We just treat the other variable as a constant. In this course we will not work with limits of integration that have variables in them, this is the material of Calc III.</p>
+<p>We need to ensure the total volume under the pdf is 1. Note that the double integral with constant limits of integration is just like doing single integrals. We just treat the other variable as a constant. In this book we will not work with limits of integration that have variables in them, this is the material of Calc III.</p>
 <p>For our simple case of constant limits of integration, the order of integration does not matter. We will arbitrarily integrate <span class="math inline">\(x\)</span> first, treating <span class="math inline">\(y\)</span> as a constant. Then integrate with respect to <span class="math inline">\(y\)</span>.</p>
 <p><span class="math display">\[
 \int_0^1 \int_0^2 xy \mathop{}\!\mathrm{d}x \mathop{}\!\mathrm{d}y = \int_0^1 \frac{x^2y}{2}\bigg|_0^2 \mathop{}\!\mathrm{d}y = \int_0^1 2y\mathop{}\!\mathrm{d}y = y^2\bigg|_0^1 = 1

@@ -20,7 +20,7 @@ The basic idea is that we want to determine the relationship between two or more
 
 ## Joint probability
 
-Thus far, we have only considered situations involving one random variable. In some cases, we might be concerned with the behavior of multiple random variables simultaneously. The next three lessons are dedicated to jointly distributed random variables. 
+Thus far, we have only considered situations involving one random variable. In some cases, we might be concerned with the behavior of multiple random variables simultaneously. This chapter and the next are dedicated to jointly distributed random variables. 
 
 ### Discrete random variables
 
@@ -127,7 +127,7 @@ f_{Y|X=2}(x)=\left\{\begin{array}{ll} \frac{0.18}{0.50}, & y=0 \\
 \end{array}\right.
 $$
 
-Together, these pmfs can be used to find relevant probabilities. For example, see the practical application exercises. 
+Together, these pmfs can be used to find relevant probabilities. For example, see the homework exercises. 
 
 ### Continuous random variables
 
@@ -163,16 +163,14 @@ Note that we are working with the pdf and not probabilities in this case. That i
 
 > *Example*:  
 Let $X$ and $Y$ be continuous random variables with joint pdf:  
-
 $$
 f_{X,Y}(x,y)=xy
 $$
-
 for $0\leq x \leq 2$ and $0 \leq y \leq 1$. 
 
 a) Verify $f$ is a valid joint pdf.
 
-We need to ensure the total volume under the pdf is 1. Note that the double integral with constant limits of integration is just like doing single integrals. We just treat the other variable as a constant. In this course we will not work with limits of integration that have variables in them, this is the material of Calc III. 
+We need to ensure the total volume under the pdf is 1. Note that the double integral with constant limits of integration is just like doing single integrals. We just treat the other variable as a constant. In this book  we will not work with limits of integration that have variables in them, this is the material of Calc III. 
 
 For our simple case of constant limits of integration, the order of integration does not matter.  We will arbitrarily integrate $x$ first, treating $y$ as a constant. Then integrate with respect to $y$.  
 
