@@ -344,7 +344,11 @@ $$
 
 Regrouping the terms:
 $$
-=\E(X^2)-\E(X)^2+\E(Y^2)-\E(Y)^2+2\left(\E(XY)-\E(X)\E(Y)\right)=\Var(X)+\Var(Y)+2\Cov(X,Y)
+=\E(X^2)-\E(X)^2+\E(Y^2)-\E(Y)^2+2\left(\E(XY)-\E(X)\E(Y)\right)
+$$
+
+$$
+=\Var(X)+\Var(Y)+2\Cov(X,Y)
 $$
 
 > *Example*:  

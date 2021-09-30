@@ -334,7 +334,11 @@ $$
 
 Regrouping the terms:
 $$
-=\E(X^2)-\E(X)^2+\E(Y^2)-\E(Y)^2+2\left(\E(XY)-\E(X)\E(Y)\right)=\Var(X)+\Var(Y)+2\Cov(X,Y)
+=\E(X^2)-\E(X)^2+\E(Y^2)-\E(Y)^2+2\left(\E(XY)-\E(X)\E(Y)\right)
+$$
+
+$$
+=\Var(X)+\Var(Y)+2\Cov(X,Y)
 $$
 
 > *Example*:  
@@ -412,9 +416,9 @@ Let's start with a simple example to illustrate the ideas.
 > *Example*:  
 Sam will read either one chapter of his history book or one chapter of his philosophy book. If the number of misprints in a chapter of his history book is Poisson with mean 2 and if the number of misprints in a chapter of his philosophy book is Poisson with mean 5, then assuming Sam is equally likely to choose either book, what is the expected number of misprints that Sam will find?  
 
-Note: in the next lesson we are working with transformations and could attack the problem using that method. 
+Note: in the next chapter we are working with transformations and could attack the problem using that method. 
 
-First let's use simulation to get an idea what value the answer should be and then use algebraic techniques and definitions we have learned in this course.
+First let's use simulation to get an idea what value the answer should be and then use algebraic techniques and definitions we have learned in this book.  
 
 Simulate 5000 reads from the history book and 5000 from philosophy and combine:
 
