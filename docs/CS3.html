@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-09-29" />
+<meta name="date" content="2021-09-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -845,8 +845,8 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 <h3><span class="header-section-number">18.4.2</span> Simulating the study</h3>
 <p>The table of data shows that 35 bank supervisors recommended promotion and 13 did not. Now, suppose the bankers’ decisions were independent of gender, that is the null hypothesis is true. Then, if we conducted the experiment again with a different random assignment of files, differences in promotion rates would be based only on random fluctuation. We can actually perform this <strong>randomization</strong>, which simulates what would have happened if the bankers’ decisions had been independent of gender but we had distributed the files differently.<a href="#fn70" class="footnote-ref" id="fnref70"><sup>70</sup></a> We will walk through the steps next.</p>
 <p>First let’s import the data.</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="CS3.html#cb431-1" aria-hidden="true" tabindex="-1"></a>discrim <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/discrimination_study.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="CS3.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(discrim)</span></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="CS3.html#cb439-1" aria-hidden="true" tabindex="-1"></a>discrim <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/discrimination_study.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="CS3.html#cb440-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(discrim)</span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
 ##       name     class levels  n missing
@@ -855,7 +855,7 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 ##                                    distribution
 ## 1 female (50%), male (50%)                     
 ## 2 promoted (72.9%), not_promoted (27.1%)</code></pre>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="CS3.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>gender<span class="sc">+</span>decision,discrim,<span class="at">margins=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="CS3.html#cb442-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>gender<span class="sc">+</span>decision,discrim,<span class="at">margins=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##         decision
 ## gender   not_promoted promoted Total
 ##   female           10       14    24
@@ -863,11 +863,11 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 ##   Total            13       35    48</code></pre>
 <p>Let’s do some categorical data cleaning. To get the <code>tally()</code> results to look like our table, we need to change to factors and reorder the levels.</p>
 <p>We will use <code>mutate_if()</code> to convert characters to factors and <code>fct_relevel()</code> to change levels.</p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="CS3.html#cb436-1" aria-hidden="true" tabindex="-1"></a>discrim <span class="ot">&lt;-</span> discrim <span class="sc">%&gt;%</span></span>
-<span id="cb436-2"><a href="CS3.html#cb436-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.character,as.factor) <span class="sc">%&gt;%</span></span>
-<span id="cb436-3"><a href="CS3.html#cb436-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gender=</span><span class="fu">fct_relevel</span>(gender,<span class="st">&quot;male&quot;</span>),</span>
-<span id="cb436-4"><a href="CS3.html#cb436-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">decision=</span><span class="fu">fct_relevel</span>(decision,<span class="st">&quot;promoted&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="CS3.html#cb437-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(discrim)</span></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="CS3.html#cb444-1" aria-hidden="true" tabindex="-1"></a>discrim <span class="ot">&lt;-</span> discrim <span class="sc">%&gt;%</span></span>
+<span id="cb444-2"><a href="CS3.html#cb444-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.character,as.factor) <span class="sc">%&gt;%</span></span>
+<span id="cb444-3"><a href="CS3.html#cb444-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gender=</span><span class="fu">fct_relevel</span>(gender,<span class="st">&quot;male&quot;</span>),</span>
+<span id="cb444-4"><a href="CS3.html#cb444-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">decision=</span><span class="fu">fct_relevel</span>(decision,<span class="st">&quot;promoted&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="CS3.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(discrim)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##   gender decision    
 ##   &lt;fct&gt;  &lt;fct&gt;       
@@ -877,7 +877,7 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 ## 4 female promoted    
 ## 5 female promoted    
 ## 6 female promoted</code></pre>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="CS3.html#cb439-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>gender<span class="sc">+</span>decision,discrim,<span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="CS3.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>gender<span class="sc">+</span>decision,discrim,<span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##         decision
 ## gender   promoted not_promoted Total
 ##   male         21            3    24
@@ -885,8 +885,8 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 ##   Total        35           13    48</code></pre>
 <p>Now that we have the data in form that we want, we are ready to conduct the <em>permutation test</em>. To think about this <em>simulation</em>, imagine we actually had the personnel files. We thoroughly shuffle 48 personnel files, 24 labeled <em>male</em> and 24 labeled <em>female</em>, and deal these files into two stacks. We will deal 35 files into the first stack, which will represent the 35 supervisors who recommended promotion. The second stack will have 13 files, and it will represent the 13 supervisors who recommended against promotion. Remember that the files are identical except for the listed gender. This simulation then assumes that gender is not important and thus we can randomly assign the files to any of the supervisors. Then, as we did with the original data, we tabulate the results and determine the fraction of <em>male</em> and <em>female</em> who were promoted. Since we don’t actually physically have the files, we will do this shuffle via computer code.</p>
 <p>Since the randomization of files in this simulation is independent of the promotion decisions, any difference in the two fractions is entirely due to chance. The following code shows the results of such a simulation.</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="CS3.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span>
-<span id="cb441-2"><a href="CS3.html#cb441-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span><span class="fu">shuffle</span>(gender)<span class="sc">+</span>decision,discrim,<span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="CS3.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span>
+<span id="cb449-2"><a href="CS3.html#cb449-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span><span class="fu">shuffle</span>(gender)<span class="sc">+</span>decision,discrim,<span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##                decision
 ## shuffle(gender) promoted not_promoted Total
 ##          male         18            6    24
@@ -898,11 +898,11 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 What is the difference in promotion rates between the two simulated groups? How does this compare to the observed difference 29.2% from the actual study?<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a></p>
 </blockquote>
 <p>Calculating by hand will not help in a simulation, so we must write a function or use an existing one. We will use <code>diffprop</code> from the <code>mosiac</code> package. The code to find the difference for the original data is:</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="CS3.html#cb443-1" aria-hidden="true" tabindex="-1"></a>(obs<span class="ot">&lt;-</span><span class="fu">diffprop</span>(decision<span class="sc">~</span>gender,<span class="at">data=</span>discrim))</span></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="CS3.html#cb451-1" aria-hidden="true" tabindex="-1"></a>(obs<span class="ot">&lt;-</span><span class="fu">diffprop</span>(decision<span class="sc">~</span>gender,<span class="at">data=</span>discrim))</span></code></pre></div>
 <pre><code>##   diffprop 
 ## -0.2916667</code></pre>
 <p>Notice that this is subtracting proportion of males promoted from the proportion of females. This does not impact our results as this is an arbitrary decision. We just need to be consistent in our analysis. If we prefer to use positive values we can adjust the order easily.</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="CS3.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diffprop</span>(decision<span class="sc">~</span><span class="fu">fct_relevel</span>(gender,<span class="st">&quot;female&quot;</span>),<span class="at">data=</span>discrim)</span></code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="CS3.html#cb453-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diffprop</span>(decision<span class="sc">~</span><span class="fu">fct_relevel</span>(gender,<span class="st">&quot;female&quot;</span>),<span class="at">data=</span>discrim)</span></code></pre></div>
 <pre><code>##  diffprop 
 ## 0.2916667</code></pre>
 <p>Notice that what we have done here, we developed a single number metric to measure the relationship between <em>gender</em> and <em>decision</em>. This single value metric is called the <strong>test statistic</strong>. We could have used a number of different metrics to include just the difference in males and females. The key idea in hypothesis testing is that once you decide on a test statistic, you need to find the distribution of that test statistic assuming the null hypothesis is true.</p>
@@ -913,20 +913,20 @@ What is the difference in promotion rates between the two simulated groups? How 
 <p><span class="math display">\[
 \frac{48!}{24!\cdot24!} \approx 3.2 \cdot 10^{13}
 \]</span></p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="CS3.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(<span class="dv">48</span>)<span class="sc">/</span>(<span class="fu">factorial</span>(<span class="dv">24</span>)<span class="sc">*</span><span class="fu">factorial</span>(<span class="dv">24</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="CS3.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(<span class="dv">48</span>)<span class="sc">/</span>(<span class="fu">factorial</span>(<span class="dv">24</span>)<span class="sc">*</span><span class="fu">factorial</span>(<span class="dv">24</span>))</span></code></pre></div>
 <pre><code>## [1] 3.22476e+13</code></pre>
 <p>This number of permutations is too large to find by hand or even via code and thus we will use a simulation.</p>
 <p>Let’s simulate the experiment and plot the simulated values of the difference in the proportions of male and female files recommended for promotion.</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="CS3.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2022</span>)</span>
-<span id="cb449-2"><a href="CS3.html#cb449-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">diffprop</span>(decision<span class="sc">~</span><span class="fu">shuffle</span>(gender),<span class="at">data=</span>discrim)</span></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="CS3.html#cb457-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2022</span>)</span>
+<span id="cb457-2"><a href="CS3.html#cb457-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">diffprop</span>(decision<span class="sc">~</span><span class="fu">shuffle</span>(gender),<span class="at">data=</span>discrim)</span></code></pre></div>
 <p>In Figure <a href="CS3.html#fig:teststat1-fig">18.1</a>, we will insert a vertical line at the value of our observed difference.</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="CS3.html#cb450-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb450-2"><a href="CS3.html#cb450-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>diffprop) <span class="sc">%&gt;%</span></span>
-<span id="cb450-3"><a href="CS3.html#cb450-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span><span class="sc">-</span><span class="fl">0.2916667</span> ) <span class="sc">%&gt;%</span></span>
-<span id="cb450-4"><a href="CS3.html#cb450-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb450-5"><a href="CS3.html#cb450-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Difference in proportions&quot;</span>,<span class="at">y=</span><span class="st">&quot;Counts&quot;</span>,</span>
-<span id="cb450-6"><a href="CS3.html#cb450-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">title=</span><span class="st">&quot;Gender discrimination in hiring permutation test&quot;</span>,</span>
-<span id="cb450-7"><a href="CS3.html#cb450-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">&quot;Test statistic is difference in promotion for female and male&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="CS3.html#cb458-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb458-2"><a href="CS3.html#cb458-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>diffprop) <span class="sc">%&gt;%</span></span>
+<span id="cb458-3"><a href="CS3.html#cb458-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span><span class="sc">-</span><span class="fl">0.2916667</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb458-4"><a href="CS3.html#cb458-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb458-5"><a href="CS3.html#cb458-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Difference in proportions&quot;</span>,<span class="at">y=</span><span class="st">&quot;Counts&quot;</span>,</span>
+<span id="cb458-6"><a href="CS3.html#cb458-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">title=</span><span class="st">&quot;Gender discrimination in hiring permutation test&quot;</span>,</span>
+<span id="cb458-7"><a href="CS3.html#cb458-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">&quot;Test statistic is difference in promotion for female and male&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:teststat1-fig"></span>
 <img src="18-Hypothesis-Testing-Case-Study_files/figure-html/teststat1-fig-1.png" alt="Distribution of test statistic." width="672" />
 <p class="caption">
@@ -939,8 +939,8 @@ Figure 18.1: Distribution of test statistic.
 How often would you observe a difference of at least -29.2% (-0.292) according to the figure? (Often, sometimes, rarely, or never?)</p>
 </blockquote>
 <p>It appears that a difference of at least -29.2% due to chance alone would only happen rarely. We can estimate the probability using the <code>results</code> object.</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="CS3.html#cb451-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb451-2"><a href="CS3.html#cb451-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">p_value =</span> <span class="fu">mean</span>(diffprop<span class="sc">&lt;=</span>obs))</span></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="CS3.html#cb459-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb459-2"><a href="CS3.html#cb459-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">p_value =</span> <span class="fu">mean</span>(diffprop<span class="sc">&lt;=</span>obs))</span></code></pre></div>
 <pre><code>##   p_value
 ## 1  0.0257</code></pre>
 <p>In our simulations, only 2.8% of the simulated test statistics were less than or equal to the observed test statistic, more extreme relative to the null hypothesis. Such a low probability indicates that observing such a large difference in proportions from chance alone is rare. This probability is known as a <strong>p-value</strong>. The p-value is a conditional probability, the probability of the observed value or more extreme given that the null hypothesis is true.</p>

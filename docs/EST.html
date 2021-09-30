@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-09-29" />
+<meta name="date" content="2021-09-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -969,7 +969,7 @@ l(\pi;\boldsymbol{x})=\log L(\pi;\boldsymbol{x})= \log \left(\pi^{\sum x_i}(1-\p
 <div id="numerical-methods" class="section level3" number="17.5.3">
 <h3><span class="header-section-number">17.5.3</span> Numerical Methods</h3>
 <p>When obtaining MLEs, there are times when analytical methods (calculus) are not feasible or not possible. In the Pruim book <span class="citation">(<a href="#ref-pruim2011foundations" role="doc-biblioref">R. J. Pruim 2011</a>)</span>, there is a good example regarding data from Old Faithful at Yellowstone National Park. We need to load the <strong>fastR2</strong> package for this example.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="EST.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fastR2)</span></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="EST.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fastR2)</span></code></pre></div>
 <p>The <code>faithful</code> data set is preloaded into <code>R</code> and contains 272 observations of 2 variables: eruption time in minutes and waiting time until next eruption. If we plot eruption durations, we notice that the distribution appears bimodal, see Figure <a href="EST.html#fig:hist171-fig">17.3</a>.</p>
 <div class="figure"><span id="fig:hist171-fig"></span>
 <img src="17-Estimation-Methods_files/figure-html/hist171-fig-1.png" alt="Histogram of eruption durations of Old Faithful." width="672" />
@@ -983,51 +983,51 @@ Figure 17.3: Histogram of eruption durations of Old Faithful.
 \]</span></p>
 <p>where <span class="math inline">\(f\)</span> is the pdf of the normal distribution with parameters specified.</p>
 <p>We have five parameters to estimate: <span class="math inline">\(\alpha, \mu_1, \mu_2, \sigma_1, \sigma_2\)</span>. Obviously, estimation through differentiation is not feasible and thus we will use numerical methods. This code is less in the spirit of <code>tidyverse</code> but we want you to see the example. Try to work your way through the code below:</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="EST.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function for pdf of eruptions as a mixture of normals</span></span>
-<span id="cb425-2"><a href="EST.html#cb425-2" aria-hidden="true" tabindex="-1"></a>dmix<span class="ot">&lt;-</span><span class="cf">function</span>(x,alpha,mu1,mu2,sigma1,sigma2){</span>
-<span id="cb425-3"><a href="EST.html#cb425-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(alpha <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="fu">dnorm</span>(x,mu2,sigma2)</span>
-<span id="cb425-4"><a href="EST.html#cb425-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(alpha <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="fu">dnorm</span>(x,mu1,sigma1)</span>
-<span id="cb425-5"><a href="EST.html#cb425-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(alpha <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> alpha <span class="sc">&lt;=</span><span class="dv">1</span>){</span>
-<span id="cb425-6"><a href="EST.html#cb425-6" aria-hidden="true" tabindex="-1"></a>    alpha<span class="sc">*</span><span class="fu">dnorm</span>(x,mu1,sigma1)<span class="sc">+</span>(<span class="dv">1</span><span class="sc">-</span>alpha)<span class="sc">*</span><span class="fu">dnorm</span>(x,mu2,sigma2)</span>
-<span id="cb425-7"><a href="EST.html#cb425-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb425-8"><a href="EST.html#cb425-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="EST.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function for pdf of eruptions as a mixture of normals</span></span>
+<span id="cb433-2"><a href="EST.html#cb433-2" aria-hidden="true" tabindex="-1"></a>dmix<span class="ot">&lt;-</span><span class="cf">function</span>(x,alpha,mu1,mu2,sigma1,sigma2){</span>
+<span id="cb433-3"><a href="EST.html#cb433-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(alpha <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="fu">dnorm</span>(x,mu2,sigma2)</span>
+<span id="cb433-4"><a href="EST.html#cb433-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(alpha <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="fu">dnorm</span>(x,mu1,sigma1)</span>
+<span id="cb433-5"><a href="EST.html#cb433-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(alpha <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> alpha <span class="sc">&lt;=</span><span class="dv">1</span>){</span>
+<span id="cb433-6"><a href="EST.html#cb433-6" aria-hidden="true" tabindex="-1"></a>    alpha<span class="sc">*</span><span class="fu">dnorm</span>(x,mu1,sigma1)<span class="sc">+</span>(<span class="dv">1</span><span class="sc">-</span>alpha)<span class="sc">*</span><span class="fu">dnorm</span>(x,mu2,sigma2)</span>
+<span id="cb433-7"><a href="EST.html#cb433-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb433-8"><a href="EST.html#cb433-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Next write a function for the log-likelihood function. <code>R</code> is a vector based programming language so we send <code>theta</code> into the function as a vector argument.</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="EST.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the log-likelihood function</span></span>
-<span id="cb426-2"><a href="EST.html#cb426-2" aria-hidden="true" tabindex="-1"></a>loglik<span class="ot">&lt;-</span><span class="cf">function</span>(theta,x){</span>
-<span id="cb426-3"><a href="EST.html#cb426-3" aria-hidden="true" tabindex="-1"></a>  alpha<span class="ot">=</span>theta[<span class="dv">1</span>]</span>
-<span id="cb426-4"><a href="EST.html#cb426-4" aria-hidden="true" tabindex="-1"></a>  mu1<span class="ot">=</span>theta[<span class="dv">2</span>]</span>
-<span id="cb426-5"><a href="EST.html#cb426-5" aria-hidden="true" tabindex="-1"></a>  mu2<span class="ot">=</span>theta[<span class="dv">3</span>]</span>
-<span id="cb426-6"><a href="EST.html#cb426-6" aria-hidden="true" tabindex="-1"></a>  sigma1<span class="ot">=</span>theta[<span class="dv">4</span>]</span>
-<span id="cb426-7"><a href="EST.html#cb426-7" aria-hidden="true" tabindex="-1"></a>  sigma2<span class="ot">=</span>theta[<span class="dv">5</span>]</span>
-<span id="cb426-8"><a href="EST.html#cb426-8" aria-hidden="true" tabindex="-1"></a>  density<span class="ot">&lt;-</span><span class="cf">function</span>(x){</span>
-<span id="cb426-9"><a href="EST.html#cb426-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(alpha<span class="sc">&lt;</span><span class="dv">0</span>) <span class="fu">return</span> (<span class="cn">Inf</span>)</span>
-<span id="cb426-10"><a href="EST.html#cb426-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(alpha<span class="sc">&gt;</span><span class="dv">1</span>) <span class="fu">return</span> (<span class="cn">Inf</span>)</span>
-<span id="cb426-11"><a href="EST.html#cb426-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(sigma1<span class="sc">&lt;</span><span class="dv">0</span>) <span class="fu">return</span> (<span class="cn">Inf</span>)</span>
-<span id="cb426-12"><a href="EST.html#cb426-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(sigma2<span class="sc">&lt;</span><span class="dv">0</span>) <span class="fu">return</span> (<span class="cn">Inf</span>)</span>
-<span id="cb426-13"><a href="EST.html#cb426-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dmix</span>(x,alpha,mu1,mu2,sigma1,sigma2)</span>
-<span id="cb426-14"><a href="EST.html#cb426-14" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb426-15"><a href="EST.html#cb426-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(<span class="fu">log</span>(<span class="fu">sapply</span>(x,density)))</span>
-<span id="cb426-16"><a href="EST.html#cb426-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="EST.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the log-likelihood function</span></span>
+<span id="cb434-2"><a href="EST.html#cb434-2" aria-hidden="true" tabindex="-1"></a>loglik<span class="ot">&lt;-</span><span class="cf">function</span>(theta,x){</span>
+<span id="cb434-3"><a href="EST.html#cb434-3" aria-hidden="true" tabindex="-1"></a>  alpha<span class="ot">=</span>theta[<span class="dv">1</span>]</span>
+<span id="cb434-4"><a href="EST.html#cb434-4" aria-hidden="true" tabindex="-1"></a>  mu1<span class="ot">=</span>theta[<span class="dv">2</span>]</span>
+<span id="cb434-5"><a href="EST.html#cb434-5" aria-hidden="true" tabindex="-1"></a>  mu2<span class="ot">=</span>theta[<span class="dv">3</span>]</span>
+<span id="cb434-6"><a href="EST.html#cb434-6" aria-hidden="true" tabindex="-1"></a>  sigma1<span class="ot">=</span>theta[<span class="dv">4</span>]</span>
+<span id="cb434-7"><a href="EST.html#cb434-7" aria-hidden="true" tabindex="-1"></a>  sigma2<span class="ot">=</span>theta[<span class="dv">5</span>]</span>
+<span id="cb434-8"><a href="EST.html#cb434-8" aria-hidden="true" tabindex="-1"></a>  density<span class="ot">&lt;-</span><span class="cf">function</span>(x){</span>
+<span id="cb434-9"><a href="EST.html#cb434-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(alpha<span class="sc">&lt;</span><span class="dv">0</span>) <span class="fu">return</span> (<span class="cn">Inf</span>)</span>
+<span id="cb434-10"><a href="EST.html#cb434-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(alpha<span class="sc">&gt;</span><span class="dv">1</span>) <span class="fu">return</span> (<span class="cn">Inf</span>)</span>
+<span id="cb434-11"><a href="EST.html#cb434-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(sigma1<span class="sc">&lt;</span><span class="dv">0</span>) <span class="fu">return</span> (<span class="cn">Inf</span>)</span>
+<span id="cb434-12"><a href="EST.html#cb434-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(sigma2<span class="sc">&lt;</span><span class="dv">0</span>) <span class="fu">return</span> (<span class="cn">Inf</span>)</span>
+<span id="cb434-13"><a href="EST.html#cb434-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dmix</span>(x,alpha,mu1,mu2,sigma1,sigma2)</span>
+<span id="cb434-14"><a href="EST.html#cb434-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb434-15"><a href="EST.html#cb434-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(<span class="fu">log</span>(<span class="fu">sapply</span>(x,density)))</span>
+<span id="cb434-16"><a href="EST.html#cb434-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Find the sample mean and standard deviation of the eruption data to use as starting points in the optimization routine.</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="EST.html#cb427-1" aria-hidden="true" tabindex="-1"></a>m<span class="ot">&lt;-</span><span class="fu">mean</span>(faithful<span class="sc">$</span>eruptions)</span>
-<span id="cb427-2"><a href="EST.html#cb427-2" aria-hidden="true" tabindex="-1"></a>s<span class="ot">&lt;-</span><span class="fu">sd</span>(faithful<span class="sc">$</span>eruptions)</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="EST.html#cb435-1" aria-hidden="true" tabindex="-1"></a>m<span class="ot">&lt;-</span><span class="fu">mean</span>(faithful<span class="sc">$</span>eruptions)</span>
+<span id="cb435-2"><a href="EST.html#cb435-2" aria-hidden="true" tabindex="-1"></a>s<span class="ot">&lt;-</span><span class="fu">sd</span>(faithful<span class="sc">$</span>eruptions)</span></code></pre></div>
 <p>Use the function <code>nlmax()</code> to maximize the non-linear log-likelihood function.</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="EST.html#cb428-1" aria-hidden="true" tabindex="-1"></a>mle<span class="ot">&lt;-</span><span class="fu">nlmax</span>(loglik,<span class="at">p=</span><span class="fu">c</span>(<span class="fl">0.5</span>,m<span class="dv">-1</span>,m<span class="sc">+</span><span class="dv">1</span>,s,s),<span class="at">x=</span>faithful<span class="sc">$</span>eruptions)<span class="sc">$</span>estimate</span>
-<span id="cb428-2"><a href="EST.html#cb428-2" aria-hidden="true" tabindex="-1"></a>mle</span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="EST.html#cb436-1" aria-hidden="true" tabindex="-1"></a>mle<span class="ot">&lt;-</span><span class="fu">nlmax</span>(loglik,<span class="at">p=</span><span class="fu">c</span>(<span class="fl">0.5</span>,m<span class="dv">-1</span>,m<span class="sc">+</span><span class="dv">1</span>,s,s),<span class="at">x=</span>faithful<span class="sc">$</span>eruptions)<span class="sc">$</span>estimate</span>
+<span id="cb436-2"><a href="EST.html#cb436-2" aria-hidden="true" tabindex="-1"></a>mle</span></code></pre></div>
 <pre><code>## [1] 0.3484040 2.0186065 4.2733410 0.2356208 0.4370633</code></pre>
 <p>So, according to our MLEs, about 34.84% of the eruptions belong to the first normal distribution (the one on the left). Furthermore the parameters of that first distribution are a mean of 2.019 and a standard deviation of 0.236. Likewise, 65.16% of the eruptions belong to the second normal with mean of 4.27 and standard deviation of 0.437.</p>
 <p>Plotting the density atop the histogram shows a fairly good fit:</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="EST.html#cb430-1" aria-hidden="true" tabindex="-1"></a>dmix2<span class="ot">&lt;-</span><span class="cf">function</span>(x) <span class="fu">dmix</span>(x,mle[<span class="dv">1</span>],mle[<span class="dv">2</span>],mle[<span class="dv">3</span>],mle[<span class="dv">4</span>],mle[<span class="dv">5</span>])</span>
-<span id="cb430-2"><a href="EST.html#cb430-2" aria-hidden="true" tabindex="-1"></a><span class="co">#y_old&lt;-dmix2(seq(1,6,.01))</span></span>
-<span id="cb430-3"><a href="EST.html#cb430-3" aria-hidden="true" tabindex="-1"></a><span class="co">#x_old&lt;-seq(1,6,.01)</span></span>
-<span id="cb430-4"><a href="EST.html#cb430-4" aria-hidden="true" tabindex="-1"></a><span class="co">#dens_data&lt;-data.frame(x=x_old,y=y_old)</span></span>
-<span id="cb430-5"><a href="EST.html#cb430-5" aria-hidden="true" tabindex="-1"></a><span class="co">#faithful%&gt;%</span></span>
-<span id="cb430-6"><a href="EST.html#cb430-6" aria-hidden="true" tabindex="-1"></a><span class="co">#gf_histogram(~eruptions,fill=&quot;cyan&quot;,color = &quot;black&quot;) %&gt;%</span></span>
-<span id="cb430-7"><a href="EST.html#cb430-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  gf_curve(y~x,data=dens_data)%&gt;%</span></span>
-<span id="cb430-8"><a href="EST.html#cb430-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  gf_theme(theme_bw()) %&gt;%</span></span>
-<span id="cb430-9"><a href="EST.html#cb430-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  gf_labs(x=&quot;Duration in minutes&quot;,y=&quot;Count&quot;) </span></span>
-<span id="cb430-10"><a href="EST.html#cb430-10" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions,<span class="at">breaks=</span><span class="dv">40</span>,<span class="at">freq=</span>F,<span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Duration in minutes.&quot;</span>)</span>
-<span id="cb430-11"><a href="EST.html#cb430-11" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(dmix2,<span class="at">from=</span><span class="dv">1</span>,<span class="at">to=</span><span class="dv">6</span>,<span class="at">add=</span>T)</span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="EST.html#cb438-1" aria-hidden="true" tabindex="-1"></a>dmix2<span class="ot">&lt;-</span><span class="cf">function</span>(x) <span class="fu">dmix</span>(x,mle[<span class="dv">1</span>],mle[<span class="dv">2</span>],mle[<span class="dv">3</span>],mle[<span class="dv">4</span>],mle[<span class="dv">5</span>])</span>
+<span id="cb438-2"><a href="EST.html#cb438-2" aria-hidden="true" tabindex="-1"></a><span class="co">#y_old&lt;-dmix2(seq(1,6,.01))</span></span>
+<span id="cb438-3"><a href="EST.html#cb438-3" aria-hidden="true" tabindex="-1"></a><span class="co">#x_old&lt;-seq(1,6,.01)</span></span>
+<span id="cb438-4"><a href="EST.html#cb438-4" aria-hidden="true" tabindex="-1"></a><span class="co">#dens_data&lt;-data.frame(x=x_old,y=y_old)</span></span>
+<span id="cb438-5"><a href="EST.html#cb438-5" aria-hidden="true" tabindex="-1"></a><span class="co">#faithful%&gt;%</span></span>
+<span id="cb438-6"><a href="EST.html#cb438-6" aria-hidden="true" tabindex="-1"></a><span class="co">#gf_histogram(~eruptions,fill=&quot;cyan&quot;,color = &quot;black&quot;) %&gt;%</span></span>
+<span id="cb438-7"><a href="EST.html#cb438-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  gf_curve(y~x,data=dens_data)%&gt;%</span></span>
+<span id="cb438-8"><a href="EST.html#cb438-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  gf_theme(theme_bw()) %&gt;%</span></span>
+<span id="cb438-9"><a href="EST.html#cb438-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  gf_labs(x=&quot;Duration in minutes&quot;,y=&quot;Count&quot;) </span></span>
+<span id="cb438-10"><a href="EST.html#cb438-10" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions,<span class="at">breaks=</span><span class="dv">40</span>,<span class="at">freq=</span>F,<span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Duration in minutes.&quot;</span>)</span>
+<span id="cb438-11"><a href="EST.html#cb438-11" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(dmix2,<span class="at">from=</span><span class="dv">1</span>,<span class="at">to=</span><span class="dv">6</span>,<span class="at">add=</span>T)</span></code></pre></div>
 <div class="figure"><span id="fig:hist172-fig"></span>
 <img src="17-Estimation-Methods_files/figure-html/hist172-fig-1.png" alt="Histogram of eruption duration with estimated mixture of normals plotted on top." width="672" />
 <p class="caption">

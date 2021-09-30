@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-09-29" />
+<meta name="date" content="2021-09-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -821,8 +821,8 @@ Y=\beta_0+\beta_1 X^2
 <p><strong>Exercise</strong>:<br />
 Read in the data from <code>data/possum.csv</code> and look at the first few rows of data.</p>
 </blockquote>
-<div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb785-1"><a href="LRBASICS.html#cb785-1" aria-hidden="true" tabindex="-1"></a>possum<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/possum.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb786-1"><a href="LRBASICS.html#cb786-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(possum)</span></code></pre></div>
+<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb793-1"><a href="LRBASICS.html#cb793-1" aria-hidden="true" tabindex="-1"></a>possum<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/possum.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="LRBASICS.html#cb794-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(possum)</span></code></pre></div>
 <pre><code>## Rows: 104
 ## Columns: 8
 ## $ site    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
@@ -833,7 +833,7 @@ Read in the data from <code>data/possum.csv</code> and look at the first few row
 ## $ skull_w &lt;dbl&gt; 60.4, 57.6, 60.0, 57.1, 56.3, 54.8, 58.2, 57.6, 56.3, 58.0, 57…
 ## $ total_l &lt;dbl&gt; 89.0, 91.5, 95.5, 92.0, 85.5, 90.5, 89.5, 91.0, 91.5, 89.5, 89…
 ## $ tail_l  &lt;dbl&gt; 36.0, 36.5, 39.0, 38.0, 36.0, 35.5, 36.0, 37.0, 37.0, 37.5, 39…</code></pre>
-<div class="sourceCode" id="cb788"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb788-1"><a href="LRBASICS.html#cb788-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(possum)</span></code></pre></div>
+<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="LRBASICS.html#cb796-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(possum)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
 ##    site pop   sex     age head_l skull_w total_l tail_l
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
@@ -848,10 +848,10 @@ Read in the data from <code>data/possum.csv</code> and look at the first few row
 <p><strong>Exercise</strong>:<br />
 Create a scatterplot of head length and total length.</p>
 </blockquote>
-<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb790-1"><a href="LRBASICS.html#cb790-1" aria-hidden="true" tabindex="-1"></a>possum <span class="sc">%&gt;%</span></span>
-<span id="cb790-2"><a href="LRBASICS.html#cb790-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(head_l<span class="sc">~</span>total_l) <span class="sc">%&gt;%</span></span>
-<span id="cb790-3"><a href="LRBASICS.html#cb790-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Total Length (cm)&quot;</span>,<span class="at">y=</span><span class="st">&quot;Head Length (mm)&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb790-4"><a href="LRBASICS.html#cb790-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="LRBASICS.html#cb798-1" aria-hidden="true" tabindex="-1"></a>possum <span class="sc">%&gt;%</span></span>
+<span id="cb798-2"><a href="LRBASICS.html#cb798-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(head_l<span class="sc">~</span>total_l) <span class="sc">%&gt;%</span></span>
+<span id="cb798-3"><a href="LRBASICS.html#cb798-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Total Length (cm)&quot;</span>,<span class="at">y=</span><span class="st">&quot;Head Length (mm)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb798-4"><a href="LRBASICS.html#cb798-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
 <div class="figure"><span id="fig:scat261-fig"></span>
 <img src="26-Linear-Regression-Basics_files/figure-html/scat261-fig-1.png" alt="A scatterplot of possum total length and head length." width="672" />
 <p class="caption">
@@ -921,9 +921,9 @@ Figure 26.2: An illustration of the least squares method.
 <h3><span class="header-section-number">26.2.2</span> Possum example</h3>
 <p>We will let <code>R</code> do the heavy work of minimizing the sum of squares. The function is <code>lm()</code> as we learned in the case study. This function needs a formula and data for input. The formula notation should be easy for us since we have worked with formulas so much in the <code>mosaic</code> package.</p>
 <p>First create the model:</p>
-<div class="sourceCode" id="cb791"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb791-1"><a href="LRBASICS.html#cb791-1" aria-hidden="true" tabindex="-1"></a>poss_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(head_l<span class="sc">~</span>total_l,<span class="at">data=</span>possum)</span></code></pre></div>
+<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="LRBASICS.html#cb799-1" aria-hidden="true" tabindex="-1"></a>poss_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(head_l<span class="sc">~</span>total_l,<span class="at">data=</span>possum)</span></code></pre></div>
 <p>The output of the model object is minimal with just the estimated slope and intercept.</p>
-<div class="sourceCode" id="cb792"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb792-1"><a href="LRBASICS.html#cb792-1" aria-hidden="true" tabindex="-1"></a>poss_mod</span></code></pre></div>
+<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb800-1"><a href="LRBASICS.html#cb800-1" aria-hidden="true" tabindex="-1"></a>poss_mod</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = head_l ~ total_l, data = possum)
@@ -932,7 +932,7 @@ Figure 26.2: An illustration of the least squares method.
 ## (Intercept)      total_l  
 ##     42.7098       0.5729</code></pre>
 <p>We can get more information using the <code>summary()</code> function:</p>
-<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="LRBASICS.html#cb794-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(poss_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="LRBASICS.html#cb802-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(poss_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = head_l ~ total_l, data = possum)
@@ -952,17 +952,17 @@ Figure 26.2: An illustration of the least squares method.
 ## Multiple R-squared:  0.4776, Adjusted R-squared:  0.4725 
 ## F-statistic: 93.26 on 1 and 102 DF,  p-value: 4.681e-16</code></pre>
 <p>The model object, <code>poss_mod</code>, contains much more information. Using the function <code>names()</code> function on the model objects, gives you a list of other quantities available, such as residuals.</p>
-<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="LRBASICS.html#cb796-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(poss_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb804"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb804-1"><a href="LRBASICS.html#cb804-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(poss_mod)</span></code></pre></div>
 <pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
 ##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
 ##  [9] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;</code></pre>
 <p>Figure <a href="LRBASICS.html#fig:scat262-fig">26.3</a> is a plot the data points and least squares line together.</p>
-<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="LRBASICS.html#cb798-1" aria-hidden="true" tabindex="-1"></a>possum <span class="sc">%&gt;%</span></span>
-<span id="cb798-2"><a href="LRBASICS.html#cb798-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>( head_l <span class="sc">~</span> total_l) <span class="sc">%&gt;%</span></span>
-<span id="cb798-3"><a href="LRBASICS.html#cb798-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_lm</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb798-4"><a href="LRBASICS.html#cb798-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Total Length (cm)&quot;</span>,<span class="at">y=</span><span class="st">&quot;Head Length (mm)&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb798-5"><a href="LRBASICS.html#cb798-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Possum data including regression line&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb798-6"><a href="LRBASICS.html#cb798-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) </span></code></pre></div>
+<div class="sourceCode" id="cb806"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb806-1"><a href="LRBASICS.html#cb806-1" aria-hidden="true" tabindex="-1"></a>possum <span class="sc">%&gt;%</span></span>
+<span id="cb806-2"><a href="LRBASICS.html#cb806-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>( head_l <span class="sc">~</span> total_l) <span class="sc">%&gt;%</span></span>
+<span id="cb806-3"><a href="LRBASICS.html#cb806-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_lm</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb806-4"><a href="LRBASICS.html#cb806-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Total Length (cm)&quot;</span>,<span class="at">y=</span><span class="st">&quot;Head Length (mm)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb806-5"><a href="LRBASICS.html#cb806-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Possum data including regression line&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb806-6"><a href="LRBASICS.html#cb806-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) </span></code></pre></div>
 <div class="figure"><span id="fig:scat262-fig"></span>
 <img src="26-Linear-Regression-Basics_files/figure-html/scat262-fig-1.png" alt="A scatterplot of possum total length and head length including a regression line." width="672" />
 <p class="caption">
@@ -987,9 +987,9 @@ E(Y|X=x)=E(\beta_0+\beta_1x+e) = E(\beta_0+\beta_1x)+E(e)=\beta_0+\beta_1x
 <p><strong>Exercise</strong>
 Find the slope from the correlation and standard deviations.</p>
 </blockquote>
-<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="LRBASICS.html#cb799-1" aria-hidden="true" tabindex="-1"></a>possum <span class="sc">%&gt;%</span></span>
-<span id="cb799-2"><a href="LRBASICS.html#cb799-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">correlation=</span><span class="fu">cor</span>(head_l,total_l),<span class="at">sd_head=</span><span class="fu">sd</span>(head_l),</span>
-<span id="cb799-3"><a href="LRBASICS.html#cb799-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_total=</span><span class="fu">sd</span>(total_l),<span class="at">slope=</span>correlation<span class="sc">*</span>sd_head<span class="sc">/</span>sd_total)</span></code></pre></div>
+<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb807-1"><a href="LRBASICS.html#cb807-1" aria-hidden="true" tabindex="-1"></a>possum <span class="sc">%&gt;%</span></span>
+<span id="cb807-2"><a href="LRBASICS.html#cb807-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">correlation=</span><span class="fu">cor</span>(head_l,total_l),<span class="at">sd_head=</span><span class="fu">sd</span>(head_l),</span>
+<span id="cb807-3"><a href="LRBASICS.html#cb807-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_total=</span><span class="fu">sd</span>(total_l),<span class="at">slope=</span>correlation<span class="sc">*</span>sd_head<span class="sc">/</span>sd_total)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 4
 ##   correlation sd_head sd_total slope
 ##         &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
@@ -1007,7 +1007,7 @@ April 6th, 2010<a href="#fn92" class="footnote-ref" id="fnref92"><sup>92</sup></
 <div id="reading-computer-output" class="section level3" number="26.2.5">
 <h3><span class="header-section-number">26.2.5</span> Reading computer output</h3>
 <p>We stored the results of our linear regression model for the possum data in the object <code>poss_mod</code> but it provided only the bare minimum of information. We can get more information using the function <code>summary()</code>.</p>
-<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb801-1"><a href="LRBASICS.html#cb801-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(poss_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb809-1"><a href="LRBASICS.html#cb809-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(poss_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = head_l ~ total_l, data = possum)
@@ -1029,8 +1029,8 @@ April 6th, 2010<a href="#fn92" class="footnote-ref" id="fnref92"><sup>92</sup></
 <p>The first line repeats the model formula. The second line is a descriptive summary of the residuals, plots of the residuals are more useful than this summary. We then have a table of the model fit. The first column of numbers provides estimates for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, respectively. For the next columns, we’ll describe the meaning of the columns using the second row, which corresponds to information about the slope estimate. Again, the first column provides the point estimate for <span class="math inline">\(\beta_1\)</span>. The second column is a standard error for this point estimate. The third column is a <span class="math inline">\(t\)</span> test statistic for the null hypothesis that <span class="math inline">\(\beta_1 = 0\)</span>: <span class="math inline">\(T=9.657\)</span>. The last column is the p-value for the <span class="math inline">\(t\)</span> test statistic for the null hypothesis <span class="math inline">\(\beta_1=0\)</span> and a two-sided alternative hypothesis. We will get into more of these details in the next lessons.</p>
 <p>The row with the residual standard error is an estimate of the unexplained variance. The next rows give a summary of the model fit and we will discuss in the next lessons.</p>
 <p>In the <code>tidyverse</code> we may want to have the table above in a <code>tibble</code>. The <code>broom</code> package, which we have seen before, helps with this effort.</p>
-<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="LRBASICS.html#cb803-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
-<div class="sourceCode" id="cb804"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb804-1"><a href="LRBASICS.html#cb804-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(poss_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb811-1"><a href="LRBASICS.html#cb811-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
+<div class="sourceCode" id="cb812"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb812-1"><a href="LRBASICS.html#cb812-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(poss_mod)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -1043,8 +1043,8 @@ The <code>cars</code> dataset (built-in to <code>R</code>) contains 50 observati
 <ol style="list-style-type: lower-alpha">
 <li>Build a simple linear regression model fitting distance against speed.</li>
 </ol>
-<div class="sourceCode" id="cb806"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb806-1"><a href="LRBASICS.html#cb806-1" aria-hidden="true" tabindex="-1"></a>cars_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist<span class="sc">~</span>speed,<span class="at">data=</span>cars)</span>
-<span id="cb806-2"><a href="LRBASICS.html#cb806-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb814-1"><a href="LRBASICS.html#cb814-1" aria-hidden="true" tabindex="-1"></a>cars_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist<span class="sc">~</span>speed,<span class="at">data=</span>cars)</span>
+<span id="cb814-2"><a href="LRBASICS.html#cb814-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = dist ~ speed, data = cars)
@@ -1064,11 +1064,11 @@ The <code>cars</code> dataset (built-in to <code>R</code>) contains 50 observati
 ## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
 ## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
 <p>Figure <a href="LRBASICS.html#fig:scat263-fig">26.4</a> is a scatterplot of the <code>cars</code> data set.</p>
-<div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb808-1"><a href="LRBASICS.html#cb808-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
-<span id="cb808-2"><a href="LRBASICS.html#cb808-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(dist<span class="sc">~</span>speed) <span class="sc">%&gt;%</span></span>
-<span id="cb808-3"><a href="LRBASICS.html#cb808-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_lm</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb808-4"><a href="LRBASICS.html#cb808-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Speed (mph)&quot;</span>,<span class="at">y=</span><span class="st">&quot;Stopping distance (ft)&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb808-5"><a href="LRBASICS.html#cb808-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb816-1"><a href="LRBASICS.html#cb816-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
+<span id="cb816-2"><a href="LRBASICS.html#cb816-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(dist<span class="sc">~</span>speed) <span class="sc">%&gt;%</span></span>
+<span id="cb816-3"><a href="LRBASICS.html#cb816-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_lm</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb816-4"><a href="LRBASICS.html#cb816-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Speed (mph)&quot;</span>,<span class="at">y=</span><span class="st">&quot;Stopping distance (ft)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb816-5"><a href="LRBASICS.html#cb816-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span id="fig:scat263-fig"></span>
 <img src="26-Linear-Regression-Basics_files/figure-html/scat263-fig-1.png" alt="A scatterplot of speed and stopping distance." width="672" />
 <p class="caption">

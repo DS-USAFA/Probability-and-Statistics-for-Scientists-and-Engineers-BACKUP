@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-09-29" />
+<meta name="date" content="2021-09-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -916,7 +916,10 @@ Find <span class="math inline">\(\mbox{E}(X)\)</span>, <span class="math inline"
 <p>We found the marginal pdf of <span class="math inline">\(X\)</span> in a previous lesson, so we should use that now:
 <span class="math display">\[
 \mbox{E}(X)=\int_0^2 x\frac{x}{2}\mathop{}\!\mathrm{d}x = \frac{x^3}{6}\bigg|_0^2= \frac{4}{3} 
-\]</span></p>
+\]</span>
+Or using <code>R</code></p>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="MULTIEXP.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fractions</span>(<span class="fu">integrate</span>(<span class="cf">function</span>(x){x<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span>},<span class="dv">0</span>,<span class="dv">2</span>)<span class="sc">$</span>value)</span></code></pre></div>
+<pre><code>## [1] 4/3</code></pre>
 </div>
 <div id="exy-2" class="section level3" number="15.4.2">
 <h3><span class="header-section-number">15.4.2</span> E(X+Y)</h3>
@@ -928,13 +931,16 @@ Find <span class="math inline">\(\mbox{E}(X)\)</span>, <span class="math inline"
 <p><span class="math display">\[
 = \int_0^2 \frac{x^2}{2}+\frac{x}{3} \mathop{}\!\mathrm{d}x= \frac{x^3}{6}+\frac{x^2}{6}\bigg|_0^2=\frac{8}{6}+\frac{4}{6}=2
 \]</span></p>
+<p>Or using <code>R</code>:</p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="MULTIEXP.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">adaptIntegrate</span>(<span class="cf">function</span>(x){(x[<span class="dv">1</span>]<span class="sc">+</span>x[<span class="dv">2</span>])<span class="sc">*</span>x[<span class="dv">1</span>]<span class="sc">*</span>x[<span class="dv">2</span>]},<span class="at">lowerLimit =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">upperLimit =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))<span class="sc">$</span>integral</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
 <p>If we wanted to use simulation to find this expectation, we could simulate variables from the marginal of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> and then add them together to create a new variable.</p>
 <p>The cdf for <span class="math inline">\(X\)</span> is <span class="math inline">\(\frac{x^2}{4}\)</span> so we simulate a random variable from <span class="math inline">\(X\)</span> by sampling from a random uniform and then taking the inverse of the cdf. For <span class="math inline">\(Y\)</span> the cdf is <span class="math inline">\(y^2\)</span> and do a similar simulation.</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="MULTIEXP.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1820</span>)</span>
-<span id="cb379-2"><a href="MULTIEXP.html#cb379-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)),<span class="at">y=</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)))</span>
-<span id="cb379-3"><a href="MULTIEXP.html#cb379-3" aria-hidden="true" tabindex="-1"></a>new_data <span class="sc">%&gt;%</span></span>
-<span id="cb379-4"><a href="MULTIEXP.html#cb379-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z=</span>x<span class="sc">+</span>y) <span class="sc">%&gt;%</span></span>
-<span id="cb379-5"><a href="MULTIEXP.html#cb379-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Ex=</span><span class="fu">mean</span>(x),<span class="at">Ey=</span><span class="fu">mean</span>(y),<span class="at">Explusy =</span> <span class="fu">mean</span>(z))</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="MULTIEXP.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1820</span>)</span>
+<span id="cb383-2"><a href="MULTIEXP.html#cb383-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)),<span class="at">y=</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)))</span>
+<span id="cb383-3"><a href="MULTIEXP.html#cb383-3" aria-hidden="true" tabindex="-1"></a>new_data <span class="sc">%&gt;%</span></span>
+<span id="cb383-4"><a href="MULTIEXP.html#cb383-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z=</span>x<span class="sc">+</span>y) <span class="sc">%&gt;%</span></span>
+<span id="cb383-5"><a href="MULTIEXP.html#cb383-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Ex=</span><span class="fu">mean</span>(x),<span class="at">Ey=</span><span class="fu">mean</span>(y),<span class="at">Explusy =</span> <span class="fu">mean</span>(z))</span></code></pre></div>
 <pre><code>##         Ex        Ey  Explusy
 ## 1 1.338196 0.6695514 2.007748</code></pre>
 <p>We can see that <span class="math inline">\(E(X + Y) = E(X) + E(Y)\)</span>.</p>
@@ -948,12 +954,15 @@ Find <span class="math inline">\(\mbox{E}(X)\)</span>, <span class="math inline"
 <span class="math display">\[
 =\frac{x^3}{9}\bigg|_0^2 = \frac{8}{9}
 \]</span></p>
+<p>Using <code>R</code>:</p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="MULTIEXP.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fractions</span>(<span class="fu">adaptIntegrate</span>(<span class="cf">function</span>(x){(x[<span class="dv">1</span>]<span class="sc">*</span>x[<span class="dv">2</span>])<span class="sc">*</span>x[<span class="dv">1</span>]<span class="sc">*</span>x[<span class="dv">2</span>]},<span class="at">lowerLimit =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">upperLimit =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))<span class="sc">$</span>integral)</span></code></pre></div>
+<pre><code>## [1] 8/9</code></pre>
 <p>Or by simulating, we have:</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="MULTIEXP.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">191</span>)</span>
-<span id="cb381-2"><a href="MULTIEXP.html#cb381-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)),<span class="at">y=</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)))</span>
-<span id="cb381-3"><a href="MULTIEXP.html#cb381-3" aria-hidden="true" tabindex="-1"></a>new_data <span class="sc">%&gt;%</span></span>
-<span id="cb381-4"><a href="MULTIEXP.html#cb381-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z=</span>x<span class="sc">*</span>y) <span class="sc">%&gt;%</span></span>
-<span id="cb381-5"><a href="MULTIEXP.html#cb381-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Ex=</span><span class="fu">mean</span>(x),<span class="at">Ey=</span><span class="fu">mean</span>(y),<span class="at">Extimesy =</span> <span class="fu">mean</span>(z))</span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="MULTIEXP.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">191</span>)</span>
+<span id="cb387-2"><a href="MULTIEXP.html#cb387-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)),<span class="at">y=</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)))</span>
+<span id="cb387-3"><a href="MULTIEXP.html#cb387-3" aria-hidden="true" tabindex="-1"></a>new_data <span class="sc">%&gt;%</span></span>
+<span id="cb387-4"><a href="MULTIEXP.html#cb387-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z=</span>x<span class="sc">*</span>y) <span class="sc">%&gt;%</span></span>
+<span id="cb387-5"><a href="MULTIEXP.html#cb387-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Ex=</span><span class="fu">mean</span>(x),<span class="at">Ey=</span><span class="fu">mean</span>(y),<span class="at">Extimesy =</span> <span class="fu">mean</span>(z))</span></code></pre></div>
 <pre><code>##        Ex        Ey  Extimesy
 ## 1 1.33096 0.6640436 0.8837552</code></pre>
 </div>
@@ -980,14 +989,17 @@ Find <span class="math inline">\(\mbox{E}(X)\)</span>, <span class="math inline"
 = \frac{x^4}{16}-\frac{16x^3}{81}+\frac{16x^2}{81}\bigg|_0^2 
 \]</span>
 <span class="math display">\[
-=\frac{16}{16}-\frac{128}{81}+\frac{64}{81}=0.2098765
+=\frac{16}{16}-\frac{128}{81}+\frac{64}{81}=\frac{17}{81}
 \]</span></p>
+<p>Using <code>R</code>:</p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="MULTIEXP.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fractions</span>(<span class="fu">adaptIntegrate</span>(<span class="cf">function</span>(x){(x[<span class="dv">1</span>]<span class="sc">*</span>x[<span class="dv">2</span>]<span class="sc">-</span><span class="dv">8</span><span class="sc">/</span><span class="dv">9</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>x[<span class="dv">1</span>]<span class="sc">*</span>x[<span class="dv">2</span>]},<span class="at">lowerLimit =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">upperLimit =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))<span class="sc">$</span>integral)</span></code></pre></div>
+<pre><code>## [1] 17/81</code></pre>
 <p>Next we will estimate the variance using a simulation:</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="MULTIEXP.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">816</span>)</span>
-<span id="cb383-2"><a href="MULTIEXP.html#cb383-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)),<span class="at">y=</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)))</span>
-<span id="cb383-3"><a href="MULTIEXP.html#cb383-3" aria-hidden="true" tabindex="-1"></a>new_data <span class="sc">%&gt;%</span></span>
-<span id="cb383-4"><a href="MULTIEXP.html#cb383-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z=</span>(x<span class="sc">*</span>y<span class="dv">-8</span><span class="sc">/</span><span class="dv">9</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb383-5"><a href="MULTIEXP.html#cb383-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Var =</span> <span class="fu">mean</span>(z))</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="MULTIEXP.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">816</span>)</span>
+<span id="cb391-2"><a href="MULTIEXP.html#cb391-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)),<span class="at">y=</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)))</span>
+<span id="cb391-3"><a href="MULTIEXP.html#cb391-3" aria-hidden="true" tabindex="-1"></a>new_data <span class="sc">%&gt;%</span></span>
+<span id="cb391-4"><a href="MULTIEXP.html#cb391-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z=</span>(x<span class="sc">*</span>y<span class="dv">-8</span><span class="sc">/</span><span class="dv">9</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb391-5"><a href="MULTIEXP.html#cb391-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Var =</span> <span class="fu">mean</span>(z))</span></code></pre></div>
 <pre><code>##         Var
 ## 1 0.2098769</code></pre>
 <p>That was much easier. Notice that we are really just estimating these expectations with the simulations. The mathematical answers are the true population values while our simulations are sample estimates. In a few lessons we will discuss estimators in more detail.</p>
@@ -1133,12 +1145,12 @@ Checking the first cell, we immediately see that <span class="math inline">\(f_{
 <p><em>Example</em>:<br />
 Sam will read either one chapter of his history book or one chapter of his philosophy book. If the number of misprints in a chapter of his history book is Poisson with mean 2 and if the number of misprints in a chapter of his philosophy book is Poisson with mean 5, then assuming Sam is equally likely to choose either book, what is the expected number of misprints that Sam will find?</p>
 </blockquote>
-<p>Note: in the next lesson we are working with transformations and could attack the problem using that method.</p>
-<p>First let’s use simulation to get an idea what value the answer should be and then use algebraic techniques and definitions we have learned in this course.</p>
+<p>Note: in the next chapter we are working with transformations and could attack the problem using that method.</p>
+<p>First let’s use simulation to get an idea what value the answer should be and then use algebraic techniques and definitions we have learned in this book.</p>
 <p>Simulate 5000 reads from the history book and 5000 from philosophy and combine:</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="MULTIEXP.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2011</span>)</span>
-<span id="cb385-2"><a href="MULTIEXP.html#cb385-2" aria-hidden="true" tabindex="-1"></a>my_data<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">misprints=</span><span class="fu">c</span>(<span class="fu">rpois</span>(<span class="dv">5000</span>,<span class="dv">2</span>),<span class="fu">rpois</span>(<span class="dv">5000</span>,<span class="dv">5</span>)))</span></code></pre></div>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="MULTIEXP.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_data)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="MULTIEXP.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2011</span>)</span>
+<span id="cb393-2"><a href="MULTIEXP.html#cb393-2" aria-hidden="true" tabindex="-1"></a>my_data<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">misprints=</span><span class="fu">c</span>(<span class="fu">rpois</span>(<span class="dv">5000</span>,<span class="dv">2</span>),<span class="fu">rpois</span>(<span class="dv">5000</span>,<span class="dv">5</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="MULTIEXP.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_data)</span></code></pre></div>
 <pre><code>##   misprints
 ## 1         1
 ## 2         1
@@ -1146,12 +1158,12 @@ Sam will read either one chapter of his history book or one chapter of his philo
 ## 4         1
 ## 5         2
 ## 6         4</code></pre>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="MULTIEXP.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(my_data)</span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="MULTIEXP.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(my_data)</span></code></pre></div>
 <pre><code>## [1] 10000     1</code></pre>
 <p>Figure <a href="MULTIEXP.html#fig:hist151-fig">15.5</a> is a histogram of the data.</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="MULTIEXP.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_histogram</span>(<span class="sc">~</span>misprints,<span class="at">data=</span>my_data,<span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">15.5</span>, <span class="at">by=</span><span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb390-2"><a href="MULTIEXP.html#cb390-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb390-3"><a href="MULTIEXP.html#cb390-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Number of Misprints&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="MULTIEXP.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_histogram</span>(<span class="sc">~</span>misprints,<span class="at">data=</span>my_data,<span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">15.5</span>, <span class="at">by=</span><span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb398-2"><a href="MULTIEXP.html#cb398-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb398-3"><a href="MULTIEXP.html#cb398-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Number of Misprints&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:hist151-fig"></span>
 <img src="15-Multivariate-Expectation_files/figure-html/hist151-fig-1.png" alt="Misprints from combined history and philosphy books." width="672" />
 <p class="caption">
@@ -1159,9 +1171,9 @@ Figure 15.5: Misprints from combined history and philosphy books.
 </p>
 </div>
 <p>Or as a bar chart in Figure <a href="MULTIEXP.html#fig:bar151-fig">15.6</a></p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="MULTIEXP.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_bar</span>(<span class="sc">~</span>misprints,<span class="at">data=</span>my_data)<span class="sc">%&gt;%</span></span>
-<span id="cb391-2"><a href="MULTIEXP.html#cb391-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb391-3"><a href="MULTIEXP.html#cb391-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Number of Misprints&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="MULTIEXP.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_bar</span>(<span class="sc">~</span>misprints,<span class="at">data=</span>my_data)<span class="sc">%&gt;%</span></span>
+<span id="cb399-2"><a href="MULTIEXP.html#cb399-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb399-3"><a href="MULTIEXP.html#cb399-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Number of Misprints&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:bar151-fig"></span>
 <img src="15-Multivariate-Expectation_files/figure-html/bar151-fig-1.png" alt="Misprints from combined history and philosphy books as a bar chart." width="672" />
 <p class="caption">
@@ -1169,7 +1181,7 @@ Figure 15.6: Misprints from combined history and philosphy books as a bar chart.
 </p>
 </div>
 <p>And now find the average.</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="MULTIEXP.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="sc">~</span>misprints,<span class="at">data=</span>my_data)</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="MULTIEXP.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="sc">~</span>misprints,<span class="at">data=</span>my_data)</span></code></pre></div>
 <pre><code>## [1] 3.4968</code></pre>
 <p>Now for a mathematical solution. Let <span class="math inline">\(X\)</span> stand for the number of misprints and <span class="math inline">\(Y\)</span> for the book, to make <span class="math inline">\(Y\)</span> a random variable let’s call 0 history and 1 philosophy. Then <span class="math inline">\(E[X|Y]\)</span> is the expected number of misprints given the book. This is a conditional expectation. For example <span class="math inline">\(E[X|Y=0]\)</span> is the expected number of misprints in the history book.</p>
 <p>Now here is the tricky part, without specifying a value of <span class="math inline">\(Y\)</span>, called a realization, this expectation function is a random variable that depends on <span class="math inline">\(Y\)</span>. In other words, if we don’t know the book, the expected number of misprints depends on <span class="math inline">\(Y\)</span> and thus is a random variable. If we take the expected value of this random variable we get</p>

@@ -153,6 +153,17 @@ We found the marginal pdf of $X$ in a previous lesson, so we should use that now
 $$
 \E(X)=\int_0^2 x\frac{x}{2}\diff x = \frac{x^3}{6}\bigg|_0^2= \frac{4}{3} 
 $$
+Or using `R`
+
+
+```r
+fractions(integrate(function(x){x^2/2},0,2)$value)
+```
+
+```
+## [1] 4/3
+```
+
 
 ### E(X+Y)  
 
@@ -166,6 +177,18 @@ $$
 $$
 = \int_0^2 \frac{x^2}{2}+\frac{x}{3} \diff x= \frac{x^3}{6}+\frac{x^2}{6}\bigg|_0^2=\frac{8}{6}+\frac{4}{6}=2
 $$
+
+Or using `R`: 
+
+
+```r
+adaptIntegrate(function(x){(x[1]+x[2])*x[1]*x[2]},lowerLimit = c(0,0),upperLimit = c(1,2))$integral
+```
+
+```
+## [1] 2
+```
+
 
 If we wanted to use simulation to find this expectation, we could simulate variables from the marginal of $X$ and $Y$ and then add them together to create a new variable. 
 
@@ -197,6 +220,17 @@ $$
 $$
 =\frac{x^3}{9}\bigg|_0^2 = \frac{8}{9}
 $$
+
+Using `R`: 
+
+
+```r
+fractions(adaptIntegrate(function(x){(x[1]*x[2])*x[1]*x[2]},lowerLimit = c(0,0),upperLimit = c(1,2))$integral)
+```
+
+```
+## [1] 8/9
+```
 
 Or by simulating, we have: 
 
@@ -243,8 +277,19 @@ $$
 = \frac{x^4}{16}-\frac{16x^3}{81}+\frac{16x^2}{81}\bigg|_0^2 
 $$
 $$
-=\frac{16}{16}-\frac{128}{81}+\frac{64}{81}=0.2098765
+=\frac{16}{16}-\frac{128}{81}+\frac{64}{81}=\frac{17}{81}
 $$
+
+Using `R`: 
+
+
+```r
+fractions(adaptIntegrate(function(x){(x[1]*x[2]-8/9)^2*x[1]*x[2]},lowerLimit = c(0,0),upperLimit = c(1,2))$integral)
+```
+
+```
+## [1] 17/81
+```
 
 Next we will estimate the variance using a simulation: 
 
@@ -426,9 +471,9 @@ Let's start with a simple example to illustrate the ideas.
 > *Example*:  
 Sam will read either one chapter of his history book or one chapter of his philosophy book. If the number of misprints in a chapter of his history book is Poisson with mean 2 and if the number of misprints in a chapter of his philosophy book is Poisson with mean 5, then assuming Sam is equally likely to choose either book, what is the expected number of misprints that Sam will find?  
 
-Note: in the next lesson we are working with transformations and could attack the problem using that method. 
+Note: in the next chapter we are working with transformations and could attack the problem using that method. 
 
-First let's use simulation to get an idea what value the answer should be and then use algebraic techniques and definitions we have learned in this course.
+First let's use simulation to get an idea what value the answer should be and then use algebraic techniques and definitions we have learned in this book.  
 
 Simulate 5000 reads from the history book and 5000 from philosophy and combine:
 
