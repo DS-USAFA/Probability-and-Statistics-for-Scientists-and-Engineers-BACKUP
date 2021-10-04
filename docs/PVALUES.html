@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-09-30" />
+<meta name="date" content="2021-10-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -422,7 +422,7 @@ div.csl-indent {
 <li class="chapter" data-level="16.2.1" data-path="TRANS.html"><a href="TRANS.html#transformations-of-discrete-random-variables"><i class="fa fa-check"></i><b>16.2.1</b> Transformations of discrete random variables</a></li>
 <li class="chapter" data-level="16.2.2" data-path="TRANS.html"><a href="TRANS.html#transformations-of-continuous-random-variables"><i class="fa fa-check"></i><b>16.2.2</b> Transformations of continuous random variables</a></li>
 <li class="chapter" data-level="16.2.3" data-path="TRANS.html"><a href="TRANS.html#the-cdf-method"><i class="fa fa-check"></i><b>16.2.3</b> The cdf method</a></li>
-<li class="chapter" data-level="16.2.4" data-path="TRANS.html"><a href="TRANS.html#the-pdf-method---optional"><i class="fa fa-check"></i><b>16.2.4</b> The pdf method - Optional</a></li>
+<li class="chapter" data-level="16.2.4" data-path="TRANS.html"><a href="TRANS.html#the-pdf-method"><i class="fa fa-check"></i><b>16.2.4</b> The pdf method</a></li>
 <li class="chapter" data-level="16.2.5" data-path="TRANS.html"><a href="TRANS.html#simulation-2"><i class="fa fa-check"></i><b>16.2.5</b> Simulation</a></li>
 <li class="chapter" data-level="16.2.6" data-path="TRANS.html"><a href="TRANS.html#multivariate-transformations"><i class="fa fa-check"></i><b>16.2.6</b> Multivariate Transformations</a></li>
 </ul></li>
@@ -816,7 +816,7 @@ Is this a two-sided or one-sided hypothesis test? How many variables are in this
 <div id="step-3---determine-the-p-value.-2" class="section level3" number="20.3.3">
 <h3><span class="header-section-number">20.3.3</span> Step 3 - Determine the p-value.</h3>
 <p>We now want to find the p-value as <span class="math inline">\(2 \cdot \mbox{P}(X \leq 42)\)</span> where <span class="math inline">\(X\)</span> is a binomial with <span class="math inline">\(p=0.5\)</span> and <span class="math inline">\(n=120\)</span>. Again, the p-value is the probability of the data or more extreme given the null hypothesis is true. Here the null hypothesis being true implies that the probability of success is 0.50. We will use <code>R</code> to get the one-sided p-value and then double to get the p-value for the problem. We selected <span class="math inline">\(\mbox{P}(X \leq 42)\)</span> because more extreme means the observed values and values further from the value you would get if the null hypothesis were true, which is 60 for this problem.</p>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="PVALUES.html#cb504-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pbinom</span>(<span class="dv">42</span>,<span class="dv">120</span>,<span class="at">prob=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="PVALUES.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pbinom</span>(<span class="dv">42</span>,<span class="dv">120</span>,<span class="at">prob=</span><span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## [1] 0.001299333</code></pre>
 <p>That is a small p-value.</p>
 </div>
@@ -824,10 +824,10 @@ Is this a two-sided or one-sided hypothesis test? How many variables are in this
 <h3><span class="header-section-number">20.3.4</span> Step 4 - Draw a conclusion</h3>
 <p>Based on our data, if the listeners were guessing correct 50% of the time, there is less than a <span class="math inline">\(0.0013\)</span> probability that only 42 or less or 78 or more listeners would get it right. This is much less than 0.05, so we reject that the listeners are guessing correctly half of the time.</p>
 <p>This decision region looks like the pmf in Figure <a href="PVALUES.html#fig:dist201-fig">20.1</a>, any observed values inside the red boundary lines would be consistent with the null hypothesis. Any values at the red line or more extreme would be in the rejection region.</p>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="PVALUES.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;binom&quot;</span>,<span class="at">size=</span><span class="dv">120</span>,<span class="at">prob=</span>.<span class="dv">5</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">115</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb506-2"><a href="PVALUES.html#cb506-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="dv">42</span>,<span class="dv">78</span>),<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb506-3"><a href="PVALUES.html#cb506-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_bw) <span class="sc">%&gt;%</span></span>
-<span id="cb506-4"><a href="PVALUES.html#cb506-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Binomial pmf&quot;</span>,<span class="at">subtitle=</span><span class="st">&quot;Probability of success is 0.5&quot;</span>,<span class="at">y=</span><span class="st">&quot;Probability&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="PVALUES.html#cb509-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;binom&quot;</span>,<span class="at">size=</span><span class="dv">120</span>,<span class="at">prob=</span>.<span class="dv">5</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">115</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb509-2"><a href="PVALUES.html#cb509-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="dv">42</span>,<span class="dv">78</span>),<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb509-3"><a href="PVALUES.html#cb509-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_bw) <span class="sc">%&gt;%</span></span>
+<span id="cb509-4"><a href="PVALUES.html#cb509-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Binomial pmf&quot;</span>,<span class="at">subtitle=</span><span class="st">&quot;Probability of success is 0.5&quot;</span>,<span class="at">y=</span><span class="st">&quot;Probability&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:dist201-fig"></span>
 <img src="20-Empirical-p-values_files/figure-html/dist201-fig-1.png" alt="Binomial pmf" width="672" />
 <p class="caption">
@@ -842,8 +842,8 @@ Figure 20.1: Binomial pmf
 <div id="step-2---compute-a-test-statistic.-3" class="section level3" number="20.3.6">
 <h3><span class="header-section-number">20.3.6</span> Step 2 - Compute a test statistic.</h3>
 <p>We will use the proportion of listeners that get the song correct instead of the number, this is a minor change since we are simply dividing by 120.</p>
-<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="PVALUES.html#cb507-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="dv">42</span><span class="sc">/</span><span class="dv">120</span></span>
-<span id="cb507-2"><a href="PVALUES.html#cb507-2" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="PVALUES.html#cb510-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="dv">42</span><span class="sc">/</span><span class="dv">120</span></span>
+<span id="cb510-2"><a href="PVALUES.html#cb510-2" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
 <pre><code>## [1] 0.35</code></pre>
 </div>
 <div id="step-3---determine-the-p-value.-3" class="section level3" number="20.3.7">
@@ -856,11 +856,11 @@ Correct &amp; Correct &amp; Wrong &amp; Correct &amp; Wrong \\
 \end{array} 
 \]</span></p>
 <p>After flipping the coin 120 times, we got 56 heads for <span class="math inline">\(\hat{p}_{sim} = 0.467\)</span>. As we did with the randomization technique, seeing what would happen with one simulation isn’t enough. In order to evaluate whether our originally observed proportion of 0.35 is unusual or not, we should generate more simulations. Here we’ve repeated this simulation 10000 times:</p>
-<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="PVALUES.html#cb509-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">10000</span>, <span class="dv">120</span>, <span class="fl">0.5</span>) <span class="sc">/</span> <span class="dv">120</span></span></code></pre></div>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="PVALUES.html#cb512-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">10000</span>, <span class="dv">120</span>, <span class="fl">0.5</span>) <span class="sc">/</span> <span class="dv">120</span></span></code></pre></div>
 <p>Note, we could simulate it a number of ways. Here is a way using <code>do()</code> that will look like how we have coded for other randomization tests.</p>
-<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="PVALUES.html#cb510-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">604</span>)</span>
-<span id="cb510-2"><a href="PVALUES.html#cb510-2" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">mean</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">size=</span><span class="dv">120</span>,<span class="at">replace =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="PVALUES.html#cb511-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="PVALUES.html#cb513-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">604</span>)</span>
+<span id="cb513-2"><a href="PVALUES.html#cb513-2" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">mean</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">size=</span><span class="dv">120</span>,<span class="at">replace =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="PVALUES.html#cb514-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)</span></code></pre></div>
 <pre><code>##        mean
 ## 1 0.4250000
 ## 2 0.5250000
@@ -868,11 +868,11 @@ Correct &amp; Correct &amp; Wrong &amp; Correct &amp; Wrong \\
 ## 4 0.5000000
 ## 5 0.5250000
 ## 6 0.5083333</code></pre>
-<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="PVALUES.html#cb513-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb513-2"><a href="PVALUES.html#cb513-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>mean,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb513-3"><a href="PVALUES.html#cb513-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span><span class="fu">c</span>(obs,<span class="dv">1</span><span class="sc">-</span>obs),<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb513-4"><a href="PVALUES.html#cb513-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb513-5"><a href="PVALUES.html#cb513-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Test statistic&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="PVALUES.html#cb516-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb516-2"><a href="PVALUES.html#cb516-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>mean,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb516-3"><a href="PVALUES.html#cb516-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span><span class="fu">c</span>(obs,<span class="dv">1</span><span class="sc">-</span>obs),<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb516-4"><a href="PVALUES.html#cb516-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb516-5"><a href="PVALUES.html#cb516-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Test statistic&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:dens202-fig"></span>
 <img src="20-Empirical-p-values_files/figure-html/dens202-fig-1.png" alt="The estimated sampling distribution." width="672" />
 <p class="caption">
@@ -881,7 +881,7 @@ Figure 20.2: The estimated sampling distribution.
 </div>
 <p>Notice in Figre <a href="PVALUES.html#fig:dens202-fig">20.2</a> how the sampling distribution is centered at 0.5 and looks symmetrical.</p>
 <p>The p-value is found using the <code>prop1</code> function, in this problem we really need the observed case added back in to prevent a p-value of zero.</p>
-<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="PVALUES.html#cb514-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">prop1</span>(<span class="sc">~</span>(mean<span class="sc">&lt;=</span>obs),<span class="at">data=</span>results)</span></code></pre></div>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="PVALUES.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">prop1</span>(<span class="sc">~</span>(mean<span class="sc">&lt;=</span>obs),<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>##  prop_TRUE 
 ## 0.00119988</code></pre>
 </div>
@@ -908,8 +908,8 @@ Do the data provide statistically significant evidence against the null hypothes
 <p>We want to understand whether blood thinners are helpful or harmful. We’ll consider both of these possibilities using a two-sided hypothesis test.</p>
 <p><span class="math inline">\(H_0\)</span>: Blood thinners do not have an overall survival effect, experimental treatment is independent of survival rate. <span class="math inline">\(p_c - p_t = 0\)</span>.<br />
 <span class="math inline">\(H_A\)</span>: Blood thinners have an impact on survival, either positive or negative, but not zero. <span class="math inline">\(p_c - p_t \neq 0\)</span>.</p>
-<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="PVALUES.html#cb516-1" aria-hidden="true" tabindex="-1"></a>thinner <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/blood_thinner.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="PVALUES.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(thinner)</span></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="PVALUES.html#cb519-1" aria-hidden="true" tabindex="-1"></a>thinner <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/blood_thinner.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="PVALUES.html#cb520-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(thinner)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##   group     outcome 
 ##   &lt;chr&gt;     &lt;chr&gt;   
@@ -920,7 +920,7 @@ Do the data provide statistically significant evidence against the null hypothes
 ## 5 control   died    
 ## 6 treatment survived</code></pre>
 <p>Let’s put it in a table.</p>
-<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="PVALUES.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>group<span class="sc">+</span>outcome,<span class="at">data=</span>thinner,<span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="PVALUES.html#cb522-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>group<span class="sc">+</span>outcome,<span class="at">data=</span>thinner,<span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##            outcome
 ## group       died survived Total
 ##   control     39       11    50
@@ -934,18 +934,18 @@ Do the data provide statistically significant evidence against the null hypothes
 <div id="step-3---determine-the-p-value.-4" class="section level3" number="20.4.3">
 <h3><span class="header-section-number">20.4.3</span> Step 3 - Determine the p-value.</h3>
 <p>In this case we want to find <span class="math inline">\(\mbox{P}(X \leq 11)\)</span> and double it since it is a two-sided test.</p>
-<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="PVALUES.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">phyper</span>(<span class="dv">11</span>,<span class="dv">50</span>,<span class="dv">40</span>,<span class="dv">25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="PVALUES.html#cb524-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">phyper</span>(<span class="dv">11</span>,<span class="dv">50</span>,<span class="dv">40</span>,<span class="dv">25</span>)</span></code></pre></div>
 <pre><code>## [1] 0.2581356</code></pre>
 <p>Note: We could have picked the lower right cell as the reference cell. But now I want the <span class="math inline">\(\mbox{P}(X \geq 14)\)</span> with the appropriate change in parameter values. Notice we get the same answer.</p>
-<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="PVALUES.html#cb523-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">phyper</span>(<span class="dv">13</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">25</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="PVALUES.html#cb526-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">phyper</span>(<span class="dv">13</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">25</span>))</span></code></pre></div>
 <pre><code>## [1] 0.2581356</code></pre>
 <p>We could the same thing for the other two cells.</p>
-<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="PVALUES.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">phyper</span>(<span class="dv">26</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">65</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="PVALUES.html#cb528-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">phyper</span>(<span class="dv">26</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">65</span>)</span></code></pre></div>
 <pre><code>## [1] 0.2581356</code></pre>
-<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="PVALUES.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">phyper</span>(<span class="dv">38</span>,<span class="dv">50</span>,<span class="dv">40</span>,<span class="dv">65</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="PVALUES.html#cb530-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">phyper</span>(<span class="dv">38</span>,<span class="dv">50</span>,<span class="dv">40</span>,<span class="dv">65</span>))</span></code></pre></div>
 <pre><code>## [1] 0.2581356</code></pre>
 <p>Or <code>R</code> has a built in function, <code>fisher.test()</code>, that we could use.</p>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="PVALUES.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(<span class="fu">tally</span>(<span class="sc">~</span>group<span class="sc">+</span>outcome,<span class="at">data=</span>thinner))</span></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="PVALUES.html#cb532-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(<span class="fu">tally</span>(<span class="sc">~</span>group<span class="sc">+</span>outcome,<span class="at">data=</span>thinner))</span></code></pre></div>
 <pre><code>## 
 ##  Fisher&#39;s Exact Test for Count Data
 ## 
@@ -958,10 +958,10 @@ Do the data provide statistically significant evidence against the null hypothes
 ## odds ratio 
 ##   1.895136</code></pre>
 <p>The p-value is slightly different since the <strong>hypergeometric</strong> is not symmetric. Doubling the p-value from the single side result is not quite right. The algorithm in <code>fisher.test()</code> finds and adds all probabilities less than or equal to value of <span class="math inline">\(\mbox{P}(X = 11)\)</span>, see Figure <a href="PVALUES.html#fig:dens203-fig">20.3</a>. This is the correct p-value.</p>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="PVALUES.html#cb531-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;hyper&quot;</span>,<span class="at">m=</span><span class="dv">50</span>,<span class="at">n=</span><span class="dv">40</span>,<span class="at">k=</span><span class="dv">25</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb531-2"><a href="PVALUES.html#cb531-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_hline</span>(<span class="at">yintercept =</span> <span class="fu">dhyper</span>(<span class="dv">11</span>,<span class="dv">50</span>,<span class="dv">40</span>,<span class="dv">25</span>),<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb531-3"><a href="PVALUES.html#cb531-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Hypergeometric pmf&quot;</span>,<span class="at">subtitle=</span><span class="st">&quot;Red line is P(X=11)&quot;</span>,<span class="at">y=</span><span class="st">&quot;Probability&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb531-4"><a href="PVALUES.html#cb531-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="PVALUES.html#cb534-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;hyper&quot;</span>,<span class="at">m=</span><span class="dv">50</span>,<span class="at">n=</span><span class="dv">40</span>,<span class="at">k=</span><span class="dv">25</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb534-2"><a href="PVALUES.html#cb534-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_hline</span>(<span class="at">yintercept =</span> <span class="fu">dhyper</span>(<span class="dv">11</span>,<span class="dv">50</span>,<span class="dv">40</span>,<span class="dv">25</span>),<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb534-3"><a href="PVALUES.html#cb534-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Hypergeometric pmf&quot;</span>,<span class="at">subtitle=</span><span class="st">&quot;Red line is P(X=11)&quot;</span>,<span class="at">y=</span><span class="st">&quot;Probability&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb534-4"><a href="PVALUES.html#cb534-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span id="fig:dens203-fig"></span>
 <img src="20-Empirical-p-values_files/figure-html/dens203-fig-1.png" alt="Hypergeometric pmf showing the cutoff for p-value calculation." width="672" />
 <p class="caption">
@@ -969,8 +969,8 @@ Figure 20.3: Hypergeometric pmf showing the cutoff for p-value calculation.
 </p>
 </div>
 <p>This is how <code>fisher.test()</code> is calculating the p-value:</p>
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="PVALUES.html#cb532-1" aria-hidden="true" tabindex="-1"></a>temp<span class="ot">&lt;-</span><span class="fu">dhyper</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">25</span>,<span class="dv">50</span>,<span class="dv">40</span>,<span class="dv">25</span>)</span>
-<span id="cb532-2"><a href="PVALUES.html#cb532-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(temp[temp<span class="sc">&lt;=</span><span class="fu">dhyper</span>(<span class="dv">11</span>,<span class="dv">50</span>,<span class="dv">40</span>,<span class="dv">25</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="PVALUES.html#cb535-1" aria-hidden="true" tabindex="-1"></a>temp<span class="ot">&lt;-</span><span class="fu">dhyper</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">25</span>,<span class="dv">50</span>,<span class="dv">40</span>,<span class="dv">25</span>)</span>
+<span id="cb535-2"><a href="PVALUES.html#cb535-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(temp[temp<span class="sc">&lt;=</span><span class="fu">dhyper</span>(<span class="dv">11</span>,<span class="dv">50</span>,<span class="dv">40</span>,<span class="dv">25</span>)])</span></code></pre></div>
 <pre><code>## [1] 0.2365928</code></pre>
 <p>The randomization test in the last lesson yielded a p-value of 0.257 so all tests are consistent.</p>
 </div>
@@ -993,13 +993,13 @@ Figure 20.3: Hypergeometric pmf showing the cutoff for p-value calculation.
 <p>Notice that we switched to using <span class="math inline">\(\pi\)</span> instead of <span class="math inline">\(p\)</span> for the population parameter. There is no reason other than to make you aware that both are used.</p>
 <p>This problem is an extension of the binomial, instead of two outcomes, there are four outcomes. This is called a multinomial distribution. You can read more about it if you like, but our methods will not make it necessary to learn the probability mass function.</p>
 <p>Of the 500 golf balls collected, 486 of them had a number between 1 and 4. Let’s get the data from `golf_balls.csv".</p>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="PVALUES.html#cb534-1" aria-hidden="true" tabindex="-1"></a>golf_balls <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/golf_balls.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="PVALUES.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(golf_balls)</span></code></pre></div>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="PVALUES.html#cb537-1" aria-hidden="true" tabindex="-1"></a>golf_balls <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/golf_balls.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="PVALUES.html#cb538-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(golf_balls)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
 ##        name   class min Q1 median Q3 max     mean       sd   n missing
 ## ...1 number numeric   1  1      2  3   4 2.366255 1.107432 486       0</code></pre>
-<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="PVALUES.html#cb537-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>number,<span class="at">data=</span>golf_balls)</span></code></pre></div>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="PVALUES.html#cb540-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>number,<span class="at">data=</span>golf_balls)</span></code></pre></div>
 <pre><code>## number
 ##   1   2   3   4 
 ## 137 138 107 104</code></pre>
@@ -1016,41 +1016,41 @@ What would you propose for the test statistic?</p>
 <span class="math inline">\(H_A\)</span>:] <span class="math inline">\(R&gt;0\)</span></p>
 <p>Notice that <span class="math inline">\(R\)</span> will always be non-negative, thus this test is one-sided.</p>
 <p>The observed range is 34, <span class="math inline">\(138 - 104\)</span>.</p>
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="PVALUES.html#cb539-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">diff</span>(<span class="fu">range</span>(<span class="fu">tally</span>(<span class="sc">~</span>number,<span class="at">data=</span>golf_balls)))</span>
-<span id="cb539-2"><a href="PVALUES.html#cb539-2" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="PVALUES.html#cb542-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">diff</span>(<span class="fu">range</span>(<span class="fu">tally</span>(<span class="sc">~</span>number,<span class="at">data=</span>golf_balls)))</span>
+<span id="cb542-2"><a href="PVALUES.html#cb542-2" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
 <pre><code>## [1] 34</code></pre>
 </div>
 <div id="step-3---determine-the-p-value.-5" class="section level3" number="20.5.3">
 <h3><span class="header-section-number">20.5.3</span> Step 3 - Determine the p-value.</h3>
 <p>We don’t know the distribution of our test statistic so we will use simulation. We will simulate data from a multinomial under the null hypothesis and calculate a new value of the test statistic. We will repeat this 10000 times and this we give us an estimate of the sampling distribution.</p>
 <p>We will use the <code>sample()</code> function again to simulate the distribution of numbers under the null hypothesis. To help us understand the process and build the code, we are only initially using a sample size of 12 to keep the printout reasonable and easy to read.</p>
-<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="PVALUES.html#cb541-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3311</span>)</span>
-<span id="cb541-2"><a href="PVALUES.html#cb541-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">range</span>(<span class="fu">table</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="at">size=</span><span class="dv">12</span>,<span class="at">replace=</span><span class="cn">TRUE</span>))))</span></code></pre></div>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="PVALUES.html#cb544-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3311</span>)</span>
+<span id="cb544-2"><a href="PVALUES.html#cb544-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">range</span>(<span class="fu">table</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="at">size=</span><span class="dv">12</span>,<span class="at">replace=</span><span class="cn">TRUE</span>))))</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>Notice this is not using <code>tidyverse</code> coding ideas. We don’t think we need tibbles or data frames so we went with straight nested <code>R</code> code. You can break this code down by starting with the code in the center.</p>
-<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="PVALUES.html#cb543-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3311</span>)</span>
-<span id="cb543-2"><a href="PVALUES.html#cb543-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="at">size=</span><span class="dv">12</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="PVALUES.html#cb546-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3311</span>)</span>
+<span id="cb546-2"><a href="PVALUES.html#cb546-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="at">size=</span><span class="dv">12</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##  [1] 3 1 2 3 2 3 1 3 3 4 1 1</code></pre>
-<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="PVALUES.html#cb545-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3311</span>)</span>
-<span id="cb545-2"><a href="PVALUES.html#cb545-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="at">size=</span><span class="dv">12</span>,<span class="at">replace=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="PVALUES.html#cb548-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3311</span>)</span>
+<span id="cb548-2"><a href="PVALUES.html#cb548-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="at">size=</span><span class="dv">12</span>,<span class="at">replace=</span><span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## 
 ## 1 2 3 4 
 ## 4 2 5 1</code></pre>
-<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="PVALUES.html#cb547-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3311</span>)</span>
-<span id="cb547-2"><a href="PVALUES.html#cb547-2" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(<span class="fu">table</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="at">size=</span><span class="dv">12</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="PVALUES.html#cb550-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3311</span>)</span>
+<span id="cb550-2"><a href="PVALUES.html#cb550-2" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(<span class="fu">table</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="at">size=</span><span class="dv">12</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)))</span></code></pre></div>
 <pre><code>## [1] 1 5</code></pre>
-<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="PVALUES.html#cb549-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3311</span>)</span>
-<span id="cb549-2"><a href="PVALUES.html#cb549-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">range</span>(<span class="fu">table</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="at">size=</span><span class="dv">12</span>,<span class="at">replace=</span><span class="cn">TRUE</span>))))</span></code></pre></div>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="PVALUES.html#cb552-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3311</span>)</span>
+<span id="cb552-2"><a href="PVALUES.html#cb552-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">range</span>(<span class="fu">table</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="at">size=</span><span class="dv">12</span>,<span class="at">replace=</span><span class="cn">TRUE</span>))))</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>We are now ready to ramp up to the full problem. Let’s simulated the data under the null hypothesis. We are sampling 486 golf balls with the numbers 1 through 4 on them. Each number is equally likely. We then find the range, our test statistic. Finally we repeat this 10,000 to get an estimate of the sampling distribution of our test statistic.</p>
-<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="PVALUES.html#cb551-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">diff</span>(<span class="fu">range</span>(<span class="fu">table</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="at">size=</span><span class="dv">486</span>,<span class="at">replace=</span><span class="cn">TRUE</span>))))</span></code></pre></div>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="PVALUES.html#cb554-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">diff</span>(<span class="fu">range</span>(<span class="fu">table</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="at">size=</span><span class="dv">486</span>,<span class="at">replace=</span><span class="cn">TRUE</span>))))</span></code></pre></div>
 <p>Figure <a href="PVALUES.html#fig:dens204-fig">20.4</a> is a plot of the sampling distribution of the range.</p>
-<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="PVALUES.html#cb552-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb552-2"><a href="PVALUES.html#cb552-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>diff,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb552-3"><a href="PVALUES.html#cb552-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> obs,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb552-4"><a href="PVALUES.html#cb552-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Sampling Distribution of Range&quot;</span>,<span class="at">subtitle=</span><span class="st">&quot;Multinomial with equal probability&quot;</span>,</span>
-<span id="cb552-5"><a href="PVALUES.html#cb552-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Range&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb552-6"><a href="PVALUES.html#cb552-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_bw)</span></code></pre></div>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="PVALUES.html#cb555-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb555-2"><a href="PVALUES.html#cb555-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>diff,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb555-3"><a href="PVALUES.html#cb555-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> obs,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb555-4"><a href="PVALUES.html#cb555-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Sampling Distribution of Range&quot;</span>,<span class="at">subtitle=</span><span class="st">&quot;Multinomial with equal probability&quot;</span>,</span>
+<span id="cb555-5"><a href="PVALUES.html#cb555-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Range&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb555-6"><a href="PVALUES.html#cb555-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_bw)</span></code></pre></div>
 <div class="figure"><span id="fig:dens204-fig"></span>
 <img src="20-Empirical-p-values_files/figure-html/dens204-fig-1.png" alt="Sampling distribution of the range." width="672" />
 <p class="caption">
@@ -1059,7 +1059,7 @@ Figure 20.4: Sampling distribution of the range.
 </div>
 <p>Notice how this distribution is skewed to the right.</p>
 <p>The p-value is 0.14, this value is greater than 0.05 so we fail to reject. However, it is not that much greater than 0.05, so the residents may want to repeat the study with more data.</p>
-<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="PVALUES.html#cb553-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop1</span>(<span class="sc">~</span>(diff<span class="sc">&gt;=</span>obs),<span class="at">data=</span>results)</span></code></pre></div>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="PVALUES.html#cb556-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop1</span>(<span class="sc">~</span>(diff<span class="sc">&gt;=</span>obs),<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>## prop_TRUE 
 ##  0.140286</code></pre>
 </div>
@@ -1074,29 +1074,29 @@ Figure 20.4: Sampling distribution of the range.
 <div id="step-2---compute-a-test-statistic.-6" class="section level3" number="20.6.1">
 <h3><span class="header-section-number">20.6.1</span> Step 2 - Compute a test statistic.</h3>
 <p>If each number were equally likely, we would have 121.5 balls in each bin. We can find a test statistic by looking at the deviation in each cell from 121.5.</p>
-<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="PVALUES.html#cb555-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>number,<span class="at">data=</span>golf_balls) <span class="sc">-</span><span class="fl">121.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="PVALUES.html#cb558-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>number,<span class="at">data=</span>golf_balls) <span class="sc">-</span><span class="fl">121.5</span></span></code></pre></div>
 <pre><code>## number
 ##     1     2     3     4 
 ##  15.5  16.5 -14.5 -17.5</code></pre>
 <p>Now we need to collapse these into a single number. Just adding will always result in a value of 0, why? So let’s take the absolute value and then add.</p>
-<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="PVALUES.html#cb557-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">sum</span>(<span class="fu">abs</span>(<span class="fu">tally</span>(<span class="sc">~</span>number,<span class="at">data=</span>golf_balls) <span class="sc">-</span><span class="fl">121.5</span>))</span>
-<span id="cb557-2"><a href="PVALUES.html#cb557-2" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="PVALUES.html#cb560-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">sum</span>(<span class="fu">abs</span>(<span class="fu">tally</span>(<span class="sc">~</span>number,<span class="at">data=</span>golf_balls) <span class="sc">-</span><span class="fl">121.5</span>))</span>
+<span id="cb560-2"><a href="PVALUES.html#cb560-2" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
 <pre><code>## [1] 64</code></pre>
 <p>This will be our test statistic.</p>
 </div>
 <div id="step-3---determine-the-p-value.-6" class="section level3" number="20.6.2">
 <h3><span class="header-section-number">20.6.2</span> Step 3 - Determine the p-value.</h3>
 <p>We will use similar code from above with our new metric.</p>
-<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="PVALUES.html#cb559-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9697</span>)</span>
-<span id="cb559-2"><a href="PVALUES.html#cb559-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">sum</span>(<span class="fu">abs</span>(<span class="fu">table</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="at">size=</span><span class="dv">486</span>,<span class="at">replace=</span><span class="cn">TRUE</span>))<span class="sc">-</span><span class="fl">121.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="PVALUES.html#cb562-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9697</span>)</span>
+<span id="cb562-2"><a href="PVALUES.html#cb562-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">sum</span>(<span class="fu">abs</span>(<span class="fu">table</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="at">size=</span><span class="dv">486</span>,<span class="at">replace=</span><span class="cn">TRUE</span>))<span class="sc">-</span><span class="fl">121.5</span>))</span></code></pre></div>
 <p>Figure <a href="PVALUES.html#fig:dens205-fig">20.5</a> is a plot of the sampling distribution of the absolute value of deviations.</p>
-<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="PVALUES.html#cb560-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb560-2"><a href="PVALUES.html#cb560-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>sum,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb560-3"><a href="PVALUES.html#cb560-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> obs,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb560-4"><a href="PVALUES.html#cb560-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Sampling Distribution of Absolute Deviations&quot;</span>,</span>
-<span id="cb560-5"><a href="PVALUES.html#cb560-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">&quot;Multinomial with equal probability&quot;</span>,</span>
-<span id="cb560-6"><a href="PVALUES.html#cb560-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Absolute deviations&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb560-7"><a href="PVALUES.html#cb560-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_bw)</span></code></pre></div>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="PVALUES.html#cb563-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb563-2"><a href="PVALUES.html#cb563-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>sum,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb563-3"><a href="PVALUES.html#cb563-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> obs,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb563-4"><a href="PVALUES.html#cb563-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Sampling Distribution of Absolute Deviations&quot;</span>,</span>
+<span id="cb563-5"><a href="PVALUES.html#cb563-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">&quot;Multinomial with equal probability&quot;</span>,</span>
+<span id="cb563-6"><a href="PVALUES.html#cb563-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Absolute deviations&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb563-7"><a href="PVALUES.html#cb563-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_bw)</span></code></pre></div>
 <div class="figure"><span id="fig:dens205-fig"></span>
 <img src="20-Empirical-p-values_files/figure-html/dens205-fig-1.png" alt="Sampling distribution of the absolute deviations." width="672" />
 <p class="caption">
@@ -1105,7 +1105,7 @@ Figure 20.5: Sampling distribution of the absolute deviations.
 </div>
 <p>Notice how this distribution is skewed to the right and our test statistic seems to be more extreme.</p>
 <p>The p-value is 0.014, this value is much smaller than our previous result. The test statistic matters in our decision process as nothing about this problem has changed except the test statistic.</p>
-<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="PVALUES.html#cb561-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop1</span>(<span class="sc">~</span>(sum<span class="sc">&gt;=</span>obs),<span class="at">data=</span>results)</span></code></pre></div>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="PVALUES.html#cb564-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop1</span>(<span class="sc">~</span>(sum<span class="sc">&gt;=</span>obs),<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>##  prop_TRUE 
 ## 0.01359864</code></pre>
 </div>

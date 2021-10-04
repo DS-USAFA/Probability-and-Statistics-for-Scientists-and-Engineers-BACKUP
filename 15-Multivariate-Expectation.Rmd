@@ -497,7 +497,7 @@ The inner expectation in the right hand side is for the conditional distribution
 $$E[X]=E[E[X|Y]]$$
 $$=E[X|Y=0] \cdot \Prob(Y=0)+E[X|Y=1] \cdot \Prob(Y=1)$$
 $$=2*\frac{1}{2}+5*\frac{1}{2}=\frac{7}{2}=3.5$$
-These ideas are going to be similar for continuous random variables. Note that we can also use conditional expectations to find probabilities but that is beyond the scope of this course.
+These ideas are going to be similar for continuous random variables. There is so much more that you can do with conditional expectations, but these are beyond the scope of the book. 
 
 ##  Homework Problems
 
