@@ -22,9 +22,9 @@ library(fastR2)
 
 ## Transition
 
-We started this course with descriptive models of data and then moved onto probability models. In these probability models, we have been characterizing experiments and random processes using both theory and simulation. These models are using a model about a random event to make decisions about data. These models are about the population and are used to make decisions about samples and data. For example, suppose we flip a fair coin 10 times, and record the number of heads. The population is the collection of all possible outcomes of this experiment. In this case, the population is infinite, as we could run this experiment repeatedly without limit. If we assume, model, the number of heads as a binomial distribution, we know the exact distribution of the outcomes. For example, we know that exactly 24.61% of the time, we will obtain 5 heads out of 10 flips of a fair coin. We can also use the model to characterize the variance, that is when it does not equal 5 and how much different from 5 it will be.  However, these probability models are highly dependent on the assumptions and the values of the parameters. 
+We started this book with descriptive models of data and then moved onto probability models. In these probability models, we have been characterizing experiments and random processes using both theory and simulation. These models are using a model about a random event to make decisions about data. These models are about the population and are used to make decisions about samples and data. For example, suppose we flip a fair coin 10 times, and record the number of heads. The population is the collection of all possible outcomes of this experiment. In this case, the population is infinite, as we could run this experiment repeatedly without limit. If we assume, model, the number of heads as a binomial distribution, we know the exact distribution of the outcomes. For example, we know that exactly 24.61% of the time, we will obtain 5 heads out of 10 flips of a fair coin. We can also use the model to characterize the variance, that is when it does not equal 5 and how much different from 5 it will be.  However, these probability models are highly dependent on the assumptions and the values of the parameters. 
 
-From this point on in the course, we will focus on *statistical* models.  Statistical models describe one or more variables and their relationships. We use these models to make decisions about the population, to predict  future outcomes, or both. Often we don't know the true underlying process; all we have is a *sample* of observations and perhaps some context. Using *inferential* statistics, we can draw conclusions about the underlying process. For example, suppose we are given a coin and we don't know whether it is fair. So, we flip it a number of times to obtain a sample of outcomes. We can use that sample to decide whether the coin could be fair. 
+From this point on in the book, we will focus on *statistical* models.  Statistical models describe one or more variables and their relationships. We use these models to make decisions about the population, to predict  future outcomes, or both. Often we don't know the true underlying process; all we have is a *sample* of observations and perhaps some context. Using *inferential* statistics, we can draw conclusions about the underlying process. For example, suppose we are given a coin and we don't know whether it is fair. So, we flip it a number of times to obtain a sample of outcomes. We can use that sample to decide whether the coin could be fair. 
 
 In some sense, we've already explored some of these concepts. In our simulation examples, we have drawn observations from a population of interest and used those observations to estimate characteristics of another population or segment of the experiment. For example, we explored random variable $Z$, where $Z=|X - Y|$ and $X$ and $Y$ were both uniform random variables. Instead of dealing with the distribution of $Z$ directly, we simulated many observations from $Z$ and used this simulation to describe the behavior of $Z$. 
 
@@ -79,7 +79,7 @@ $$
 \hat{\theta}_{MoM}=\sqrt{\frac{12n}{n-1}}s
 $$
 
-To decide which is better we need a criteria of comparison. This is beyond the scope of this class, but some common criteria are *unbiased* and *minimum variance*.
+To decide which is better we need a criteria of comparison. This is beyond the scope of this book, but some common criteria are *unbiased* and *minimum variance*.
 
 The method of moments can be used to estimate more than one parameter as well. We simply would have to incorporate higher order moments. 
 
@@ -96,7 +96,7 @@ $$
 \hat{\mu}_{MoM}=\bar{x} \hspace{1cm} \hat{\sigma}_{MoM} = \sqrt{\frac{1}{n}\sum_{i=1}^n (x_i-\bar{x})^2}
 $$
 
-Again, we notice that the estimate for $\sigma$ is different from sample standard deviation discussed earlier in the semester. The reason for this is a property of estimators called *unbiased*. Notice that if we treat the data points as random variables then the estimators are random variables. We can then take the expected value of the estimator and if this equals the parameter being estimated, then it is unbiased. Mathematically, this is written
+Again, we notice that the estimate for $\sigma$ is different from sample standard deviation discussed earlier in the book. The reason for this is a property of estimators called *unbiased*. Notice that if we treat the data points as random variables then the estimators are random variables. We can then take the expected value of the estimator and if this equals the parameter being estimated, then it is unbiased. Mathematically, this is written
 $$
 E(\hat{\theta})=\theta
 $$
