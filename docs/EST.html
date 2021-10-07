@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-05" />
+<meta name="date" content="2021-10-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -864,7 +864,7 @@ Unbiased is not a required property for an estimated but many practitioners find
 <p><em>Exercise</em>:<br />
 You shot 25 free throws and make 21. Assuming a binomial model fits. Find an estimate of the probability of making a free throw.</p>
 </blockquote>
-<p>There are two ways to approach this problem depending on how we define the random variable. In the first case we will use a binomial random variable, <span class="math inline">\(X\)</span> the number of made free throws in 25 attempts. In this case, we only ran the experiment once and have the observed result of 21. Recall for the binomial <span class="math inline">\(E(X)=np\)</span> where <span class="math inline">\(n\)</span> is the number of attempts and <span class="math inline">\(p\)</span> is the probability of success. The sample mean is 21 since we only have one data point. Using the method of moments, we set the first population mean equal to the first sample mean <span class="math inline">\(np=\sum{x_i}\)</span> or <span class="math inline">\(25 \hat{p} = 21\)</span>. Thus <span class="math inline">\(\hat{p} = \frac{21}{25}\)</span>.</p>
+<p>There are two ways to approach this problem depending on how we define the random variable. In the first case we will use a binomial random variable, <span class="math inline">\(X\)</span> the number of made free throws in 25 attempts. In this case, we only ran the experiment once and have the observed result of 21. Recall for the binomial <span class="math inline">\(E(X)=np\)</span> where <span class="math inline">\(n\)</span> is the number of attempts and <span class="math inline">\(p\)</span> is the probability of success. The sample mean is 21 since we only have one data point. Using the method of moments, we set the first population mean equal to the first sample mean <span class="math inline">\(np=\frac{\sum{x_i}}{m}\)</span>, notice <span class="math inline">\(n\)</span> is the number of trials 25 and <span class="math inline">\(m\)</span> is the number of data points 1, or <span class="math inline">\(25 \hat{p} = 21\)</span>. Thus <span class="math inline">\(\hat{p} = \frac{21}{25}\)</span>.</p>
 <p>A second approach is to let <span class="math inline">\(X_i\)</span> be a single free throw, we have a Bernoulli random variable. This variable takes on the values of 0 if we miss and 1 if we make the free throw. Thus we have 25 data points. For a Bernoulli random variable <span class="math inline">\(E(X)=p\)</span>. The sample is <span class="math inline">\(\bar{x} = \frac{21}{25}\)</span>. Using the method of moments, we set the sample mean equal to the population mean. We have <span class="math inline">\(E(X) = \hat{p} = \bar{x} = \frac{21}{25}\)</span>. This is a natural estimate; we estimate our probability of success as the number of made free throws divided by the number of shots. As a side note, this is an unbiased estimator since
 <span class="math display">\[
 E(\hat{p})=E\left( \sum{\frac{X_i}{n}} \right)

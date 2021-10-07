@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-05" />
+<meta name="date" content="2021-10-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -813,8 +813,8 @@ div.csl-indent {
 <h3><span class="header-section-number">24.3.1</span> HELP example</h3>
 <p>Let’s return to Health Evaluation and Linkage to Primary Care data set, <code>HELPrct</code> in the <code>mosaicData</code> package. Previously, we looked at the differences in ages between males and females, let’s now do the same thing for the variable <code>substance</code>, the primary substance of abuse.</p>
 <p>There are three substances: alcohol, cocaine, and heroin. We’d like to know if there is evidence that these proportions differ for men and for women. In our data set, we observe modest differences.</p>
-<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="ADDTESTS.html#cb707-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>( substance <span class="sc">~</span> sex, <span class="at">data =</span> HELPrct,</span>
-<span id="cb707-2"><a href="ADDTESTS.html#cb707-2" aria-hidden="true" tabindex="-1"></a><span class="at">format=</span><span class="st">&quot;prop&quot;</span>, <span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="ADDTESTS.html#cb709-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>( substance <span class="sc">~</span> sex, <span class="at">data =</span> HELPrct,</span>
+<span id="cb709-2"><a href="ADDTESTS.html#cb709-2" aria-hidden="true" tabindex="-1"></a><span class="at">format=</span><span class="st">&quot;prop&quot;</span>, <span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##          sex
 ## substance    female      male
 ##   alcohol 0.3364486 0.4075145
@@ -896,32 +896,32 @@ X^2= {(22-19.5)^2\over 19.5}+{(17-19.5)^2\over 19.5}+{(18-20.5)^2\over 20.5}+{(2
 <div id="p-value" class="section level4" number="24.3.2.1">
 <h4><span class="header-section-number">24.3.2.1</span> p-value</h4>
 <p>To find the Pearson chi-squared statistic (<span class="math inline">\(X^2\)</span>) and corresponding p-value from the chi-squared distribution in <code>R</code> use the following code:</p>
-<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="ADDTESTS.html#cb709-1" aria-hidden="true" tabindex="-1"></a>e<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">19.5</span>,<span class="fl">19.5</span>,<span class="fl">20.5</span>,<span class="fl">20.5</span>)</span>
-<span id="cb709-2"><a href="ADDTESTS.html#cb709-2" aria-hidden="true" tabindex="-1"></a>o<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">22</span>,<span class="dv">17</span>,<span class="dv">18</span>,<span class="dv">23</span>)</span>
-<span id="cb709-3"><a href="ADDTESTS.html#cb709-3" aria-hidden="true" tabindex="-1"></a>x2<span class="ot">&lt;-</span><span class="fu">sum</span>(((o<span class="sc">-</span>e)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>e)</span>
-<span id="cb709-4"><a href="ADDTESTS.html#cb709-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb709-5"><a href="ADDTESTS.html#cb709-5" aria-hidden="true" tabindex="-1"></a>x2</span></code></pre></div>
+<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="ADDTESTS.html#cb711-1" aria-hidden="true" tabindex="-1"></a>e<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">19.5</span>,<span class="fl">19.5</span>,<span class="fl">20.5</span>,<span class="fl">20.5</span>)</span>
+<span id="cb711-2"><a href="ADDTESTS.html#cb711-2" aria-hidden="true" tabindex="-1"></a>o<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">22</span>,<span class="dv">17</span>,<span class="dv">18</span>,<span class="dv">23</span>)</span>
+<span id="cb711-3"><a href="ADDTESTS.html#cb711-3" aria-hidden="true" tabindex="-1"></a>x2<span class="ot">&lt;-</span><span class="fu">sum</span>(((o<span class="sc">-</span>e)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>e)</span>
+<span id="cb711-4"><a href="ADDTESTS.html#cb711-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb711-5"><a href="ADDTESTS.html#cb711-5" aria-hidden="true" tabindex="-1"></a>x2</span></code></pre></div>
 <pre><code>## [1] 1.250782</code></pre>
-<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="ADDTESTS.html#cb711-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pchisq</span>(x2,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="ADDTESTS.html#cb713-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pchisq</span>(x2,<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 0.2634032</code></pre>
 <p>Note that the chi-squared test statistic is a sum of squared differences. Thus its distribution, a chi-squared, is skewed right and bounded on the left at zero. A departure from the null hypothesis means a value further in the right tail of the distribution. This is why we use one minus the CDF in the calculation of the p-value.</p>
 <p>Again, the <span class="math inline">\(p\)</span>-value suggests there is not enough evidence to say these two variables are dependent.</p>
 <p>Of course there is a built in function in <code>R</code> that will make the calculations easier. It is <code>chisq.test()</code>.</p>
-<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="ADDTESTS.html#cb713-1" aria-hidden="true" tabindex="-1"></a>coin <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">time =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Day&quot;</span>,<span class="dv">40</span>),<span class="fu">rep</span>(<span class="st">&quot;Night&quot;</span>,<span class="dv">40</span>)),</span>
-<span id="cb713-2"><a href="ADDTESTS.html#cb713-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">result =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Heads&quot;</span>,<span class="st">&quot;Tails&quot;</span>),<span class="fu">c</span>(<span class="dv">22</span>,<span class="dv">18</span>)),<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Heads&quot;</span>,<span class="st">&quot;Tails&quot;</span>),<span class="fu">c</span>(<span class="dv">17</span>,<span class="dv">23</span>))))</span></code></pre></div>
-<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="ADDTESTS.html#cb714-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>time<span class="sc">+</span>result,<span class="at">data=</span>coin)</span></code></pre></div>
+<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb715-1"><a href="ADDTESTS.html#cb715-1" aria-hidden="true" tabindex="-1"></a>coin <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">time =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Day&quot;</span>,<span class="dv">40</span>),<span class="fu">rep</span>(<span class="st">&quot;Night&quot;</span>,<span class="dv">40</span>)),</span>
+<span id="cb715-2"><a href="ADDTESTS.html#cb715-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">result =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Heads&quot;</span>,<span class="st">&quot;Tails&quot;</span>),<span class="fu">c</span>(<span class="dv">22</span>,<span class="dv">18</span>)),<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Heads&quot;</span>,<span class="st">&quot;Tails&quot;</span>),<span class="fu">c</span>(<span class="dv">17</span>,<span class="dv">23</span>))))</span></code></pre></div>
+<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb716-1"><a href="ADDTESTS.html#cb716-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>time<span class="sc">+</span>result,<span class="at">data=</span>coin)</span></code></pre></div>
 <pre><code>##        result
 ## time    Heads Tails
 ##   Day      22    18
 ##   Night    17    23</code></pre>
-<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb716-1"><a href="ADDTESTS.html#cb716-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">tally</span>(<span class="sc">~</span>time<span class="sc">+</span>result,<span class="at">data=</span>coin),<span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="ADDTESTS.html#cb718-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">tally</span>(<span class="sc">~</span>time<span class="sc">+</span>result,<span class="at">data=</span>coin),<span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  tally(~time + result, data = coin)
 ## X-squared = 1.2508, df = 1, p-value = 0.2634</code></pre>
 <p>If you just want the test statistic, which we will for permutation tests, then use:</p>
-<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="ADDTESTS.html#cb718-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq</span>(<span class="sc">~</span>time<span class="sc">+</span>result,<span class="at">data=</span>coin)</span></code></pre></div>
+<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="ADDTESTS.html#cb720-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq</span>(<span class="sc">~</span>time<span class="sc">+</span>result,<span class="at">data=</span>coin)</span></code></pre></div>
 <pre><code>## X.squared 
 ##  1.250782</code></pre>
 </div>
@@ -946,22 +946,22 @@ X^2=\sum_{i=1}^r \sum_{j=1}^c {(n_{ij}-e_{ij})^2\over e_{ij}}
 <span class="math inline">\(H_a\)</span>: The variables sex and substance are dependent.</p>
 <p>We will use the chi-squared test statistic as our test statistic. We could use a different test statistic such as using the absolute value function instead of the square function but then we would need to write a custom function.</p>
 <p>First, let’s get the observed value for the test statistic:</p>
-<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="ADDTESTS.html#cb720-1" aria-hidden="true" tabindex="-1"></a>obs <span class="ot">&lt;-</span> <span class="fu">chisq</span>(substance<span class="sc">~</span>sex,<span class="at">data=</span>HELPrct)</span>
-<span id="cb720-2"><a href="ADDTESTS.html#cb720-2" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
+<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="ADDTESTS.html#cb722-1" aria-hidden="true" tabindex="-1"></a>obs <span class="ot">&lt;-</span> <span class="fu">chisq</span>(substance<span class="sc">~</span>sex,<span class="at">data=</span>HELPrct)</span>
+<span id="cb722-2"><a href="ADDTESTS.html#cb722-2" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
 <pre><code>## X.squared 
 ##  2.026361</code></pre>
 <p>Next we will use a permutation randomization process to find the sampling distribution of our test statistics.</p>
-<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="ADDTESTS.html#cb722-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2720</span>)</span>
-<span id="cb722-2"><a href="ADDTESTS.html#cb722-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">chisq</span>(substance<span class="sc">~</span><span class="fu">shuffle</span>(sex),<span class="at">data=</span>HELPrct)</span></code></pre></div>
+<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="ADDTESTS.html#cb724-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2720</span>)</span>
+<span id="cb724-2"><a href="ADDTESTS.html#cb724-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">chisq</span>(substance<span class="sc">~</span><span class="fu">shuffle</span>(sex),<span class="at">data=</span>HELPrct)</span></code></pre></div>
 <p>Figure <a href="ADDTESTS.html#fig:hist241-fig">24.1</a> is a visual summary of the results which helps us to gain some intuition about the p-value. We also plot the theoretical chi-squared distribution as a dark blue overlay.</p>
-<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb723-1"><a href="ADDTESTS.html#cb723-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb723-2"><a href="ADDTESTS.html#cb723-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dhistogram</span>(<span class="sc">~</span>X.squared,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb723-3"><a href="ADDTESTS.html#cb723-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> obs,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb723-4"><a href="ADDTESTS.html#cb723-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb723-5"><a href="ADDTESTS.html#cb723-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dist</span>(<span class="st">&quot;chisq&quot;</span>,<span class="at">df=</span><span class="dv">2</span>,<span class="at">color=</span><span class="st">&quot;darkblue&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb723-6"><a href="ADDTESTS.html#cb723-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Sampling distribution of chi-squared test statistic&quot;</span>,</span>
-<span id="cb723-7"><a href="ADDTESTS.html#cb723-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">&quot;For the variables sex and substance in the HELPrct data set&quot;</span>,</span>
-<span id="cb723-8"><a href="ADDTESTS.html#cb723-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Test statistic&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="ADDTESTS.html#cb725-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb725-2"><a href="ADDTESTS.html#cb725-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dhistogram</span>(<span class="sc">~</span>X.squared,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb725-3"><a href="ADDTESTS.html#cb725-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> obs,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb725-4"><a href="ADDTESTS.html#cb725-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb725-5"><a href="ADDTESTS.html#cb725-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dist</span>(<span class="st">&quot;chisq&quot;</span>,<span class="at">df=</span><span class="dv">2</span>,<span class="at">color=</span><span class="st">&quot;darkblue&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb725-6"><a href="ADDTESTS.html#cb725-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Sampling distribution of chi-squared test statistic&quot;</span>,</span>
+<span id="cb725-7"><a href="ADDTESTS.html#cb725-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">&quot;For the variables sex and substance in the HELPrct data set&quot;</span>,</span>
+<span id="cb725-8"><a href="ADDTESTS.html#cb725-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Test statistic&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:hist241-fig"></span>
 <img src="24-Additional-Hypothesis-Tests_files/figure-html/hist241-fig-1.png" alt="Sampling distribution of chi-squared statistic from randomization test." width="672" />
 <p class="caption">
@@ -969,7 +969,7 @@ Figure 24.1: Sampling distribution of chi-squared statistic from randomization t
 </p>
 </div>
 <p>We find the p-value using <code>prop1()</code>.</p>
-<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="ADDTESTS.html#cb724-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop1</span>((<span class="sc">~</span>X.squared<span class="sc">&gt;=</span>obs),<span class="at">data=</span>results)</span></code></pre></div>
+<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="ADDTESTS.html#cb726-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop1</span>((<span class="sc">~</span>X.squared<span class="sc">&gt;=</span>obs),<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>## prop_TRUE 
 ## 0.3536464</code></pre>
 <p>We don’t double this value because the chi-squared is a one sided test due to the fact that we squared the differences.</p>
@@ -978,7 +978,7 @@ Figure 24.1: Sampling distribution of chi-squared statistic from randomization t
 <div id="chi-squared-test" class="section level3" number="24.3.5">
 <h3><span class="header-section-number">24.3.5</span> Chi-squared test</h3>
 <p>We will jump straight to using the function <code>chisq.test()</code>.</p>
-<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="ADDTESTS.html#cb726-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">tally</span>(substance<span class="sc">~</span>sex,<span class="at">data=</span>HELPrct))</span></code></pre></div>
+<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="ADDTESTS.html#cb728-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">tally</span>(substance<span class="sc">~</span>sex,<span class="at">data=</span>HELPrct))</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
@@ -1007,9 +1007,9 @@ Figure 24.1: Sampling distribution of chi-squared statistic from randomization t
 <h3><span class="header-section-number">24.4.1</span> MLB batting performance</h3>
 <p>We would like to discern whether there are real differences between the batting performance of baseball players according to their position: outfielder (<code>OF</code>), infielder (<code>IF</code>), designated hitter (<code>DH</code>), and catcher (<code>C</code>). We will use a data set <code>mlbbat10</code> from the <code>openintro</code> package. The data is in the file <code>mlb_obp.csv</code> which has been modified from the original data set to include only those with more than 200 at bats. The batting performance will be measured with the on-base percentage. The on-base percentage roughly represents the fraction of the time a player successfully gets on base or hits a home run.</p>
 <p>Read the data into <code>R</code>.</p>
-<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="ADDTESTS.html#cb728-1" aria-hidden="true" tabindex="-1"></a>mlb_obp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/mlb_obp.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="ADDTESTS.html#cb730-1" aria-hidden="true" tabindex="-1"></a>mlb_obp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/mlb_obp.csv&quot;</span>)</span></code></pre></div>
 <p>Let’s review our data:</p>
-<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="ADDTESTS.html#cb729-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(mlb_obp)</span></code></pre></div>
+<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb731-1"><a href="ADDTESTS.html#cb731-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(mlb_obp)</span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
 ##       name     class levels   n missing
@@ -1023,9 +1023,9 @@ Figure 24.1: Sampling distribution of chi-squared statistic from randomization t
 ##      missing
 ## ...1       0</code></pre>
 <p>Next change the variable <code>position</code> to a factor to give us greater control.</p>
-<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb731-1"><a href="ADDTESTS.html#cb731-1" aria-hidden="true" tabindex="-1"></a>mlb_obp <span class="ot">&lt;-</span> mlb_obp <span class="sc">%&gt;%</span></span>
-<span id="cb731-2"><a href="ADDTESTS.html#cb731-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">position=</span><span class="fu">as.factor</span>(position))</span></code></pre></div>
-<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="ADDTESTS.html#cb732-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(obp<span class="sc">~</span>position,<span class="at">data=</span>mlb_obp)</span></code></pre></div>
+<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb733-1"><a href="ADDTESTS.html#cb733-1" aria-hidden="true" tabindex="-1"></a>mlb_obp <span class="ot">&lt;-</span> mlb_obp <span class="sc">%&gt;%</span></span>
+<span id="cb733-2"><a href="ADDTESTS.html#cb733-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">position=</span><span class="fu">as.factor</span>(position))</span></code></pre></div>
+<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="ADDTESTS.html#cb734-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(obp<span class="sc">~</span>position,<span class="at">data=</span>mlb_obp)</span></code></pre></div>
 <pre><code>##   position   min      Q1 median      Q3   max      mean         sd   n missing
 ## 1        C 0.219 0.30000 0.3180 0.35700 0.405 0.3226154 0.04513175  39       0
 ## 2       DH 0.287 0.31625 0.3525 0.36950 0.412 0.3477857 0.03603669  14       0
@@ -1044,11 +1044,11 @@ Write the null and corresponding alternative hypotheses in plain language.<a hre
 Construct side-by-side boxplots.</p>
 </blockquote>
 <p>Figure <a href="ADDTESTS.html#fig:box241-fig">24.2</a> is the side-by-side boxplots.</p>
-<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="ADDTESTS.html#cb734-1" aria-hidden="true" tabindex="-1"></a>mlb_obp <span class="sc">%&gt;%</span></span>
-<span id="cb734-2"><a href="ADDTESTS.html#cb734-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_boxplot</span>(obp<span class="sc">~</span>position) <span class="sc">%&gt;%</span></span>
-<span id="cb734-3"><a href="ADDTESTS.html#cb734-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Position Played&quot;</span>,<span class="at">y=</span><span class="st">&quot;On Base Percentage&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb734-4"><a href="ADDTESTS.html#cb734-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb734-5"><a href="ADDTESTS.html#cb734-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Comparison of OBP for different positions&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="ADDTESTS.html#cb736-1" aria-hidden="true" tabindex="-1"></a>mlb_obp <span class="sc">%&gt;%</span></span>
+<span id="cb736-2"><a href="ADDTESTS.html#cb736-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_boxplot</span>(obp<span class="sc">~</span>position) <span class="sc">%&gt;%</span></span>
+<span id="cb736-3"><a href="ADDTESTS.html#cb736-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Position Played&quot;</span>,<span class="at">y=</span><span class="st">&quot;On Base Percentage&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb736-4"><a href="ADDTESTS.html#cb736-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb736-5"><a href="ADDTESTS.html#cb736-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Comparison of OBP for different positions&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:box241-fig"></span>
 <img src="24-Additional-Hypothesis-Tests_files/figure-html/box241-fig-1.png" alt="Boxplots of on base percentage by position played." width="672" />
 <p class="caption">
@@ -1098,10 +1098,10 @@ If the data are a simple random sample from less than 10% of the population, thi
 As with one- and two-sample testing for means, the normality assumption is especially important when the sample size is quite small. The normal probability plots for each group of the MLB data are shown below; there is some deviation from normality for infielders, but this isn’t a substantial concern since there are over 150 observations in that group and the outliers are not extreme. Sometimes in ANOVA there are so many groups or so few observations per group that checking normality for each group isn’t reasonable. One solution is to combine the groups into one set of data. First calculate the <strong>residuals</strong> of the baseball data, which are calculated by taking the observed values and subtracting the corresponding group means. For example, an outfielder with OBP of 0.435 would have a residual of <span class="math inline">\(0.435 - \bar{x}_{OF} = 0.082\)</span>. Then to check the normality condition, create a normal probability plot using all the residuals simultaneously.</p>
 </blockquote>
 <p>Figure <a href="ADDTESTS.html#fig:qq241-fig">24.3</a> is the quantile-quantile plot to assess the normality assumption.</p>
-<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb735-1"><a href="ADDTESTS.html#cb735-1" aria-hidden="true" tabindex="-1"></a>mlb_obp <span class="sc">%&gt;%</span></span>
-<span id="cb735-2"><a href="ADDTESTS.html#cb735-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_qq</span>(<span class="sc">~</span>obp<span class="sc">|</span>position) <span class="sc">%&gt;%</span></span>
-<span id="cb735-3"><a href="ADDTESTS.html#cb735-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_qqline</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb735-4"><a href="ADDTESTS.html#cb735-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="ADDTESTS.html#cb737-1" aria-hidden="true" tabindex="-1"></a>mlb_obp <span class="sc">%&gt;%</span></span>
+<span id="cb737-2"><a href="ADDTESTS.html#cb737-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_qq</span>(<span class="sc">~</span>obp<span class="sc">|</span>position) <span class="sc">%&gt;%</span></span>
+<span id="cb737-3"><a href="ADDTESTS.html#cb737-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_qqline</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb737-4"><a href="ADDTESTS.html#cb737-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span id="fig:qq241-fig"></span>
 <img src="24-Additional-Hypothesis-Tests_files/figure-html/qq241-fig-1.png" alt="Quantile-quantile plot for two-sample test of means." width="672" />
 <p class="caption">
@@ -1117,19 +1117,19 @@ The last assumption is that the variance in the groups is about equal from one g
 <p><span class="math inline">\(H_0\)</span>: The average on-base percentage is equal across the four positions.<br />
 <span class="math inline">\(H_A\)</span>: The average on-base percentage varies across some (or all) groups.</p>
 <p>The test statistic is the ratio of the between means variance and the pooled within group variance.</p>
-<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="ADDTESTS.html#cb736-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(obp<span class="sc">~</span>position,<span class="at">data=</span>mlb_obp))</span></code></pre></div>
+<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="ADDTESTS.html#cb738-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(obp<span class="sc">~</span>position,<span class="at">data=</span>mlb_obp))</span></code></pre></div>
 <pre><code>##              Df Sum Sq  Mean Sq F value Pr(&gt;F)
 ## position      3 0.0076 0.002519   1.994  0.115
 ## Residuals   323 0.4080 0.001263</code></pre>
 <p>The table contains all the information we need. It has the degrees of freedom, mean squared errors, test statistic, and p-value. The test statistic is 1.994, <span class="math inline">\(\frac{0.002519}{0.001263}=1.994\)</span>. The p-value is larger than 0.05, indicating the evidence is not strong enough to reject the null hypothesis at a significance level of 0.05. That is, the data do not provide strong evidence that the average on-base percentage varies by player’s primary field position.</p>
 <p>The calculation of the p-value is</p>
-<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="ADDTESTS.html#cb738-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(<span class="fl">1.994</span>,<span class="dv">3</span>,<span class="dv">323</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="ADDTESTS.html#cb740-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(<span class="fl">1.994</span>,<span class="dv">3</span>,<span class="dv">323</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1147443</code></pre>
 <p>Figure <a href="ADDTESTS.html#fig:dens242-fig">24.4</a> is a plot of the <span class="math inline">\(F\)</span> distribution.</p>
-<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="ADDTESTS.html#cb740-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;f&quot;</span>,<span class="at">df1=</span><span class="dv">3</span>,<span class="at">df2=</span><span class="dv">323</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb740-2"><a href="ADDTESTS.html#cb740-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> <span class="fl">1.994</span>,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb740-3"><a href="ADDTESTS.html#cb740-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb740-4"><a href="ADDTESTS.html#cb740-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;F distribution&quot;</span>,<span class="at">x=</span><span class="st">&quot;F value&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="ADDTESTS.html#cb742-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;f&quot;</span>,<span class="at">df1=</span><span class="dv">3</span>,<span class="at">df2=</span><span class="dv">323</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb742-2"><a href="ADDTESTS.html#cb742-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> <span class="fl">1.994</span>,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb742-3"><a href="ADDTESTS.html#cb742-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb742-4"><a href="ADDTESTS.html#cb742-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;F distribution&quot;</span>,<span class="at">x=</span><span class="st">&quot;F value&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:dens242-fig"></span>
 <img src="24-Additional-Hypothesis-Tests_files/figure-html/dens242-fig-1.png" alt="The F distribution" width="672" />
 <p class="caption">
@@ -1141,51 +1141,51 @@ Figure 24.4: The F distribution
 <h4><span class="header-section-number">24.4.2.2</span> Permutation test</h4>
 <p>We can repeat the same analysis using a permutation test. We will first run it using a ratio of variances and then for interest as a difference in variances.</p>
 <p>We need a way to extract the mean squared errors from the output. There is a package called <code>broom</code> and within it a function called <code>tidy()</code> that cleans up output from functions and makes them into data frames.</p>
-<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb741-1"><a href="ADDTESTS.html#cb741-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
-<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="ADDTESTS.html#cb742-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aov</span>(obp<span class="sc">~</span>position,<span class="at">data=</span>mlb_obp) <span class="sc">%&gt;%</span></span>
-<span id="cb742-2"><a href="ADDTESTS.html#cb742-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb743-1"><a href="ADDTESTS.html#cb743-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
+<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb744-1"><a href="ADDTESTS.html#cb744-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aov</span>(obp<span class="sc">~</span>position,<span class="at">data=</span>mlb_obp) <span class="sc">%&gt;%</span></span>
+<span id="cb744-2"><a href="ADDTESTS.html#cb744-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 6
 ##   term         df   sumsq  meansq statistic p.value
 ##   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 position      3 0.00756 0.00252      1.99   0.115
 ## 2 Residuals   323 0.408   0.00126     NA     NA</code></pre>
 <p>Let’s summarize the values in the <code>meansq</code> column and develop our test statistic, we could just pull the statistic but we want to be able to generate a difference test statistic as well.</p>
-<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb744-1"><a href="ADDTESTS.html#cb744-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aov</span>(obp<span class="sc">~</span>position,<span class="at">data=</span>mlb_obp) <span class="sc">%&gt;%</span></span>
-<span id="cb744-2"><a href="ADDTESTS.html#cb744-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb744-3"><a href="ADDTESTS.html#cb744-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">stat=</span>meansq[<span class="dv">1</span>]<span class="sc">/</span>meansq[<span class="dv">2</span>]) </span></code></pre></div>
+<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="ADDTESTS.html#cb746-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aov</span>(obp<span class="sc">~</span>position,<span class="at">data=</span>mlb_obp) <span class="sc">%&gt;%</span></span>
+<span id="cb746-2"><a href="ADDTESTS.html#cb746-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb746-3"><a href="ADDTESTS.html#cb746-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">stat=</span>meansq[<span class="dv">1</span>]<span class="sc">/</span>meansq[<span class="dv">2</span>]) </span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##    stat
 ##   &lt;dbl&gt;
 ## 1  1.99</code></pre>
 <p>Now we are ready. First get our test statistic using <code>pull()</code>.</p>
-<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="ADDTESTS.html#cb746-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">aov</span>(obp<span class="sc">~</span>position,<span class="at">data=</span>mlb_obp) <span class="sc">%&gt;%</span></span>
-<span id="cb746-2"><a href="ADDTESTS.html#cb746-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb746-3"><a href="ADDTESTS.html#cb746-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">stat=</span>meansq[<span class="dv">1</span>]<span class="sc">/</span>meansq[<span class="dv">2</span>]) <span class="sc">%&gt;%</span></span>
-<span id="cb746-4"><a href="ADDTESTS.html#cb746-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>()</span>
-<span id="cb746-5"><a href="ADDTESTS.html#cb746-5" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
+<div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb748-1"><a href="ADDTESTS.html#cb748-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">aov</span>(obp<span class="sc">~</span>position,<span class="at">data=</span>mlb_obp) <span class="sc">%&gt;%</span></span>
+<span id="cb748-2"><a href="ADDTESTS.html#cb748-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb748-3"><a href="ADDTESTS.html#cb748-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">stat=</span>meansq[<span class="dv">1</span>]<span class="sc">/</span>meansq[<span class="dv">2</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb748-4"><a href="ADDTESTS.html#cb748-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>()</span>
+<span id="cb748-5"><a href="ADDTESTS.html#cb748-5" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
 <pre><code>## [1] 1.994349</code></pre>
 <p>Let’s put our test statistic into a function to include shuffling the <code>position</code> variable.</p>
-<div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb748-1"><a href="ADDTESTS.html#cb748-1" aria-hidden="true" tabindex="-1"></a>f_stat <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb748-2"><a href="ADDTESTS.html#cb748-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aov</span>(obp<span class="sc">~</span><span class="fu">shuffle</span>(position),<span class="at">data=</span>x) <span class="sc">%&gt;%</span></span>
-<span id="cb748-3"><a href="ADDTESTS.html#cb748-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb748-4"><a href="ADDTESTS.html#cb748-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">stat=</span>meansq[<span class="dv">1</span>]<span class="sc">/</span>meansq[<span class="dv">2</span>]) <span class="sc">%&gt;%</span></span>
-<span id="cb748-5"><a href="ADDTESTS.html#cb748-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>()</span>
-<span id="cb748-6"><a href="ADDTESTS.html#cb748-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb749"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb749-1"><a href="ADDTESTS.html#cb749-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f_stat</span>(mlb_obp)</span></code></pre></div>
+<div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb750-1"><a href="ADDTESTS.html#cb750-1" aria-hidden="true" tabindex="-1"></a>f_stat <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb750-2"><a href="ADDTESTS.html#cb750-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aov</span>(obp<span class="sc">~</span><span class="fu">shuffle</span>(position),<span class="at">data=</span>x) <span class="sc">%&gt;%</span></span>
+<span id="cb750-3"><a href="ADDTESTS.html#cb750-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb750-4"><a href="ADDTESTS.html#cb750-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">stat=</span>meansq[<span class="dv">1</span>]<span class="sc">/</span>meansq[<span class="dv">2</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb750-5"><a href="ADDTESTS.html#cb750-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>()</span>
+<span id="cb750-6"><a href="ADDTESTS.html#cb750-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb751"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb751-1"><a href="ADDTESTS.html#cb751-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f_stat</span>(mlb_obp)</span></code></pre></div>
 <pre><code>## [1] 0.4160649</code></pre>
 <p>Next we run the randomization test using the <code>do()</code> function. There is an easier way to do all of this work with the <code>purrr</code> package but we will not introduce those ideas in this course.</p>
-<div class="sourceCode" id="cb751"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb751-1"><a href="ADDTESTS.html#cb751-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5321</span>)</span>
-<span id="cb751-2"><a href="ADDTESTS.html#cb751-2" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span>(<span class="fu">f_stat</span>(mlb_obp))</span></code></pre></div>
+<div class="sourceCode" id="cb753"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb753-1"><a href="ADDTESTS.html#cb753-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5321</span>)</span>
+<span id="cb753-2"><a href="ADDTESTS.html#cb753-2" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span>(<span class="fu">f_stat</span>(mlb_obp))</span></code></pre></div>
 <p>That was slow in executing because we are using <code>tidyverse</code> functions that are slow. Again, we could optimize using the <code>purrr</code> package.</p>
 <p>Figure <a href="ADDTESTS.html#fig:hist243-fig">24.5</a> is a plot of the sampling distribution from the randomization test.</p>
-<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="ADDTESTS.html#cb752-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb752-2"><a href="ADDTESTS.html#cb752-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dhistogram</span>(<span class="sc">~</span>result,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb752-3"><a href="ADDTESTS.html#cb752-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dist</span>(<span class="st">&quot;f&quot;</span>,<span class="at">df1=</span><span class="dv">3</span>,<span class="at">df2=</span><span class="dv">323</span>,<span class="at">color=</span><span class="st">&quot;darkblue&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb752-4"><a href="ADDTESTS.html#cb752-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> <span class="fl">1.994</span>,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb752-5"><a href="ADDTESTS.html#cb752-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb752-6"><a href="ADDTESTS.html#cb752-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Randomization test sampling distribution&quot;</span>,</span>
-<span id="cb752-7"><a href="ADDTESTS.html#cb752-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">&quot;F distribution is overlayed in blue&quot;</span>,</span>
-<span id="cb752-8"><a href="ADDTESTS.html#cb752-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Test statistic&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="ADDTESTS.html#cb754-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb754-2"><a href="ADDTESTS.html#cb754-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dhistogram</span>(<span class="sc">~</span>result,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb754-3"><a href="ADDTESTS.html#cb754-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dist</span>(<span class="st">&quot;f&quot;</span>,<span class="at">df1=</span><span class="dv">3</span>,<span class="at">df2=</span><span class="dv">323</span>,<span class="at">color=</span><span class="st">&quot;darkblue&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb754-4"><a href="ADDTESTS.html#cb754-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> <span class="fl">1.994</span>,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb754-5"><a href="ADDTESTS.html#cb754-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb754-6"><a href="ADDTESTS.html#cb754-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Randomization test sampling distribution&quot;</span>,</span>
+<span id="cb754-7"><a href="ADDTESTS.html#cb754-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">&quot;F distribution is overlayed in blue&quot;</span>,</span>
+<span id="cb754-8"><a href="ADDTESTS.html#cb754-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Test statistic&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:hist243-fig"></span>
 <img src="24-Additional-Hypothesis-Tests_files/figure-html/hist243-fig-1.png" alt="The sampling distribution of the randomization test statistic." width="672" />
 <p class="caption">
@@ -1193,27 +1193,27 @@ Figure 24.5: The sampling distribution of the randomization test statistic.
 </p>
 </div>
 <p>The p-value is</p>
-<div class="sourceCode" id="cb753"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb753-1"><a href="ADDTESTS.html#cb753-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop1</span>(<span class="sc">~</span>(result<span class="sc">&gt;=</span>obs),results)</span></code></pre></div>
+<div class="sourceCode" id="cb755"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb755-1"><a href="ADDTESTS.html#cb755-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop1</span>(<span class="sc">~</span>(result<span class="sc">&gt;=</span>obs),results)</span></code></pre></div>
 <pre><code>## prop_TRUE 
 ## 0.0959041</code></pre>
 <p>This is a similar p-value from the ANOVA output.</p>
 <p>Now let’s repeat the analysis but use the difference in variance as our test statistic.</p>
-<div class="sourceCode" id="cb755"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb755-1"><a href="ADDTESTS.html#cb755-1" aria-hidden="true" tabindex="-1"></a>f_stat2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb755-2"><a href="ADDTESTS.html#cb755-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aov</span>(obp<span class="sc">~</span><span class="fu">shuffle</span>(position),<span class="at">data=</span>x) <span class="sc">%&gt;%</span></span>
-<span id="cb755-3"><a href="ADDTESTS.html#cb755-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb755-4"><a href="ADDTESTS.html#cb755-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">stat=</span>meansq[<span class="dv">1</span>]<span class="sc">-</span>meansq[<span class="dv">2</span>]) <span class="sc">%&gt;%</span></span>
-<span id="cb755-5"><a href="ADDTESTS.html#cb755-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(stat)</span>
-<span id="cb755-6"><a href="ADDTESTS.html#cb755-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="ADDTESTS.html#cb756-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5321</span>)</span>
-<span id="cb756-2"><a href="ADDTESTS.html#cb756-2" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span>(<span class="fu">f_stat2</span>(mlb_obp))</span></code></pre></div>
+<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="ADDTESTS.html#cb757-1" aria-hidden="true" tabindex="-1"></a>f_stat2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb757-2"><a href="ADDTESTS.html#cb757-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aov</span>(obp<span class="sc">~</span><span class="fu">shuffle</span>(position),<span class="at">data=</span>x) <span class="sc">%&gt;%</span></span>
+<span id="cb757-3"><a href="ADDTESTS.html#cb757-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb757-4"><a href="ADDTESTS.html#cb757-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">stat=</span>meansq[<span class="dv">1</span>]<span class="sc">-</span>meansq[<span class="dv">2</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb757-5"><a href="ADDTESTS.html#cb757-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(stat)</span>
+<span id="cb757-6"><a href="ADDTESTS.html#cb757-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="ADDTESTS.html#cb758-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5321</span>)</span>
+<span id="cb758-2"><a href="ADDTESTS.html#cb758-2" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span>(<span class="fu">f_stat2</span>(mlb_obp))</span></code></pre></div>
 <p>Figure <a href="ADDTESTS.html#fig:hist244-fig">24.6</a> is the plot of the sampling distribution of the difference in variance.</p>
-<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="ADDTESTS.html#cb757-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb757-2"><a href="ADDTESTS.html#cb757-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dhistogram</span>(<span class="sc">~</span>result,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb757-3"><a href="ADDTESTS.html#cb757-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.001255972</span>,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb757-4"><a href="ADDTESTS.html#cb757-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb757-5"><a href="ADDTESTS.html#cb757-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Randomization test sampling distribution&quot;</span>,</span>
-<span id="cb757-6"><a href="ADDTESTS.html#cb757-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">&quot;Test statistic is the difference in variances&quot;</span>,</span>
-<span id="cb757-7"><a href="ADDTESTS.html#cb757-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Test statistic&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb759"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb759-1"><a href="ADDTESTS.html#cb759-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb759-2"><a href="ADDTESTS.html#cb759-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dhistogram</span>(<span class="sc">~</span>result,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb759-3"><a href="ADDTESTS.html#cb759-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.001255972</span>,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb759-4"><a href="ADDTESTS.html#cb759-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb759-5"><a href="ADDTESTS.html#cb759-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Randomization test sampling distribution&quot;</span>,</span>
+<span id="cb759-6"><a href="ADDTESTS.html#cb759-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">&quot;Test statistic is the difference in variances&quot;</span>,</span>
+<span id="cb759-7"><a href="ADDTESTS.html#cb759-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Test statistic&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:hist244-fig"></span>
 <img src="24-Additional-Hypothesis-Tests_files/figure-html/hist244-fig-1.png" alt="The sampling distribution of the difference in variance randomization test statistic." width="672" />
 <p class="caption">
@@ -1221,14 +1221,14 @@ Figure 24.6: The sampling distribution of the difference in variance randomizati
 </p>
 </div>
 <p>We need the observed value to find a p-value.</p>
-<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="ADDTESTS.html#cb758-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">aov</span>(obp<span class="sc">~</span>position,<span class="at">data=</span>mlb_obp) <span class="sc">%&gt;%</span></span>
-<span id="cb758-2"><a href="ADDTESTS.html#cb758-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb758-3"><a href="ADDTESTS.html#cb758-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">stat=</span>meansq[<span class="dv">1</span>]<span class="sc">-</span>meansq[<span class="dv">2</span>]) <span class="sc">%&gt;%</span></span>
-<span id="cb758-4"><a href="ADDTESTS.html#cb758-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(stat)</span>
-<span id="cb758-5"><a href="ADDTESTS.html#cb758-5" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
+<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="ADDTESTS.html#cb760-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">aov</span>(obp<span class="sc">~</span>position,<span class="at">data=</span>mlb_obp) <span class="sc">%&gt;%</span></span>
+<span id="cb760-2"><a href="ADDTESTS.html#cb760-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb760-3"><a href="ADDTESTS.html#cb760-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">stat=</span>meansq[<span class="dv">1</span>]<span class="sc">-</span>meansq[<span class="dv">2</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb760-4"><a href="ADDTESTS.html#cb760-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(stat)</span>
+<span id="cb760-5"><a href="ADDTESTS.html#cb760-5" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
 <pre><code>## [1] 0.001255972</code></pre>
 <p>The p-value is</p>
-<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="ADDTESTS.html#cb760-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop1</span>(<span class="sc">~</span>(result<span class="sc">&gt;=</span>obs),results)</span></code></pre></div>
+<div class="sourceCode" id="cb762"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb762-1"><a href="ADDTESTS.html#cb762-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop1</span>(<span class="sc">~</span>(result<span class="sc">&gt;=</span>obs),results)</span></code></pre></div>
 <pre><code>## prop_TRUE 
 ## 0.0959041</code></pre>
 <p>Again a similar p-value.</p>

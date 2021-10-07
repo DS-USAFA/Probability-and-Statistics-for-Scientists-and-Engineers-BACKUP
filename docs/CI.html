@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-05" />
+<meta name="date" content="2021-10-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -823,13 +823,13 @@ When the sampling distribution of a point estimate can reasonably be modeled as 
 <p><span class="math display">\[ \hat{\theta} \pm\ 1.96 \times SE_{\hat{\theta}}\]</span>
 Where <span class="math inline">\(\hat{\theta}\)</span> is our estimate of the parameter and <span class="math inline">\(SE_{\hat{\theta}}\)</span> is the standard error of that estimate.</p>
 <p>We can be <strong>95% confident</strong> this interval captures the true value. The 1.96 can be found using the <code>qnorm()</code> function. If we want .95 in the middle, that leaves 0.025 in each tail. Thus we use .975 in the <code>qnorm()</code> function.</p>
-<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="CI.html#cb594-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(.<span class="dv">975</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="CI.html#cb596-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(.<span class="dv">975</span>)</span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
 Compute the area between -1.96 and 1.96 for a normal distribution with mean 0 and standard deviation 1.</p>
 </blockquote>
-<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="CI.html#cb596-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">1.96</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">1.96</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="CI.html#cb598-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">1.96</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">1.96</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9500042</code></pre>
 <p>In mathematical terms, the derivation of this confidence is as follows:</p>
 <p>Let <span class="math inline">\(X_1,X_2,...,X_n\)</span> be an iid sequence of random variables, each with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>. The central limit theorem tells us that
@@ -859,9 +859,9 @@ Figure 22.1: The pdf of a standard normal distribution showing idea of how to de
 \mu\in\left(\bar{x}\pm z_{\alpha/2}{\sigma\over\sqrt{n}}\right)
 \]</span></p>
 <p>In most applications, the most common value of <span class="math inline">\(\alpha\)</span> is 0.05. In that case, to construct a 95% confidence interval, we would need to find <span class="math inline">\(z_{0.025}\)</span> which can be found quickly with <code>qnorm()</code>:</p>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="CI.html#cb598-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="dv">1</span><span class="fl">-0.05</span><span class="sc">/</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="CI.html#cb600-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="dv">1</span><span class="fl">-0.05</span><span class="sc">/</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
-<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="CI.html#cb600-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(.<span class="dv">975</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="CI.html#cb602-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(.<span class="dv">975</span>)</span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
 <div id="unknown-variance" class="section level4" number="22.2.2.1">
 <h4><span class="header-section-number">22.2.2.1</span> Unknown Variance</h4>
@@ -882,17 +882,17 @@ Figure 22.1: The pdf of a standard normal distribution showing idea of how to de
 Find a 95% confidence interval for the body temperature data from last lesson.</p>
 </blockquote>
 <p>We need the mean, standard deviation, and sample size from this data. The following <code>R</code> code calculates the confidence interval, make sure you can follow the code.</p>
-<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="CI.html#cb602-1" aria-hidden="true" tabindex="-1"></a>temperature <span class="sc">%&gt;%</span></span>
-<span id="cb602-2"><a href="CI.html#cb602-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">favstats</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>.) <span class="sc">%&gt;%</span></span>
-<span id="cb602-3"><a href="CI.html#cb602-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mean,sd,n) <span class="sc">%&gt;%</span></span>
-<span id="cb602-4"><a href="CI.html#cb602-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">lower_bound=</span>mean<span class="sc">-</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">129</span>)<span class="sc">*</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(n),</span>
-<span id="cb602-5"><a href="CI.html#cb602-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">upper_bound=</span>mean<span class="sc">+</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">129</span>)<span class="sc">*</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="CI.html#cb604-1" aria-hidden="true" tabindex="-1"></a>temperature <span class="sc">%&gt;%</span></span>
+<span id="cb604-2"><a href="CI.html#cb604-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">favstats</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>.) <span class="sc">%&gt;%</span></span>
+<span id="cb604-3"><a href="CI.html#cb604-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mean,sd,n) <span class="sc">%&gt;%</span></span>
+<span id="cb604-4"><a href="CI.html#cb604-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">lower_bound=</span>mean<span class="sc">-</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">129</span>)<span class="sc">*</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(n),</span>
+<span id="cb604-5"><a href="CI.html#cb604-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">upper_bound=</span>mean<span class="sc">+</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">129</span>)<span class="sc">*</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(n))</span></code></pre></div>
 <pre><code>##   lower_bound upper_bound
 ## 1      98.122    98.37646</code></pre>
 <p>The 95% confidence interval for <span class="math inline">\(\mu\)</span> is <span class="math inline">\((98.12,98.38)\)</span>. We am 95% <em>confident</em> that <span class="math inline">\(\mu\)</span>, the average human body temperature, is in this interval. Also, we could say that 95% of similarly constructed intervals will contain the true mean, <span class="math inline">\(\mu\)</span>.</p>
 <p>There is a link between hypothesis testing and confidence intervals. Remember when we used this data in a hypothesis test, the null hypothesis was <span class="math inline">\(H_0\)</span>: The average body temperature is 98.6 <span class="math inline">\(\mu = 98.6\)</span>. This null hypothesized value is not in the interval, so we could reject the null hypothesis with this confidence interval.</p>
 <p>We could also use <code>R</code> to find the confidence interval and conduct the hypothesis test. Read about the function <code>t_test()</code> in the help menu to determine why we used the <code>mu</code> option.</p>
-<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="CI.html#cb604-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t_test</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature,<span class="at">mu=</span><span class="fl">98.6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="CI.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t_test</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature,<span class="at">mu=</span><span class="fl">98.6</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -905,7 +905,7 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 ## mean of x 
 ##  98.24923</code></pre>
 <p>Or if you just want the interval:</p>
-<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="CI.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(<span class="fu">t_test</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature,<span class="at">mu=</span><span class="fl">98.6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="CI.html#cb608-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(<span class="fu">t_test</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature,<span class="at">mu=</span><span class="fl">98.6</span>))</span></code></pre></div>
 <pre><code>##   mean of x  lower    upper level
 ## 1  98.24923 98.122 98.37646  0.95</code></pre>
 <p>In reviewing the hypothesis test for a single mean, you can see how this confidence interval was formed by <em>inverting</em> the test statistic. As a reminder, the following equation inverts the test statistic.</p>
@@ -919,13 +919,13 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 <p>In “one-sided” intervals, we only bound the interval on one side. We construct one-sided intervals when we are concerned with whether a parameter exceeds or stays below some threshold. Building a one-sided interval is similar to building two-sided intervals, except rather than dividing <span class="math inline">\(\alpha\)</span> into two, you simply apportion all of <span class="math inline">\(\alpha\)</span> to the relevant side. The difficult part is to determine if we need an upper bound or lower bound.</p>
 <p>For the body temperature study, the alternative hypothesis was that the mean was less than 98.6. In our confidence interval, we want to find the largest value the mean could be and thus we want the upper bound. We are trying to reject the hypothesis by showing an alternative that is smaller than the null hypothesized value. Finding the lower limit does not help us since the confidence interval indicates an interval that starts at the lower value and is unbounded above. Let’s just make up some numbers; suppose the lower confidence bound is 97.5. All we know is the true average temperature is this value or greater. This is not helpful. However, if we find an upper confidence bound and the value is 98.1, we know the true average temperature is most likely no larger than this value. This is much more helpful.</p>
 <p>Repeating the analysis with this in mind.</p>
-<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="CI.html#cb608-1" aria-hidden="true" tabindex="-1"></a>temperature <span class="sc">%&gt;%</span></span>
-<span id="cb608-2"><a href="CI.html#cb608-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">favstats</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>.) <span class="sc">%&gt;%</span></span>
-<span id="cb608-3"><a href="CI.html#cb608-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mean,sd,n) <span class="sc">%&gt;%</span></span>
-<span id="cb608-4"><a href="CI.html#cb608-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">upper_bound=</span>mean<span class="sc">+</span><span class="fu">qt</span>(<span class="fl">0.95</span>,<span class="dv">129</span>)<span class="sc">*</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="CI.html#cb610-1" aria-hidden="true" tabindex="-1"></a>temperature <span class="sc">%&gt;%</span></span>
+<span id="cb610-2"><a href="CI.html#cb610-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">favstats</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>.) <span class="sc">%&gt;%</span></span>
+<span id="cb610-3"><a href="CI.html#cb610-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mean,sd,n) <span class="sc">%&gt;%</span></span>
+<span id="cb610-4"><a href="CI.html#cb610-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">upper_bound=</span>mean<span class="sc">+</span><span class="fu">qt</span>(<span class="fl">0.95</span>,<span class="dv">129</span>)<span class="sc">*</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(n))</span></code></pre></div>
 <pre><code>##   upper_bound
 ## 1    98.35577</code></pre>
-<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="CI.html#cb610-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(<span class="fu">t_test</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature,<span class="at">alternative=</span><span class="st">&quot;less&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="CI.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(<span class="fu">t_test</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature,<span class="at">alternative=</span><span class="st">&quot;less&quot;</span>))</span></code></pre></div>
 <pre><code>##   mean of x lower    upper level
 ## 1  98.24923  -Inf 98.35577  0.95</code></pre>
 <p>Notice the upper bound in the one-sided interval is smaller than the upper bound in the two-sided interval since all 0.05 is going into the upper tail.</p>
@@ -935,21 +935,21 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 <h2><span class="header-section-number">22.3</span> Confidence intervals for two proportions</h2>
 <p>In hypothesis testing we had several examples of two proportions. We tested these problems with a permutation test or using a hypergeometric. In our notes or applications, we have not presented the hypothesis test for two proportions using the asymptotic normal distribution, the central limit theorem. So in this section we will present three methods of answering our research question, a permutation test, a hypothesis test using the normal distribution, and a confidence interval.</p>
 <p>Earlier this semester, in fact in the first lesson notes, we encountered an experiment that examined whether implanting a stent in the brain of a patient at risk for a stroke helps reduce the risk of a stroke. The results from the first 30 days of this study, which included 451 patients, are summarized in the <code>R</code> code below. These results are surprising! The point estimate suggests that patients who received stents may have a <strong>higher</strong> risk of stroke: <span class="math inline">\(p_{trmt} - p_{control} = 0.090\)</span>.</p>
-<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="CI.html#cb612-1" aria-hidden="true" tabindex="-1"></a>stent <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/stent_study.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="CI.html#cb613-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>group<span class="sc">+</span>outcome30,<span class="at">data=</span>stent,<span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="CI.html#cb614-1" aria-hidden="true" tabindex="-1"></a>stent <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/stent_study.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="CI.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>group<span class="sc">+</span>outcome30,<span class="at">data=</span>stent,<span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##          outcome30
 ## group     no_event stroke Total
 ##   control      214     13   227
 ##   trmt         191     33   224
 ##   Total        405     46   451</code></pre>
-<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="CI.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(outcome30<span class="sc">~</span>group,<span class="at">data=</span>stent,<span class="at">margins =</span> <span class="cn">TRUE</span>,<span class="at">format=</span><span class="st">&quot;proportion&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="CI.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(outcome30<span class="sc">~</span>group,<span class="at">data=</span>stent,<span class="at">margins =</span> <span class="cn">TRUE</span>,<span class="at">format=</span><span class="st">&quot;proportion&quot;</span>)</span></code></pre></div>
 <pre><code>##           group
 ## outcome30     control       trmt
 ##   no_event 0.94273128 0.85267857
 ##   stroke   0.05726872 0.14732143
 ##   Total    1.00000000 1.00000000</code></pre>
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="CI.html#cb617-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">diffprop</span>(outcome30<span class="sc">~</span>group,<span class="at">data=</span>stent)</span>
-<span id="cb617-2"><a href="CI.html#cb617-2" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="CI.html#cb619-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">diffprop</span>(outcome30<span class="sc">~</span>group,<span class="at">data=</span>stent)</span>
+<span id="cb619-2"><a href="CI.html#cb619-2" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
 <pre><code>##    diffprop 
 ## -0.09005271</code></pre>
 <p>Notice that because <code>R</code> uses the variables by names in alphabetic order we have <span class="math inline">\(p_{control} - p_{trmt} = - 0.090\)</span>. This is not a problem. We could fix this by changing the variables to factors.</p>
@@ -960,27 +960,27 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 <span class="math inline">\(H_A\)</span>: The treatment and outcome are dependent <span class="math inline">\(p_{control} \neq p_{trmt}\)</span>.</p>
 <p>We will use <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 <p>The test statistic is the difference in proportions of patients with stroke in the control and treatment groups.</p>
-<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="CI.html#cb619-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">diffprop</span>(outcome30<span class="sc">~</span>group,<span class="at">data=</span>stent)</span>
-<span id="cb619-2"><a href="CI.html#cb619-2" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="CI.html#cb621-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">diffprop</span>(outcome30<span class="sc">~</span>group,<span class="at">data=</span>stent)</span>
+<span id="cb621-2"><a href="CI.html#cb621-2" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
 <pre><code>##    diffprop 
 ## -0.09005271</code></pre>
 <p>To calculate the p-value, we will shuffle the treatment and control labels because under the null hypothesis, there is no difference.</p>
-<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="CI.html#cb621-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2027</span>)</span>
-<span id="cb621-2"><a href="CI.html#cb621-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">diffprop</span>(outcome30<span class="sc">~</span><span class="fu">shuffle</span>(group),<span class="at">data=</span>stent)</span></code></pre></div>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="CI.html#cb623-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2027</span>)</span>
+<span id="cb623-2"><a href="CI.html#cb623-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">diffprop</span>(outcome30<span class="sc">~</span><span class="fu">shuffle</span>(group),<span class="at">data=</span>stent)</span></code></pre></div>
 <p>Figure <a href="CI.html#fig:dens222-fig">22.2</a> a visual summary of the distribution of the test statistics generated under the null hypothesis, the sampling distribution.</p>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="CI.html#cb622-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb622-2"><a href="CI.html#cb622-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dhistogram</span>(<span class="sc">~</span>diffprop,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb622-3"><a href="CI.html#cb622-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span>obs ) <span class="sc">%&gt;%</span></span>
-<span id="cb622-4"><a href="CI.html#cb622-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb622-5"><a href="CI.html#cb622-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Sampling distribution of randomization test&quot;</span>,</span>
-<span id="cb622-6"><a href="CI.html#cb622-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Difference in proportions&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="CI.html#cb624-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb624-2"><a href="CI.html#cb624-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dhistogram</span>(<span class="sc">~</span>diffprop,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb624-3"><a href="CI.html#cb624-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span>obs ) <span class="sc">%&gt;%</span></span>
+<span id="cb624-4"><a href="CI.html#cb624-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb624-5"><a href="CI.html#cb624-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Sampling distribution of randomization test&quot;</span>,</span>
+<span id="cb624-6"><a href="CI.html#cb624-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Difference in proportions&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:dens222-fig"></span>
 <img src="22-Confidence-Intervals_files/figure-html/dens222-fig-1.png" alt="Sampling distribution of the difference in proportions." width="672" />
 <p class="caption">
 Figure 22.2: Sampling distribution of the difference in proportions.
 </p>
 </div>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="CI.html#cb623-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">prop1</span>(<span class="sc">~</span>(diffprop<span class="sc">&lt;=</span>obs),<span class="at">data=</span>results)</span></code></pre></div>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="CI.html#cb625-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">prop1</span>(<span class="sc">~</span>(diffprop<span class="sc">&lt;=</span>obs),<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>##  prop_TRUE 
 ## 0.00259974</code></pre>
 <p>Based on the data, if there were no difference between the treatment and control groups, the probability of the observed differences in proportion of strokes being - 0.09 or more extreme is 0.0026. This is too unlikely, so we reject that there is no difference between control and stroke groups.</p>
@@ -1017,18 +1017,18 @@ This is called the <em>pooled estimate</em> of the sample proportion, and we use
 <p>The test statistic is
 <span class="math display">\[Z = \frac{\text{point estimate} - \text{null value}}{SE} = \frac{-.09 - 0}{0.0285} = - 3.16  \]</span></p>
 <p>The p-value is</p>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="CI.html#cb625-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">3.16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="CI.html#cb627-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">3.16</span>)</span></code></pre></div>
 <pre><code>## [1] 0.001577691</code></pre>
 <p>Which is close to what we got with permutation test. This should not surprise us as the sampling distribution under the permutation test looked normal.</p>
 <p>Figure <a href="CI.html#fig:dens223-fig">22.3</a> plots the empirical sampling distribution from the permutation test again with a normal density curve overlayed.</p>
-<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="CI.html#cb627-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb627-2"><a href="CI.html#cb627-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dhistogram</span>(<span class="sc">~</span>diffprop,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb627-3"><a href="CI.html#cb627-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span>obs ) <span class="sc">%&gt;%</span></span>
-<span id="cb627-4"><a href="CI.html#cb627-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dist</span>(<span class="st">&quot;norm&quot;</span>,<span class="at">sd=</span><span class="fl">0.0285</span>,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb627-5"><a href="CI.html#cb627-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb627-6"><a href="CI.html#cb627-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Sampling distribution of randomization test&quot;</span>,</span>
-<span id="cb627-7"><a href="CI.html#cb627-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">&quot;Reference normal distribution in red&quot;</span>,</span>
-<span id="cb627-8"><a href="CI.html#cb627-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Difference in proportions&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="CI.html#cb629-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb629-2"><a href="CI.html#cb629-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dhistogram</span>(<span class="sc">~</span>diffprop,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb629-3"><a href="CI.html#cb629-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span>obs ) <span class="sc">%&gt;%</span></span>
+<span id="cb629-4"><a href="CI.html#cb629-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dist</span>(<span class="st">&quot;norm&quot;</span>,<span class="at">sd=</span><span class="fl">0.0285</span>,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb629-5"><a href="CI.html#cb629-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb629-6"><a href="CI.html#cb629-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Sampling distribution of randomization test&quot;</span>,</span>
+<span id="cb629-7"><a href="CI.html#cb629-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">&quot;Reference normal distribution in red&quot;</span>,</span>
+<span id="cb629-8"><a href="CI.html#cb629-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Difference in proportions&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:dens223-fig"></span>
 <img src="22-Confidence-Intervals_files/figure-html/dens223-fig-1.png" alt="The sampling distribution of the randomization test with a normal distribution plotted in red." width="672" />
 <p class="caption">
@@ -1046,13 +1046,13 @@ Figure 22.3: The sampling distribution of the randomization test with a normal d
 <p><span class="math display">\[SE \approx \sqrt{\frac{0.057(1-0.057)}{227} + \frac{0.15(1-0.15)}{224}} = 0.0284\]</span></p>
 <p>It is close to the pooled value because of the nearly equal sample sizes.</p>
 <p>The critical value is found from the normal quantile.</p>
-<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="CI.html#cb628-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(.<span class="dv">975</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="CI.html#cb630-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(.<span class="dv">975</span>)</span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
 <p>The 95% confidence interval is</p>
 <p><span class="math display">\[ - 0.09 \ \pm\ 1.96 \times  0.0284 \quad \to \quad (-0.146,- 0.034)\]</span>
 We are 95% confident that the difference in proportions of strokes in the control and treatment groups is between -0.146 and -0.034. Since this does not include zero, we are confident they are different. This supports the hypothesis tests.</p>
 <p>Of course, <code>R</code> has a built in function to calculate the hypothesis test and confidence interval for two proportions.</p>
-<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="CI.html#cb630-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop_test</span>(outcome30<span class="sc">~</span>group,<span class="at">data=</span>stent)</span></code></pre></div>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="CI.html#cb632-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop_test</span>(outcome30<span class="sc">~</span>group,<span class="at">data=</span>stent)</span></code></pre></div>
 <pre><code>## 
 ##  2-sample test for equality of proportions with continuity correction
 ## 
@@ -1065,7 +1065,7 @@ We are 95% confident that the difference in proportions of strokes in the contro
 ##    prop 1    prop 2 
 ## 0.9427313 0.8526786</code></pre>
 <p>The p-value is a little different from the one we calculated and closer to the randomization test, which is an approximation of the exact permutation test, because a correction factor was applied. Read online about this correction to learn more. We run the code below with the correction factor off and get the same p-value as we calculated above. The confidence interval is a little different because the function used <em>no stroke</em> as its success event, but since zero is not in the interval, we get the same conclusion.</p>
-<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="CI.html#cb632-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop_test</span>(outcome30<span class="sc">~</span>group,<span class="at">data=</span>stent,<span class="at">correct=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="CI.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop_test</span>(outcome30<span class="sc">~</span>group,<span class="at">data=</span>stent,<span class="at">correct=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  2-sample test for equality of proportions without continuity
 ##  correction

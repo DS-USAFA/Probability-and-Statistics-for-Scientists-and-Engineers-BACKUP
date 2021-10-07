@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-05" />
+<meta name="date" content="2021-10-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -837,10 +837,10 @@ Figure 21.2: Sampling distribution of the sample proportion.
 <h3><span class="header-section-number">21.2.3</span> Simulating data for CLT</h3>
 <p>For this next section, we are going to use an artificial example where we know the population distribution and parameters. We will repeat sampling from this many times and plot the distribution of the summary statistic of interest to demonstrate the CLT. This is purely an educational thought experiment to convince ourselves about the validity of the CLT.</p>
 <p>Suppose there is an upcoming election in Colorado and Proposition A is on the ballot. Now suppose that 65% of Colorado voters support Proposition A. We poll a random sample of <span class="math inline">\(n\)</span> Colorado voters. Prior to conducting the sample, we can think about the sample as a sequence of iid random variables from the binomial distribution with one trial in each run and a probability of success (support for the measure) of 0.65. In other words, each random variable will take a value of 1 (support) or 0 (oppose). Figure <a href="CLT.html#fig:dens213-fig">21.3</a> is a plot of the pmf of the parent distribution (<span class="math inline">\(\textsf{Binom}(1,0.65)\)</span>):</p>
-<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="CLT.html#cb566-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;binom&quot;</span>,<span class="at">size=</span><span class="dv">1</span>,<span class="at">prob=</span>.<span class="dv">65</span>,<span class="at">plot_size=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb566-2"><a href="CLT.html#cb566-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb566-3"><a href="CLT.html#cb566-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb566-4"><a href="CLT.html#cb566-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">y=</span><span class="st">&quot;Probability&quot;</span>,<span class="at">x=</span><span class="st">&quot;X&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="CLT.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;binom&quot;</span>,<span class="at">size=</span><span class="dv">1</span>,<span class="at">prob=</span>.<span class="dv">65</span>,<span class="at">plot_size=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb568-2"><a href="CLT.html#cb568-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb568-3"><a href="CLT.html#cb568-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb568-4"><a href="CLT.html#cb568-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">y=</span><span class="st">&quot;Probability&quot;</span>,<span class="at">x=</span><span class="st">&quot;X&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:dens213-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/dens213-fig-1.png" alt="Binomial pmf with 1 trial and probability of succes of 0.65." width="672" />
 <p class="caption">
@@ -849,10 +849,10 @@ Figure 21.3: Binomial pmf with 1 trial and probability of succes of 0.65.
 </div>
 <p>This is clearly not normal, it is in fact discrete. The mean of <span class="math inline">\(X\)</span> is 0.65 and the standard deviation is <span class="math inline">\(\sqrt{0.65(1-0.65)}=0.477\)</span>.</p>
 <p>In our first simulation, we let the sample size be ten, <span class="math inline">\(n=10\)</span>. This is typically too small for the CLT to apply but we will still use it as a starting point. In the code box below, we will obtain a sample of size 10 from this distribution and record the observed mean <span class="math inline">\(\bar{x}\)</span>, which is our method of moments estimate of the probability of success. We will repeat this 10,000 times to get an empirical distribution of <span class="math inline">\(\bar{X}\)</span>. (Note that <span class="math inline">\(\bar{X}\)</span> is a mean of 1s and 0s and can be thought of as a proportion of voters in the sample that support the measure. Often, population proportion is denoted as <span class="math inline">\(\pi\)</span> and the sample proportion is denoted as <span class="math inline">\(\hat{\pi}\)</span>.)</p>
-<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="CLT.html#cb567-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5501</span>)</span>
-<span id="cb567-2"><a href="CLT.html#cb567-2" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">mean</span>(<span class="fu">rbinom</span>(<span class="dv">10</span>,<span class="dv">1</span>,<span class="fl">0.65</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="CLT.html#cb569-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5501</span>)</span>
+<span id="cb569-2"><a href="CLT.html#cb569-2" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">mean</span>(<span class="fu">rbinom</span>(<span class="dv">10</span>,<span class="dv">1</span>,<span class="fl">0.65</span>))</span></code></pre></div>
 <p>Since we are summing iid variables, the sampling distribution of the mean should look like a normal distribution. The mean should be close to 0.65, and the standard deviation <span class="math inline">\(\sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{0.65(1-0.65)}{10}}=0.151\)</span></p>
-<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="CLT.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>mean,<span class="at">data=</span>results)</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="CLT.html#cb570-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>mean,<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>##  min  Q1 median  Q3 max    mean        sd     n missing
 ##  0.1 0.5    0.7 0.8   1 0.64932 0.1505716 10000       0</code></pre>
 <p>Remember from our lessons on probability, these results for the mean and standard deviation do not depend on the CLT, they are results from the properties of expectation on independent samples. The distribution of the sample mean, the shape of the sampling distribution, is approximately normal as a result of the CLT, Figure <a href="CLT.html#fig:dens214-fig">21.4</a>.</p>
@@ -864,29 +864,29 @@ Figure 21.4: Sampling distribution of the sample proportion with sample size of 
 </div>
 <p>Note the sampling distribution of the sample mean has a bell-curvish shape, but with some skew to the left for this particular small sample size. That is why we state that the approximation improves with sample size.</p>
 <p>As a way to determine the impact of the sample size on the inference to the population, let’s record how often a sample of 10 failed to indicate support for the measure. (How often was the sample proportion less than or equal to 0.5?) Remember, in this artificial example, we know that the population is in favor of the measure, 65% approval. However, if our point estimate is below 0.5, we would be led to believe that the population does not support the measure.</p>
-<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="CLT.html#cb570-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb570-2"><a href="CLT.html#cb570-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(<span class="at">low_result=</span><span class="fu">mean</span>(<span class="sc">~</span>mean<span class="sc">&lt;=</span><span class="fl">0.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="CLT.html#cb572-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb572-2"><a href="CLT.html#cb572-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(<span class="at">low_result=</span><span class="fu">mean</span>(<span class="sc">~</span>mean<span class="sc">&lt;=</span><span class="fl">0.5</span>))</span></code></pre></div>
 <pre><code>##   low_result
 ## 1     0.2505</code></pre>
 <p>Even though we know that 65% of Colorado voters support the measure, a sample of size 10 failed to indicate support 25.05% of the time.</p>
 <p>Let’s take a larger sample. In the code below, we will repeat the above but with a sample of size 25. Figure <a href="CLT.html#fig:dens215-fig">21.5</a> plots the sampling distribution.</p>
-<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="CLT.html#cb572-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5501</span>)</span>
-<span id="cb572-2"><a href="CLT.html#cb572-2" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">mean</span>(<span class="fu">rbinom</span>(<span class="dv">25</span>,<span class="dv">1</span>,<span class="fl">0.65</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="CLT.html#cb574-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5501</span>)</span>
+<span id="cb574-2"><a href="CLT.html#cb574-2" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">mean</span>(<span class="fu">rbinom</span>(<span class="dv">25</span>,<span class="dv">1</span>,<span class="fl">0.65</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:dens215-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/dens215-fig-1.png" alt="Sampling distribution of the sample proportion with sample size of 25." width="672" />
 <p class="caption">
 Figure 21.5: Sampling distribution of the sample proportion with sample size of 25.
 </p>
 </div>
-<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="CLT.html#cb573-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb573-2"><a href="CLT.html#cb573-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(<span class="at">low_result=</span><span class="fu">mean</span>(<span class="sc">~</span>mean<span class="sc">&lt;=</span><span class="fl">0.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="CLT.html#cb575-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb575-2"><a href="CLT.html#cb575-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(<span class="at">low_result=</span><span class="fu">mean</span>(<span class="sc">~</span>mean<span class="sc">&lt;=</span><span class="fl">0.5</span>))</span></code></pre></div>
 <pre><code>##   low_result
 ## 1     0.0623</code></pre>
 <p>When increasing the sample size to 25, the standard deviation of our sample proportion decreased. According to the central limit theorem, it should have decreased to <span class="math inline">\(\sigma/\sqrt{25}=\sqrt{\frac{p(1-p)}{25}}=0.095\)</span>. Also, the skew became less severe. Further, the sample of size 25 failed to indicate support only 6.23% of the time. It reasonably follows that an even larger sample would continue these trends. Figure <a href="CLT.html#fig:dens216-fig">21.6</a> demonstrates these trends.</p>
-<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="CLT.html#cb575-1" aria-hidden="true" tabindex="-1"></a>clt <span class="sc">%&gt;%</span></span>
-<span id="cb575-2"><a href="CLT.html#cb575-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>mean,<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb575-3"><a href="CLT.html#cb575-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_facet_grid</span>(<span class="sc">~</span>samp) <span class="sc">%&gt;%</span></span>
-<span id="cb575-4"><a href="CLT.html#cb575-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="CLT.html#cb577-1" aria-hidden="true" tabindex="-1"></a>clt <span class="sc">%&gt;%</span></span>
+<span id="cb577-2"><a href="CLT.html#cb577-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>mean,<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb577-3"><a href="CLT.html#cb577-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_facet_grid</span>(<span class="sc">~</span>samp) <span class="sc">%&gt;%</span></span>
+<span id="cb577-4"><a href="CLT.html#cb577-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span id="fig:dens216-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/dens216-fig-1.png" alt="Sampling distribution of the proportion for different trail sizes." width="672" />
 <p class="caption">
@@ -938,9 +938,9 @@ S^2={\sum (X_i-\bar{X})^2\over n-1}
 <p>Similar to the chi-squared distribution, we won’t go over the proof, but it follows from some simple algebra and from the fact that the ratio between a standard normal random variable and the square root of a chi-squared random variable, divided by it’s degrees of freedom follows a <span class="math inline">\(t\)</span> distribution.</p>
 <p>The <span class="math inline">\(t\)</span> distribution is very similar to the standard normal distribution, but has longer tails. This seems to make sense in the context of estimating <span class="math inline">\(\mu\)</span> since substituting <span class="math inline">\(S\)</span> for <span class="math inline">\(\sigma\)</span> adds variability to the random variable.
 Figure <a href="CLT.html#fig:t211-fig">21.7</a> is a plot of the <span class="math inline">\(t\)</span> distribution, shown as a blue line, and has a bell shape that looks very similar to a normal distribution, red line. However, its tails are thicker, which means observations are more likely to fall beyond two standard deviations from the mean than under the normal distribution. When our sample is small, the value <span class="math inline">\(s\)</span> used to compute the standard error isn’t very reliable. The extra thick tails of the <span class="math inline">\(t\)</span> distribution are exactly the correction we need to resolve this problem. When the degrees of freedom is about 30 or more, the <span class="math inline">\(t\)</span> distribution is nearly indistinguishable from the normal distribution.</p>
-<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="CLT.html#cb576-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;norm&quot;</span>,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb576-2"><a href="CLT.html#cb576-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dist</span>(<span class="st">&quot;t&quot;</span>,<span class="at">df=</span><span class="dv">3</span>,<span class="at">color=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb576-3"><a href="CLT.html#cb576-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="CLT.html#cb578-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;norm&quot;</span>,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb578-2"><a href="CLT.html#cb578-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dist</span>(<span class="st">&quot;t&quot;</span>,<span class="at">df=</span><span class="dv">3</span>,<span class="at">color=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb578-3"><a href="CLT.html#cb578-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span id="fig:t211-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/t211-fig-1.png" alt="The distibtion of t." width="672" />
 <p class="caption">
@@ -977,7 +977,7 @@ Figure 21.7: The distibtion of t.
 <div id="step-3---determine-the-p-value.-7" class="section level4" number="21.4.1.3">
 <h4><span class="header-section-number">21.4.1.3</span> Step 3 - Determine the p-value.</h4>
 <p>We now want to find the p-value from the one-sided probability <span class="math inline">\(\mbox{P}(\bar{X} \leq 0.35)\)</span> given the null hypothesis is true, the probability of success is 0.50. We will use <code>R</code> to get the one-sided value and then double it since the test is two-sided and the sampling distribution is symmetrical.</p>
-<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="CLT.html#cb577-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="fl">0.35</span>,<span class="at">mean=</span>.<span class="dv">5</span>,<span class="at">sd=</span><span class="fu">sqrt</span>(.<span class="dv">5</span><span class="sc">*</span>.<span class="dv">5</span><span class="sc">/</span><span class="dv">120</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="CLT.html#cb579-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="fl">0.35</span>,<span class="at">mean=</span>.<span class="dv">5</span>,<span class="at">sd=</span><span class="fu">sqrt</span>(.<span class="dv">5</span><span class="sc">*</span>.<span class="dv">5</span><span class="sc">/</span><span class="dv">120</span>))</span></code></pre></div>
 <pre><code>## [1] 0.001015001</code></pre>
 <p>That is a small p-value and consistent with what we would got using both the exact binomial test and the simulation empirical p-values.</p>
 <blockquote>
@@ -990,7 +990,7 @@ In the calculation of the standard deviation of the sampling distribution, we us
 <p>Based on our data, if the listeners were guessing correct 50% of the time, there is less than a 1 in 1000 probability that only 42 or less or 78 or more listeners would get it right. This is much less than 0.05, so we reject that the listeners are guessing correctly half of the time.</p>
 <p>Now <code>R</code> has built in functions to perform this test. If you explore these functions, use <code>?prop.test</code> to learn more, you will find options to improve the performance of the test. You are welcome and should read about these methods. Again, before computers, researchers spent time optimizing the performance of the asymptotic methods such as the CLT.</p>
 <p>Here is the test of a single proportion using <code>R</code>.</p>
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="CLT.html#cb579-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">42</span>,<span class="dv">120</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="CLT.html#cb581-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">42</span>,<span class="dv">120</span>)</span></code></pre></div>
 <pre><code>## 
 ##  1-sample proportions test with continuity correction
 ## 
@@ -1007,11 +1007,11 @@ In the calculation of the standard deviation of the sampling distribution, we us
 <p><strong>Exercise</strong>:<br />
 How do you conduct a one-sided test? What if the null value where 0.45?<a href="#fn85" class="footnote-ref" id="fnref85"><sup>85</sup></a></p>
 </blockquote>
-<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="CLT.html#cb581-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pval</span>(<span class="fu">prop.test</span>(<span class="dv">42</span>,<span class="dv">120</span>,<span class="at">alternative=</span><span class="st">&quot;less&quot;</span>,<span class="at">p=</span>.<span class="dv">45</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="CLT.html#cb583-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pval</span>(<span class="fu">prop.test</span>(<span class="dv">42</span>,<span class="dv">120</span>,<span class="at">alternative=</span><span class="st">&quot;less&quot;</span>,<span class="at">p=</span>.<span class="dv">45</span>))</span></code></pre></div>
 <pre><code>##   p.value 
 ## 0.0174214</code></pre>
 <p>The exact test uses the function <code>binom.test()</code>.</p>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="CLT.html#cb583-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">42</span>,<span class="dv">120</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="CLT.html#cb585-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">42</span>,<span class="dv">120</span>)</span></code></pre></div>
 <pre><code>## 
 ## 
 ## 
@@ -1043,11 +1043,11 @@ thus our test statistic is</p>
 <p><span class="math display">\[
 \frac{\bar{x}-98.6}{S/\sqrt{n}}
 \]</span></p>
-<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="CLT.html#cb585-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature)</span></code></pre></div>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="CLT.html#cb587-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature)</span></code></pre></div>
 <pre><code>##   min   Q1 median   Q3   max     mean        sd   n missing
 ##  96.3 97.8   98.3 98.7 100.8 98.24923 0.7331832 130       0</code></pre>
-<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="CLT.html#cb587-1" aria-hidden="true" tabindex="-1"></a>temperature <span class="sc">%&gt;%</span></span>
-<span id="cb587-2"><a href="CLT.html#cb587-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean=</span><span class="fu">mean</span>(temperature),<span class="at">sd=</span><span class="fu">sd</span>(temperature),<span class="at">test_stat=</span>(mean<span class="fl">-98.6</span>)<span class="sc">/</span>(sd<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">130</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="CLT.html#cb589-1" aria-hidden="true" tabindex="-1"></a>temperature <span class="sc">%&gt;%</span></span>
+<span id="cb589-2"><a href="CLT.html#cb589-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean=</span><span class="fu">mean</span>(temperature),<span class="at">sd=</span><span class="fu">sd</span>(temperature),<span class="at">test_stat=</span>(mean<span class="fl">-98.6</span>)<span class="sc">/</span>(sd<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">130</span>)))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##    mean    sd test_stat
 ##   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
@@ -1057,10 +1057,10 @@ thus our test statistic is</p>
 <div id="step-3---determine-the-p-value.-8" class="section level4" number="21.4.2.3">
 <h4><span class="header-section-number">21.4.2.3</span> Step 3 - Determine the p-value.</h4>
 <p>We now want to find the p-value from <span class="math inline">\(\mbox{P}(t \leq -5.45)\)</span> on 129 degrees of freedom, given the null hypothesis is true, which is that the probability of success is 0.50. We will use <code>R</code> to get the one-sided p-value.</p>
-<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="CLT.html#cb589-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">5.45</span>,<span class="dv">129</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="CLT.html#cb591-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">5.45</span>,<span class="dv">129</span>)</span></code></pre></div>
 <pre><code>## [1] 1.232178e-07</code></pre>
 <p>We could also use the <code>R</code> function <code>t_test()</code>.</p>
-<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="CLT.html#cb591-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t_test</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature,<span class="at">mu=</span><span class="fl">98.6</span>,<span class="at">alternative=</span><span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="CLT.html#cb593-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t_test</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature,<span class="at">mu=</span><span class="fl">98.6</span>,<span class="at">alternative=</span><span class="st">&quot;less&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -1097,9 +1097,9 @@ thus our test statistic is</p>
 </ol>
 <p>A typical plot to use to evaluate the normality assumption is called the quantile-quantile plot. We form a scatterplot of the empirical quantiles from the data versus exact quantile values from the theoretical distribution. If the points fall along a line then the data match the distribution. An exact match is not realistic, so we look for major departures from the line.</p>
 <p>Figure <a href="CLT.html#fig:qq211-fig">21.8</a> is our normal-quantile plot for the body temperature data. The largest value may be an outlier, we may want to verify it was entered correctly. The fact that the points are above the line for the larger values and below the line for the smaller values indicates that our data may have longer tails than the normal distribution. There are really only 3 values in the larger quantiles so in fact the data may be slightly skewed to the left, this was also indicated by a comparison of the mean and median. However, since we have 130 data points these results should not impact our findings.</p>
-<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="CLT.html#cb593-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_qq</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature) <span class="sc">%&gt;%</span></span>
-<span id="cb593-2"><a href="CLT.html#cb593-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_qqline</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature) <span class="sc">%&gt;%</span></span>
-<span id="cb593-3"><a href="CLT.html#cb593-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="CLT.html#cb595-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_qq</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature) <span class="sc">%&gt;%</span></span>
+<span id="cb595-2"><a href="CLT.html#cb595-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_qqline</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature) <span class="sc">%&gt;%</span></span>
+<span id="cb595-3"><a href="CLT.html#cb595-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span id="fig:qq211-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/qq211-fig-1.png" alt="Q-Q plot for body temperature data." width="672" />
 <p class="caption">

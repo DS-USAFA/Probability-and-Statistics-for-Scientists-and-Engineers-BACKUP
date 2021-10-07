@@ -226,7 +226,7 @@ factorial(48)/(factorial(24)*factorial(24))
 ## [1] 3.22476e+13
 ```
 
-This number of permutations is too large to find by hand or even via code and thus we will use a simulation. 
+This number of permutations is too large to find by hand or even via code and thus we will use a simulation. This is not quite accurate for what we are doing though. We only have 13 not promoted positions. So we could have anywhere between 0 females up to 13 females in the not promoted position. Thus to calculate the probabilities we could use a hypergeometric.
 
 Let's simulate the experiment and plot the simulated values of the difference in the proportions of male and female files recommended for promotion.
 
@@ -274,7 +274,18 @@ results %>%
 ```
 
 
-In our simulations, only 2.8\% of the simulated test statistics were less than or equal to the observed test statistic, more extreme relative to the null hypothesis. Such a low probability indicates that observing such a large difference in proportions from chance alone is rare. This probability is known as a **p-value**. The p-value is a conditional probability, the probability of the observed value or more extreme given that the null hypothesis is true.
+In our simulations, only 2.6\% of the simulated test statistics were less than or equal to the observed test statistic, more extreme relative to the null hypothesis. Such a low probability indicates that observing such a large difference in proportions from chance alone is rare. This probability is known as a **p-value**. The p-value is a conditional probability, the probability of the observed value or more extreme given that the null hypothesis is true.
+
+As noted above, we could have found the exact p-value using the hypergeometric. We want 10 or more women not promoted when we select 13 people from a pool of 24 men and 24 women and the selection is done without replacement.
+
+
+```r
+1-phyper(9,24,24,13)
+```
+
+```
+## [1] 0.02449571
+```
 
 The observed difference of -29.2\% is a rare event if there really is no impact from listing gender in the candidates' files, which provides us with two possible interpretations of the study results:
 
