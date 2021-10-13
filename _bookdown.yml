@@ -1,4 +1,4 @@
-book_filename: "Computational Probability and Statistics"
+book_filename: "Probability and Statistics for Scientists and Engineers"
 output_dir: "docs"
 new_session: yes
 before_chapter_script: "library_load.R"
