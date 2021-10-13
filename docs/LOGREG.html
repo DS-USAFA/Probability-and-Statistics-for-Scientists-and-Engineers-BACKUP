@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-07" />
+<meta name="date" content="2021-10-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1376,8 +1376,8 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <div class="sourceCode" id="cb1102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1102-1"><a href="LOGREG.html#cb1102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">do</span>(<span class="dv">1</span>)<span class="sc">*</span><span class="fu">glm</span>(cond<span class="sc">==</span><span class="st">&quot;new&quot;</span><span class="sc">~</span>stock_photo<span class="sc">+</span>total_pr,</span>
 <span id="cb1102-2"><a href="LOGREG.html#cb1102-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data=</span><span class="fu">resample</span>(mariokart),</span>
 <span id="cb1102-3"><a href="LOGREG.html#cb1102-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>)</span></code></pre></div>
-<pre><code>##   Intercept stock_photoyes total_pr .row .index
-## 1 -17.20832       4.239619 0.269561    1      1</code></pre>
+<pre><code>##   Intercept stock_photoyes  total_pr .row .index
+## 1 -12.24093       1.025997 0.2369783    1      1</code></pre>
 <p>Again, it looks like what we expect. Now let’s bootstrap the coefficients and summarize the results.</p>
 <div class="sourceCode" id="cb1104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1104-1"><a href="LOGREG.html#cb1104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5011</span>)</span>
 <span id="cb1104-2"><a href="LOGREG.html#cb1104-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">glm</span>(cond<span class="sc">==</span><span class="st">&quot;new&quot;</span><span class="sc">~</span>stock_photo<span class="sc">+</span>total_pr,</span>

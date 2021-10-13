@@ -19,6 +19,7 @@ library(fastR2)
 1) Obtain a method of moments estimate of a parameter or set of parameters.    
 2) Given a random sample from a distribution, obtain the likelihood function.   
 3) Obtain a maximum likelihood estimate of a parameter or set of parameters.  
+4) Determine if an estimator is unbiased. 
 
 ## Transition
 
