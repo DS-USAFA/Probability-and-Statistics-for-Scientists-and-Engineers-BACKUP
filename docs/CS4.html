@@ -4,25 +4,25 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 25 Case Study | Computational Probability and Statistics</title>
-  <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <title>Chapter 25 Case Study | Probability and Statistics for Scientists and Engineers</title>
+  <meta name="description" content="This is a set of notes for Math 356 that has been compiled into a book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 25 Case Study | Computational Probability and Statistics" />
+  <meta property="og:title" content="Chapter 25 Case Study | Probability and Statistics for Scientists and Engineers" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/figures/Cover.png" />
-  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta property="og:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 25 Case Study | Computational Probability and Statistics" />
+  <meta name="twitter:title" content="Chapter 25 Case Study | Probability and Statistics for Scientists and Engineers" />
   
-  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   <meta name="twitter:image" content="/figures/Cover.png" />
 
 <meta name="author" content="Ken Horton" />
-<meta name="author" content="Kris Pruitt" />
+<meta name="author" content="Matthew Davis" />
 <meta name="author" content="Bradley Warner" />
 
 
@@ -35,8 +35,9 @@
   
 <link rel="prev" href="ADDTESTS.html"/>
 <link rel="next" href="LRBASICS.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -44,7 +45,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -160,7 +160,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Computational Probability and Statistics</a></li>
+<li><a href="./">Probability and Statistics for Scientists and Engineers</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
@@ -773,7 +773,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Probability and Statistics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Probability and Statistics for Scientists and Engineers</a>
           </h1>
         </div>
 
@@ -862,7 +862,7 @@ Create a scatter plot to display the relationship between the personal freedom s
 <span id="cb770-4"><a href="CS4.html#cb770-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Personal freedom score versus Expression control&quot;</span>,</span>
 <span id="cb770-5"><a href="CS4.html#cb770-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Political pressures and controls on media&quot;</span>,</span>
 <span id="cb770-6"><a href="CS4.html#cb770-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">y=</span><span class="st">&quot;Personal freedom score&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:scat251-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:scat251-fig"></span>
 <img src="25-Linear-Regression-Case-Study_files/figure-html/scat251-fig-1.png" alt="A scatterplot of personal freedom versus expression control using the ggformula package." width="672" />
 <p class="caption">
 Figure 25.1: A scatterplot of personal freedom versus expression control using the ggformula package.
@@ -875,7 +875,7 @@ Figure 25.1: A scatterplot of personal freedom versus expression control using t
 <span id="cb771-5"><a href="CS4.html#cb771-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Personal freedom score versus Expression control&quot;</span>,</span>
 <span id="cb771-6"><a href="CS4.html#cb771-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Political pressures and controls on media&quot;</span>,</span>
 <span id="cb771-7"><a href="CS4.html#cb771-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y=</span><span class="st">&quot;Personal freedom score&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:scat252-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:scat252-fig"></span>
 <img src="25-Linear-Regression-Case-Study_files/figure-html/scat252-fig-1.png" alt="A scatterplot of personal freedom versus expression control using the ggplot2 package." width="672" />
 <p class="caption">
 Figure 25.2: A scatterplot of personal freedom versus expression control using the ggplot2 package.
@@ -967,7 +967,7 @@ In your <code>R</code> console, run the code above to create the object <code>hf
 <span id="cb775-43"><a href="CS4.html#cb775-43" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Next run the next code chunk that for us resulted in Figure <a href="CS4.html#fig:plotss-expression-score">25.3</a>. You will have to pick to points on the plot that you think gives the best line.</p>
 <div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb776-1"><a href="CS4.html#cb776-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ss</span>(<span class="at">x =</span> pf_expression_control, <span class="at">y =</span> pf_score, <span class="at">data =</span> hfi_sub)</span></code></pre></div>
-<div class="figure"><span id="fig:plotss-expression-score"></span>
+<div class="figure"><span style="display:block;" id="fig:plotss-expression-score"></span>
 <img src="25-Linear-Regression-Case-Study_files/figure-html/plotss-expression-score-1.png" alt="Plot of selected line and the associated residuals." width="672" />
 <p class="caption">
 Figure 25.3: Plot of selected line and the associated residuals.
@@ -1069,7 +1069,7 @@ As the political pressure increases by one unit, the <strong>average</strong> hu
 <span id="cb785-5"><a href="CS4.html#cb785-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Personal freedom score versus Expression control&quot;</span>,</span>
 <span id="cb785-6"><a href="CS4.html#cb785-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Political pressures and controls on media&quot;</span>,</span>
 <span id="cb785-7"><a href="CS4.html#cb785-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y=</span><span class="st">&quot;Personal freedom score&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:reg-with-line"></span>
+<div class="figure"><span style="display:block;" id="fig:reg-with-line"></span>
 <img src="25-Linear-Regression-Case-Study_files/figure-html/reg-with-line-1.png" alt="Scatterplot of personal expression control and personal freedom score." width="672" />
 <p class="caption">
 Figure 25.4: Scatterplot of personal expression control and personal freedom score.
@@ -1121,7 +1121,7 @@ If someone saw the least squares regression line and not the actual data, how wo
 <span id="cb795-3"><a href="CS4.html#cb795-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
 <span id="cb795-4"><a href="CS4.html#cb795-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fitted values&quot;</span>,<span class="at">y=</span><span class="st">&quot;Residuals&quot;</span>,<span class="at">title=</span><span class="st">&quot;Residual analysis&quot;</span>) <span class="sc">+</span></span>
 <span id="cb795-5"><a href="CS4.html#cb795-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure"><span id="fig:residuals"></span>
+<div class="figure"><span style="display:block;" id="fig:residuals"></span>
 <img src="25-Linear-Regression-Case-Study_files/figure-html/residuals-1.png" alt="Scatterplot of residuals and fitted values used to assess the assumptions of linearity and constant variance." width="672" />
 <p class="caption">
 Figure 25.5: Scatterplot of residuals and fitted values used to assess the assumptions of linearity and constant variance.
@@ -1138,7 +1138,7 @@ Is there any apparent pattern in the residuals plot? What does this indicate abo
 <span id="cb796-2"><a href="CS4.html#cb796-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> .<span class="dv">4</span>,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
 <span id="cb796-3"><a href="CS4.html#cb796-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Residuals&quot;</span>) <span class="sc">+</span></span>
 <span id="cb796-4"><a href="CS4.html#cb796-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure"><span id="fig:hist-res"></span>
+<div class="figure"><span style="display:block;" id="fig:hist-res"></span>
 <img src="25-Linear-Regression-Case-Study_files/figure-html/hist-res-1.png" alt="Histogram of residuals from linear regression model." width="672" />
 <p class="caption">
 Figure 25.6: Histogram of residuals from linear regression model.
@@ -1149,7 +1149,7 @@ Figure 25.6: Histogram of residuals from linear regression model.
 <span id="cb797-2"><a href="CS4.html#cb797-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
 <span id="cb797-3"><a href="CS4.html#cb797-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb797-4"><a href="CS4.html#cb797-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="dv">1</span>,<span class="at">intercept =</span> <span class="dv">0</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:qq-res"></span>
+<div class="figure"><span style="display:block;" id="fig:qq-res"></span>
 <img src="25-Linear-Regression-Case-Study_files/figure-html/qq-res-1.png" alt="The quantile-quantile residual plot used to assess the normality assumption." width="672" />
 <p class="caption">
 Figure 25.7: The quantile-quantile residual plot used to assess the normality assumption.
@@ -1206,7 +1206,6 @@ Based on the residuals vs. fitted plot, does the constant variability condition
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1233,6 +1232,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 },

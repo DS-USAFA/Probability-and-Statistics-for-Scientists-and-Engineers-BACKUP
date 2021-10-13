@@ -4,25 +4,25 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 20 Empirical p-values | Computational Probability and Statistics</title>
-  <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <title>Chapter 20 Empirical p-values | Probability and Statistics for Scientists and Engineers</title>
+  <meta name="description" content="This is a set of notes for Math 356 that has been compiled into a book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 20 Empirical p-values | Computational Probability and Statistics" />
+  <meta property="og:title" content="Chapter 20 Empirical p-values | Probability and Statistics for Scientists and Engineers" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/figures/Cover.png" />
-  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta property="og:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 20 Empirical p-values | Computational Probability and Statistics" />
+  <meta name="twitter:title" content="Chapter 20 Empirical p-values | Probability and Statistics for Scientists and Engineers" />
   
-  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   <meta name="twitter:image" content="/figures/Cover.png" />
 
 <meta name="author" content="Ken Horton" />
-<meta name="author" content="Kris Pruitt" />
+<meta name="author" content="Matthew Davis" />
 <meta name="author" content="Bradley Warner" />
 
 
@@ -35,8 +35,9 @@
   
 <link rel="prev" href="HYPOTEST.html"/>
 <link rel="next" href="CLT.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -44,7 +45,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -160,7 +160,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Computational Probability and Statistics</a></li>
+<li><a href="./">Probability and Statistics for Scientists and Engineers</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
@@ -773,7 +773,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Probability and Statistics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Probability and Statistics for Scientists and Engineers</a>
           </h1>
         </div>
 
@@ -828,7 +828,7 @@ Is this a two-sided or one-sided hypothesis test? How many variables are in this
 <span id="cb511-2"><a href="PVALUES.html#cb511-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="dv">42</span>,<span class="dv">78</span>),<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb511-3"><a href="PVALUES.html#cb511-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_bw) <span class="sc">%&gt;%</span></span>
 <span id="cb511-4"><a href="PVALUES.html#cb511-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Binomial pmf&quot;</span>,<span class="at">subtitle=</span><span class="st">&quot;Probability of success is 0.5&quot;</span>,<span class="at">y=</span><span class="st">&quot;Probability&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:dist201-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:dist201-fig"></span>
 <img src="20-Empirical-p-values_files/figure-html/dist201-fig-1.png" alt="Binomial pmf" width="672" />
 <p class="caption">
 Figure 20.1: Binomial pmf
@@ -873,7 +873,7 @@ Correct &amp; Correct &amp; Wrong &amp; Correct &amp; Wrong \\
 <span id="cb518-3"><a href="PVALUES.html#cb518-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span><span class="fu">c</span>(obs,<span class="dv">1</span><span class="sc">-</span>obs),<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb518-4"><a href="PVALUES.html#cb518-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb518-5"><a href="PVALUES.html#cb518-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Test statistic&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:dens202-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:dens202-fig"></span>
 <img src="20-Empirical-p-values_files/figure-html/dens202-fig-1.png" alt="The estimated sampling distribution." width="672" />
 <p class="caption">
 Figure 20.2: The estimated sampling distribution.
@@ -962,7 +962,7 @@ Do the data provide statistically significant evidence against the null hypothes
 <span id="cb536-2"><a href="PVALUES.html#cb536-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_hline</span>(<span class="at">yintercept =</span> <span class="fu">dhyper</span>(<span class="dv">11</span>,<span class="dv">50</span>,<span class="dv">40</span>,<span class="dv">25</span>),<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb536-3"><a href="PVALUES.html#cb536-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Hypergeometric pmf&quot;</span>,<span class="at">subtitle=</span><span class="st">&quot;Red line is P(X=11)&quot;</span>,<span class="at">y=</span><span class="st">&quot;Probability&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb536-4"><a href="PVALUES.html#cb536-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
-<div class="figure"><span id="fig:dens203-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:dens203-fig"></span>
 <img src="20-Empirical-p-values_files/figure-html/dens203-fig-1.png" alt="Hypergeometric pmf showing the cutoff for p-value calculation." width="672" />
 <p class="caption">
 Figure 20.3: Hypergeometric pmf showing the cutoff for p-value calculation.
@@ -1051,7 +1051,7 @@ What would you propose for the test statistic?</p>
 <span id="cb557-4"><a href="PVALUES.html#cb557-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Sampling Distribution of Range&quot;</span>,<span class="at">subtitle=</span><span class="st">&quot;Multinomial with equal probability&quot;</span>,</span>
 <span id="cb557-5"><a href="PVALUES.html#cb557-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Range&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb557-6"><a href="PVALUES.html#cb557-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_bw)</span></code></pre></div>
-<div class="figure"><span id="fig:dens204-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:dens204-fig"></span>
 <img src="20-Empirical-p-values_files/figure-html/dens204-fig-1.png" alt="Sampling distribution of the range." width="672" />
 <p class="caption">
 Figure 20.4: Sampling distribution of the range.
@@ -1097,7 +1097,7 @@ Figure 20.4: Sampling distribution of the range.
 <span id="cb565-5"><a href="PVALUES.html#cb565-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">&quot;Multinomial with equal probability&quot;</span>,</span>
 <span id="cb565-6"><a href="PVALUES.html#cb565-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Absolute deviations&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb565-7"><a href="PVALUES.html#cb565-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_bw)</span></code></pre></div>
-<div class="figure"><span id="fig:dens205-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:dens205-fig"></span>
 <img src="20-Empirical-p-values_files/figure-html/dens205-fig-1.png" alt="Sampling distribution of the absolute deviations." width="672" />
 <p class="caption">
 Figure 20.5: Sampling distribution of the absolute deviations.
@@ -1204,7 +1204,6 @@ Figure 20.5: Sampling distribution of the absolute deviations.
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1231,6 +1230,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 },

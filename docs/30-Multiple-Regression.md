@@ -28,18 +28,18 @@ head(mariokart,n=10)
 
 ```
 ## # A tibble: 10 × 12
-##           id duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##        <dbl>    <dbl>  <dbl> <chr>    <dbl>   <dbl>    <dbl> <chr>         <dbl>
-##  1   1.50e11        3     20 new       0.99    4        51.6 standa…        1580
-##  2   2.60e11        7     13 used      0.99    3.99     37.0 firstC…         365
-##  3   3.20e11        3     16 new       0.99    3.5      45.5 firstC…         998
-##  4   2.80e11        3     18 new       0.99    0        44   standa…           7
-##  5   1.70e11        1     20 new       0.01    0        71   media           820
-##  6   3.60e11        3     19 new       0.99    4        45   standa…      270144
-##  7   1.20e11        1     13 used      0.01    0        37.0 standa…        7284
-##  8   3.00e11        1     15 new       1       2.99     54.0 upsGro…        4858
-##  9   2.00e11        3     29 used      0.99    4        47   priori…          27
-## 10   3.30e11        7      8 used     20.0     4        50   firstC…         201
+##              id duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
+##           <dbl>    <dbl>  <dbl> <chr>    <dbl>   <dbl>    <dbl> <chr>         <dbl>
+##  1 150377422259        3     20 new       0.99    4        51.6 standa…        1580
+##  2 260483376854        7     13 used      0.99    3.99     37.0 firstC…         365
+##  3 320432342985        3     16 new       0.99    3.5      45.5 firstC…         998
+##  4 280405224677        3     18 new       0.99    0        44   standa…           7
+##  5 170392227765        1     20 new       0.01    0        71   media           820
+##  6 360195157625        3     19 new       0.99    4        45   standa…      270144
+##  7 120477729093        1     13 used      0.01    0        37.0 standa…        7284
+##  8 300355501482        1     15 new       1       2.99     54.0 upsGro…        4858
+##  9 200392065459        3     29 used      0.99    4        47   priori…          27
+## 10 330364163424        7      8 used     20.0     4        50   firstC…         201
 ## # … with 3 more variables: stock_photo <chr>, wheels <dbl>, title <chr>
 ```
 
@@ -202,10 +202,10 @@ mariokart %>%
 
 ```
 ## # A tibble: 2 × 12
-##           id duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##        <dbl>    <dbl>  <dbl> <fct>    <dbl>   <dbl>    <dbl> <chr>         <dbl>
-## 1    1.10e11        7     22 used      1       25.5     327. parcel          115
-## 2    1.30e11        3     27 used      6.95     4       118. parcel           41
+##             id duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
+##          <dbl>    <dbl>  <dbl> <fct>    <dbl>   <dbl>    <dbl> <chr>         <dbl>
+## 1 110439174663        7     22 used      1       25.5     327. parcel          115
+## 2 130335427560        3     27 used      6.95     4       118. parcel           41
 ## # … with 3 more variables: stock_photo <fct>, wheels <dbl>, title <chr>
 ```
 

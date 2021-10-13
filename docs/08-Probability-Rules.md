@@ -352,7 +352,7 @@ head(results)
 ```
 
 ```
-## # A tibble: 6 x 6
+## # A tibble: 6 × 6
 ##   rank  suit   probs orig.id  .row .index
 ##   <chr> <chr>  <dbl> <chr>   <int>  <dbl>
 ## 1 9     Spade 0.0192 47          1      1
@@ -442,7 +442,7 @@ head(results)
 ```
 
 ```
-## # A tibble: 6 x 6
+## # A tibble: 6 × 6
 ##   rank  suit   probs orig.id  .row .index
 ##   <chr> <chr>  <dbl> <chr>   <int>  <dbl>
 ## 1 10    Heart 0.0192 35          1      1

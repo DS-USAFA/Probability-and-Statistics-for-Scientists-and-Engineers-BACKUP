@@ -4,25 +4,25 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Studies | Computational Probability and Statistics</title>
-  <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <title>Chapter 4 Studies | Probability and Statistics for Scientists and Engineers</title>
+  <meta name="description" content="This is a set of notes for Math 356 that has been compiled into a book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Studies | Computational Probability and Statistics" />
+  <meta property="og:title" content="Chapter 4 Studies | Probability and Statistics for Scientists and Engineers" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/figures/Cover.png" />
-  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta property="og:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Studies | Computational Probability and Statistics" />
+  <meta name="twitter:title" content="Chapter 4 Studies | Probability and Statistics for Scientists and Engineers" />
   
-  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   <meta name="twitter:image" content="/figures/Cover.png" />
 
 <meta name="author" content="Ken Horton" />
-<meta name="author" content="Kris Pruitt" />
+<meta name="author" content="Matthew Davis" />
 <meta name="author" content="Bradley Warner" />
 
 
@@ -35,8 +35,9 @@
   
 <link rel="prev" href="ODCP.html"/>
 <link rel="next" href="NUMDATA.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -44,7 +45,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -160,7 +160,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Computational Probability and Statistics</a></li>
+<li><a href="./">Probability and Statistics for Scientists and Engineers</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
@@ -773,7 +773,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Probability and Statistics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Probability and Statistics for Scientists and Engineers</a>
           </h1>
         </div>
 
@@ -804,7 +804,7 @@ div.csl-indent {
 Suppose an observational study tracked sunscreen use and skin cancer, and it was found that the more sunscreen someone used, the more likely the person was to have skin cancer. Does this mean sunscreen <em>causes</em> skin cancer?<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a></p>
 </blockquote>
 <p>Some previous research<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> tells us that using sunscreen actually reduces skin cancer risk, so maybe there is another variable that can explain this hypothetical association between sunscreen usage and skin cancer. One important piece of information that is absent is sun exposure. If someone is out in the sun all day, she is more likely to use sunscreen <em>and</em> more likely to get skin cancer. Exposure to the sun is unaccounted for in the simple investigation.</p>
-<div class="figure"><span id="fig:confound-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:confound-fig"></span>
 <img src="04-Studies_files/figure-html/confound-fig-1.png" alt="Sun exposure is a confounding variable because it is related to both response and explanatory variables." width="480" />
 <p class="caption">
 Figure 4.1: Sun exposure is a confounding variable because it is related to both response and explanatory variables.
@@ -816,7 +816,7 @@ Figure 4.1: Sun exposure is a confounding variable because it is related to both
 <p><strong>Exercise</strong>:<br />
 What conclusion to you reach from the plot in Figure <a href="STUDY.html#fig:confound2-fig">4.2</a>?<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a></p>
 </blockquote>
-<div class="figure"><span id="fig:confound2-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:confound2-fig"></span>
 <img src="04-Studies_files/figure-html/confound2-fig-1.png" alt="Average SAT score versus expenditure per pupil; reminder: each observation represents an individual state." width="672" />
 <p class="caption">
 Figure 4.2: Average SAT score versus expenditure per pupil; reminder: each observation represents an individual state.
@@ -825,7 +825,7 @@ Figure 4.2: Average SAT score versus expenditure per pupil; reminder: each obser
 <p>The implication that spending less might give better results is not justified. Expenditures are confounded with the proportion of students who take the exam, and scores are higher in states where fewer students take the exam.</p>
 <p>It is interesting to look at the original plot if we place the states into two groups depending on whether more or
 fewer than 40% of students take the SAT. Figure <a href="STUDY.html#fig:conditional-fig">4.3</a> is a plot of the data broken down into the 2 groups.</p>
-<div class="figure"><span id="fig:conditional-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:conditional-fig"></span>
 <img src="04-Studies_files/figure-html/conditional-fig-1.png" alt="Average SAT score versus expenditure per pupil; broken down by level of participation." width="672" />
 <p class="caption">
 Figure 4.3: Average SAT score versus expenditure per pupil; broken down by level of participation.
@@ -837,7 +837,7 @@ Figure 4.3: Average SAT score versus expenditure per pupil; broken down by level
 <p><strong>Exercise</strong>:<br />
 Figure <a href="STUDY.html#fig:homeown2-fig">4.4</a> shows a negative association between the homeownership rate and the percentage of multi-unit structures in a county. However, it is unreasonable to conclude that there is a causal relationship between the two variables. Suggest one or more other variables that might explain the relationship in the Figure <a href="STUDY.html#fig:homeown2-fig">4.4</a>.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a></p>
 </blockquote>
-<div class="figure"><span id="fig:homeown2-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:homeown2-fig"></span>
 <img src="04-Studies_files/figure-html/homeown2-fig-1.png" alt="A scatterplot of the homeownership rate versus the percent of units that are in multi-unit structures for all 3,143 counties." width="672" />
 <p class="caption">
 Figure 4.4: A scatterplot of the homeownership rate versus the percent of units that are in multi-unit structures for all 3,143 counties.
@@ -849,19 +849,19 @@ Figure 4.4: A scatterplot of the homeownership rate versus the percent of units 
 <div id="three-sampling-methods" class="section level3" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Three sampling methods</h3>
 <p>Almost all statistical methods are based on the notion of implied randomness. If observational data are not collected in a random framework from a population, results from these statistical methods are not reliable. Here we consider three random sampling techniques: simple, stratified, and cluster sampling. Figures <a href="STUDY.html#fig:simprand-fig">4.5</a> , <a href="STUDY.html#fig:stratsamp2-fig">4.6</a> , and <a href="STUDY.html#fig:clussamp4-fig">4.7</a> provides a graphical representation of these techniques.</p>
-<div class="figure"><span id="fig:simprand-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:simprand-fig"></span>
 <img src="04-Studies_files/figure-html/simprand-fig-1.png" alt="Examples of simple random sampling. In this figure, simple random sampling was used to randomly select the 18 cases." width="672" />
 <p class="caption">
 Figure 4.5: Examples of simple random sampling. In this figure, simple random sampling was used to randomly select the 18 cases.
 </p>
 </div>
-<div class="figure"><span id="fig:stratsamp2-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:stratsamp2-fig"></span>
 <img src="04-Studies_files/figure-html/stratsamp2-fig-1.png" alt="In this figure, stratified sampling was used: cases were grouped into strata, and then simple random sampling was employed within each stratum." width="672" />
 <p class="caption">
 Figure 4.6: In this figure, stratified sampling was used: cases were grouped into strata, and then simple random sampling was employed within each stratum.
 </p>
 </div>
-<div class="figure"><span id="fig:clussamp4-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:clussamp4-fig"></span>
 <img src="04-Studies_files/figure-html/clussamp4-fig-1.png" alt="In this figure, cluster sampling was used, where data were binned into nine clusters, and three of the clusters were randomly selected." width="672" />
 <p class="caption">
 Figure 4.7: In this figure, cluster sampling was used, where data were binned into nine clusters, and three of the clusters were randomly selected.
@@ -893,7 +893,7 @@ Suppose we are interested in estimating the malaria rate in a densely tropical p
 <li><p><strong>Replication</strong>. The more cases researchers observe, the more accurately they can estimate the effect of the explanatory variable on the response. In a single study, we <strong>replicate</strong> by collecting a sufficiently large sample. Additionally, a group of scientists may replicate an entire study to verify an earlier finding. You replicate to the level of variability you want to estimate. For example, in flight test, we can run the same flight conditions again to get a replicate; however, if the same plane and pilot are being used, the replicate is not getting the pilot-to-pilot or the plane-to-plane variability.</p></li>
 <li><p><strong>Blocking</strong>. Researchers sometimes know or suspect that variables, other than the treatment, influence the response. Under these circumstances, they may first group individuals based on this variable and then randomize cases within each block to the treatment groups. This strategy is often referred to as <strong>blocking</strong>. For instance, if we are looking at the effect of a drug on heart attacks, we might first split patients into low-risk and high-risk <strong>blocks</strong>, then randomly assign half the patients from each block to the control group and the other half to the treatment group, as shown in Figure <a href="STUDY.html#fig:exp4-fig">4.8</a>. This strategy ensures each treatment group has an equal number of low-risk and high-risk patients.</p></li>
 </ol>
-<div class="figure"><span id="fig:exp4-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:exp4-fig"></span>
 <img src="04-Studies_files/figure-html/exp4-fig-1.png" alt="Blocking using a variable depicting patient risk. Patients are first divided into low-risk and high-risk blocks, then each block is evenly divided into the treatment groups using randomization. This strategy ensures an equal representation of patients in each treatment group from both the low-risk and high-risk categories." width="480" />
 <p class="caption">
 Figure 4.8: Blocking using a variable depicting patient risk. Patients are first divided into low-risk and high-risk blocks, then each block is evenly divided into the treatment groups using randomization. This strategy ensures an equal representation of patients in each treatment group from both the low-risk and high-risk categories.
@@ -1009,7 +1009,6 @@ Study with a similar scenario to that described here:<br />
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1036,6 +1035,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 },

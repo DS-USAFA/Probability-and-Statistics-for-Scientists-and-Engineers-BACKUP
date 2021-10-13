@@ -4,25 +4,25 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 21 Central Limit Theorem | Computational Probability and Statistics</title>
-  <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <title>Chapter 21 Central Limit Theorem | Probability and Statistics for Scientists and Engineers</title>
+  <meta name="description" content="This is a set of notes for Math 356 that has been compiled into a book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 21 Central Limit Theorem | Computational Probability and Statistics" />
+  <meta property="og:title" content="Chapter 21 Central Limit Theorem | Probability and Statistics for Scientists and Engineers" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/figures/Cover.png" />
-  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta property="og:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 21 Central Limit Theorem | Computational Probability and Statistics" />
+  <meta name="twitter:title" content="Chapter 21 Central Limit Theorem | Probability and Statistics for Scientists and Engineers" />
   
-  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   <meta name="twitter:image" content="/figures/Cover.png" />
 
 <meta name="author" content="Ken Horton" />
-<meta name="author" content="Kris Pruitt" />
+<meta name="author" content="Matthew Davis" />
 <meta name="author" content="Bradley Warner" />
 
 
@@ -35,8 +35,9 @@
   
 <link rel="prev" href="PVALUES.html"/>
 <link rel="next" href="CI.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -44,7 +45,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -160,7 +160,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Computational Probability and Statistics</a></li>
+<li><a href="./">Probability and Statistics for Scientists and Engineers</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
@@ -773,7 +773,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Probability and Statistics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Probability and Statistics for Scientists and Engineers</a>
           </h1>
         </div>
 
@@ -799,7 +799,7 @@ div.csl-indent {
 <div id="null-distribution" class="section level3" number="21.2.1">
 <h3><span class="header-section-number">21.2.1</span> Null distribution</h3>
 <p>As a reminder, in the tapping and listening problem, we used the proportion of correct answers as our test statistic. Under the null hypothesis we assumed the probability of success was 0.5. The estimate of the sampling distribution of our test statistic is shown in Figure <a href="CLT.html#fig:dens211-fig">21.1</a>.</p>
-<div class="figure"><span id="fig:dens211-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:dens211-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/dens211-fig-1.png" alt="Sampling distribution of the proportion." width="672" />
 <p class="caption">
 Figure 21.1: Sampling distribution of the proportion.
@@ -810,7 +810,7 @@ Figure 21.1: Sampling distribution of the proportion.
 Describe the shape of the distribution and note anything that you find interesting.<a href="#fn84" class="footnote-ref" id="fnref84"><sup>84</sup></a></p>
 </blockquote>
 <p>In the Figure <a href="CLT.html#fig:dens212-fig">21.2</a> we have overlayed a normal distribution on the histogram of the estimated sampling distribution. This allows us to visually compare a normal probability density curve with the empirical distribution of the sampling distribution.</p>
-<div class="figure"><span id="fig:dens212-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:dens212-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/dens212-fig-1.png" alt="Sampling distribution of the sample proportion." width="672" />
 <p class="caption">
 Figure 21.2: Sampling distribution of the sample proportion.
@@ -841,7 +841,7 @@ Figure 21.2: Sampling distribution of the sample proportion.
 <span id="cb568-2"><a href="CLT.html#cb568-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb568-3"><a href="CLT.html#cb568-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))) <span class="sc">%&gt;%</span></span>
 <span id="cb568-4"><a href="CLT.html#cb568-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">y=</span><span class="st">&quot;Probability&quot;</span>,<span class="at">x=</span><span class="st">&quot;X&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:dens213-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:dens213-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/dens213-fig-1.png" alt="Binomial pmf with 1 trial and probability of succes of 0.65." width="672" />
 <p class="caption">
 Figure 21.3: Binomial pmf with 1 trial and probability of succes of 0.65.
@@ -856,7 +856,7 @@ Figure 21.3: Binomial pmf with 1 trial and probability of succes of 0.65.
 <pre><code>##  min  Q1 median  Q3 max    mean        sd     n missing
 ##  0.1 0.5    0.7 0.8   1 0.64932 0.1505716 10000       0</code></pre>
 <p>Remember from our lessons on probability, these results for the mean and standard deviation do not depend on the CLT, they are results from the properties of expectation on independent samples. The distribution of the sample mean, the shape of the sampling distribution, is approximately normal as a result of the CLT, Figure <a href="CLT.html#fig:dens214-fig">21.4</a>.</p>
-<div class="figure"><span id="fig:dens214-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:dens214-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/dens214-fig-1.png" alt="Sampling distribution of the sample proportion with sample size of 10." width="672" />
 <p class="caption">
 Figure 21.4: Sampling distribution of the sample proportion with sample size of 10.
@@ -872,7 +872,7 @@ Figure 21.4: Sampling distribution of the sample proportion with sample size of 
 <p>Let’s take a larger sample. In the code below, we will repeat the above but with a sample of size 25. Figure <a href="CLT.html#fig:dens215-fig">21.5</a> plots the sampling distribution.</p>
 <div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="CLT.html#cb574-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5501</span>)</span>
 <span id="cb574-2"><a href="CLT.html#cb574-2" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">mean</span>(<span class="fu">rbinom</span>(<span class="dv">25</span>,<span class="dv">1</span>,<span class="fl">0.65</span>))</span></code></pre></div>
-<div class="figure"><span id="fig:dens215-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:dens215-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/dens215-fig-1.png" alt="Sampling distribution of the sample proportion with sample size of 25." width="672" />
 <p class="caption">
 Figure 21.5: Sampling distribution of the sample proportion with sample size of 25.
@@ -887,7 +887,7 @@ Figure 21.5: Sampling distribution of the sample proportion with sample size of 
 <span id="cb577-2"><a href="CLT.html#cb577-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>mean,<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb577-3"><a href="CLT.html#cb577-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_facet_grid</span>(<span class="sc">~</span>samp) <span class="sc">%&gt;%</span></span>
 <span id="cb577-4"><a href="CLT.html#cb577-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
-<div class="figure"><span id="fig:dens216-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:dens216-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/dens216-fig-1.png" alt="Sampling distribution of the proportion for different trail sizes." width="672" />
 <p class="caption">
 Figure 21.6: Sampling distribution of the proportion for different trail sizes.
@@ -941,7 +941,7 @@ Figure <a href="CLT.html#fig:t211-fig">21.7</a> is a plot of the <span class="ma
 <div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="CLT.html#cb578-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;norm&quot;</span>,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb578-2"><a href="CLT.html#cb578-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dist</span>(<span class="st">&quot;t&quot;</span>,<span class="at">df=</span><span class="dv">3</span>,<span class="at">color=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb578-3"><a href="CLT.html#cb578-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
-<div class="figure"><span id="fig:t211-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:t211-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/t211-fig-1.png" alt="The distibtion of t." width="672" />
 <p class="caption">
 Figure 21.7: The distibtion of t.
@@ -1100,7 +1100,7 @@ thus our test statistic is</p>
 <div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="CLT.html#cb595-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_qq</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature) <span class="sc">%&gt;%</span></span>
 <span id="cb595-2"><a href="CLT.html#cb595-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_qqline</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature) <span class="sc">%&gt;%</span></span>
 <span id="cb595-3"><a href="CLT.html#cb595-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
-<div class="figure"><span id="fig:qq211-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:qq211-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/qq211-fig-1.png" alt="Q-Q plot for body temperature data." width="672" />
 <p class="caption">
 Figure 21.8: Q-Q plot for body temperature data.
@@ -1188,7 +1188,6 @@ c. Repeat parts a) and b) for <span class="math inline">\(n=20\)</span> and <sp
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1215,6 +1214,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 },

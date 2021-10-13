@@ -226,6 +226,8 @@ slope_estimate
 ```
 
 ```
+## Response: calories (numeric)
+## Explanatory: carb (numeric)
 ## # A tibble: 1 × 1
 ##    stat
 ##   <dbl>
@@ -244,7 +246,9 @@ head(results2)
 ```
 
 ```
-## # A tibble: 6 x 2
+## Response: calories (numeric)
+## Explanatory: carb (numeric)
+## # A tibble: 6 × 2
 ##   replicate  stat
 ##       <int> <dbl>
 ## 1         1  3.75

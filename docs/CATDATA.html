@@ -4,25 +4,25 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Categorical Data | Computational Probability and Statistics</title>
-  <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <title>Chapter 6 Categorical Data | Probability and Statistics for Scientists and Engineers</title>
+  <meta name="description" content="This is a set of notes for Math 356 that has been compiled into a book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Categorical Data | Computational Probability and Statistics" />
+  <meta property="og:title" content="Chapter 6 Categorical Data | Probability and Statistics for Scientists and Engineers" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/figures/Cover.png" />
-  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta property="og:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Categorical Data | Computational Probability and Statistics" />
+  <meta name="twitter:title" content="Chapter 6 Categorical Data | Probability and Statistics for Scientists and Engineers" />
   
-  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   <meta name="twitter:image" content="/figures/Cover.png" />
 
 <meta name="author" content="Ken Horton" />
-<meta name="author" content="Kris Pruitt" />
+<meta name="author" content="Matthew Davis" />
 <meta name="author" content="Bradley Warner" />
 
 
@@ -35,8 +35,9 @@
   
 <link rel="prev" href="NUMDATA.html"/>
 <link rel="next" href="CS2.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -44,7 +45,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -160,7 +160,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Computational Probability and Statistics</a></li>
+<li><a href="./">Probability and Statistics for Scientists and Engineers</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
@@ -773,7 +773,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Probability and Statistics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Probability and Statistics for Scientists and Engineers</a>
           </h1>
         </div>
 
@@ -954,7 +954,7 @@ Total
 <span id="cb73-2"><a href="CATDATA.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_bar</span>(<span class="sc">~</span>number) <span class="sc">%&gt;%</span></span>
 <span id="cb73-3"><a href="CATDATA.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb73-4"><a href="CATDATA.html#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Size of Number&quot;</span>,<span class="at">y=</span><span class="st">&quot;Count&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:bar61-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:bar61-fig"></span>
 <img src="06-Categorical-Data_files/figure-html/bar61-fig-1.png" alt="Bar chart of the number variable." width="672" />
 <p class="caption">
 Figure 6.1: Bar chart of the <code>number</code> variable.
@@ -966,7 +966,7 @@ Figure 6.1: Bar chart of the <code>number</code> variable.
 <span id="cb74-2"><a href="CATDATA.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_props</span>(<span class="sc">~</span>number) <span class="sc">%&gt;%</span></span>
 <span id="cb74-3"><a href="CATDATA.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb74-4"><a href="CATDATA.html#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Size of Number&quot;</span>,<span class="at">y=</span><span class="st">&quot;Proportion&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:bar62-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:bar62-fig"></span>
 <img src="06-Categorical-Data_files/figure-html/bar62-fig-1.png" alt="Bar chart of the number variable as a proportion." width="672" />
 <p class="caption">
 Figure 6.2: Bar chart of the <code>number</code> variable as a proportion.
@@ -1049,7 +1049,7 @@ Create two tables with <code>number</code> and <code>spam</code> where each are 
 <span id="cb87-2"><a href="CATDATA.html#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_bar</span>(<span class="sc">~</span>number,<span class="at">fill=</span><span class="sc">~</span>spam) <span class="sc">%&gt;%</span></span>
 <span id="cb87-3"><a href="CATDATA.html#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb87-4"><a href="CATDATA.html#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Size of Number&quot;</span>,<span class="at">y=</span><span class="st">&quot;Count&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:barseg61-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:barseg61-fig"></span>
 <img src="06-Categorical-Data_files/figure-html/barseg61-fig-1.png" alt="Segmented bar plot for numbers found in emails, where the counts have been further broken down by spam." width="672" />
 <p class="caption">
 Figure 6.3: Segmented bar plot for numbers found in <code>emails</code>, where the counts have been further broken down by <code>spam</code>.
@@ -1061,7 +1061,7 @@ Figure 6.3: Segmented bar plot for numbers found in <code>emails</code>, where t
 <span id="cb88-2"><a href="CATDATA.html#cb88-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_props</span>(<span class="sc">~</span>number,<span class="at">fill=</span><span class="sc">~</span>spam,<span class="at">position=</span><span class="st">&#39;fill&#39;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb88-3"><a href="CATDATA.html#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb88-4"><a href="CATDATA.html#cb88-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Size of Number&quot;</span>,<span class="at">y=</span><span class="st">&quot;Proportion&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:barseg62-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:barseg62-fig"></span>
 <img src="06-Categorical-Data_files/figure-html/barseg62-fig-1.png" alt="Standardized version of Figure 6.3." width="672" />
 <p class="caption">
 Figure 6.4: Standardized version of Figure <a href="CATDATA.html#fig:barseg61-fig">6.3</a>.
@@ -1079,7 +1079,7 @@ Examine both of the segmented bar plots. Which is more useful?</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="CATDATA.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span></code></pre></div>
 
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="CATDATA.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaic</span>(<span class="sc">~</span>number,<span class="at">data=</span>email)</span></code></pre></div>
-<div class="figure"><span id="fig:mosaic61-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:mosaic61-fig"></span>
 <img src="06-Categorical-Data_files/figure-html/mosaic61-fig-1.png" alt="Mosaic plot where emails are grouped by the number variable." width="672" />
 <p class="caption">
 Figure 6.5: Mosaic plot where emails are grouped by the <code>number</code> variable.
@@ -1094,7 +1094,7 @@ Figure 6.5: Mosaic plot where emails are grouped by the <code>number</code> vari
 ##   big   0.01275185 0.12624331</code></pre>
 
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="CATDATA.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaic</span>(<span class="sc">~</span>number<span class="sc">+</span>spam,<span class="at">data=</span>email)</span></code></pre></div>
-<div class="figure"><span id="fig:mosaic62-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:mosaic62-fig"></span>
 <img src="06-Categorical-Data_files/figure-html/mosaic62-fig-1.png" alt="Mosaic plot with number as the first variable." width="672" />
 <p class="caption">
 Figure 6.6: Mosaic plot with <code>number</code> as the first variable.
@@ -1118,7 +1118,7 @@ Figure 6.6: Mosaic plot with <code>number</code> as the first variable.
 <p>However, because it is more insightful for this application to consider the fraction of spam in each category of the <code>number</code> variable, we prefer Figure <a href="CATDATA.html#fig:mosaic62-fig">6.6</a>.</p>
 
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="CATDATA.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaic</span>(<span class="sc">~</span>spam<span class="sc">+</span>number,<span class="at">data=</span>email)</span></code></pre></div>
-<div class="figure"><span id="fig:mosaic63-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:mosaic63-fig"></span>
 <img src="06-Categorical-Data_files/figure-html/mosaic63-fig-1.png" alt="Mosaic plot with spam as the first variable" width="672" />
 <p class="caption">
 Figure 6.7: Mosaic plot with <code>spam</code> as the first variable
@@ -1129,7 +1129,7 @@ Figure 6.7: Mosaic plot with <code>spam</code> as the first variable
 <h3><span class="header-section-number">6.2.4</span> The only pie chart you will see in this course, hopefully</h3>
 <p>While pie charts are well known, they are not typically as useful as other charts in a data analysis. A <strong>pie chart</strong> is shown in Figure <a href="CATDATA.html#fig:pie61-fig">6.8</a>. It is generally more difficult to compare group sizes in a pie chart than in a bar plot, especially when categories have nearly identical counts or proportions. In the case of the <em>none</em> and <em>big</em> categories, the difference is so slight you may be unable to distinguish any difference in group sizes.</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="CATDATA.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(email<span class="sc">$</span>number), <span class="at">col=</span>COL[<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>)], <span class="at">radius=</span><span class="fl">0.75</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:pie61-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:pie61-fig"></span>
 <img src="06-Categorical-Data_files/figure-html/pie61-fig-1.png" alt="A pie chart number for the email data set." width="672" />
 <p class="caption">
 Figure 6.8: A pie chart number for the email data set.
@@ -1203,7 +1203,7 @@ Figure 6.8: A pie chart number for the email data set.
 <span id="cb110-4"><a href="CATDATA.html#cb110-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">xlab=</span><span class="st">&quot;Population change from 2000 to 2010&quot;</span>,</span>
 <span id="cb110-5"><a href="CATDATA.html#cb110-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">ylab=</span><span class="st">&quot;Median Household Income&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb110-6"><a href="CATDATA.html#cb110-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
-<div class="figure"><span id="fig:sbysbox61-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:sbysbox61-fig"></span>
 <img src="06-Categorical-Data_files/figure-html/sbysbox61-fig-1.png" alt="Side-by-side box plot for median household income, where the counties are split by whether there was a population gain or loss from 2000 to 2010." width="672" />
 <p class="caption">
 Figure 6.9: Side-by-side box plot for median household income, where the counties are split by whether there was a population gain or loss from 2000 to 2010.
@@ -1214,7 +1214,7 @@ Figure 6.9: Side-by-side box plot for median household income, where the countie
 <span id="cb111-2"><a href="CATDATA.html#cb111-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dens</span>(<span class="sc">~</span>med_income,<span class="at">color=</span><span class="sc">~</span>pop_gain,<span class="at">lwd=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb111-3"><a href="CATDATA.html#cb111-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb111-4"><a href="CATDATA.html#cb111-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Median household income&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>,<span class="at">col=</span><span class="st">&quot;Population </span><span class="sc">\n</span><span class="st">Change&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:dens61-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:dens61-fig"></span>
 <img src="06-Categorical-Data_files/figure-html/dens61-fig-1.png" alt="Density plots of median household income for counties with population gain versus population loss" width="672" />
 <p class="caption">
 Figure 6.10: Density plots of median household income for counties with population gain versus population loss
@@ -1295,7 +1295,6 @@ What components of each plot in Figures 8 and 9 do you find most useful?<a href=
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1322,6 +1321,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 },

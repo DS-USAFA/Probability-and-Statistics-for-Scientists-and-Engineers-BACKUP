@@ -4,25 +4,25 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Case Study | Computational Probability and Statistics</title>
-  <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <title>Chapter 7 Case Study | Probability and Statistics for Scientists and Engineers</title>
+  <meta name="description" content="This is a set of notes for Math 356 that has been compiled into a book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Case Study | Computational Probability and Statistics" />
+  <meta property="og:title" content="Chapter 7 Case Study | Probability and Statistics for Scientists and Engineers" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/figures/Cover.png" />
-  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta property="og:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Case Study | Computational Probability and Statistics" />
+  <meta name="twitter:title" content="Chapter 7 Case Study | Probability and Statistics for Scientists and Engineers" />
   
-  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   <meta name="twitter:image" content="/figures/Cover.png" />
 
 <meta name="author" content="Ken Horton" />
-<meta name="author" content="Kris Pruitt" />
+<meta name="author" content="Matthew Davis" />
 <meta name="author" content="Bradley Warner" />
 
 
@@ -35,8 +35,9 @@
   
 <link rel="prev" href="CATDATA.html"/>
 <link rel="next" href="PROBRULES.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -44,7 +45,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -160,7 +160,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Computational Probability and Statistics</a></li>
+<li><a href="./">Probability and Statistics for Scientists and Engineers</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
@@ -773,7 +773,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Probability and Statistics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Probability and Statistics for Scientists and Engineers</a>
           </h1>
         </div>
 
@@ -908,7 +908,7 @@ What idea(s) can we use to determine if a match exists?</p>
 <span id="cb133-2"><a href="CS2.html#cb133-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_bar</span>(<span class="sc">~</span>length) <span class="sc">%&gt;%</span></span>
 <span id="cb133-3"><a href="CS2.html#cb133-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb133-4"><a href="CS2.html#cb133-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Number of unique birthdays&quot;</span>,<span class="at">y=</span><span class="st">&quot;Count&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:bar71-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:bar71-fig"></span>
 <img src="07-Probability-Case-Study_files/figure-html/bar71-fig-1.png" alt="Bar chart of the number of unique birthdays in the sample." width="672" />
 <p class="caption">
 Figure 7.1: Bar chart of the number of unique birthdays in the sample.
@@ -989,7 +989,7 @@ What is the number of possibilities for 18 people so that no one has the same bi
 <span id="cb156-3"><a href="CS2.html#cb156-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">&quot;Probability of Match&quot;</span>,</span>
 <span id="cb156-4"><a href="CS2.html#cb156-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">title=</span><span class="st">&quot;Probability of at least 2 people with matching birthdays&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb156-5"><a href="CS2.html#cb156-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
-<div class="figure"><span id="fig:line71-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:line71-fig"></span>
 <img src="07-Probability-Case-Study_files/figure-html/line71-fig-1.png" alt="The probability of at least 2 people having mathcing birthdays" width="672" />
 <p class="caption">
 Figure 7.2: The probability of at least 2 people having mathcing birthdays
@@ -1033,7 +1033,7 @@ Figure 7.2: The probability of at least 2 people having mathcing birthdays
 <span id="cb159-3"><a href="CS2.html#cb159-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(births<span class="sc">~</span>day_of_year) <span class="sc">%&gt;%</span></span>
 <span id="cb159-4"><a href="CS2.html#cb159-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb159-5"><a href="CS2.html#cb159-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Day of the Year&quot;</span>,<span class="at">y=</span><span class="st">&quot;Number of Births&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:scat71-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:scat71-fig"></span>
 <img src="07-Probability-Case-Study_files/figure-html/scat71-fig-1.png" alt="The number of births for each day of the year in 1969" width="672" />
 <p class="caption">
 Figure 7.3: The number of births for each day of the year in 1969
@@ -1050,7 +1050,7 @@ What patterns do you see in Figure <a href="CS2.html#fig:scat71-fig">7.3</a>? Wh
 <span id="cb160-3"><a href="CS2.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(births<span class="sc">~</span>day_of_year,<span class="at">color=</span><span class="sc">~</span><span class="fu">factor</span>(day_of_week)) <span class="sc">%&gt;%</span></span>
 <span id="cb160-4"><a href="CS2.html#cb160-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Day of the Year&quot;</span>,<span class="at">col=</span><span class="st">&quot;Day of Week&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb160-5"><a href="CS2.html#cb160-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
-<div class="figure"><span id="fig:scat72-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:scat72-fig"></span>
 <img src="07-Probability-Case-Study_files/figure-html/scat72-fig-1.png" alt="The number of births for each day of the year in 1969 broken down by day of the week" width="672" />
 <p class="caption">
 Figure 7.4: The number of births for each day of the year in 1969 broken down by day of the week
@@ -1128,7 +1128,7 @@ Figure 7.4: The number of births for each day of the year in 1969 broken down by
 <span id="cb168-3"><a href="CS2.html#cb168-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">xlab=</span><span class="st">&quot;Day of the year&quot;</span>,</span>
 <span id="cb168-4"><a href="CS2.html#cb168-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylab=</span><span class="st">&quot;Number of births&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb168-5"><a href="CS2.html#cb168-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
-<div class="figure"><span id="fig:scat73-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:scat73-fig"></span>
 <img src="07-Probability-Case-Study_files/figure-html/scat73-fig-1.png" alt="Number of births by day of the year for all years." width="672" />
 <p class="caption">
 Figure 7.5: Number of births by day of the year for all years.
@@ -1200,7 +1200,6 @@ Figure 7.5: Number of births by day of the year for all years.
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1227,6 +1226,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 },

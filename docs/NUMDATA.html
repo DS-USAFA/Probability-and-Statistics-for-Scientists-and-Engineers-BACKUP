@@ -4,25 +4,25 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Numerical Data | Computational Probability and Statistics</title>
-  <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <title>Chapter 5 Numerical Data | Probability and Statistics for Scientists and Engineers</title>
+  <meta name="description" content="This is a set of notes for Math 356 that has been compiled into a book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Numerical Data | Computational Probability and Statistics" />
+  <meta property="og:title" content="Chapter 5 Numerical Data | Probability and Statistics for Scientists and Engineers" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/figures/Cover.png" />
-  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta property="og:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Numerical Data | Computational Probability and Statistics" />
+  <meta name="twitter:title" content="Chapter 5 Numerical Data | Probability and Statistics for Scientists and Engineers" />
   
-  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   <meta name="twitter:image" content="/figures/Cover.png" />
 
 <meta name="author" content="Ken Horton" />
-<meta name="author" content="Kris Pruitt" />
+<meta name="author" content="Matthew Davis" />
 <meta name="author" content="Bradley Warner" />
 
 
@@ -35,8 +35,9 @@
   
 <link rel="prev" href="STUDY.html"/>
 <link rel="next" href="CATDATA.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -44,7 +45,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -160,7 +160,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Computational Probability and Statistics</a></li>
+<li><a href="./">Probability and Statistics for Scientists and Engineers</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
@@ -773,7 +773,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Probability and Statistics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Probability and Statistics for Scientists and Engineers</a>
           </h1>
         </div>
 
@@ -801,14 +801,14 @@ div.csl-indent {
 <div id="scatterplots-for-paired-data" class="section level3" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Scatterplots for paired data</h3>
 <p>A <strong>scatterplot</strong> provides a case-by-case view of data for two numerical variables. In Figure <a href="NUMDATA.html#fig:scat5-fig">5.1</a>, we again present a scatterplot used to examine how federal spending and poverty were related in the <code>county</code> data set.</p>
-<div class="figure"><span id="fig:scat5-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:scat5-fig"></span>
 <img src="05-Numerical-Data_files/figure-html/scat5-fig-1.png" alt="A scatterplot showing fed_spend against poverty. Owsley County of Kentucky, with a poverty rate of 41.5% and federal spending of $21.50 per capita, is highlighted." width="672" />
 <p class="caption">
 Figure 5.1: A scatterplot showing fed_spend against poverty. Owsley County of Kentucky, with a poverty rate of 41.5% and federal spending of $21.50 per capita, is highlighted.
 </p>
 </div>
 <p>Another scatterplot is shown in Figure <a href="NUMDATA.html#fig:scat52-fig">5.2</a>, comparing the number of line breaks <code>line_breaks</code> and number of characters <code>num_char</code> in emails for the <code>email50</code> data set. In any scatterplot, each point represents a single case. Since there are 50 cases in <code>email50</code>, there are 50 points in Figure <a href="NUMDATA.html#fig:scat52-fig">5.2</a>.</p>
-<div class="figure"><span id="fig:scat52-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:scat52-fig"></span>
 <img src="05-Numerical-Data_files/figure-html/scat52-fig-1.png" alt="A scatterplot of `line_breaks` versus `num_char` for the `email50` data." width="672" />
 <p class="caption">
 Figure 5.2: A scatterplot of <code>line_breaks</code> versus <code>num_char</code> for the <code>email50</code> data.
@@ -824,7 +824,7 @@ What do scatterplots reveal about the data, and how might they be useful?<a href
 <p><em>Example</em>:<br />
 Consider a new data set of 54 cars with two variables: vehicle price and weight.<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a> A scatterplot of vehicle price versus weight is shown in Figure <a href="NUMDATA.html#fig:scat53-fig">5.3</a>. What can be said about the relationship between these variables?</p>
 </blockquote>
-<div class="figure"><span id="fig:scat53-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:scat53-fig"></span>
 <img src="05-Numerical-Data_files/figure-html/scat53-fig-1.png" alt="A scatterplot of *price* versus *weight* for 54 cars." width="672" />
 <p class="caption">
 Figure 5.3: A scatterplot of <em>price</em> versus <em>weight</em> for 54 cars.
@@ -839,7 +839,7 @@ Describe two variables that would have a horseshoe shaped association in a scatt
 <div id="dot-plots-and-the-mean" class="section level3" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Dot plots and the mean</h3>
 <p>Sometimes two variables are one too many: only one variable may be of interest. In these cases, a dot plot provides the most basic of displays. A <strong>dot plot</strong> is a one-variable scatterplot; an example using the number of characters from 50 emails is shown in Figure <a href="NUMDATA.html#fig:dot5-fig">5.4</a>.</p>
-<div class="figure"><span id="fig:dot5-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:dot5-fig"></span>
 <img src="05-Numerical-Data_files/figure-html/dot5-fig-1.png" alt="A dot plot of `num_char` for the `email50` data set." width="672" />
 <p class="caption">
 Figure 5.4: A dot plot of <code>num_char</code> for the <code>email50</code> data set.
@@ -887,7 +887,7 @@ We might like to compute the average income per person in the US. To do so, we m
 ## (50,55] (55,60] (60,65] 
 ##       0       0       1</code></pre>
 <p>These binned counts are plotted as bars in Figure <a href="NUMDATA.html#fig:hist5-fig">5.5</a> into what is called a <strong>histogram</strong>.</p>
-<div class="figure"><span id="fig:hist5-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:hist5-fig"></span>
 <img src="05-Numerical-Data_files/figure-html/hist5-fig-1.png" alt="A histogram of `num_char`. This distribution is very strongly skewed to the right." width="672" />
 <p class="caption">
 Figure 5.5: A histogram of <code>num_char</code>. This distribution is very strongly skewed to the right.
@@ -930,7 +930,7 @@ Look at the help menu for <code>gf_histogram</code> and change the x-axis label,
    gf_theme(theme_classic())</code></pre>
 <p>In addition to looking at whether a distribution is skewed or symmetric, histograms can be used to identify modes. A <strong>mode</strong> is represented by a prominent peak in the distribution.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a> There is only one prominent peak in the histogram of <code>num_char</code>.</p>
 <p>Figure <a href="NUMDATA.html#fig:histmulti-fig">5.6</a> show histograms that have one, two, or three prominent peaks. Such distributions are called <strong>unimodal</strong>, <strong>bimodal</strong>, and <strong>multimodal</strong>, respectively. Any distribution with more than 2 prominent peaks is called multimodal. Notice that there was one prominent peak in the unimodal distribution with a second less prominent peak that was not counted since it only differs from its neighboring bins by a few observations.</p>
-<div class="figure"><span id="fig:histmulti-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:histmulti-fig"></span>
 <img src="05-Numerical-Data_files/figure-html/histmulti-fig-1.png" alt="Histograms that demonstrate unimodal, bimodal, and multimodal data." width="33%" /><img src="05-Numerical-Data_files/figure-html/histmulti-fig-2.png" alt="Histograms that demonstrate unimodal, bimodal, and multimodal data." width="33%" /><img src="05-Numerical-Data_files/figure-html/histmulti-fig-3.png" alt="Histograms that demonstrate unimodal, bimodal, and multimodal data." width="33%" />
 <p class="caption">
 Figure 5.6: Histograms that demonstrate unimodal, bimodal, and multimodal data.
@@ -985,19 +985,19 @@ The variance is roughly the average squared distance from the mean. The standard
 <p><strong>Tip: standard deviation describes variability</strong><br />
 Focus on the conceptual meaning of the standard deviation as a descriptor of variability rather than the formulas. Usually 70% of the data will be within one standard deviation of the mean and about 95% will be within two standard deviations. However, as we have seen, these percentages are not strict rules.</p>
 </blockquote>
-<div class="figure"><span id="fig:hist53-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:hist53-fig"></span>
 <img src="05-Numerical-Data_files/figure-html/hist53-fig-1.png" alt="The first of three very different population distributions with the same mean, 0, and standard deviation, 1." width="672" />
 <p class="caption">
 Figure 5.7: The first of three very different population distributions with the same mean, 0, and standard deviation, 1.
 </p>
 </div>
-<div class="figure"><span id="fig:hist54-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:hist54-fig"></span>
 <img src="05-Numerical-Data_files/figure-html/hist54-fig-1.png" alt="The second plot with mean 0 and standard deviation 1." width="672" />
 <p class="caption">
 Figure 5.8: The second plot with mean 0 and standard deviation 1.
 </p>
 </div>
-<div class="figure"><span id="fig:hist55-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:hist55-fig"></span>
 <img src="05-Numerical-Data_files/figure-html/hist55-fig-1.png" alt="The final plot with mean 0 and standard deviation 1." width="672" />
 <p class="caption">
 Figure 5.9: The final plot with mean 0 and standard deviation 1.
@@ -1016,7 +1016,7 @@ Describe the distribution of the <code>num_char</code> variable using the histog
 <div id="box-plots-quartiles-and-the-median" class="section level3" number="5.2.5">
 <h3><span class="header-section-number">5.2.5</span> Box plots, quartiles, and the median</h3>
 <p>A <strong>box plot</strong> summarizes a data set using five statistics while also plotting unusual observations. Figure <a href="NUMDATA.html#fig:box-fig">5.10</a> provides a vertical dot plot alongside a box plot of the <code>num_char</code> variable from the <code>email50</code> data set.</p>
-<div class="figure"><span id="fig:box-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:box-fig"></span>
 <img src="05-Numerical-Data_files/figure-html/box-fig-1.png" alt="A vertical dot plot next to a labeled box plot for the number of characters in 50 emails. The median (6,890), splits the data into the bottom 50% and the top 50%, marked in the dot plot by horizontal dashes and open circles, respectively." width="672" />
 <p class="caption">
 Figure 5.10: A vertical dot plot next to a labeled box plot for the number of characters in 50 emails. The median (6,890), splits the data into the bottom 50% and the top 50%, marked in the dot plot by horizontal dashes and open circles, respectively.
@@ -1079,7 +1079,7 @@ Using Figure <a href="NUMDATA.html#fig:box-fig">5.10</a>, estimate the following
 <div id="robust-statistics" class="section level3" number="5.2.6">
 <h3><span class="header-section-number">5.2.6</span> Robust statistics</h3>
 <p>How are the <em>sample statistics</em> of the <code>num_char</code> data set affected by the observation with value 64,401? What would have happened if this email wasn’t observed? What would happen to these <em>summary statistics</em> if the observation at 64,401 had been even larger, say 150,000? These scenarios are plotted alongside the original data in Figure <a href="NUMDATA.html#fig:box2-fig">5.11</a>, and sample statistics are computed in <code>R</code>.</p>
-<div class="figure"><span id="fig:box2-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:box2-fig"></span>
 <img src="05-Numerical-Data_files/figure-html/box2-fig-1.png" alt="Box plots of the original character count data and two modified data sets." width="672" />
 <p class="caption">
 Figure 5.11: Box plots of the original character count data and two modified data sets.
@@ -1117,7 +1117,7 @@ The distribution of vehicle prices tends to be right skewed, with a few luxury a
 <div id="transforming-data" class="section level3" number="5.2.7">
 <h3><span class="header-section-number">5.2.7</span> Transforming data</h3>
 <p>When data are very strongly skewed, we sometimes transform them so they are easier to model. Consider the histogram of salaries for Major League Baseball players’ salaries from 2010, which is shown in Figure <a href="NUMDATA.html#fig:hist510-fig">5.12</a>.</p>
-<div class="figure"><span id="fig:hist510-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:hist510-fig"></span>
 <img src="05-Numerical-Data_files/figure-html/hist510-fig-1.png" alt="Histogram of MLB player salaries for 2010, in millions of dollars." width="672" />
 <p class="caption">
 Figure 5.12: Histogram of MLB player salaries for 2010, in millions of dollars.
@@ -1128,14 +1128,14 @@ Figure 5.12: Histogram of MLB player salaries for 2010, in millions of dollars.
 The histogram of MLB player salaries is useful in that we can see the data are extremely skewed and centered (as gauged by the median) at about $1 million. What isn’t useful about this plot?<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a></p>
 </blockquote>
 <p>There are some standard transformations that are often applied when much of the data cluster near zero (relative to the larger values in the data set) and all observations are positive. A <strong>transformation</strong> is a rescaling of the data using a function. For instance, a plot of the natural logarithm<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a> of player salaries results in a new histogram in Figure <a href="NUMDATA.html#fig:hist512-fig">5.13</a>. Transformed data are sometimes easier to work with when applying statistical models because the transformed data are much less skewed and outliers are usually less extreme.</p>
-<div class="figure"><span id="fig:hist512-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:hist512-fig"></span>
 <img src="05-Numerical-Data_files/figure-html/hist512-fig-1.png" alt="Histogram of the log-transformed MLB player salaries for 2010." width="672" />
 <p class="caption">
 Figure 5.13: Histogram of the log-transformed MLB player salaries for 2010.
 </p>
 </div>
 <p>Transformations can also be applied to one or both variables in a scatterplot. A scatterplot of the <code>line_breaks</code> and <code>num_char</code> variables is shown in Figure <a href="NUMDATA.html#fig:scat52-fig">5.2</a> above. We can see a positive association between the variables and that many observations are clustered near zero. Later in this course, we might want to use a straight line to model the data. However, we’ll find that the data in their current state cannot be modeled very well. Figure <a href="NUMDATA.html#fig:scat513-fig">5.14</a> shows a scatterplot where both the <code>line_breaks</code> and <code>num_char</code> variables have been transformed using a log (base <span class="math inline">\(e\)</span>) transformation. While there is a positive association in each plot, the transformed data show a steadier trend, which is easier to model than the untransformed data.</p>
-<div class="figure"><span id="fig:scat513-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:scat513-fig"></span>
 <img src="05-Numerical-Data_files/figure-html/scat513-fig-1.png" alt="A scatterplot of `line_breaks` versus `num_char` for the `email50` data but where each variable has been log-transformed." width="672" />
 <p class="caption">
 Figure 5.14: A scatterplot of <code>line_breaks</code> versus <code>num_char</code> for the <code>email50</code> data but where each variable has been log-transformed.
@@ -1230,7 +1230,6 @@ Figure 5.14: A scatterplot of <code>line_breaks</code> versus <code>num_char</co
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1257,6 +1256,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 },

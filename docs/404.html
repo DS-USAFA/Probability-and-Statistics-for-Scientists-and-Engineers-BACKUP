@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 Named Discrete Distributions | Probability and Statistics for Scientists and Engineers</title>
+  <title>Page not found | Probability and Statistics for Scientists and Engineers</title>
   <meta name="description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 Named Discrete Distributions | Probability and Statistics for Scientists and Engineers" />
+  <meta property="og:title" content="Page not found | Probability and Statistics for Scientists and Engineers" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/figures/Cover.png" />
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 Named Discrete Distributions | Probability and Statistics for Scientists and Engineers" />
+  <meta name="twitter:title" content="Page not found | Probability and Statistics for Scientists and Engineers" />
   
   <meta name="twitter:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   <meta name="twitter:image" content="/figures/Cover.png" />
@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="CONRANDVAR.html"/>
-<link rel="next" href="CONTNNAMED.html"/>
+
+
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -781,336 +781,19 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="DISCRETENAMED" class="section level1" number="12">
-<h1><span class="header-section-number">Chapter 12</span> Named Discrete Distributions</h1>
-<div id="objectives-11" class="section level2" number="12.1">
-<h2><span class="header-section-number">12.1</span> Objectives</h2>
-<ol style="list-style-type: decimal">
-<li>Recognize and setup for use common discrete distributions (Uniform, Binomial, Poisson, Hypergeometric) to include parameters, assumptions, and moments.<br />
-</li>
-<li>Use <code>R</code> to calculate probabilities and quantiles involving random variables with common discrete distributions.</li>
-</ol>
-</div>
-<div id="named-distributions" class="section level2" number="12.2">
-<h2><span class="header-section-number">12.2</span> Named distributions</h2>
-<p>In the previous two lessons, we introduced the concept of random variables, distribution functions, and expectations. In some cases, the nature of an experiment may yield random variables with common distributions. In these cases, we can rely on easy-to-use distribution functions and built-in <code>R</code> functions in order to calculate probabilities and quantiles.</p>
-<div id="discrete-uniform-distribution" class="section level3" number="12.2.1">
-<h3><span class="header-section-number">12.2.1</span> Discrete uniform distribution</h3>
-<p>The first distribution we will discuss is the discrete uniform distribution. It is not a very commonly used distribution, especially compared to its continuous counterpart. A discrete random variable has the discrete uniform distribution if probability is evenly allocated to each value in the sample space. A variable with this distribution has parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> representing the minimum and maximum of the sample space, respectively. (By default, that sample space is assumed to consist of integers only, but that is by no means always the case.)</p>
-<blockquote>
-<p><em>Example</em>:<br />
-Rolling a fair die is an example of the discrete uniform. Each side of the die has an equal probability.</p>
-</blockquote>
-<p>Let <span class="math inline">\(X\)</span> be a discrete random variable with the uniform distribution. If the sample space is consecutive integers, this distribution is denoted as <span class="math inline">\(X\sim\textsf{DUnif}(a,b)\)</span>. The pmf of <span class="math inline">\(X\)</span> is given by:
-<span class="math display">\[
-f_X(x)=\left\{\begin{array}{ll}\frac{1}{b-a+1}, &amp; x \in \{a, a+1,...,b\} \\ 
-0, &amp; \mbox{otherwise} \end{array}\right.
-\]</span></p>
-<p>For the die:<br />
-<span class="math display">\[
-f_X(x)=\left\{\begin{array}{ll}\frac{1}{6-1+1} = \frac{1}{6}, &amp; x \in \{1, 2,...,6\} \\ 
-0, &amp; \mbox{otherwise} \end{array}\right.
-\]</span></p>
-<p>The expected value of <span class="math inline">\(X\)</span> is found by:
-<span class="math display">\[
-\mbox{E}(X)=\sum_{x=a}^b x\cdot\frac{1}{b-a+1}= \frac{1}{b-a+1} \cdot \sum_{x=a}^b x=\frac{1}{b-a+1}\cdot\frac{b-a+1}{2}\cdot (a+b) = \frac{a+b}{2}
-\]</span></p>
-<p>Where the sum of consecutive integers is a common result from discrete math, research it for more information.</p>
-<p>The variance of <span class="math inline">\(X\)</span> is found by: (derivation not included)
-<span class="math display">\[
-\mbox{Var}(X)=\mbox{E}[(X-\mbox{E}(X))^2]=\frac{(b-a+1)^2-1}{12}
-\]</span></p>
-<p>Summarizing for the die:</p>
-<p>Let <span class="math inline">\(X\)</span> be the result of a single roll of a fair die. We will report the distribution of <span class="math inline">\(X\)</span>, the pmf, <span class="math inline">\(\mbox{E}(X)\)</span> and <span class="math inline">\(\mbox{Var}(X)\)</span>.</p>
-<p>The sample space of <span class="math inline">\(X\)</span> is <span class="math inline">\(S_X=\{1,2,3,4,5,6\}\)</span>. Since each of those outcomes is equally likely, <span class="math inline">\(X\)</span> follows the discrete uniform distribution with <span class="math inline">\(a=1\)</span> and <span class="math inline">\(b=6\)</span>. Thus,
-<span class="math display">\[
-f_X(x)=\left\{\begin{array}{ll}\frac{1}{6}, &amp; x \in \{1,2,3,4,5,6\} \\ 
-0, &amp; \mbox{otherwise} \end{array}\right.
-\]</span></p>
-<p>Finally, <span class="math inline">\(\mbox{E}(X)=\frac{1+6}{2}=3.5\)</span>. Also, <span class="math inline">\(\mbox{Var}(X)=\frac{(6-1+1)^2-1}{12}=\frac{35}{12}=2.917\)</span>.</p>
-</div>
-<div id="simulating" class="section level3" number="12.2.2">
-<h3><span class="header-section-number">12.2.2</span> Simulating</h3>
-<p>To simulate the discrete uniform, we use <code>sample()</code>.</p>
-<blockquote>
-<p><em>Example</em>:<br />
-To simulate rolling a die 4 times, we use <code>sample()</code>.</p>
-</blockquote>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="DISCRETENAMED.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">61</span>)</span>
-<span id="cb279-2"><a href="DISCRETENAMED.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">4</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## [1] 4 2 2 1</code></pre>
-<p>Let’s roll it 10,000 times and find</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="DISCRETENAMED.html#cb281-1" aria-hidden="true" tabindex="-1"></a>results<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">1</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="DISCRETENAMED.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>sample,<span class="at">data=</span>results,<span class="at">format=</span><span class="st">&quot;percent&quot;</span>)</span></code></pre></div>
-<pre><code>## sample
-##     1     2     3     4     5     6 
-## 16.40 16.46 16.83 17.15 16.92 16.24</code></pre>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="DISCRETENAMED.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="sc">~</span>sample,<span class="at">data=</span>results)</span></code></pre></div>
-<pre><code>## [1] 3.5045</code></pre>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="DISCRETENAMED.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(<span class="sc">~</span>sample,<span class="at">data=</span>results)<span class="sc">*</span>(<span class="dv">10000-1</span>)<span class="sc">/</span><span class="dv">10000</span></span></code></pre></div>
-<pre><code>## [1] 2.87598</code></pre>
-<p>Again as a reminder, we multiply by <span class="math inline">\(\frac{(10000-1)}{10000}\)</span> because the function <code>var()</code> is calculating a sample variance using <span class="math inline">\(n-1\)</span> in the denominator but we need the population variance.</p>
-</div>
-<div id="binomial-distribution" class="section level3" number="12.2.3">
-<h3><span class="header-section-number">12.2.3</span> Binomial distribution</h3>
-<p>The binomial distribution is extremely common, and appears in many situations. In fact, we have already discussed several examples where the binomial distribution is heavily involved.</p>
-<p>Consider an experiment involving repeated <em>independent trials</em> of a binary process (two outcomes), where in each trial, there is a <em>constant probability</em> of “success” (one of the outcomes which is arbitrary). If the random variable <span class="math inline">\(X\)</span> represents the number of successes out of <span class="math inline">\(n\)</span> independent trials, then <span class="math inline">\(X\)</span> is said to follow the binomial distribution with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span> (the probability of a success in each trial).</p>
-<p>The pmf of <span class="math inline">\(X\)</span> is given by:
-<span class="math display">\[
-f_X(x)=\mbox{P}(X=x)={n\choose{x}}p^x(1-p)^{n-x}
-\]</span></p>
-<p>for <span class="math inline">\(x \in \{0,1,...,n\}\)</span> and 0 otherwise.</p>
-<p>Let’s take a moment to dissect this pmf. We are looking for the probability of obtaining <span class="math inline">\(x\)</span> successes out of <span class="math inline">\(n\)</span> trials. The <span class="math inline">\(p^x\)</span> represents the probability of <span class="math inline">\(x\)</span> successes, using the multiplication rule because of the independence assumption. The term <span class="math inline">\((1-p)^{n-x}\)</span> represents the probability of the remainder of the trials as failures. Finally, the <span class="math inline">\(n\choose x\)</span> term represents the number of ways to obtain <span class="math inline">\(x\)</span> successes out of <span class="math inline">\(n\)</span> trials. For example, there are three ways to obtain 1 success out of 3 trials (one success followed by two failures; one success, one failure then one success; or two failures followed by a success).</p>
-<p>The expected value of a binomially distributed random variable is given by <span class="math inline">\(\mbox{E}(X)=np\)</span> and the variance is given by <span class="math inline">\(\mbox{Var}(X)=np(1-p)\)</span>.</p>
-<blockquote>
-<p><em>Example</em>:<br />
-Let <span class="math inline">\(X\)</span> be the number of heads out of 20 independent flips of a fair coin. Note that this is a binomial because the trials are independent and the probability of success, in this case a heads, is constant, and there are two outcomes. Find the distribution, mean and variance of <span class="math inline">\(X\)</span>. Find <span class="math inline">\(\mbox{P}(X=8)\)</span>. Find <span class="math inline">\(\mbox{P}(X\leq 8)\)</span>.</p>
-</blockquote>
-<p><span class="math inline">\(X\)</span> has the binomial distribution with <span class="math inline">\(n=20\)</span> and <span class="math inline">\(p=0.5\)</span>. The pmf is given by:
-<span class="math display">\[
-f_X(x)=\mbox{P}(X=x)={20 \choose x}0.5^x (1-0.5)^{20-x}
-\]</span></p>
-<p>Also, <span class="math inline">\(\mbox{E}(X)=20*0.5=10\)</span> and <span class="math inline">\(\mbox{Var}(X)=20*0.5*0.5=5\)</span>.</p>
-<p>To find <span class="math inline">\(\mbox{P}(X=8)\)</span>, we can simply use the pmf:
-<span class="math display">\[
-\mbox{P}(X=8)=f_X(8)={20\choose 8}0.5^8 (1-0.5)^{12}
-\]</span></p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="DISCRETENAMED.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">20</span>,<span class="dv">8</span>)<span class="sc">*</span><span class="fl">0.5</span><span class="sc">^</span><span class="dv">8</span><span class="sc">*</span>(<span class="dv">1</span><span class="fl">-0.5</span>)<span class="sc">^</span><span class="dv">12</span></span></code></pre></div>
-<pre><code>## [1] 0.1201344</code></pre>
-<p>To find <span class="math inline">\(\mbox{P}(X\leq 8)\)</span>, we would need to find the cumulative probability:
-<span class="math display">\[
-\mbox{P}(X\leq 8)=\sum_{x=0}^8 {20\choose 8}0.5^x (1-0.5)^{20-x}
-\]</span></p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="DISCRETENAMED.html#cb290-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="dv">0</span><span class="sc">:</span><span class="dv">8</span></span>
-<span id="cb290-2"><a href="DISCRETENAMED.html#cb290-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">choose</span>(<span class="dv">20</span>,x)<span class="sc">*</span><span class="fl">0.5</span><span class="sc">^</span>x<span class="sc">*</span>(<span class="dv">1</span><span class="fl">-.5</span>)<span class="sc">^</span>(<span class="dv">20</span><span class="sc">-</span>x))</span></code></pre></div>
-<pre><code>## [1] 0.2517223</code></pre>
-</div>
-<div id="software-functions" class="section level3" number="12.2.4">
-<h3><span class="header-section-number">12.2.4</span> Software Functions</h3>
-<p>One of the advantages of using named distributions is that most software packages have built-in functions that compute probabilities and quantiles for common named distributions. Over the course of this lesson, you will notice that each named distribution is treated similarly in <code>R</code>. There are four main functions tied to each distribution. For the binomial distribution, these are <code>dbinom()</code>, <code>pbinom()</code>, <code>qbinom()</code>, and <code>rbinom()</code>.</p>
-<p><code>dbinom()</code>: This function is equivalent to the probability mass function. We use this to find <span class="math inline">\(\mbox{P}(X=x)\)</span> when <span class="math inline">\(X\sim \textsf{Binom}(n,p)\)</span>. This function takes three inputs: <code>x</code> (the value of the random variable), <code>size</code> (the number of trials, <span class="math inline">\(n\)</span>), and <code>prob</code> (the probability of success, <span class="math inline">\(p\)</span>). So,
-<span class="math display">\[
-\mbox{P}(X=x)={n\choose{x}}p^x(1-p)^{n-x}=\textsf{dbinom(x,n,p)}
-\]</span></p>
-<p><code>pbinom()</code>: This function is equivalent to the cumulative distribution function. We use this to find <span class="math inline">\(\mbox{P}(X\leq x)\)</span> when <span class="math inline">\(X\sim \textsf{Binom}(n,p)\)</span>. This function takes the same inputs as <code>dbinom()</code> but returns the cumulative probability:
-<span class="math display">\[
-\mbox{P}(X\leq x)=\sum_{k=0}^x{n\choose{k}}p^k(1-p)^{n-k}=\textsf{pbinom(x,n,p)}
-\]</span></p>
-<p><code>qbinom()</code>: This is the inverse of the cumulative distribution function and will return a percentile. This function has three inputs: <code>p</code> (a probability), <code>size</code> and <code>prob</code>. It returns the smallest value <span class="math inline">\(x\)</span> such that <span class="math inline">\(\mbox{P}(X\leq x) \geq p\)</span>.</p>
-<p><code>rbinom()</code>: This function is used to randomly generate values from the binomial distribution. It takes three inputs: <code>n</code> (the number of values to generate), <code>size</code> and <code>prob</code>. It returns a vector containing the randomly generated values.</p>
-<p>To learn more about these functions, type <code>?</code> followed the function in the console.</p>
-<blockquote>
-<p><strong>Exercise</strong>:<br />
-Use the built-in functions for the binomial distribution to plot the pmf of <span class="math inline">\(X\)</span> from the previous example. Also, use the built-in functions to compute the probabilities from the example.</p>
-</blockquote>
-<p>Figure <a href="DISCRETENAMED.html#fig:binom-fig">12.1</a></p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="DISCRETENAMED.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;binom&quot;</span>,<span class="at">size=</span><span class="dv">20</span>,<span class="at">prob=</span>.<span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb292-2"><a href="DISCRETENAMED.html#cb292-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb292-3"><a href="DISCRETENAMED.html#cb292-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;X&quot;</span>,<span class="at">y=</span><span class="st">&quot;P(X=x)&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:binom-fig"></span>
-<img src="12-Named-Discrete-Distributions_files/figure-html/binom-fig-1.png" alt="The pmf of a binomial random variable" width="672" />
-<p class="caption">
-Figure 12.1: The pmf of a binomial random variable
-</p>
-</div>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="DISCRETENAMED.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="do">###P(X=8)</span></span>
-<span id="cb293-2"><a href="DISCRETENAMED.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">8</span>,<span class="dv">20</span>,<span class="fl">0.5</span>)</span></code></pre></div>
-<pre><code>## [1] 0.1201344</code></pre>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="DISCRETENAMED.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="do">###P(X&lt;=8)</span></span>
-<span id="cb295-2"><a href="DISCRETENAMED.html#cb295-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">8</span>,<span class="dv">20</span>,<span class="fl">0.5</span>)</span></code></pre></div>
-<pre><code>## [1] 0.2517223</code></pre>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="DISCRETENAMED.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or </span></span>
-<span id="cb297-2"><a href="DISCRETENAMED.html#cb297-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">8</span>,<span class="dv">20</span>,<span class="fl">0.5</span>))</span></code></pre></div>
-<pre><code>## [1] 0.2517223</code></pre>
-</div>
-<div id="poisson-distribution" class="section level3" number="12.2.5">
-<h3><span class="header-section-number">12.2.5</span> Poisson distribution</h3>
-<p>The Poisson distribution is very common when considering count or arrival data. Consider a random process where events occur according to some rate over time (think arrivals to a retail register). Often, these events are modeled with the <em>Poisson process</em>. The Poisson process assumes a consistent rate of arrival and a memoryless arrival process (the time until the next arrival is independent of time since the last arrival). If we assume a particular process is a Poisson process, then there are two random variables that take common named distributions. The number of arrivals in a specified amount of time follows the <em>Poisson</em> distribution. Also, the amount of time until the next arrival follows the <em>exponential</em> distribution. We will defer discussion of the exponential distribution until the next lesson. What is random in the <em>Poisson</em> is the number of occurrences while the interval is fixed. That is why it is a discrete distribution. The parameter <span class="math inline">\(\lambda\)</span> is the average number of occurrences in the specific interval, note that the interval must be the same as is specified in the random variable.</p>
-<p>Let <span class="math inline">\(X\)</span> be the number of arrivals in a length of time, <span class="math inline">\(T\)</span>, where arrivals occur according to a Poisson process with an average of <span class="math inline">\(\lambda\)</span> arrivals in length of time <span class="math inline">\(T\)</span>. Then <span class="math inline">\(X\)</span> follows a Poisson distribution with parameter <span class="math inline">\(\lambda\)</span>:
-<span class="math display">\[
-X\sim \textsf{Poisson}(\lambda)
-\]</span></p>
-<p>The pmf of <span class="math inline">\(X\)</span> is given by:
-<span class="math display">\[
-f_X(x)=\mbox{P}(X=x)=\frac{\lambda^xe^{-\lambda}}{x!}, \hspace{0.5cm} x=0,1,2,...
-\]</span></p>
-<p>One unique feature of the Poisson distribution is that <span class="math inline">\(\mbox{E}(X)=\mbox{Var}(X)=\lambda\)</span>.</p>
-<blockquote>
-<p><em>Example</em>:<br />
-Suppose fleet vehicles arrive to a maintenance garage at an average rate of 0.4 per day. Let’s assume that these vehicles arrive according to a Poisson process. Let <span class="math inline">\(X\)</span> be the number of vehicles that arrive to the garage in a week (7 days). Notice that the time interval has changed! What is the random variable <span class="math inline">\(X\)</span>? What is the distribution (with parameter) of <span class="math inline">\(X\)</span>. What are <span class="math inline">\(\mbox{E}(X)\)</span> and <span class="math inline">\(\mbox{Var}(X)\)</span>? Find <span class="math inline">\(\mbox{P}(X=0)\)</span>, <span class="math inline">\(\mbox{P}(X\leq 6)\)</span>, <span class="math inline">\(\mbox{P}(X \geq 2)\)</span>, and <span class="math inline">\(\mbox{P}(2 \leq X \leq 8)\)</span>. Also, find the median of <span class="math inline">\(X\)</span>, and the 95th percentile of <span class="math inline">\(X\)</span> (the value of <span class="math inline">\(x\)</span> such that <span class="math inline">\(\mbox{P}(X\leq x)\geq 0.95\)</span>). Further, plot the pmf of <span class="math inline">\(X\)</span>.</p>
-</blockquote>
-<p>Since vehicles arrive according to a Poisson process, the probability question leads us to define the random variable <span class="math inline">\(X\)</span> as <em>The number of vehicles that arrive in a week</em>.</p>
-<p>We know that <span class="math inline">\(X\sim \textsf{Poisson}(\lambda=0.4*7=2.8)\)</span>. Thus, <span class="math inline">\(\mbox{E}(X)=\mbox{Var}(X)=2.8\)</span>.</p>
-<p>The parameter is the average number of vehicles that arrive in a <strong>week</strong>.</p>
-<p><span class="math display">\[
-\mbox{P}(X=0)=\frac{2.8^0 e^{-2.8}}{0!}=e^{-2.8}=0.061
-\]</span></p>
-<p>Alternatively, we can use the built-in <code>R</code> functions for the Poisson distribution:</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="DISCRETENAMED.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="do">##P(X=0)</span></span>
-<span id="cb299-2"><a href="DISCRETENAMED.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dpois</span>(<span class="dv">0</span>,<span class="fl">2.8</span>)</span></code></pre></div>
-<pre><code>## [1] 0.06081006</code></pre>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="DISCRETENAMED.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="do">##P(X&lt;=6)</span></span>
-<span id="cb301-2"><a href="DISCRETENAMED.html#cb301-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ppois</span>(<span class="dv">6</span>,<span class="fl">2.8</span>)</span></code></pre></div>
-<pre><code>## [1] 0.9755894</code></pre>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="DISCRETENAMED.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or</span></span>
-<span id="cb303-2"><a href="DISCRETENAMED.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dpois</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>,<span class="fl">2.8</span>))</span></code></pre></div>
-<pre><code>## [1] 0.9755894</code></pre>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="DISCRETENAMED.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="do">##P(X&gt;=2)=1-P(X&lt;2)=1-P(X&lt;=1)</span></span>
-<span id="cb305-2"><a href="DISCRETENAMED.html#cb305-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">ppois</span>(<span class="dv">1</span>,<span class="fl">2.8</span>)</span></code></pre></div>
-<pre><code>## [1] 0.7689218</code></pre>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="DISCRETENAMED.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or</span></span>
-<span id="cb307-2"><a href="DISCRETENAMED.html#cb307-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dpois</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">1000</span>,<span class="fl">2.8</span>))</span></code></pre></div>
-<pre><code>## [1] 0.7689218</code></pre>
-<p>Note that when considering <span class="math inline">\(\mbox{P}(X\geq 2)\)</span>, we recognize that this is equivalent to <span class="math inline">\(1-\mbox{P}(X\leq 1)\)</span>. We can use <code>ppois()</code> to find this probability.</p>
-<p>When considering <span class="math inline">\(\mbox{P}(2\leq X \leq 8)\)</span>, we need to make sure we formulate this correctly. Below are two possible methods:</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="DISCRETENAMED.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="do">##P(2 &lt;= X &lt;= 8) = P(X &lt;= 8)-P(X &lt;= 1)</span></span>
-<span id="cb309-2"><a href="DISCRETENAMED.html#cb309-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ppois</span>(<span class="dv">8</span>,<span class="fl">2.8</span>)<span class="sc">-</span><span class="fu">ppois</span>(<span class="dv">1</span>,<span class="fl">2.8</span>)</span></code></pre></div>
-<pre><code>## [1] 0.766489</code></pre>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="DISCRETENAMED.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or</span></span>
-<span id="cb311-2"><a href="DISCRETENAMED.html#cb311-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dpois</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>,<span class="fl">2.8</span>))</span></code></pre></div>
-<pre><code>## [1] 0.766489</code></pre>
-<p>To find the median and the 95th percentiles, we use <code>qpois</code>:</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="DISCRETENAMED.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qpois</span>(<span class="fl">0.5</span>,<span class="fl">2.8</span>)</span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="DISCRETENAMED.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qpois</span>(<span class="fl">0.95</span>,<span class="fl">2.8</span>)</span></code></pre></div>
-<pre><code>## [1] 6</code></pre>
-<p>Figure <a href="DISCRETENAMED.html#fig:pois-fig">12.2</a> is a plot of the pmf of a Poisson random variable.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="DISCRETENAMED.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;pois&quot;</span>,<span class="at">lambda=</span><span class="fl">2.8</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb317-2"><a href="DISCRETENAMED.html#cb317-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb317-3"><a href="DISCRETENAMED.html#cb317-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;X&quot;</span>,<span class="at">y=</span><span class="st">&quot;P(X=x)&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pois-fig"></span>
-<img src="12-Named-Discrete-Distributions_files/figure-html/pois-fig-1.png" alt="The pmf of a Poisson random variable." width="672" />
-<p class="caption">
-Figure 12.2: The pmf of a Poisson random variable.
-</p>
-</div>
-<p>Figure <a href="DISCRETENAMED.html#fig:pois2-fig">12.3</a> is the cdf of the same Poisson random variable in Figure <a href="DISCRETENAMED.html#fig:pois-fig">12.2</a>.</p>
-
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="DISCRETENAMED.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;pois&quot;</span>,<span class="at">lambda=</span><span class="fl">2.8</span>,<span class="at">kind=</span><span class="st">&quot;cdf&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb318-2"><a href="DISCRETENAMED.html#cb318-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb318-3"><a href="DISCRETENAMED.html#cb318-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;X&quot;</span>,<span class="at">y=</span><span class="st">&quot;P(X&lt;=x)&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pois2-fig"></span>
-<img src="12-Named-Discrete-Distributions_files/figure-html/pois2-fig-1.png" alt="The cdf of the Poisson random variable in Figure 12.2" width="672" />
-<p class="caption">
-Figure 12.3: The cdf of the Poisson random variable in Figure <a href="DISCRETENAMED.html#fig:pois-fig">12.2</a>
-</p>
-</div>
-</div>
-<div id="hypergeometric" class="section level3" number="12.2.6">
-<h3><span class="header-section-number">12.2.6</span> Hypergeometric</h3>
-<p>Consider an experiment where <span class="math inline">\(k\)</span> objects are to be selected from a larger, but finite, group consisting of <span class="math inline">\(m\)</span> “successes” and <span class="math inline">\(n\)</span> “failures.” This is similar to the binomial process; after all, we are selecting successes and failures. However, in this case, the results are effectively selected <em>without replacement</em>. If the random variable <span class="math inline">\(X\)</span> represents the number of successes selected in our sample of size <span class="math inline">\(k\)</span>, then <span class="math inline">\(X\)</span> follows a hypergeometric distribution with parameters <span class="math inline">\(m\)</span>, <span class="math inline">\(n\)</span>, and <span class="math inline">\(k\)</span>. The pmf of <span class="math inline">\(X\)</span> is given by:</p>
-<p><span class="math display">\[
-f_X(x)=\frac{{m\choose x}{n\choose{k-x}}}{{{m+n}\choose k}} , \hspace{0.3cm} x=0,1,...,m
-\]</span></p>
-<p>Also, <span class="math inline">\(\mbox{E}(X)=\frac{km}{m+n}\)</span> and <span class="math inline">\(\mbox{Var}(X)=k\frac{m}{m+n}\frac{n}{m+n}\frac{m+n-k}{m+n-1}\)</span></p>
-<p>If you draw on your knowledge of combinations, you can see why this pmf makes sense.</p>
-<blockquote>
-<p><em>Example</em>:<br />
-Suppose a bag contains 12 red chips and 8 black chips. I reach in blindly and randomly select 6 chips. What is the probability I select no black chips? All black chips? Between 2 and 5 black chips?</p>
-</blockquote>
-<p>First we should identify a random variable that will help us with this problem. Let <span class="math inline">\(X\)</span> be the number of black chips selected when randomly selecting 6 from the bag. Then <span class="math inline">\(X\sim \textsf{HyperGeom}(8,12,6)\)</span>. We can use <code>R</code> to find these probabilities.</p>
-<p>First, the plot of the pmf of the hypergeometric is in Figure <a href="DISCRETENAMED.html#fig:hyper-fig">12.4</a>.</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="DISCRETENAMED.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;hyper&quot;</span>,<span class="at">m=</span><span class="dv">8</span>,<span class="at">n=</span><span class="dv">12</span>,<span class="at">k=</span><span class="dv">6</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb319-2"><a href="DISCRETENAMED.html#cb319-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb319-3"><a href="DISCRETENAMED.html#cb319-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;X&quot;</span>,<span class="at">y=</span><span class="st">&quot;P(X=x)&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:hyper-fig"></span>
-<img src="12-Named-Discrete-Distributions_files/figure-html/hyper-fig-1.png" alt="The pmf of a hypergeometric random variable." width="672" />
-<p class="caption">
-Figure 12.4: The pmf of a hypergeometric random variable.
-</p>
-</div>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="DISCRETENAMED.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="do">##P(X=0)</span></span>
-<span id="cb320-2"><a href="DISCRETENAMED.html#cb320-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dhyper</span>(<span class="dv">0</span>,<span class="dv">8</span>,<span class="dv">12</span>,<span class="dv">6</span>)</span></code></pre></div>
-<pre><code>## [1] 0.02383901</code></pre>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="DISCRETENAMED.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="do">##P(X=6)</span></span>
-<span id="cb322-2"><a href="DISCRETENAMED.html#cb322-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dhyper</span>(<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">12</span>,<span class="dv">6</span>)</span></code></pre></div>
-<pre><code>## [1] 0.0007223942</code></pre>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="DISCRETENAMED.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="do">##P(2 &lt;= X &lt;=5)</span></span>
-<span id="cb324-2"><a href="DISCRETENAMED.html#cb324-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dhyper</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">12</span>,<span class="dv">6</span>))</span></code></pre></div>
-<pre><code>## [1] 0.8119711</code></pre>
-</div>
-</div>
-<div id="homework-problems-11" class="section level2" number="12.3">
-<h2><span class="header-section-number">12.3</span> Homework Problems</h2>
-<p>For each of the problems below, <strong><em>1)</em></strong> define a random variable that will help you answer the question, <strong><em>2)</em></strong> state the distribution and parameters of that random variable; <strong><em>3)</em></strong> determine the expected value and variance of that random variable, and <strong><em>4)</em></strong> use that random variable to answer the question.</p>
-<p>We will demonstrate using 1a and 1b.</p>
-<ol style="list-style-type: decimal">
-<li>The T-6 training aircraft is used during UPT. Suppose that on each training sortie, aircraft return with a maintenance-related failure at a rate of 1 per 100 sorties.</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li>Find the probability of no maintenance failures in 15 sorties.</li>
-</ol>
-<p><span class="math inline">\(X\)</span>: the number of maintenance failures in 15 sorties.</p>
-<p><span class="math inline">\(X\sim \textsf{Bin}(n=15,p=0.01)\)</span></p>
-<p><span class="math inline">\(\mbox{E}(X)=15*0.01=0.15\)</span> and <span class="math inline">\(\mbox{Var}(X)=15*0.01*0.99=0.1485\)</span>.</p>
-<p><span class="math inline">\(\mbox{P}(\mbox{No mainteance failures})=\mbox{P}(X=0)={15\choose 0}0.01^0(1-0.01)^{15}=0.99^{15}\)</span></p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="DISCRETENAMED.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.99</span><span class="sc">^</span><span class="dv">15</span></span></code></pre></div>
-<pre><code>## [1] 0.8600584</code></pre>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="DISCRETENAMED.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or </span></span>
-<span id="cb328-2"><a href="DISCRETENAMED.html#cb328-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">0</span>,<span class="dv">15</span>,<span class="fl">0.01</span>)</span></code></pre></div>
-<pre><code>## [1] 0.8600584</code></pre>
-<p>This probability makes sense, since the expected value is fairly low. Because, on average, only 0.15 failures would occur every 15 trials, 0 failures would be a very common result. Graphically, the pmf looks like Figure <a href="DISCRETENAMED.html#fig:hw1a">12.5</a>.</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="DISCRETENAMED.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;binom&quot;</span>,<span class="at">size=</span><span class="dv">15</span>,<span class="at">prob=</span><span class="fl">0.01</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb330-2"><a href="DISCRETENAMED.html#cb330-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb330-3"><a href="DISCRETENAMED.html#cb330-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;X&quot;</span>,<span class="at">y=</span><span class="st">&quot;P(X=x)&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:hw1a"></span>
-<img src="12-Named-Discrete-Distributions_files/figure-html/hw1a-1.png" alt="The pmf for binomail in Homework Problem 1a." width="672" />
-<p class="caption">
-Figure 12.5: The pmf for binomail in Homework Problem 1a.
-</p>
-</div>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Find the probability of at least two maintenance failures in 15 sorties.</li>
-</ol>
-<p>We can use the same <span class="math inline">\(X\)</span> as above. Now, we are looking for <span class="math inline">\(\mbox{P}(X\geq 2)\)</span>. This is equivalent to finding <span class="math inline">\(1-\mbox{P}(X\leq 1)\)</span>:</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="DISCRETENAMED.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Directly</span></span>
-<span id="cb331-2"><a href="DISCRETENAMED.html#cb331-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span>(<span class="fl">0.99</span><span class="sc">^</span><span class="dv">15</span> <span class="sc">+</span> <span class="dv">15</span><span class="sc">*</span><span class="fl">0.01</span><span class="sc">*</span><span class="fl">0.99</span><span class="sc">^</span><span class="dv">14</span>)</span></code></pre></div>
-<pre><code>## [1] 0.009629773</code></pre>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="DISCRETENAMED.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or, using R</span></span>
-<span id="cb333-2"><a href="DISCRETENAMED.html#cb333-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>,<span class="dv">15</span>,<span class="fl">0.01</span>))</span></code></pre></div>
-<pre><code>## [1] 0.009629773</code></pre>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="DISCRETENAMED.html#cb335-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or</span></span>
-<span id="cb335-2"><a href="DISCRETENAMED.html#cb335-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>,<span class="dv">15</span>,<span class="fl">0.01</span>))</span></code></pre></div>
-<pre><code>## [1] 0.009629773</code></pre>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="DISCRETENAMED.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or</span></span>
-<span id="cb337-2"><a href="DISCRETENAMED.html#cb337-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pbinom</span>(<span class="dv">1</span>,<span class="dv">15</span>,<span class="fl">0.01</span>)</span></code></pre></div>
-<pre><code>## [1] 0.009629773</code></pre>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="DISCRETENAMED.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or </span></span>
-<span id="cb339-2"><a href="DISCRETENAMED.html#cb339-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">1</span>,<span class="dv">15</span>,<span class="fl">0.01</span>,<span class="at">lower.tail =</span> F)</span></code></pre></div>
-<pre><code>## [1] 0.009629773</code></pre>
-<ol start="3" style="list-style-type: lower-alpha">
-<li>Find the probability of at least 30 successful (no mx failures) sorties before the first failure.<br />
-</li>
-<li>Find the probability of at least 50 successful sorties before the third failure.</li>
-</ol>
-<ol start="2" style="list-style-type: decimal">
-<li>On a given Saturday, suppose vehicles arrive at the USAFA North Gate according to a Poisson process at a rate of 40 arrivals per hour.</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li>Find the probability no vehicles arrive in 10 minutes.<br />
-</li>
-<li>Find the probability at least 50 vehicles arrive in an hour.<br />
-</li>
-<li>Find the probability that at least 5 minutes will pass before the next arrival.</li>
-</ol>
-<ol start="3" style="list-style-type: decimal">
-<li>Suppose there are 12 male and 7 female cadets in a classroom. I select 5 completely at random (without replacement).</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li>Find the probability I select no female cadets.<br />
-</li>
-<li>Find the probability I select more than 2 female cadets.</li>
-</ol>
-
-</div>
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="CONRANDVAR.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="CONTNNAMED.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

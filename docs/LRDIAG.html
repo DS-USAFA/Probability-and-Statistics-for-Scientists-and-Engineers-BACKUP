@@ -4,25 +4,25 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 28 Regression Diagnostics | Computational Probability and Statistics</title>
-  <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <title>Chapter 28 Regression Diagnostics | Probability and Statistics for Scientists and Engineers</title>
+  <meta name="description" content="This is a set of notes for Math 356 that has been compiled into a book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 28 Regression Diagnostics | Computational Probability and Statistics" />
+  <meta property="og:title" content="Chapter 28 Regression Diagnostics | Probability and Statistics for Scientists and Engineers" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/figures/Cover.png" />
-  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta property="og:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 28 Regression Diagnostics | Computational Probability and Statistics" />
+  <meta name="twitter:title" content="Chapter 28 Regression Diagnostics | Probability and Statistics for Scientists and Engineers" />
   
-  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   <meta name="twitter:image" content="/figures/Cover.png" />
 
 <meta name="author" content="Ken Horton" />
-<meta name="author" content="Kris Pruitt" />
+<meta name="author" content="Matthew Davis" />
 <meta name="author" content="Bradley Warner" />
 
 
@@ -35,8 +35,9 @@
   
 <link rel="prev" href="LRINF.html"/>
 <link rel="next" href="LRSIM.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -44,7 +45,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -160,7 +160,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Computational Probability and Statistics</a></li>
+<li><a href="./">Probability and Statistics for Scientists and Engineers</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
@@ -773,7 +773,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Probability and Statistics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Probability and Statistics for Scientists and Engineers</a>
           </h1>
         </div>
 
@@ -856,7 +856,7 @@ div.csl-indent {
 ##         &lt;dbl&gt;               &lt;dbl&gt;
 ## 1       0.675               0.456</code></pre>
 <p>As a review, Figure <a href="LRDIAG.html#fig:cor-fig">28.1</a> below shows eight plots and their corresponding correlations. Only when the relationship is perfectly linear is the correlation either -1 or 1. If the relationship is strong and positive, the correlation will be near +1. If it is strong and negative, it will be near -1. If there is no apparent linear relationship between the variables, then the correlation will be near zero.</p>
-<div class="figure"><span id="fig:cor-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:cor-fig"></span>
 <img src="28-Regression-Diagnostics_files/figure-html/cor-fig-1.png" alt="Scatterplots demonstrating different correlations." width="672" />
 <p class="caption">
 Figure 28.1: Scatterplots demonstrating different correlations.
@@ -922,7 +922,7 @@ If a linear model has a very strong negative relationship with a correlation of 
 </ul>
 <p>By default, the first three and 5 are provided by applying <code>plot()</code> to an “lm” object. To obtain all four at once, simply use <code>plot(my.model)</code>, Figure <a href="LRDIAG.html#fig:diag281-fig">28.2</a>.</p>
 <div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb867-1"><a href="LRDIAG.html#cb867-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod)</span></code></pre></div>
-<div class="figure"><span id="fig:diag281-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:diag281-fig"></span>
 <img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-1.png" alt="Regression diagnostic plots." width="50%" /><img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-2.png" alt="Regression diagnostic plots." width="50%" /><img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-3.png" alt="Regression diagnostic plots." width="50%" /><img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-4.png" alt="Regression diagnostic plots." width="50%" />
 <p class="caption">
 Figure 28.2: Regression diagnostic plots.
@@ -934,7 +934,7 @@ Figure 28.2: Regression diagnostic plots.
 <h3><span class="header-section-number">28.4.2</span> Residuals vs Fitted</h3>
 <p>By providing the <code>which</code> option, we can select the plot we want, Figure <a href="LRDIAG.html#fig:diag282-fig">28.3</a> is the first diagnostic plot.</p>
 <div class="sourceCode" id="cb868"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb868-1"><a href="LRDIAG.html#cb868-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod,<span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:diag282-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:diag282-fig"></span>
 <img src="28-Regression-Diagnostics_files/figure-html/diag282-fig-1.png" alt="A diagnostic residual plot." width="672" />
 <p class="caption">
 Figure 28.3: A diagnostic residual plot.
@@ -947,7 +947,7 @@ Figure 28.3: A diagnostic residual plot.
 <h3><span class="header-section-number">28.4.3</span> Normal Q-Q Plot</h3>
 <p>As it’s name suggests, this plot evaluates the normality of the residuals. We have seen and used this plot several times in our course of study this semester. Remember if the number of data points is small, this plot has a greatly reduced effectiveness.</p>
 <div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb869-1"><a href="LRDIAG.html#cb869-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod,<span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:diag283-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:diag283-fig"></span>
 <img src="28-Regression-Diagnostics_files/figure-html/diag283-fig-1.png" alt="The quantile-quantile plot for checking normality." width="672" />
 <p class="caption">
 Figure 28.4: The quantile-quantile plot for checking normality.
@@ -963,7 +963,7 @@ e^{&#39;}_i=\frac{e_i}{s}
 \]</span></p>
 <p>This plot illustrates the spread of the residuals over the entire range of the predictor. We are using fitted values because this will generalize well if we have more than one predictor.</p>
 <div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb870-1"><a href="LRDIAG.html#cb870-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod,<span class="at">which=</span><span class="dv">3</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:diag284-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:diag284-fig"></span>
 <img src="28-Regression-Diagnostics_files/figure-html/diag284-fig-1.png" alt="A scale-location diagnostic residual plot." width="672" />
 <p class="caption">
 Figure 28.5: A scale-location diagnostic residual plot.
@@ -982,7 +982,7 @@ Figure 28.5: A scale-location diagnostic residual plot.
 <p><strong>Exercise</strong>:<br />
 There are six plots shown in Figure <a href="LRDIAG.html#fig:resid282-fig">28.6</a> along with the least squares line and residual plots. For each scatterplot and residual plot pair, identify any obvious outliers and note how they influence the least squares line. Recall that an outlier is any point that doesn’t appear to belong with the vast majority of the other points.</p>
 </blockquote>
-<div class="figure"><span id="fig:resid282-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:resid282-fig"></span>
 <img src="28-Regression-Diagnostics_files/figure-html/resid282-fig-1.png" alt="Examples of outliers and leverage points." width="672" />
 <p class="caption">
 Figure 28.6: Examples of outliers and leverage points.
@@ -1012,7 +1012,7 @@ Points that fall horizontally away from the center of the cloud tend to pull har
 <h3><span class="header-section-number">28.5.1</span> Residuals vs Leverage Plot</h3>
 <p>The residuals vs leverage plot is a good way to identify influential observations. Sometimes, influential observations are representative of the population, but they could also indicate an error in recording data, or an otherwise unrepresentative outlier. It could be worth looking into these cases.</p>
 <div class="sourceCode" id="cb871"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb871-1"><a href="LRDIAG.html#cb871-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod,<span class="dv">5</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:diag286-fig"></span>
+<div class="figure"><span style="display:block;" id="fig:diag286-fig"></span>
 <img src="28-Regression-Diagnostics_files/figure-html/diag286-fig-1.png" alt="Diagnostic plots for Starbucks regression model." width="672" />
 <p class="caption">
 Figure 28.7: Diagnostic plots for Starbucks regression model.
@@ -1035,7 +1035,7 @@ Figure 28.7: Diagnostic plots for Starbucks regression model.
 <li>is there a relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> and</li>
 <li>does that relationship explain most of the variance?</li>
 </ul>
-<div class="figure"><span id="fig:hw1"></span>
+<div class="figure"><span style="display:block;" id="fig:hw1"></span>
 <img src="figures/association1.png" alt="Homework problem 1." width="33%" /><img src="figures/association2.png" alt="Homework problem 1." width="33%" /><img src="figures/association3.png" alt="Homework problem 1." width="33%" /><img src="figures/association4.png" alt="Homework problem 1." width="33%" /><img src="figures/association5.png" alt="Homework problem 1." width="33%" /><img src="figures/association6.png" alt="Homework problem 1." width="33%" />
 <p class="caption">
 Figure 28.8: Homework problem 1.
@@ -1055,7 +1055,7 @@ Figure 28.8: Homework problem 1.
 <li>Outliers</li>
 </ol>
 <p>Identify the outliers in the scatterplots shown in Figure <a href="LRDIAG.html#fig:hw3">28.9</a> and determine what type of outliers they are. Explain your reasoning.</p>
-<div class="figure"><span id="fig:hw3"></span>
+<div class="figure"><span style="display:block;" id="fig:hw3"></span>
 <img src="figures/outInf1.png" alt="Homework problem 3." width="33%" /><img src="figures/outLev1.png" alt="Homework problem 3." width="33%" /><img src="figures/outOut1.png" alt="Homework problem 3." width="33%" /><img src="figures/outInf2.png" alt="Homework problem 3." width="33%" /><img src="figures/outInf3.png" alt="Homework problem 3." width="33%" /><img src="figures/outOut2.png" alt="Homework problem 3." width="33%" />
 <p class="caption">
 Figure 28.9: Homework problem 3.
@@ -1085,7 +1085,6 @@ where <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1112,6 +1111,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 },

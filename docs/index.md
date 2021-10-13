@@ -1,8 +1,8 @@
 --- 
-title: "Computational Probability and Statistics"
+title: "Probability and Statistics for Scientists and Engineers"
 author: 
 - Ken Horton
-- Kris Pruitt
+- Matthew Davis
 - Bradley Warner
 date: "2021-10-13"
 header-includes:
@@ -14,13 +14,13 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 cover-image: "figures/Cover.png"
-description: "This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book."
+description: "This is a set of notes for Math 356 that has been compiled into a book."
 ---
 
 # Preface {-}
 
 
-<img src="./figures/Cover.png" width="705" />
+<img src="./figures/Cover.png" width="850" />
   
 
 This book is based on the notes we created for our students as part of a one semester course on probability and statistics. We developed these notes from three primary resources. The most important is the Openintro Introductory Statistics with Randomization and Simulation [@ointrorand] book. In parts we have used their notes and homework problems. However, in most cases we have altered their work to fit our needs. The second most important book for our work is Introduction to Probability and Statistics Using R [@ipsur]. Finally, we have used some examples, code, and ideas from the first addition of Prium's book Foundations and Applications of Statistics: An Introduction Using R [@pruim2011foundations].  
