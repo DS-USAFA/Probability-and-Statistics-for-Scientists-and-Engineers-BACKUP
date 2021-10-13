@@ -1,8 +1,8 @@
 --- 
-title: "Computational Probability and Statistics"
+title: "Probability and Statistics for Scientists and Engineers"
 author: 
 - Ken Horton
-- Kris Pruitt
+- Matthew Davis
 - Bradley Warner
 date: "`r Sys.Date()`"
 header-includes:
@@ -14,7 +14,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 cover-image: "figures/Cover.png"
-description: "This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book."
+description: "This is a set of notes for Math 356 that has been compiled into a book."
 ---
 
 # Preface {-}
