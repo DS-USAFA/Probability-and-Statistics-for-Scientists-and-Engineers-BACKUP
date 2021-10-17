@@ -4,7 +4,7 @@ author:
 - Ken Horton
 - Matthew Davis
 - Bradley Warner
-date: "2021-10-13"
+date: "2021-10-14"
 header-includes:
    - \usepackage{multirow}
    - \usepackage{multicol}
@@ -78,7 +78,7 @@ This book is licensed under the [Creative Commons Attribution-NonCommercial-Shar
 
 ## File Creation Information 
 
-  * File creation date: 2021-10-13
+  * File creation date: 2021-10-14
   * R version 4.1.0 (2021-05-18)
 
 

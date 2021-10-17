@@ -212,9 +212,9 @@ inspect(results)
 ## 
 ## quantitative variables:  
 ##      name   class         min        Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.004423681 0.5013157 0.7059947 0.8689549 0.9999464 0.6674755
-##            sd     n missing
-## ...1 0.236348 10000       0
+## ...1 sqrt numeric 0.008852807 0.4983466 0.7035279 0.8658704 0.9999732 0.6647101
+##             sd     n missing
+## ...1 0.2372992 10000       0
 ```
 
 Figure \@ref(fig:dens161-fig) is a density plot of the simulated original random variable.
@@ -264,10 +264,10 @@ inspect(y_results)
 ```
 ## 
 ## quantitative variables:  
-##      name   class       min         Q1     median        Q3           max
-## ...1    y numeric -5.420783 -0.6905193 -0.3481476 -0.140464 -5.358896e-05
+##      name   class       min         Q1     median       Q3           max
+## ...1    y numeric -4.727021 -0.6964594 -0.3516478 -0.14402 -2.677158e-05
 ##            mean        sd     n missing
-## ...1 -0.4990788 0.4999773 10000       0
+## ...1 -0.5054966 0.5074578 10000       0
 ```
 
 
@@ -410,7 +410,7 @@ gf_line(z_cdf(seq(0,1,.01))~seq(0,1,.01),xlab="Time Difference",ylab="CDF") %>%
   gf_theme(theme_bw())
 ```
 
-<img src="16-Transformations_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="16-Transformations_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
 It looks like somewhere around 15 minutes, a quarter of an hour. But we will find a better answer by finding the root. In the code that follows we want to find where the cdf equals 0.5. The function `uniroot()` solves the given equations for roots so we want to put in the cdf minus 0.5. In other words, `uniroot()` solves $f(x)=0$ for x.
 

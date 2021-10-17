@@ -1,6 +1,6 @@
 # Transformations {#TRANS}
 
-```{r setup, include=FALSE}
+```{r include=FALSE}
 library(cubature)
 library(mosaicCalc)
 ```

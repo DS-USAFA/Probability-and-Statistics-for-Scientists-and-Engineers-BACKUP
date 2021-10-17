@@ -8,7 +8,7 @@
 \newcommand{\diff}{\,\mathrm{d}}
 
 
-```{r setup, include=FALSE}
+```{r include=FALSE}
 library(MASS)
 library(cubature)
 library(mosaicCalc)

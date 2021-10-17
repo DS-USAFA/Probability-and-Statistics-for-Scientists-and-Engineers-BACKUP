@@ -1,6 +1,6 @@
 # Estimation Methods {#EST}
 
-```{r setup, include=FALSE}
+```{r include=FALSE}
 library(cubature)
 library(mosaicCalc)
 library(fastR2)
