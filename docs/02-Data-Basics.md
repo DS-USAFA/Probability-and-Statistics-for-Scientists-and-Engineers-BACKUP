@@ -86,16 +86,16 @@ head(email50,n=10)
 ## # A tibble: 10 × 21
 ##    spam  to_multiple from     cc sent_email time                image attach
 ##    <fct> <fct>       <fct> <int> <fct>      <dttm>              <dbl>  <dbl>
-##  1 0     0           1         0 1          2012-01-04 06:19:16     0      0
-##  2 0     0           1         0 0          2012-02-16 13:10:06     0      0
-##  3 1     0           1         4 0          2012-01-04 08:36:23     0      2
-##  4 0     0           1         0 0          2012-01-04 10:49:52     0      0
-##  5 0     0           1         0 0          2012-01-27 02:34:45     0      0
-##  6 0     0           1         0 0          2012-01-17 10:31:57     0      0
-##  7 0     0           1         0 0          2012-03-17 22:18:55     0      0
-##  8 0     0           1         0 1          2012-03-31 07:58:56     0      0
-##  9 0     0           1         1 1          2012-01-10 18:57:54     0      0
-## 10 0     0           1         0 0          2012-01-07 12:29:16     0      0
+##  1 0     0           1         0 1          2012-01-04 13:19:16     0      0
+##  2 0     0           1         0 0          2012-02-16 20:10:06     0      0
+##  3 1     0           1         4 0          2012-01-04 15:36:23     0      2
+##  4 0     0           1         0 0          2012-01-04 17:49:52     0      0
+##  5 0     0           1         0 0          2012-01-27 09:34:45     0      0
+##  6 0     0           1         0 0          2012-01-17 17:31:57     0      0
+##  7 0     0           1         0 0          2012-03-18 04:18:55     0      0
+##  8 0     0           1         0 1          2012-03-31 13:58:56     0      0
+##  9 0     0           1         1 1          2012-01-11 01:57:54     0      0
+## 10 0     0           1         0 0          2012-01-07 19:29:16     0      0
 ## # … with 13 more variables: dollar <dbl>, winner <fct>, inherit <dbl>,
 ## #   viagra <dbl>, password <dbl>, num_char <dbl>, line_breaks <int>,
 ## #   format <fct>, re_subj <fct>, exclaim_subj <dbl>, urgent_subj <fct>,
@@ -227,7 +227,7 @@ First consider `fed_spend`, it is said to be a **numerical variable** since it c
 
 The `pop2010` variable is also numerical; it is sensible to add, subtract, or take averages with those values, although it seems to be a little different than `fed_spend`. This variable of the population count can only be a whole non-negative number ($0$, $1$, $2$, $...$). For this reason, the population variable is said to be **discrete** since it can only take specific numerical values. On the other hand, the federal spending variable is said to be **continuous**. Now technically, there are no truly continuous numerical variables since all measurements are finite up to some level of accuracy or measurement precision. However, in this course we will treat both types of numerical variables the same, that is as continuous variables for statistical modeling. The only place this will be different in this course is in probability models which we see in the probability modeling section.
 
-The variable **state** can take up to 51 values, after accounting for Washington, DC, and are summarized as: *AL*, ..., and *WY*. Because the responses themselves are categories, `state` is called a **categorical** variable,^[Sometimes also called a **nominal** variable.] and the possible values are called the variable's **levels**.
+The variable **state** can take up to 51 values, after accounting for Washington, DC, and are summarized as: *Alabama*, ..., and *Wyoming*. Because the responses themselves are categories, `state` is called a **categorical** variable,^[Sometimes also called a **nominal** variable.] and the possible values are called the variable's **levels**.
 
 <div class="figure">
 <img src="02-Data-Basics_files/figure-html/tax-fig-1.png" alt="Taxonomy of Variables." width="672" />
@@ -321,7 +321,6 @@ county_tidy %>%
            xlab="Poverty Rate (Percent)", 
            ylab="Federal Spending Per Capita",
            title="A scatterplot showing fed_spend against poverty", 
-           subtitle =  "Owsley County of Kentucky",
            cex=1,alpha=0.2) %>%
   gf_theme(theme_classic())
 ```

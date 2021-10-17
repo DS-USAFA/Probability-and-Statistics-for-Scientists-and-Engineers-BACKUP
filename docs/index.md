@@ -5,11 +5,7 @@ author:
 - Brianna Hitt
 - Ken Horton
 - Bradley Warner
-<<<<<<< HEAD
-date: "2021-10-14"
-=======
 date: "2021-10-17"
->>>>>>> aaa71f9bc032e692d93e1afd7781bdc731d7da14
 header-includes:
    - \usepackage{multirow}
    - \usepackage{multicol}
@@ -83,13 +79,8 @@ This book is licensed under the [Creative Commons Attribution-NonCommercial-Shar
 
 ## File Creation Information 
 
-<<<<<<< HEAD
-  * File creation date: 2021-10-14
-  * R version 4.1.0 (2021-05-18)
-=======
   * File creation date: 2021-10-17
-  * R version 4.1.1 (2021-08-10)
->>>>>>> aaa71f9bc032e692d93e1afd7781bdc731d7da14
+  * R version 4.1.0 (2021-05-18)
 
 
 

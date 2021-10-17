@@ -27,11 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<<<<<<< HEAD
-<meta name="date" content="2021-10-14" />
-=======
 <meta name="date" content="2021-10-17" />
->>>>>>> aaa71f9bc032e692d93e1afd7781bdc731d7da14
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -997,7 +993,7 @@ Figure 20.3: Hypergeometric pmf showing the cutoff for p-value calculation.
 <span class="math inline">\(H_A\)</span>: There is some other distribution of percentages in the population. At least one population proportion is not <span class="math inline">\(\frac{1}{4}\)</span>.</p>
 <p>Notice that we switched to using <span class="math inline">\(\pi\)</span> instead of <span class="math inline">\(p\)</span> for the population parameter. There is no reason other than to make you aware that both are used.</p>
 <p>This problem is an extension of the binomial, instead of two outcomes, there are four outcomes. This is called a multinomial distribution. You can read more about it if you like, but our methods will not make it necessary to learn the probability mass function.</p>
-<p>Of the 500 golf balls collected, 486 of them had a number between 1 and 4. Let’s get the data from `golf_balls.csv”.</p>
+<p>Of the 500 golf balls collected, 486 of them had a number between 1 and 4. Let’s get the data from `golf_balls.csv".</p>
 <div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="PVALUES.html#cb539-1" aria-hidden="true" tabindex="-1"></a>golf_balls <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/golf_balls.csv&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="PVALUES.html#cb540-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(golf_balls)</span></code></pre></div>
 <pre><code>## 
