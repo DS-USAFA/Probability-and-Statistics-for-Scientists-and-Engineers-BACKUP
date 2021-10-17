@@ -211,10 +211,10 @@ inspect(results)
 ```
 ## 
 ## quantitative variables:  
-##      name   class         min        Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.006880343 0.4961081 0.7009123 0.8624789 0.9999858 0.6623569
+##      name   class         min        Q1   median        Q3       max      mean
+## ...1 sqrt numeric 0.003081482 0.5016886 0.711196 0.8673347 0.9998512 0.6678347
 ##             sd     n missing
-## ...1 0.2364232 10000       0
+## ...1 0.2356328 10000       0
 ```
 
 Figure \@ref(fig:dens161-fig) is a density plot of the simulated original random variable.
@@ -265,9 +265,9 @@ inspect(y_results)
 ## 
 ## quantitative variables:  
 ##      name   class       min         Q1     median         Q3           max
-## ...1    y numeric -4.979087 -0.7009615 -0.3553724 -0.1479446 -1.421847e-05
+## ...1    y numeric -5.782345 -0.6897757 -0.3408072 -0.1423304 -0.0001488022
 ##            mean        sd     n missing
-## ...1 -0.5080251 0.5042985 10000       0
+## ...1 -0.4980992 0.5004069 10000       0
 ```
 
 

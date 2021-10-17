@@ -13,9 +13,13 @@ Effective presentation and description of data is a first step in most analyses.
 
 ### Observations, variables, and data matrices
 
-For reference we will be using a data set concerning 50 emails received in 2012. These observations will be referred to as the `email50` data set, and they are a random sample from a larger data set. This data is in the **openintro** package so let's load this package.
+For reference we will be using a data set concerning 50 emails received in 2012. These observations will be referred to as the `email50` data set, and they are a random sample from a larger data set. This data is in the **openintro** package so let's install and then load this package.
 
-```{r message=FALSE,results='hide'}
+```{r message=FALSE,results='hide', eval=FALSE}
+install.packages("openintro")
+library(openintro)
+```
+```{r, echo=FALSE}
 library(openintro)
 ```
 
@@ -83,20 +87,25 @@ Why ensure that your data is tidy? There are two main advantages:
 Data frames are a convenient way to record and store data. If another individual or case is added to the data set, an additional row can be easily added. Similarly, another column can be added for a new variable.
 
 > **Exercise**:    
-We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called `county_M377` data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics, we create this data object in the code following this description. The parent data set is part of the `usdata` library and is called `county_complete`. The variables are summarized in help menu built into the `usdata` package^[[These data were collected from the US Census website.](http://quickfacts.census.gov/qfd/index.html)]. How might these data be organized in a data matrix? ^[Each county may be viewed as a case, and there are ten pieces of information recorded for each case. A table with 3,142 rows and 10 columns could hold these data, where each row represents a county and each column represents a particular piece of information.]
+We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called `county_tidy` data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics, we create this data object in the code following this description. The parent data set is part of the `usdata` library and is called `county_complete`. The variables are summarized in help menu built into the `usdata` package^[[These data were collected from the US Census website.](http://quickfacts.census.gov/qfd/index.html)]. How might these data be organized in a data matrix? ^[Each county may be viewed as a case, and there are ten pieces of information recorded for each case. A table with 3,142 rows and 10 columns could hold these data, where each row represents a county and each column represents a particular piece of information.]
 
 
 Using `R` we will create our data object. First we load the library `usdata`.
 
-```{r message=FALSE,eval=FALSE}
+```{r message=FALSE,eval=FALSE, eval=FALSE}
+install.packages("usdata")
 library(usdata)
 ```
+```{r, echo=FALSE}
+library(usdata)
+```
+
 
 
 We only want a subset of the columns and we will use the `select` verb in `dplyr` to select and rename columns. We also create a new variable which is federal spending per capita using the `mutate` function.  
 
 ```{r warning=FALSE}
-county_M377 <- county_complete %>% 
+county_tidy <- county_complete %>% 
   select(name, state, pop2000, pop2010, fed_spend=fed_spending_2009, poverty=poverty_2010, 
          homeownership = homeownership_2010, multi_unit = housing_multi_unit_2010, 
          income = per_capita_income_2010, med_income = median_household_income_2010) %>%
@@ -107,7 +116,7 @@ Using `R`, we will display seven rows of the `county` data frame.
 
 
 ```{r}
-head(county_M377,n=7)
+head(county_tidy,n=7)
 ```
 
 ### Types of variables
@@ -175,18 +184,18 @@ Many analyses are motivated by a researcher looking for a relationship between t
 
 To answer these questions, data must be collected, such as the `county_complete` data set. Examining summary statistics could provide insights for each of the two questions about counties. Additionally, graphs can be used to visually summarize data and are useful for answering such questions as well.
 
-Scatterplots are one type of graph used to study the relationship between two numerical variables. Figure \@ref(fig:pov1-fig) compares the variables `fed_spend` and `poverty`. Each point on the plot represents a single county. For instance, the highlighted dot corresponds to County 1088 in the `county_M377` data set: Owsley County, Kentucky, which had a poverty rate of 41.5\% and federal spending of \$21.50 per capita. The dense cloud in the scatterplot suggests a relationship between the two variables: counties with a high poverty rate also tend to have slightly more federal spending. We might brainstorm as to why this relationship exists and investigate each idea to determine which is the most reasonable explanation.
+Scatterplots are one type of graph used to study the relationship between two numerical variables. Figure \@ref(fig:pov1-fig) compares the variables `fed_spend` and `poverty`. Each point on the plot represents a single county. For instance, the highlighted dot corresponds to County 1088 in the `county_tidy` data set: Owsley County, Kentucky, which had a poverty rate of 41.5\% and federal spending of \$21.50 per capita. The dense cloud in the scatterplot suggests a relationship between the two variables: counties with a high poverty rate also tend to have slightly more federal spending. We might brainstorm as to why this relationship exists and investigate each idea to determine which is the most reasonable explanation.
 
 ```{r, pov1-fig,echo=FALSE,fig.cap="A scatterplot showing fed_spend against poverty. Owsley County of Kentucky, with a poverty rate of 41.5% and federal spending of $21.50 per capita, is highlighted."}
-plot(county_M377$poverty, county_M377$fed_spend, pch=20, cex=0.7, col=COL[1,3], ylim=c(0,31.25), xlab="", ylab="Federal Spending Per Capita", axes=FALSE)
+plot(county_tidy$poverty, county_tidy$fed_spend, pch=20, cex=0.7, col=COL[1,3], ylim=c(0,31.25), xlab="", ylab="Federal Spending Per Capita", axes=FALSE)
 axis(1)
 axis(2, at=seq(0, 30, 10))
 box()
-points(county_M377$poverty, county_M377$fed_spend, pch=20, cex = 0.18)
+points(county_tidy$poverty, county_tidy$fed_spend, pch=20, cex = 0.18)
 #rug(county$poverty[county$fed_spend > 40], side=3)
 mtext("Poverty Rate (Percent)", 1, 1.9)
-t1 <- county_M377$poverty[1088]
-t2 <- county_M377$fed_spend[1088]
+t1 <- county_tidy$poverty[1088]
+t2 <- county_tidy$fed_spend[1088]
 lines(c(t1,t1), c(-10,t2), lty=2, col=COL[4])
 lines(c(-10,t1), c(t2,t2), lty=2, col=COL[4])
 points(t1, t2, col=COL[4])
@@ -205,7 +214,7 @@ It appears that the larger the fraction of units in multi-unit structures, the l
 
 ```{r homeown-fig,echo=FALSE,fig.cap="A scatterplot of the homeownership rate versus the percent of units that are in multi-unit structures for all 3,143 counties."}
 pch <- 1
-cex <- sqrt(county_M377$pop2010/1e6)
+cex <- sqrt(county_tidy$pop2010/1e6)
 colPop <- fadeColor(ifelse(cex > 0.35, COL[4], COL[1]), substr(gray(0.6+cex*0.1),2,3))
 colSm  <- colPop
 cexF   <- 2
@@ -215,13 +224,13 @@ gp1 <- cex < 0.32
 colSm  <- COL[1,3]
 colPop <- COL[1,3]
 cexF   <- 1
-plot(county_M377$multi_unit[gp1], county_M377$homeownership[gp1], pch=pch, col=colSm, xlab="", ylab="Percent of Homeownership", axes=FALSE, cex=ifelse(cex < 0.32, 0.32, cex)[gp1], xlim=range(county_M377$multi_unit), ylim=range(county_M377$homeownership))
+plot(county_tidy$multi_unit[gp1], county_tidy$homeownership[gp1], pch=pch, col=colSm, xlab="", ylab="Percent of Homeownership", axes=FALSE, cex=ifelse(cex < 0.32, 0.32, cex)[gp1], xlim=range(county_tidy$multi_unit), ylim=range(county_tidy$homeownership))
 at = seq(0, 100, 20)
 axis(1, at, paste0(at, "%"))
 axis(2, at, paste0(at, "%"))
 box()
-points(county_M377$multi_unit[!gp1], county_M377$homeownership[!gp1], pch=pch, col=colPop, xlab="", ylab="Percent of Homeownership", cex=ifelse(cex < 0.32, 0.32, cex)[!gp1])
-points(county_M377$multi_unit[!gp1], county_M377$homeownership[!gp1], pch=20, cex = 0.2, col=COL[5,3])
+points(county_tidy$multi_unit[!gp1], county_tidy$homeownership[!gp1], pch=pch, col=colPop, xlab="", ylab="Percent of Homeownership", cex=ifelse(cex < 0.32, 0.32, cex)[!gp1])
+points(county_tidy$multi_unit[!gp1], county_tidy$homeownership[!gp1], pch=20, cex = 0.2, col=COL[5,3])
 #points(cc$housing_multi_unit, cc$home_ownership, pch=".", cex=1)
 #rug(county$poverty[county$fed_spend > 40], side=3)
 mtext("Percent of Units in Multi-Unit Structures", 1, 1.9, cex= 1)
@@ -236,7 +245,7 @@ If two variables are not associated, then they are said to be **independent**. T
 ### Creating a scatterplot
 
 
-In this section we will create a simple scatterplot and then ask you to create one on your own. First we will recreate the scatterplot seen in Figure \@ref(fig:pov1-fig). This figure uses the `county_M377` data set.
+In this section we will create a simple scatterplot and then ask you to create one on your own. First we will recreate the scatterplot seen in Figure \@ref(fig:pov1-fig). This figure uses the `county_tidy` data set.
 
 Here are two questions:
 
@@ -249,14 +258,14 @@ We want `R` to create a scatterplot and to do this it needs, at a minimum, the d
 (ref:ggfbold2) Scatterplot with **ggformula**.
 
 ```{r pov2-fig,fig.cap="(ref:ggfbold2)",warning=FALSE}
-county_M377 %>%
+county_tidy %>%
   gf_point(fed_spend~poverty)
 ```
 
 Figure \@ref(fig:pov2-fig) is bad, there are poor axis labels, no title, dense clustering of points, the $y$-axis is being driven by a couple of extreme points. We will need to clear this up. Again, try to read the code and use `help()` or `?` to determine the purpose of each command in Figure \@ref(fig:pov3-fig).
 
 ```{r pov3-fig,fig.cap="Better example of a scatterplot."}
-county_M377 %>%
+county_tidy %>%
   filter(fed_spend<32) %>%
   gf_point(fed_spend~poverty,
            xlab="Poverty Rate (Percent)", 
@@ -282,6 +291,6 @@ between 1989 and 1993”](http://journals.lww.com/epidem/Abstract/2000/09000/Eff
 
 2. The Buteyko method is a shallow breathing technique developed by Konstantin Buteyko, a Russian doctor, in 1952. Anecdotal evidence suggests that the Buteyko method can reduce asthma symptoms and improve quality of life. In a scientific study to determine the effectiveness of this method, researchers recruited 600 asthma patients aged 18-69 who relied on medication for asthma treatment. These patients were split into two research groups: one practiced the Buteyko method and the other did not. Patients were scored on quality of life, activity, asthma symptoms, and medication reduction on a scale from 0 to 10. On average, the participants in the Buteyko group experienced a significant reduction in asthma symptoms and an improvement in quality of life.^[J. McGowan. "Health Education: Does the Buteyko Institute Method make a difference?" In: Thorax 58 (2003).]
 
-3. In the package **Stat2Data** is a data set called `Election16`. Create a scatterplot for the percent of advanced degree versus per capita income in the state. Describe the relationship between these two variables. Note: you may have to load the library.
+3. In the package **Stat2Data** is a data set called `Election16`. Create a scatterplot for the percent of advanced degree versus per capita income in the state. Describe the relationship between these two variables. Note: you may have to install the package, load the library, and use the `data()` function to import the dataset.
  
 

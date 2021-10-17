@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-16" />
+<meta name="date" content="2021-10-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -801,8 +801,9 @@ div.csl-indent {
 <p>Effective presentation and description of data is a first step in most analyses. This lesson introduces one structure for organizing data as well as some terminology that will be used throughout this course.</p>
 <div id="observations-variables-and-data-matrices" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Observations, variables, and data matrices</h3>
-<p>For reference we will be using a data set concerning 50 emails received in 2012. These observations will be referred to as the <code>email50</code> data set, and they are a random sample from a larger data set. This data is in the <strong>openintro</strong> package so let’s load this package.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="DB.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span></code></pre></div>
+<p>For reference we will be using a data set concerning 50 emails received in 2012. These observations will be referred to as the <code>email50</code> data set, and they are a random sample from a larger data set. This data is in the <strong>openintro</strong> package so let’s install and then load this package.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="DB.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;openintro&quot;</span>)</span>
+<span id="cb29-2"><a href="DB.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span></code></pre></div>
 <p>Table <a href="DB.html#tab:db1-tab">2.1</a> shows 4 rows of the <code>email50</code> data set and we have selected to only list 5 variables for ease of observation.</p>
 <p>Each row in the table represents a single email or <strong>case</strong>.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> The columns represent characteristics, called <strong>variables</strong>, for each of the emails. For example, the first row represents email 1, which is not spam, contains 21,705 characters, 551 line breaks, is written in HTML format, and contains only small numbers.</p>
 <table>
@@ -968,18 +969,19 @@ small
 <p>Data frames are a convenient way to record and store data. If another individual or case is added to the data set, an additional row can be easily added. Similarly, another column can be added for a new variable.</p>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
-We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called <code>county_M377</code> data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics, we create this data object in the code following this description. The parent data set is part of the <code>usdata</code> library and is called <code>county_complete</code>. The variables are summarized in help menu built into the <code>usdata</code> package<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>. How might these data be organized in a data matrix?<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called <code>county_tidy</code> data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics, we create this data object in the code following this description. The parent data set is part of the <code>usdata</code> library and is called <code>county_complete</code>. The variables are summarized in help menu built into the <code>usdata</code> package<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>. How might these data be organized in a data matrix?<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
 </blockquote>
 <p>Using <code>R</code> we will create our data object. First we load the library <code>usdata</code>.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="DB.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usdata)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="DB.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;usdata&quot;</span>)</span>
+<span id="cb35-2"><a href="DB.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usdata)</span></code></pre></div>
 <p>We only want a subset of the columns and we will use the <code>select</code> verb in <code>dplyr</code> to select and rename columns. We also create a new variable which is federal spending per capita using the <code>mutate</code> function.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="DB.html#cb36-1" aria-hidden="true" tabindex="-1"></a>county_M377 <span class="ot">&lt;-</span> county_complete <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="DB.html#cb36-1" aria-hidden="true" tabindex="-1"></a>county_tidy <span class="ot">&lt;-</span> county_complete <span class="sc">%&gt;%</span> </span>
 <span id="cb36-2"><a href="DB.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, state, pop2000, pop2010, <span class="at">fed_spend=</span>fed_spending_2009, <span class="at">poverty=</span>poverty_2010, </span>
 <span id="cb36-3"><a href="DB.html#cb36-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">homeownership =</span> homeownership_2010, <span class="at">multi_unit =</span> housing_multi_unit_2010, </span>
 <span id="cb36-4"><a href="DB.html#cb36-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">income =</span> per_capita_income_2010, <span class="at">med_income =</span> median_household_income_2010) <span class="sc">%&gt;%</span></span>
 <span id="cb36-5"><a href="DB.html#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fed_spend=</span>fed_spend<span class="sc">/</span>pop2010)</span></code></pre></div>
 <p>Using <code>R</code>, we will display seven rows of the <code>county</code> data frame.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="DB.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(county_M377,<span class="at">n=</span><span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="DB.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(county_tidy,<span class="at">n=</span><span class="dv">7</span>)</span></code></pre></div>
 <pre><code>##             name   state pop2000 pop2010 fed_spend poverty homeownership
 ## 1 Autauga County Alabama   43671   54571  6.068095    10.6          77.5
 ## 2 Baldwin County Alabama  140415  182265  6.139862    12.2          76.7
@@ -1030,7 +1032,7 @@ Consider the variables <code>group</code> and <code>outcome30</code> from the st
 <li>If homeownership is lower than the national average in one county, will the percent of multi-unit structures in that county likely be above or below the national average?</li>
 </ol>
 <p>To answer these questions, data must be collected, such as the <code>county_complete</code> data set. Examining summary statistics could provide insights for each of the two questions about counties. Additionally, graphs can be used to visually summarize data and are useful for answering such questions as well.</p>
-<p>Scatterplots are one type of graph used to study the relationship between two numerical variables. Figure <a href="DB.html#fig:pov1-fig">2.2</a> compares the variables <code>fed_spend</code> and <code>poverty</code>. Each point on the plot represents a single county. For instance, the highlighted dot corresponds to County 1088 in the <code>county_M377</code> data set: Owsley County, Kentucky, which had a poverty rate of 41.5% and federal spending of $21.50 per capita. The dense cloud in the scatterplot suggests a relationship between the two variables: counties with a high poverty rate also tend to have slightly more federal spending. We might brainstorm as to why this relationship exists and investigate each idea to determine which is the most reasonable explanation.</p>
+<p>Scatterplots are one type of graph used to study the relationship between two numerical variables. Figure <a href="DB.html#fig:pov1-fig">2.2</a> compares the variables <code>fed_spend</code> and <code>poverty</code>. Each point on the plot represents a single county. For instance, the highlighted dot corresponds to County 1088 in the <code>county_tidy</code> data set: Owsley County, Kentucky, which had a poverty rate of 41.5% and federal spending of $21.50 per capita. The dense cloud in the scatterplot suggests a relationship between the two variables: counties with a high poverty rate also tend to have slightly more federal spending. We might brainstorm as to why this relationship exists and investigate each idea to determine which is the most reasonable explanation.</p>
 <div class="figure"><span style="display:block;" id="fig:pov1-fig"></span>
 <img src="02-Data-Basics_files/figure-html/pov1-fig-1.png" alt="A scatterplot showing fed_spend against poverty. Owsley County of Kentucky, with a poverty rate of 41.5% and federal spending of $21.50 per capita, is highlighted." width="672" />
 <p class="caption">
@@ -1061,13 +1063,13 @@ Figure 2.3: A scatterplot of the homeownership rate versus the percent of units 
 </div>
 <div id="creating-a-scatterplot" class="section level3" number="2.2.4">
 <h3><span class="header-section-number">2.2.4</span> Creating a scatterplot</h3>
-<p>In this section we will create a simple scatterplot and then ask you to create one on your own. First we will recreate the scatterplot seen in Figure <a href="DB.html#fig:pov1-fig">2.2</a>. This figure uses the <code>county_M377</code> data set.</p>
+<p>In this section we will create a simple scatterplot and then ask you to create one on your own. First we will recreate the scatterplot seen in Figure <a href="DB.html#fig:pov1-fig">2.2</a>. This figure uses the <code>county_tidy</code> data set.</p>
 <p>Here are two questions:</p>
 <p><em>What do we want <code>R</code> to do?</em> and</p>
 <p><em>What must we give <code>R</code> for it to do this?</em></p>
 <p>We want <code>R</code> to create a scatterplot and to do this it needs, at a minimum, the data object, what we want on the <span class="math inline">\(x\)</span>-axis, and what we want on the <span class="math inline">\(y\)</span>-axis. More information on <a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html"><code>ggformula</code></a> can be found by clicking on the link.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
 
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="DB.html#cb39-1" aria-hidden="true" tabindex="-1"></a>county_M377 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="DB.html#cb39-1" aria-hidden="true" tabindex="-1"></a>county_tidy <span class="sc">%&gt;%</span></span>
 <span id="cb39-2"><a href="DB.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(fed_spend<span class="sc">~</span>poverty)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:pov2-fig"></span>
 <img src="02-Data-Basics_files/figure-html/pov2-fig-1.png" alt="Scatterplot with ggformula." width="672" />
@@ -1076,7 +1078,7 @@ Figure 2.4: Scatterplot with <strong>ggformula</strong>.
 </p>
 </div>
 <p>Figure <a href="DB.html#fig:pov2-fig">2.4</a> is bad, there are poor axis labels, no title, dense clustering of points, the <span class="math inline">\(y\)</span>-axis is being driven by a couple of extreme points. We will need to clear this up. Again, try to read the code and use <code>help()</code> or <code>?</code> to determine the purpose of each command in Figure <a href="DB.html#fig:pov3-fig">2.5</a>.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="DB.html#cb40-1" aria-hidden="true" tabindex="-1"></a>county_M377 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="DB.html#cb40-1" aria-hidden="true" tabindex="-1"></a>county_tidy <span class="sc">%&gt;%</span></span>
 <span id="cb40-2"><a href="DB.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(fed_spend<span class="sc">&lt;</span><span class="dv">32</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb40-3"><a href="DB.html#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(fed_spend<span class="sc">~</span>poverty,</span>
 <span id="cb40-4"><a href="DB.html#cb40-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab=</span><span class="st">&quot;Poverty Rate (Percent)&quot;</span>, </span>
@@ -1104,7 +1106,7 @@ Create the scatterplot in Figure <a href="DB.html#fig:homeown-fig">2.3</a>.</p>
 <ol style="list-style-type: decimal">
 <li><p>Researchers collected data to examine the relationship between pollutants and preterm births in Southern California. During the study air pollution levels were measured by air quality monitoring stations. Specifically, levels of carbon monoxide were recorded in parts per million, nitrogen dioxide and ozone in parts per hundred million, and coarse particulate matter (PM<span class="math inline">\(_{10}\)</span>) in <span class="math inline">\(\mu g/m^3\)</span>. Length of gestation data were collected on 143,196 births between the years 1989 and 1993, and air pollution exposure during gestation was calculated for each birth. The analysis suggested that increased ambient PM<span class="math inline">\(_{10}\)</span> and, to a lesser degree, CO concentrations may be associated with the occurrence of preterm births.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></p></li>
 <li><p>The Buteyko method is a shallow breathing technique developed by Konstantin Buteyko, a Russian doctor, in 1952. Anecdotal evidence suggests that the Buteyko method can reduce asthma symptoms and improve quality of life. In a scientific study to determine the effectiveness of this method, researchers recruited 600 asthma patients aged 18-69 who relied on medication for asthma treatment. These patients were split into two research groups: one practiced the Buteyko method and the other did not. Patients were scored on quality of life, activity, asthma symptoms, and medication reduction on a scale from 0 to 10. On average, the participants in the Buteyko group experienced a significant reduction in asthma symptoms and an improvement in quality of life.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a></p></li>
-<li><p>In the package <strong>Stat2Data</strong> is a data set called <code>Election16</code>. Create a scatterplot for the percent of advanced degree versus per capita income in the state. Describe the relationship between these two variables. Note: you may have to load the library.</p></li>
+<li><p>In the package <strong>Stat2Data</strong> is a data set called <code>Election16</code>. Create a scatterplot for the percent of advanced degree versus per capita income in the state. Describe the relationship between these two variables. Note: you may have to install the package, load the library, and use the <code>data()</code> function to import the dataset.</p></li>
 </ol>
 
 </div>

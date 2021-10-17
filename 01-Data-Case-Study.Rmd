@@ -116,7 +116,7 @@ getwd()
 Similarly, if we wish to change the working directory, we can do so by using the `setwd()` function:
 
 ```{r, eval=F}
-setwd('C:/Users/Brad.Warner/Documents/Classes/Math 377/Another Folder')
+setwd('C:/Users/Brad.Warner/Documents/Classes/Statistics/Another Folder')
 ```
 
 In `R` if you use the `view()`, you will see the data in what looks like a standard spreadsheet.
@@ -166,7 +166,7 @@ Of the 224 patients in the treatment group, 33 had a stroke by the end of the fi
 ```
 
 > **Exercise**:  
-What proportion of the control group had a stroke? And why is this answer different from what `inspect()` reports?    
+What proportion of the control group had a stroke in the first 30 days of the experiment? And why is this proportion different from the proportion reported by `inspect()`?    
 
 
 Let's have `R` calculate proportions for us. Use `?` to look at the help menu for `tally()`. Note that one of the option arguments of the `tally()` function is `format=`. Setting this equal to `proportion` will output the proportions instead of the counts. 
@@ -225,7 +225,7 @@ gf_props(~group,fill=~outcome30,position='fill') %>%
   gf_labs(title="Impact of Stents of Stroke",
           subtitle='Experiment with 451 Patients',
           x="Experimental Group",
-          y="Number of Events") %>%
+          y="Proportion of Events") %>%
   gf_theme(theme_bw())
 ```
 
@@ -248,7 +248,7 @@ Create an Rmd file `01 Data Case Study Application.Rmd` in R, it may be provided
 
 To create an `R` code chunk, use CTRL-ALT-I or on the `insert` tab of the window, use the drop down to select `R`. Anything between the dashes is interpreted as `R` code.
 
-For more on RMarkdown see the video, https://www.youtube.com/watch?v=DNS7i2m4sB0 This video assumes you are using `R` on your computer but we are using RStudio Cloud. Thus we can `knit` to a pdf since it is setup for us. You can also take the first chapter of the Data Camp course Reporting with R Markdown to learn more.
+For more on RMarkdown see the video, https://www.youtube.com/watch?v=DNS7i2m4sB0. You can also take the first chapter of the Data Camp course "Reporting with R Markdown" to learn more about output file formats.
 
 1. **Stent study continued**. Complete a similar analysis for the stent data but this time for the one year data. In particular
 

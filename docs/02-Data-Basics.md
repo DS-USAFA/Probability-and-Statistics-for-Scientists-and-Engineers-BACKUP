@@ -13,12 +13,14 @@ Effective presentation and description of data is a first step in most analyses.
 
 ### Observations, variables, and data matrices
 
-For reference we will be using a data set concerning 50 emails received in 2012. These observations will be referred to as the `email50` data set, and they are a random sample from a larger data set. This data is in the **openintro** package so let's load this package.
+For reference we will be using a data set concerning 50 emails received in 2012. These observations will be referred to as the `email50` data set, and they are a random sample from a larger data set. This data is in the **openintro** package so let's install and then load this package.
 
 
 ```r
+install.packages("openintro")
 library(openintro)
 ```
+
 
 Table \@ref(tab:db1-tab) shows 4 rows of the `email50` data set and we have selected to only list 5 variables for ease of observation. 
 
@@ -164,22 +166,25 @@ Why ensure that your data is tidy? There are two main advantages:
 Data frames are a convenient way to record and store data. If another individual or case is added to the data set, an additional row can be easily added. Similarly, another column can be added for a new variable.
 
 > **Exercise**:    
-We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called `county_M377` data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics, we create this data object in the code following this description. The parent data set is part of the `usdata` library and is called `county_complete`. The variables are summarized in help menu built into the `usdata` package^[[These data were collected from the US Census website.](http://quickfacts.census.gov/qfd/index.html)]. How might these data be organized in a data matrix? ^[Each county may be viewed as a case, and there are ten pieces of information recorded for each case. A table with 3,142 rows and 10 columns could hold these data, where each row represents a county and each column represents a particular piece of information.]
+We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called `county_tidy` data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics, we create this data object in the code following this description. The parent data set is part of the `usdata` library and is called `county_complete`. The variables are summarized in help menu built into the `usdata` package^[[These data were collected from the US Census website.](http://quickfacts.census.gov/qfd/index.html)]. How might these data be organized in a data matrix? ^[Each county may be viewed as a case, and there are ten pieces of information recorded for each case. A table with 3,142 rows and 10 columns could hold these data, where each row represents a county and each column represents a particular piece of information.]
 
 
 Using `R` we will create our data object. First we load the library `usdata`.
 
 
 ```r
+install.packages("usdata")
 library(usdata)
 ```
+
+
 
 
 We only want a subset of the columns and we will use the `select` verb in `dplyr` to select and rename columns. We also create a new variable which is federal spending per capita using the `mutate` function.  
 
 
 ```r
-county_M377 <- county_complete %>% 
+county_tidy <- county_complete %>% 
   select(name, state, pop2000, pop2010, fed_spend=fed_spending_2009, poverty=poverty_2010, 
          homeownership = homeownership_2010, multi_unit = housing_multi_unit_2010, 
          income = per_capita_income_2010, med_income = median_household_income_2010) %>%
@@ -191,7 +196,7 @@ Using `R`, we will display seven rows of the `county` data frame.
 
 
 ```r
-head(county_M377,n=7)
+head(county_tidy,n=7)
 ```
 
 ```
@@ -252,7 +257,7 @@ Many analyses are motivated by a researcher looking for a relationship between t
 
 To answer these questions, data must be collected, such as the `county_complete` data set. Examining summary statistics could provide insights for each of the two questions about counties. Additionally, graphs can be used to visually summarize data and are useful for answering such questions as well.
 
-Scatterplots are one type of graph used to study the relationship between two numerical variables. Figure \@ref(fig:pov1-fig) compares the variables `fed_spend` and `poverty`. Each point on the plot represents a single county. For instance, the highlighted dot corresponds to County 1088 in the `county_M377` data set: Owsley County, Kentucky, which had a poverty rate of 41.5\% and federal spending of \$21.50 per capita. The dense cloud in the scatterplot suggests a relationship between the two variables: counties with a high poverty rate also tend to have slightly more federal spending. We might brainstorm as to why this relationship exists and investigate each idea to determine which is the most reasonable explanation.
+Scatterplots are one type of graph used to study the relationship between two numerical variables. Figure \@ref(fig:pov1-fig) compares the variables `fed_spend` and `poverty`. Each point on the plot represents a single county. For instance, the highlighted dot corresponds to County 1088 in the `county_tidy` data set: Owsley County, Kentucky, which had a poverty rate of 41.5\% and federal spending of \$21.50 per capita. The dense cloud in the scatterplot suggests a relationship between the two variables: counties with a high poverty rate also tend to have slightly more federal spending. We might brainstorm as to why this relationship exists and investigate each idea to determine which is the most reasonable explanation.
 
 <div class="figure">
 <img src="02-Data-Basics_files/figure-html/pov1-fig-1.png" alt="A scatterplot showing fed_spend against poverty. Owsley County of Kentucky, with a poverty rate of 41.5% and federal spending of $21.50 per capita, is highlighted." width="672" />
@@ -283,7 +288,7 @@ If two variables are not associated, then they are said to be **independent**. T
 ### Creating a scatterplot
 
 
-In this section we will create a simple scatterplot and then ask you to create one on your own. First we will recreate the scatterplot seen in Figure \@ref(fig:pov1-fig). This figure uses the `county_M377` data set.
+In this section we will create a simple scatterplot and then ask you to create one on your own. First we will recreate the scatterplot seen in Figure \@ref(fig:pov1-fig). This figure uses the `county_tidy` data set.
 
 Here are two questions:
 
@@ -297,7 +302,7 @@ We want `R` to create a scatterplot and to do this it needs, at a minimum, the d
 
 
 ```r
-county_M377 %>%
+county_tidy %>%
   gf_point(fed_spend~poverty)
 ```
 
@@ -310,7 +315,7 @@ Figure \@ref(fig:pov2-fig) is bad, there are poor axis labels, no title, dense c
 
 
 ```r
-county_M377 %>%
+county_tidy %>%
   filter(fed_spend<32) %>%
   gf_point(fed_spend~poverty,
            xlab="Poverty Rate (Percent)", 
@@ -341,6 +346,6 @@ between 1989 and 1993”](http://journals.lww.com/epidem/Abstract/2000/09000/Eff
 
 2. The Buteyko method is a shallow breathing technique developed by Konstantin Buteyko, a Russian doctor, in 1952. Anecdotal evidence suggests that the Buteyko method can reduce asthma symptoms and improve quality of life. In a scientific study to determine the effectiveness of this method, researchers recruited 600 asthma patients aged 18-69 who relied on medication for asthma treatment. These patients were split into two research groups: one practiced the Buteyko method and the other did not. Patients were scored on quality of life, activity, asthma symptoms, and medication reduction on a scale from 0 to 10. On average, the participants in the Buteyko group experienced a significant reduction in asthma symptoms and an improvement in quality of life.^[J. McGowan. "Health Education: Does the Buteyko Institute Method make a difference?" In: Thorax 58 (2003).]
 
-3. In the package **Stat2Data** is a data set called `Election16`. Create a scatterplot for the percent of advanced degree versus per capita income in the state. Describe the relationship between these two variables. Note: you may have to load the library.
+3. In the package **Stat2Data** is a data set called `Election16`. Create a scatterplot for the percent of advanced degree versus per capita income in the state. Describe the relationship between these two variables. Note: you may have to install the package, load the library, and use the `data()` function to import the dataset.
  
 
