@@ -21,12 +21,13 @@
   <meta name="twitter:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   <meta name="twitter:image" content="/figures/Cover.png" />
 
-<meta name="author" content="Ken Horton" />
 <meta name="author" content="Matthew Davis" />
+<meta name="author" content="Brianna Hitt" />
+<meta name="author" content="Ken Horton" />
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-13" />
+<meta name="date" content="2021-10-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1064,18 +1065,8 @@ Figure 24.2: Boxplots of on base percentage by position played.
 </div>
 <div id="analysis-of-variance-anova-and-the-f-test" class="section level3" number="24.4.2">
 <h3><span class="header-section-number">24.4.2</span> Analysis of variance (ANOVA) and the F test</h3>
-<p>The method of analysis of variance in this context focuses on answering one question: is the variability in the sample means so large that it seems unlikely to be from chance alone? This question is different from earlier testing procedures since we will <em>simultaneously</em> consider many groups, and evaluate whether their sample means differ more than we would expect from natural variation. We call this variability the <strong>mean square between groups</strong> (<span class="math inline">\(MSG\)</span>), and it has an associated degrees of freedom, <span class="math inline">\(df_{G}=k-1\)</span> when there are <span class="math inline">\(k\)</span> groups. The <span class="math inline">\(MSG\)</span> can be thought of as a scaled variance formula for means. If the null hypothesis is true, any variation in the sample means is due to chance and shouldn’t be too large. Details of <span class="math inline">\(MSG\)</span> calculations are provided in the footnote,^[Let <span class="math inline">\(\bar{x}\)</span> represent the mean of outcomes across all groups. Then the mean square between groups is computed as<br />
-<span class="math display">\[
-MSG = \frac{1}{df_{G}}SSG = \frac{1}{k-1}\sum_{i=1}^{k} n_{i}\left(\bar{x}_{i} - \bar{x}\right)^2
-\]</span></p>
-<p>where <span class="math inline">\(SSG\)</span> is called the <strong>sum of squares between groups</strong> and <span class="math inline">\(n_{i}\)</span> is the sample size of group <span class="math inline">\(i\)</span>.] however, we typically use software for these computations.</p>
-<p>The mean square between the groups is, on its own, quite useless in a hypothesis test. We need a benchmark value for how much variability should be expected among the sample means if the null hypothesis is true. To this end, we compute a pooled variance estimate, often abbreviated as the <strong>mean square error</strong> (<span class="math inline">\(MSE\)</span>), which has an associated degrees of freedom value <span class="math inline">\(df_E=n-k\)</span>. It is helpful to think of <span class="math inline">\(MSE\)</span> as a measure of the variability within the groups. Details of the computations of the <span class="math inline">\(MSE\)</span> are provided in the footnote^[Let <span class="math inline">\(\bar{x}\)</span> represent the mean of outcomes across all groups. Then the <strong>sum of squares total</strong> (<span class="math inline">\(SST\)</span>)} is computed as
-<span class="math inline">\(SST = \sum_{i=1}^{n} \left(x_{i} - \bar{x}\right)^2\)</span>,
-where the sum is over all observations in the data set. Then we compute the <strong>sum of squared errors</strong> (<span class="math inline">\(SSE\)</span>)} in one of two equivalent ways:</p>
-<p><span class="math display">\[
-SSE = SST - SSG = (n_1-1)s_1^2 + (n_2-1)s_2^2 + \cdots + (n_k-1)s_k^2
-\]</span></p>
-<p>where <span class="math inline">\(s_i^2\)</span> is the sample variance (square of the standard deviation) of the residuals in group <span class="math inline">\(i\)</span>. Then the <span class="math inline">\(MSE\)</span> is the standardized form of <span class="math inline">\(SSE\)</span>: <span class="math inline">\(MSE = \frac{1}{df_{E}}SSE\)</span>.] for interested readers.</p>
+<p>The method of analysis of variance in this context focuses on answering one question: is the variability in the sample means so large that it seems unlikely to be from chance alone? This question is different from earlier testing procedures since we will <em>simultaneously</em> consider many groups, and evaluate whether their sample means differ more than we would expect from natural variation. We call this variability the <strong>mean square between groups</strong> (<span class="math inline">\(MSG\)</span>), and it has an associated degrees of freedom, <span class="math inline">\(df_{G}=k-1\)</span> when there are <span class="math inline">\(k\)</span> groups. The <span class="math inline">\(MSG\)</span> can be thought of as a scaled variance formula for means. If the null hypothesis is true, any variation in the sample means is due to chance and shouldn’t be too large. Details of <span class="math inline">\(MSG\)</span> calculations are provided in the footnote,<a href="#fn90" class="footnote-ref" id="fnref90"><sup>90</sup></a> however, we typically use software for these computations.</p>
+<p>The mean square between the groups is, on its own, quite useless in a hypothesis test. We need a benchmark value for how much variability should be expected among the sample means if the null hypothesis is true. To this end, we compute a pooled variance estimate, often abbreviated as the <strong>mean square error</strong> (<span class="math inline">\(MSE\)</span>), which has an associated degrees of freedom value <span class="math inline">\(df_E=n-k\)</span>. It is helpful to think of <span class="math inline">\(MSE\)</span> as a measure of the variability within the groups. Details of the computations of the <span class="math inline">\(MSE\)</span> are provided in the footnote<a href="#fn91" class="footnote-ref" id="fnref91"><sup>91</sup></a> for interested readers.</p>
 <p>When the null hypothesis is true, any differences among the sample means are only due to chance, and the <span class="math inline">\(MSG\)</span> and <span class="math inline">\(MSE\)</span> should be about equal. As a test statistic for ANOVA, we examine the fraction of <span class="math inline">\(MSG\)</span> and <span class="math inline">\(MSE\)</span>:</p>
 <p><span class="math display">\[F = \frac{MSG}{MSE}\]</span></p>
 <p>The <span class="math inline">\(MSG\)</span> represents a measure of the between-group variability, and <span class="math inline">\(MSE\)</span> measures the variability within each of the groups. Using a permutation test, we could look at the difference in the mean squared errors as a test statistic instead of the ratio.</p>
@@ -1280,6 +1271,13 @@ Figure 24.6: The sampling distribution of the difference in variance randomizati
 <hr />
 <ol start="89">
 <li id="fn89"><p><span class="math inline">\(H_0\)</span>: The average on-base percentage is equal across the four positions. <span class="math inline">\(H_A\)</span>: The average on-base percentage varies across some (or all) groups.<a href="ADDTESTS.html#fnref89" class="footnote-back">↩︎</a></p></li>
+<li id="fn90"><p>Let <span class="math inline">\(\bar{x}\)</span> represent the mean of outcomes across all groups. Then the mean square between groups is computed as<br />
+<span class="math display">\[
+MSG = \frac{1}{df_{G}}SSG = \frac{1}{k-1}\sum_{i=1}^{k} n_{i}\left(\bar{x}_{i} - \bar{x}\right)^2
+\]</span> <a href="ADDTESTS.html#fnref90" class="footnote-back">↩︎</a></p></li>
+<li id="fn91"><p>Let <span class="math inline">\(\bar{x}\)</span> represent the mean of outcomes across all groups. Then the <strong>sum of squares total</strong> (<span class="math inline">\(SST\)</span>)} is computed as
+<span class="math inline">\(SST = \sum_{i=1}^{n} \left(x_{i} - \bar{x}\right)^2\)</span>,
+where the sum is over all observations in the data set. Then we compute the <strong>sum of squared errors</strong> (<span class="math inline">\(SSE\)</span>)} in one of two equivalent ways: <a href="ADDTESTS.html#fnref91" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

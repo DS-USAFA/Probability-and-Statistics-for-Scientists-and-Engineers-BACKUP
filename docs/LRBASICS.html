@@ -21,12 +21,13 @@
   <meta name="twitter:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   <meta name="twitter:image" content="/figures/Cover.png" />
 
-<meta name="author" content="Ken Horton" />
 <meta name="author" content="Matthew Davis" />
+<meta name="author" content="Brianna Hitt" />
+<meta name="author" content="Ken Horton" />
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-13" />
+<meta name="date" content="2021-10-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -874,7 +875,7 @@ Y=\beta_0+\beta_1X+e
 <p><span class="math display">\[
 y_i=\beta_0+\beta x_i + e_i
 \]</span></p>
-<p>We could fit the linear relationship by eye like we did in the case study and obtain estimates of the slope and intercept but this is too ad hoc.<a href="#fn90" class="footnote-ref" id="fnref90"><sup>90</sup></a> So, given a set of data like the <code>possum</code>, how do we actually obtain estimates of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>? What is the <strong>best</strong> fit line?</p>
+<p>We could fit the linear relationship by eye like we did in the case study and obtain estimates of the slope and intercept but this is too ad hoc.<a href="#fn92" class="footnote-ref" id="fnref92"><sup>92</sup></a> So, given a set of data like the <code>possum</code>, how do we actually obtain estimates of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>? What is the <strong>best</strong> fit line?</p>
 <p>We begin by thinking about what we mean by ``best’’. Mathematically, we want a line that has small residuals. There are multiple methods, but the most common is <em>method of least squares</em>. In this method, our goal is to find the values of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> that minimize the squared vertical distance between the points and the resulting line, the <strong>residuals</strong>. See <a href="LRBASICS.html#fig:resid1-fig">26.2</a> for a visual representation involving only four observations from <em>made up</em> data.</p>
 <div class="figure"><span style="display:block;" id="fig:resid1-fig"></span>
 <img src="26-Linear-Regression-Basics_files/figure-html/resid1-fig-1.png" alt="An illustration of the least squares method." width="672" />
@@ -892,7 +893,7 @@ Figure 26.2: An illustration of the least squares method.
 </li>
 <li>In many applications, a residual twice as large as another residual is more than twice as bad. For example, being off by 4 is usually more than twice as bad as being off by 2. Squaring the residuals accounts for this discrepancy.</li>
 </ol>
-<p>The first two reasons are largely for tradition and convenience; the last reason explains why least squares is typically helpful.<a href="#fn91" class="footnote-ref" id="fnref91"><sup>91</sup></a></p>
+<p>The first two reasons are largely for tradition and convenience; the last reason explains why least squares is typically helpful.<a href="#fn93" class="footnote-ref" id="fnref93"><sup>93</sup></a></p>
 <p>So, we need to find <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> that minimize the expression, observed minus expected:
 <span class="math display">\[
 \sum_{i=1}^n (y_i-\beta_0-\beta_1 x_i)^2
@@ -1000,7 +1001,7 @@ Find the slope from the correlation and standard deviations.</p>
 <blockquote>
 <p>“When those blizzards hit the East Coast this winter, it proved to my satisfaction that global warming was a fraud. That snow was freezing cold. But in an alarming trend, temperatures this spring have risen. Consider this: On February <span class="math inline">\(6^{th}\)</span> it was 10 degrees. Today it hit almost 80. At this rate, by August it will be 220 degrees. So clearly folks the climate debate rages on.”
 <em>Stephen Colbert</em>
-April 6th, 2010<a href="#fn92" class="footnote-ref" id="fnref92"><sup>92</sup></a></p>
+April 6th, 2010<a href="#fn94" class="footnote-ref" id="fnref94"><sup>94</sup></a></p>
 </blockquote>
 <p>Linear models can be used to approximate the relationship between two variables and are built on an observed random sample. These models have real limitations as linear regression is simply a modeling framework. The truth is almost always much more complex than our simple line. <em>Extrapolation</em> occurs when one tries to make a prediction of a response given a value of the predictor that is outside the range of values used to build the model. We only have information about the relationship between two variables in the region around our observed data. We do not know how the data outside of our limited window will behave. Be careful about extrapolating.</p>
 </div>
@@ -1162,10 +1163,10 @@ Figure 26.7: Residual plots and associated scatterplots.
 </div>
 <div class="footnotes">
 <hr />
-<ol start="90">
-<li id="fn90"><p>If you want to do try this again use the <code>plot_ss()</code> from the last lesson.<a href="LRBASICS.html#fnref90" class="footnote-back">↩︎</a></p></li>
-<li id="fn91"><p>There are applications where least absolute deviation may be more useful, and there are plenty of other criteria we might consider. However, this course only applies the least squares criterion. Math 378 will look at other criteria such as a shrinkage method called the lasso.<a href="LRBASICS.html#fnref91" class="footnote-back">↩︎</a></p></li>
-<li id="fn92"><p><a href="http://www.colbertnation.com/the-colbert-report-videos/269929/" class="uri">http://www.colbertnation.com/the-colbert-report-videos/269929/</a><a href="LRBASICS.html#fnref92" class="footnote-back">↩︎</a></p></li>
+<ol start="92">
+<li id="fn92"><p>If you want to do try this again use the <code>plot_ss()</code> from the last lesson.<a href="LRBASICS.html#fnref92" class="footnote-back">↩︎</a></p></li>
+<li id="fn93"><p>There are applications where least absolute deviation may be more useful, and there are plenty of other criteria we might consider. However, this course only applies the least squares criterion. Math 378 will look at other criteria such as a shrinkage method called the lasso.<a href="LRBASICS.html#fnref93" class="footnote-back">↩︎</a></p></li>
+<li id="fn94"><p><a href="http://www.colbertnation.com/the-colbert-report-videos/269929/" class="uri">http://www.colbertnation.com/the-colbert-report-videos/269929/</a><a href="LRBASICS.html#fnref94" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
