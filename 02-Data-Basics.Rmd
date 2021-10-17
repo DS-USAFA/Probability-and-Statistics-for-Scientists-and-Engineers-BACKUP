@@ -271,7 +271,6 @@ county_tidy %>%
            xlab="Poverty Rate (Percent)", 
            ylab="Federal Spending Per Capita",
            title="A scatterplot showing fed_spend against poverty", 
-           subtitle =  "Owsley County of Kentucky",
            cex=1,alpha=0.2) %>%
   gf_theme(theme_classic())
 ```

@@ -21,12 +21,17 @@
   <meta name="twitter:description" content="This is a set of notes for Math 356 that has been compiled into a book." />
   <meta name="twitter:image" content="/figures/Cover.png" />
 
-<meta name="author" content="Ken Horton" />
 <meta name="author" content="Matthew Davis" />
+<meta name="author" content="Brianna Hitt" />
+<meta name="author" content="Ken Horton" />
 <meta name="author" content="Bradley Warner" />
 
 
+<<<<<<< HEAD
 <meta name="date" content="2021-10-14" />
+=======
+<meta name="date" content="2021-10-17" />
+>>>>>>> aaa71f9bc032e692d93e1afd7781bdc731d7da14
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -805,7 +810,7 @@ div.csl-indent {
 <h2><span class="header-section-number">30.3</span> Multiple regression</h2>
 <p>Multiple regression extends simple two-variable regression to the case that still has one response but many predictors (denoted <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, <span class="math inline">\(x_3\)</span>, …). The method is motivated by scenarios where many variables may be simultaneously connected to an output.</p>
 <p>To explore and explain these ideas, we will consider Ebay auctions of a video game called <strong>Mario Kart</strong> for the Nintendo Wii. The outcome variable of interest is the total price of an auction, which is the highest bid plus the shipping cost. We will try to determine how total price is related to each characteristic in an auction while simultaneously controlling for other variables. For instance, with all other characteristics held constant, are longer auctions associated with higher or lower prices? And, on average, how much more do buyers tend to pay for additional Wii wheels (plastic steering wheels that attach to the Wii controller) in auctions? Multiple regression will help us answer these and other questions.</p>
-<p>The data set is in the file <code>mariokart.csv</code> in the <code>data</code> folder. This data set includes results from 141 auctions.<a href="#fn95" class="footnote-ref" id="fnref95"><sup>95</sup></a> Ten observations from this data set are shown in the <code>R</code> code below. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for Math 378.</p>
+<p>The data set is in the file <code>mariokart.csv</code> in the <code>data</code> folder. This data set includes results from 141 auctions.<a href="#fn97" class="footnote-ref" id="fnref97"><sup>97</sup></a> Ten observations from this data set are shown in the <code>R</code> code below. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for Math 378.</p>
 <div class="sourceCode" id="cb954"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb954-1"><a href="LRMULTI.html#cb954-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/mariokart.csv&quot;</span>)</span>
 <span id="cb954-2"><a href="LRMULTI.html#cb954-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mariokart,<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 12
@@ -1198,11 +1203,11 @@ A multiple regression model is a linear model with many predictors.</p>
 <p>when there are <span class="math inline">\(k\)</span> predictors. We often estimate the <span class="math inline">\(\beta_i\)</span> parameters using a computer.</p>
 <blockquote>
 <p><strong>Exercise</strong>:
-Write out the the multiple regression model using the point estimates from regression output. How many predictors are there in this model?<a href="#fn96" class="footnote-ref" id="fnref96"><sup>96</sup></a></p>
+Write out the the multiple regression model using the point estimates from regression output. How many predictors are there in this model?<a href="#fn98" class="footnote-ref" id="fnref98"><sup>98</sup></a></p>
 </blockquote>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
-What does <span class="math inline">\(\beta_4\)</span>, the coefficient of variable <span class="math inline">\(x_4\)</span> (Wii wheels), represent? What is the point estimate of <span class="math inline">\(\beta_4\)</span>?<a href="#fn97" class="footnote-ref" id="fnref97"><sup>97</sup></a></p>
+What does <span class="math inline">\(\beta_4\)</span>, the coefficient of variable <span class="math inline">\(x_4\)</span> (Wii wheels), represent? What is the point estimate of <span class="math inline">\(\beta_4\)</span>?<a href="#fn99" class="footnote-ref" id="fnref99"><sup>99</sup></a></p>
 </blockquote>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
@@ -1229,7 +1234,7 @@ We estimated a coefficient for <code>cond</code> as <span class="math inline">\(
 <p>The previous example describes a common issue in multiple regression: correlation among predictor variables. We say the two predictor variables are <strong>collinear</strong> (pronounced as <strong>co-linear</strong>) when they are correlated, and this collinearity complicates model estimation. While it is impossible to prevent collinearity from arising in observational data, experiments are usually designed to prevent predictors from being collinear.</p>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
-The estimated value of the intercept is 41.34, and one might be tempted to make some interpretation of this coefficient, such as, it is the model’s predicted price when each of the variables take a value of zero: the game is new, the primary image is not a stock photo, the auction duration is zero days, and there are no wheels included. Is there any value gained by making this interpretation?<a href="#fn98" class="footnote-ref" id="fnref98"><sup>98</sup></a></p>
+The estimated value of the intercept is 41.34, and one might be tempted to make some interpretation of this coefficient, such as, it is the model’s predicted price when each of the variables take a value of zero: the game is new, the primary image is not a stock photo, the auction duration is zero days, and there are no wheels included. Is there any value gained by making this interpretation?<a href="#fn100" class="footnote-ref" id="fnref100"><sup>100</sup></a></p>
 </blockquote>
 </div>
 <div id="inference-1" class="section level3" number="30.3.3">
@@ -1255,7 +1260,7 @@ R^2 = 1 - \frac{\text{variability in residuals}}{\text{variability in the outcom
 where <span class="math inline">\(e_i\)</span> represents the residuals of the model and <span class="math inline">\(y_i\)</span> the outcomes. This equation remains valid in the multiple regression framework, but a small enhancement can often be even more informative.</p>
 <blockquote>
 <p><strong>Exercise</strong>:
-The variance of the residuals for the model is 23.34, and the variance of the total price in all the auctions is 83.06. Calculate <span class="math inline">\(R^2\)</span> for this model.<a href="#fn99" class="footnote-ref" id="fnref99"><sup>99</sup></a></p>
+The variance of the residuals for the model is 23.34, and the variance of the total price in all the auctions is 83.06. Calculate <span class="math inline">\(R^2\)</span> for this model.<a href="#fn101" class="footnote-ref" id="fnref101"><sup>101</sup></a></p>
 </blockquote>
 <div class="sourceCode" id="cb989"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb989-1"><a href="LRMULTI.html#cb989-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(mario_mod_multi) <span class="sc">%&gt;%</span></span>
 <span id="cb989-2"><a href="LRMULTI.html#cb989-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">var_resid=</span><span class="fu">var</span>(.resid))</span></code></pre></div>
@@ -1283,16 +1288,16 @@ R_{adj}^{2} = 1-\frac{Var(e_i) / (n-k-1)}{Var(y_i) / (n-1)}
 \]</span>
 where <span class="math inline">\(n\)</span> is the number of cases used to fit the model and <span class="math inline">\(k\)</span> is the number of predictor variables in the model.</p>
 </blockquote>
-<p>Because <span class="math inline">\(k\)</span> is never negative, the adjusted <span class="math inline">\(R^2\)</span> will be smaller – often times just a little smaller – than the unadjusted <span class="math inline">\(R^2\)</span>. The reasoning behind the adjusted <span class="math inline">\(R^2\)</span> lies in the <strong>degrees of freedom</strong> associated with each variance.<a href="#fn100" class="footnote-ref" id="fnref100"><sup>100</sup></a></p>
+<p>Because <span class="math inline">\(k\)</span> is never negative, the adjusted <span class="math inline">\(R^2\)</span> will be smaller – often times just a little smaller – than the unadjusted <span class="math inline">\(R^2\)</span>. The reasoning behind the adjusted <span class="math inline">\(R^2\)</span> lies in the <strong>degrees of freedom</strong> associated with each variance.<a href="#fn102" class="footnote-ref" id="fnref102"><sup>102</sup></a></p>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
-There were <span class="math inline">\(n=141\)</span> auctions in the <code>mariokart</code> data set and <span class="math inline">\(k=4\)</span> predictor variables in the model. Use <span class="math inline">\(n\)</span>, <span class="math inline">\(k\)</span>, and the appropriate variances to calculate <span class="math inline">\(R_{adj}^2\)</span> for the Mario Kart model.<a href="#fn101" class="footnote-ref" id="fnref101"><sup>101</sup></a></p>
+There were <span class="math inline">\(n=141\)</span> auctions in the <code>mariokart</code> data set and <span class="math inline">\(k=4\)</span> predictor variables in the model. Use <span class="math inline">\(n\)</span>, <span class="math inline">\(k\)</span>, and the appropriate variances to calculate <span class="math inline">\(R_{adj}^2\)</span> for the Mario Kart model.<a href="#fn103" class="footnote-ref" id="fnref103"><sup>103</sup></a></p>
 </blockquote>
 <div class="sourceCode" id="cb997"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb997-1"><a href="LRMULTI.html#cb997-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod_multi)<span class="sc">$</span>adj.r.squared</span></code></pre></div>
 <pre><code>## [1] 0.7107622</code></pre>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
-Suppose you added another predictor to the model, but the variance of the errors <span class="math inline">\(Var(e_i)\)</span> didn’t go down. What would happen to the <span class="math inline">\(R^2\)</span>? What would happen to the adjusted <span class="math inline">\(R^2\)</span>?<a href="#fn102" class="footnote-ref" id="fnref102"><sup>102</sup></a></p>
+Suppose you added another predictor to the model, but the variance of the errors <span class="math inline">\(Var(e_i)\)</span> didn’t go down. What would happen to the <span class="math inline">\(R^2\)</span>? What would happen to the adjusted <span class="math inline">\(R^2\)</span>?<a href="#fn104" class="footnote-ref" id="fnref104"><sup>104</sup></a></p>
 </blockquote>
 <p>Again, in Math 378 we will spend more time on how to select models. Using internal metrics of performance such as p-values or adjusted <span class="math inline">\(R\)</span> squared are one way but using external measures of predictive performance such as <strong>cross validation</strong> or <strong>hold out</strong> sets will be introduced.</p>
 </div>
@@ -1558,15 +1563,15 @@ Figure 30.10: Scatterplot of credit card balance for income with a quadratic fit
 </div>
 <div class="footnotes">
 <hr />
-<ol start="95">
-<li id="fn95"><p>Diez DM, Barr CD, and etinkaya-Rundel M. 2012. <code>openintro</code>: OpenIntro data sets and supplemental functions. <a href="http://cran.r-project.org/web/packages/openintro" class="uri">http://cran.r-project.org/web/packages/openintro</a><a href="LRMULTI.html#fnref95" class="footnote-back">↩︎</a></p></li>
-<li id="fn96"><p><span class="math inline">\(\hat{y} = 41.34 + - 5.13x_1 + 1.08x_2 - 0.03x_3 + 7.29x_4\)</span>, and there are <span class="math inline">\(k=4\)</span> predictor variables.<a href="LRMULTI.html#fnref96" class="footnote-back">↩︎</a></p></li>
-<li id="fn97"><p>It is the average difference in auction price for each additional Wii wheel included when holding the other variables constant. The point estimate is <span class="math inline">\(b_4 = 7.29\)</span>.<a href="LRMULTI.html#fnref97" class="footnote-back">↩︎</a></p></li>
-<li id="fn98"><p>Three of the variables (<code>cond</code>, <code>stock_photo</code>, and <code>wheels</code>) do take value 0, but the auction duration is always one or more days. If the auction is not up for any days, then no one can bid on it! That means the total auction price would always be zero for such an auction; the interpretation of the intercept in this setting is not insightful.<a href="LRMULTI.html#fnref98" class="footnote-back">↩︎</a></p></li>
-<li id="fn99"><p><span class="math inline">\(R^2 = 1 - \frac{23.34}{83.06} = 0.719\)</span>.<a href="LRMULTI.html#fnref99" class="footnote-back">↩︎</a></p></li>
-<li id="fn100"><p>In multiple regression, the degrees of freedom associated with the variance of the estimate of the residuals is <span class="math inline">\(n-k-1\)</span>, not <span class="math inline">\(n-1\)</span>. For instance, if we were to make predictions for new data using our current model, we would find that the unadjusted <span class="math inline">\(R^2\)</span> is an overly optimistic estimate of the reduction in variance in the response, and using the degrees of freedom in the adjusted <span class="math inline">\(R^2\)</span> formula helps correct this bias.<a href="LRMULTI.html#fnref100" class="footnote-back">↩︎</a></p></li>
-<li id="fn101"><p><span class="math inline">\(R_{adj}^2 = 1 - \frac{23.34}{83.06}\times \frac{141-1}{141-4-1} = 0.711\)</span>.<a href="LRMULTI.html#fnref101" class="footnote-back">↩︎</a></p></li>
-<li id="fn102"><p>The unadjusted <span class="math inline">\(R^2\)</span> would stay the same and the adjusted <span class="math inline">\(R^2\)</span> would go down. Note that unadjusted <span class="math inline">\(R^2\)</span> never decreases by adding another predictor, it can only stay the same or increase. The adjusted <span class="math inline">\(R^2\)</span> increases only if the addition of a predictor reduces the variance of the error larger than add one to <span class="math inline">\(k\)</span> in denominator.<a href="LRMULTI.html#fnref102" class="footnote-back">↩︎</a></p></li>
+<ol start="97">
+<li id="fn97"><p>Diez DM, Barr CD, and etinkaya-Rundel M. 2012. <code>openintro</code>: OpenIntro data sets and supplemental functions. <a href="http://cran.r-project.org/web/packages/openintro" class="uri">http://cran.r-project.org/web/packages/openintro</a><a href="LRMULTI.html#fnref97" class="footnote-back">↩︎</a></p></li>
+<li id="fn98"><p><span class="math inline">\(\hat{y} = 41.34 + - 5.13x_1 + 1.08x_2 - 0.03x_3 + 7.29x_4\)</span>, and there are <span class="math inline">\(k=4\)</span> predictor variables.<a href="LRMULTI.html#fnref98" class="footnote-back">↩︎</a></p></li>
+<li id="fn99"><p>It is the average difference in auction price for each additional Wii wheel included when holding the other variables constant. The point estimate is <span class="math inline">\(b_4 = 7.29\)</span>.<a href="LRMULTI.html#fnref99" class="footnote-back">↩︎</a></p></li>
+<li id="fn100"><p>Three of the variables (<code>cond</code>, <code>stock_photo</code>, and <code>wheels</code>) do take value 0, but the auction duration is always one or more days. If the auction is not up for any days, then no one can bid on it! That means the total auction price would always be zero for such an auction; the interpretation of the intercept in this setting is not insightful.<a href="LRMULTI.html#fnref100" class="footnote-back">↩︎</a></p></li>
+<li id="fn101"><p><span class="math inline">\(R^2 = 1 - \frac{23.34}{83.06} = 0.719\)</span>.<a href="LRMULTI.html#fnref101" class="footnote-back">↩︎</a></p></li>
+<li id="fn102"><p>In multiple regression, the degrees of freedom associated with the variance of the estimate of the residuals is <span class="math inline">\(n-k-1\)</span>, not <span class="math inline">\(n-1\)</span>. For instance, if we were to make predictions for new data using our current model, we would find that the unadjusted <span class="math inline">\(R^2\)</span> is an overly optimistic estimate of the reduction in variance in the response, and using the degrees of freedom in the adjusted <span class="math inline">\(R^2\)</span> formula helps correct this bias.<a href="LRMULTI.html#fnref102" class="footnote-back">↩︎</a></p></li>
+<li id="fn103"><p><span class="math inline">\(R_{adj}^2 = 1 - \frac{23.34}{83.06}\times \frac{141-1}{141-4-1} = 0.711\)</span>.<a href="LRMULTI.html#fnref103" class="footnote-back">↩︎</a></p></li>
+<li id="fn104"><p>The unadjusted <span class="math inline">\(R^2\)</span> would stay the same and the adjusted <span class="math inline">\(R^2\)</span> would go down. Note that unadjusted <span class="math inline">\(R^2\)</span> never decreases by adding another predictor, it can only stay the same or increase. The adjusted <span class="math inline">\(R^2\)</span> increases only if the addition of a predictor reduces the variance of the error larger than add one to <span class="math inline">\(k\)</span> in denominator.<a href="LRMULTI.html#fnref104" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
