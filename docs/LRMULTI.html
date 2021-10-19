@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-17" />
+<meta name="date" content="2021-10-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -807,8 +807,8 @@ div.csl-indent {
 <p>Multiple regression extends simple two-variable regression to the case that still has one response but many predictors (denoted <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, <span class="math inline">\(x_3\)</span>, …). The method is motivated by scenarios where many variables may be simultaneously connected to an output.</p>
 <p>To explore and explain these ideas, we will consider Ebay auctions of a video game called <strong>Mario Kart</strong> for the Nintendo Wii. The outcome variable of interest is the total price of an auction, which is the highest bid plus the shipping cost. We will try to determine how total price is related to each characteristic in an auction while simultaneously controlling for other variables. For instance, with all other characteristics held constant, are longer auctions associated with higher or lower prices? And, on average, how much more do buyers tend to pay for additional Wii wheels (plastic steering wheels that attach to the Wii controller) in auctions? Multiple regression will help us answer these and other questions.</p>
 <p>The data set is in the file <code>mariokart.csv</code> in the <code>data</code> folder. This data set includes results from 141 auctions.<a href="#fn95" class="footnote-ref" id="fnref95"><sup>95</sup></a> Ten observations from this data set are shown in the <code>R</code> code below. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for Math 378.</p>
-<div class="sourceCode" id="cb954"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb954-1"><a href="LRMULTI.html#cb954-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/mariokart.csv&quot;</span>)</span>
-<span id="cb954-2"><a href="LRMULTI.html#cb954-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mariokart,<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb956"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb956-1"><a href="LRMULTI.html#cb956-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/mariokart.csv&quot;</span>)</span>
+<span id="cb956-2"><a href="LRMULTI.html#cb956-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mariokart,<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 12
 ##              id duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
 ##           &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
@@ -838,10 +838,10 @@ div.csl-indent {
 <div id="a-single-variable-model-for-the-mario-kart-data" class="section level3" number="30.3.1">
 <h3><span class="header-section-number">30.3.1</span> A single-variable model for the Mario Kart data</h3>
 <p>Let’s fit a linear regression model with the game’s condition as a predictor of auction price. Before we start let’s change <code>cond</code> and <code>stock_photo</code> into factors.</p>
-<div class="sourceCode" id="cb956"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb956-1"><a href="LRMULTI.html#cb956-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="ot">&lt;-</span> mariokart <span class="sc">%&gt;%</span></span>
-<span id="cb956-2"><a href="LRMULTI.html#cb956-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cond=</span><span class="fu">factor</span>(cond),<span class="at">stock_photo=</span><span class="fu">factor</span>(stock_photo))</span></code></pre></div>
+<div class="sourceCode" id="cb958"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb958-1"><a href="LRMULTI.html#cb958-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="ot">&lt;-</span> mariokart <span class="sc">%&gt;%</span></span>
+<span id="cb958-2"><a href="LRMULTI.html#cb958-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cond=</span><span class="fu">factor</span>(cond),<span class="at">stock_photo=</span><span class="fu">factor</span>(stock_photo))</span></code></pre></div>
 <p>Next let’s summarize the data.</p>
-<div class="sourceCode" id="cb957"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb957-1"><a href="LRMULTI.html#cb957-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(mariokart)</span></code></pre></div>
+<div class="sourceCode" id="cb959"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb959-1"><a href="LRMULTI.html#cb959-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(mariokart)</span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
 ##          name     class levels   n missing
@@ -875,10 +875,10 @@ div.csl-indent {
 ## ...7 2.701440e+05 1.589842e+04 5.184032e+04 143       0
 ## ...8 4.000000e+00 1.146853e+00 8.471829e-01 143       0</code></pre>
 <p>Finally, let’s plot the data.</p>
-<div class="sourceCode" id="cb959"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb959-1"><a href="LRMULTI.html#cb959-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="sc">%&gt;%</span> </span>
-<span id="cb959-2"><a href="LRMULTI.html#cb959-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_boxplot</span>(total_pr<span class="sc">~</span>cond) <span class="sc">%&gt;%</span></span>
-<span id="cb959-3"><a href="LRMULTI.html#cb959-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb959-4"><a href="LRMULTI.html#cb959-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Ebay Auction Prices&quot;</span>,<span class="at">x=</span><span class="st">&quot;Condition&quot;</span>, <span class="at">y=</span><span class="st">&quot;Total Price&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb961"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb961-1"><a href="LRMULTI.html#cb961-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="sc">%&gt;%</span> </span>
+<span id="cb961-2"><a href="LRMULTI.html#cb961-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_boxplot</span>(total_pr<span class="sc">~</span>cond) <span class="sc">%&gt;%</span></span>
+<span id="cb961-3"><a href="LRMULTI.html#cb961-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb961-4"><a href="LRMULTI.html#cb961-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Ebay Auction Prices&quot;</span>,<span class="at">x=</span><span class="st">&quot;Condition&quot;</span>, <span class="at">y=</span><span class="st">&quot;Total Price&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:box301-fig"></span>
 <img src="30-Multiple-Regression_files/figure-html/box301-fig-1.png" alt="Total price of Mario Kart on Ebay for each condition." width="672" />
 <p class="caption">
@@ -887,8 +887,8 @@ Figure 30.1: Total price of Mario Kart on Ebay for each condition.
 </div>
 <p>We have several outliers that may impact our analysis, Figure <a href="LRMULTI.html#fig:box301-fig">30.1</a>.</p>
 <p>Now let’s build the model.</p>
-<div class="sourceCode" id="cb960"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb960-1"><a href="LRMULTI.html#cb960-1" aria-hidden="true" tabindex="-1"></a>mario_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_pr<span class="sc">~</span>cond,<span class="at">data=</span>mariokart)</span></code></pre></div>
-<div class="sourceCode" id="cb961"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb961-1"><a href="LRMULTI.html#cb961-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb962"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb962-1"><a href="LRMULTI.html#cb962-1" aria-hidden="true" tabindex="-1"></a>mario_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_pr<span class="sc">~</span>cond,<span class="at">data=</span>mariokart)</span></code></pre></div>
+<div class="sourceCode" id="cb963"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb963-1"><a href="LRMULTI.html#cb963-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = total_pr ~ cond, data = mariokart)
@@ -912,9 +912,9 @@ Figure 30.1: Total price of Mario Kart on Ebay for each condition.
 \hat{\text{totalprice}} = 53.771 - 6.623 \times \text{condused}
 \]</span></p>
 <p>A scatterplot for price versus game condition is shown in Figure <a href="LRMULTI.html#fig:scat301-fig">30.2</a>.</p>
-<div class="sourceCode" id="cb963"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb963-1"><a href="LRMULTI.html#cb963-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="sc">%&gt;%</span></span>
-<span id="cb963-2"><a href="LRMULTI.html#cb963-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(total_pr<span class="sc">~</span>cond) <span class="sc">%&gt;%</span></span>
-<span id="cb963-3"><a href="LRMULTI.html#cb963-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb965"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb965-1"><a href="LRMULTI.html#cb965-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="sc">%&gt;%</span></span>
+<span id="cb965-2"><a href="LRMULTI.html#cb965-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(total_pr<span class="sc">~</span>cond) <span class="sc">%&gt;%</span></span>
+<span id="cb965-3"><a href="LRMULTI.html#cb965-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:scat301-fig"></span>
 <img src="30-Multiple-Regression_files/figure-html/scat301-fig-1.png" alt="Scatterplot of total price of Mario Kart on Ebay versus condition." width="672" />
 <p class="caption">
@@ -922,9 +922,9 @@ Figure 30.2: Scatterplot of total price of Mario Kart on Ebay versus condition.
 </p>
 </div>
 <p>That outlier probably is significantly impacting the relationship in the model. If we find the mean and median for the two groups, we will see this.</p>
-<div class="sourceCode" id="cb964"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb964-1"><a href="LRMULTI.html#cb964-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="sc">%&gt;%</span></span>
-<span id="cb964-2"><a href="LRMULTI.html#cb964-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cond) <span class="sc">%&gt;%</span></span>
-<span id="cb964-3"><a href="LRMULTI.html#cb964-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">xbar=</span><span class="fu">mean</span>(total_pr), <span class="at">stand_dev=</span><span class="fu">sd</span>(total_pr),<span class="at">xmedian=</span><span class="fu">median</span>(total_pr))</span></code></pre></div>
+<div class="sourceCode" id="cb966"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb966-1"><a href="LRMULTI.html#cb966-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="sc">%&gt;%</span></span>
+<span id="cb966-2"><a href="LRMULTI.html#cb966-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cond) <span class="sc">%&gt;%</span></span>
+<span id="cb966-3"><a href="LRMULTI.html#cb966-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">xbar=</span><span class="fu">mean</span>(total_pr), <span class="at">stand_dev=</span><span class="fu">sd</span>(total_pr),<span class="at">xmedian=</span><span class="fu">median</span>(total_pr))</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##   cond   xbar stand_dev xmedian
 ##   &lt;fct&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
@@ -932,8 +932,8 @@ Figure 30.2: Scatterplot of total price of Mario Kart on Ebay versus condition.
 ## 2 used   47.1     32.7     42.8</code></pre>
 <p>It appears that <strong>used</strong> items have a higher average price solely because of at least one of the outliers.</p>
 <p>There are at least two outliers in the plot. Let’s gather more information about them.</p>
-<div class="sourceCode" id="cb966"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb966-1"><a href="LRMULTI.html#cb966-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="sc">%&gt;%</span></span>
-<span id="cb966-2"><a href="LRMULTI.html#cb966-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_pr <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb968"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb968-1"><a href="LRMULTI.html#cb968-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="sc">%&gt;%</span></span>
+<span id="cb968-2"><a href="LRMULTI.html#cb968-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_pr <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 12
 ##             id duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
 ##          &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
@@ -941,10 +941,10 @@ Figure 30.2: Scatterplot of total price of Mario Kart on Ebay versus condition.
 ## 2 130335427560        3     27 used      6.95     4       118. parcel           41
 ## # … with 3 more variables: stock_photo &lt;fct&gt;, wheels &lt;dbl&gt;, title &lt;chr&gt;</code></pre>
 <p>If you look at the variable <code>title</code> there were additional items in the sale for these two observations. Let’s remove those two outliers and run the model again. Note that the reason we are removing them is not because they are annoying us and messing up our model. It is because we don’t think they are representative of the population of interest. Figure <a href="LRMULTI.html#fig:scat302-fig">30.3</a> is a scatterplot of the data with the outliers dropped.</p>
-<div class="sourceCode" id="cb968"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb968-1"><a href="LRMULTI.html#cb968-1" aria-hidden="true" tabindex="-1"></a>mariokart_new <span class="ot">&lt;-</span> mariokart <span class="sc">%&gt;%</span></span>
-<span id="cb968-2"><a href="LRMULTI.html#cb968-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_pr <span class="sc">&lt;=</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb968-3"><a href="LRMULTI.html#cb968-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(total_pr,cond,stock_photo,duration,wheels)</span></code></pre></div>
-<div class="sourceCode" id="cb969"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb969-1"><a href="LRMULTI.html#cb969-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mariokart_new)</span></code></pre></div>
+<div class="sourceCode" id="cb970"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb970-1"><a href="LRMULTI.html#cb970-1" aria-hidden="true" tabindex="-1"></a>mariokart_new <span class="ot">&lt;-</span> mariokart <span class="sc">%&gt;%</span></span>
+<span id="cb970-2"><a href="LRMULTI.html#cb970-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_pr <span class="sc">&lt;=</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb970-3"><a href="LRMULTI.html#cb970-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(total_pr,cond,stock_photo,duration,wheels)</span></code></pre></div>
+<div class="sourceCode" id="cb971"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb971-1"><a href="LRMULTI.html#cb971-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mariokart_new)</span></code></pre></div>
 <pre><code>##     total_pr       cond    stock_photo    duration          wheels     
 ##  Min.   :28.98   new :59   no : 36     Min.   : 1.000   Min.   :0.000  
 ##  1st Qu.:41.00   used:82   yes:105     1st Qu.: 1.000   1st Qu.:0.000  
@@ -952,18 +952,18 @@ Figure 30.2: Scatterplot of total price of Mario Kart on Ebay versus condition.
 ##  Mean   :47.43                         Mean   : 3.752   Mean   :1.149  
 ##  3rd Qu.:53.99                         3rd Qu.: 7.000   3rd Qu.:2.000  
 ##  Max.   :75.00                         Max.   :10.000   Max.   :4.000</code></pre>
-<div class="sourceCode" id="cb971"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb971-1"><a href="LRMULTI.html#cb971-1" aria-hidden="true" tabindex="-1"></a>mariokart_new <span class="sc">%&gt;%</span> </span>
-<span id="cb971-2"><a href="LRMULTI.html#cb971-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_boxplot</span>(total_pr<span class="sc">~</span>cond) <span class="sc">%&gt;%</span></span>
-<span id="cb971-3"><a href="LRMULTI.html#cb971-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb971-4"><a href="LRMULTI.html#cb971-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Ebay Auction Prices&quot;</span>,<span class="at">subtitle=</span><span class="st">&quot;Outliers removed&quot;</span>,<span class="at">x=</span><span class="st">&quot;Condition&quot;</span>, <span class="at">y=</span><span class="st">&quot;Total Price&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb973"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb973-1"><a href="LRMULTI.html#cb973-1" aria-hidden="true" tabindex="-1"></a>mariokart_new <span class="sc">%&gt;%</span> </span>
+<span id="cb973-2"><a href="LRMULTI.html#cb973-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_boxplot</span>(total_pr<span class="sc">~</span>cond) <span class="sc">%&gt;%</span></span>
+<span id="cb973-3"><a href="LRMULTI.html#cb973-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb973-4"><a href="LRMULTI.html#cb973-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Ebay Auction Prices&quot;</span>,<span class="at">subtitle=</span><span class="st">&quot;Outliers removed&quot;</span>,<span class="at">x=</span><span class="st">&quot;Condition&quot;</span>, <span class="at">y=</span><span class="st">&quot;Total Price&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:scat302-fig"></span>
 <img src="30-Multiple-Regression_files/figure-html/scat302-fig-1.png" alt="Scatterplot of total price and condition with outliers removed." width="672" />
 <p class="caption">
 Figure 30.3: Scatterplot of total price and condition with outliers removed.
 </p>
 </div>
-<div class="sourceCode" id="cb972"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb972-1"><a href="LRMULTI.html#cb972-1" aria-hidden="true" tabindex="-1"></a>mario_mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_pr<span class="sc">~</span>cond,<span class="at">data=</span>mariokart_new)</span></code></pre></div>
-<div class="sourceCode" id="cb973"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb973-1"><a href="LRMULTI.html#cb973-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod2)</span></code></pre></div>
+<div class="sourceCode" id="cb974"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb974-1"><a href="LRMULTI.html#cb974-1" aria-hidden="true" tabindex="-1"></a>mario_mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_pr<span class="sc">~</span>cond,<span class="at">data=</span>mariokart_new)</span></code></pre></div>
+<div class="sourceCode" id="cb975"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb975-1"><a href="LRMULTI.html#cb975-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = total_pr ~ cond, data = mariokart_new)
@@ -993,7 +993,7 @@ Figure 30.3: Scatterplot of total price and condition with outliers removed.
 Does the linear model seem reasonable? Which assumptions should you check?</p>
 </blockquote>
 <p>The model does seem reasonable although prices for new items appears to be skewed to the left and may not meet the normality assumptions, Figure <a href="LRMULTI.html#fig:qq301-fig">30.4</a>.</p>
-<div class="sourceCode" id="cb975"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb975-1"><a href="LRMULTI.html#cb975-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mario_mod2,<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb977"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb977-1"><a href="LRMULTI.html#cb977-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mario_mod2,<span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:qq301-fig"></span>
 <img src="30-Multiple-Regression_files/figure-html/qq301-fig-1.png" alt="Check of normality using quantile-quantile plot." width="672" />
 <p class="caption">
@@ -1001,7 +1001,7 @@ Figure 30.4: Check of normality using quantile-quantile plot.
 </p>
 </div>
 <p>The normality assumption is somewhat suspect but we have more than 100 data points so the short tails of the distribution are not a concern. The shape of this curve indicates a positive skew.</p>
-<div class="sourceCode" id="cb976"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb976-1"><a href="LRMULTI.html#cb976-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mario_mod2,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb978"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb978-1"><a href="LRMULTI.html#cb978-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mario_mod2,<span class="dv">3</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:diag301-fig"></span>
 <img src="30-Multiple-Regression_files/figure-html/diag301-fig-1.png" alt="Residual plot to assess equal variance assumption." width="672" />
 <p class="caption">
@@ -1009,7 +1009,7 @@ Figure 30.5: Residual plot to assess equal variance assumption.
 </p>
 </div>
 <p>From Figure <a href="LRMULTI.html#fig:diag301-fig">30.5</a>, equal variance seems reasonable.</p>
-<div class="sourceCode" id="cb977"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb977-1"><a href="LRMULTI.html#cb977-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mario_mod2,<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb979"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb979-1"><a href="LRMULTI.html#cb979-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mario_mod2,<span class="dv">5</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:diag302-fig"></span>
 <img src="30-Multiple-Regression_files/figure-html/diag302-fig-1.png" alt="Residual plot for checking leverage points." width="672" />
 <p class="caption">
@@ -1049,12 +1049,12 @@ Interpret the coefficient for the game’s condition in the model. Is this coeff
      = \sum_{i=1}^{141} \left(y_i - \hat{y}_i\right)^2
 \]</span></p>
 <p>In our problem, there are 141 residuals, one for each observation. We use a computer to minimize the sum and compute point estimates.</p>
-<div class="sourceCode" id="cb978"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb978-1"><a href="LRMULTI.html#cb978-1" aria-hidden="true" tabindex="-1"></a>mario_mod_multi <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_pr<span class="sc">~</span>., <span class="at">data=</span>mariokart_new)</span></code></pre></div>
+<div class="sourceCode" id="cb980"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb980-1"><a href="LRMULTI.html#cb980-1" aria-hidden="true" tabindex="-1"></a>mario_mod_multi <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_pr<span class="sc">~</span>., <span class="at">data=</span>mariokart_new)</span></code></pre></div>
 <p>The formula <code>total_pr~.</code> uses a <em>dot</em>. This means we want to use all the predictors. We could have also used the following code:</p>
-<div class="sourceCode" id="cb979"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb979-1"><a href="LRMULTI.html#cb979-1" aria-hidden="true" tabindex="-1"></a>mario_mod_multi <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_pr<span class="sc">~</span>cond<span class="sc">+</span>stock_photo<span class="sc">+</span>duration<span class="sc">+</span>wheels, <span class="at">data=</span>mariokart_new)</span></code></pre></div>
+<div class="sourceCode" id="cb981"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb981-1"><a href="LRMULTI.html#cb981-1" aria-hidden="true" tabindex="-1"></a>mario_mod_multi <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_pr<span class="sc">~</span>cond<span class="sc">+</span>stock_photo<span class="sc">+</span>duration<span class="sc">+</span>wheels, <span class="at">data=</span>mariokart_new)</span></code></pre></div>
 <p>Recall, the <code>+</code> symbol does not mean to literally add the predictors together. It is not a mathematical operation but a formula operation that means to include the predictor.</p>
 <p>You can view a summary of the model using the <code>summmary()</code> function.</p>
-<div class="sourceCode" id="cb980"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb980-1"><a href="LRMULTI.html#cb980-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod_multi)</span></code></pre></div>
+<div class="sourceCode" id="cb982"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb982-1"><a href="LRMULTI.html#cb982-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod_multi)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = total_pr ~ ., data = mariokart_new)
@@ -1209,13 +1209,13 @@ What does <span class="math inline">\(\beta_4\)</span>, the coefficient of varia
 <p><strong>Exercise</strong>:<br />
 Compute the residual of the first observation in the dataframe using the regression equation.</p>
 </blockquote>
-<div class="sourceCode" id="cb982"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb982-1"><a href="LRMULTI.html#cb982-1" aria-hidden="true" tabindex="-1"></a>mario_mod_multi<span class="sc">$</span>residuals[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb984"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb984-1"><a href="LRMULTI.html#cb984-1" aria-hidden="true" tabindex="-1"></a>mario_mod_multi<span class="sc">$</span>residuals[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>##        1 
 ## 1.923402</code></pre>
 <p>The <code>broom</code> package has a function <code>augment</code> that will calculate the predicted and residuals.</p>
-<div class="sourceCode" id="cb984"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb984-1"><a href="LRMULTI.html#cb984-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
-<div class="sourceCode" id="cb985"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb985-1"><a href="LRMULTI.html#cb985-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(mario_mod_multi) <span class="sc">%&gt;%</span></span>
-<span id="cb985-2"><a href="LRMULTI.html#cb985-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb986"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb986-1"><a href="LRMULTI.html#cb986-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
+<div class="sourceCode" id="cb987"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb987-1"><a href="LRMULTI.html#cb987-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(mario_mod_multi) <span class="sc">%&gt;%</span></span>
+<span id="cb987-2"><a href="LRMULTI.html#cb987-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 11
 ##   total_pr cond  stock_photo duration wheels .fitted .resid   .hat .sigma
 ##      &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;          &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
@@ -1237,7 +1237,7 @@ The estimated value of the intercept is 41.34, and one might be tempted to make 
 <h3><span class="header-section-number">30.3.3</span> Inference</h3>
 <p>From the printout of the model summary, we can see that both the <code>stock_photo</code> and <code>duration</code> variables are not significantly different from zero. Thus we may want to drop them from the model. In Math 378, we will explore ways to determine the best model including the use of p-values.</p>
 <p>Likewise, we could generate confidence intervals for the coefficients:</p>
-<div class="sourceCode" id="cb987"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb987-1"><a href="LRMULTI.html#cb987-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(mario_mod_multi)</span></code></pre></div>
+<div class="sourceCode" id="cb989"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb989-1"><a href="LRMULTI.html#cb989-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(mario_mod_multi)</span></code></pre></div>
 <pre><code>##                     2.5 %     97.5 %
 ## (Intercept)    37.9566036 44.7264601
 ## condused       -7.2092253 -3.0519030
@@ -1258,21 +1258,21 @@ where <span class="math inline">\(e_i\)</span> represents the residuals of the m
 <p><strong>Exercise</strong>:
 The variance of the residuals for the model is 23.34, and the variance of the total price in all the auctions is 83.06. Calculate <span class="math inline">\(R^2\)</span> for this model.<a href="#fn99" class="footnote-ref" id="fnref99"><sup>99</sup></a></p>
 </blockquote>
-<div class="sourceCode" id="cb989"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb989-1"><a href="LRMULTI.html#cb989-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(mario_mod_multi) <span class="sc">%&gt;%</span></span>
-<span id="cb989-2"><a href="LRMULTI.html#cb989-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">var_resid=</span><span class="fu">var</span>(.resid))</span></code></pre></div>
+<div class="sourceCode" id="cb991"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb991-1"><a href="LRMULTI.html#cb991-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(mario_mod_multi) <span class="sc">%&gt;%</span></span>
+<span id="cb991-2"><a href="LRMULTI.html#cb991-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">var_resid=</span><span class="fu">var</span>(.resid))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   var_resid
 ##       &lt;dbl&gt;
 ## 1      23.3</code></pre>
-<div class="sourceCode" id="cb991"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb991-1"><a href="LRMULTI.html#cb991-1" aria-hidden="true" tabindex="-1"></a>mariokart_new <span class="sc">%&gt;%</span></span>
-<span id="cb991-2"><a href="LRMULTI.html#cb991-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_var=</span><span class="fu">var</span>(total_pr))</span></code></pre></div>
+<div class="sourceCode" id="cb993"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb993-1"><a href="LRMULTI.html#cb993-1" aria-hidden="true" tabindex="-1"></a>mariokart_new <span class="sc">%&gt;%</span></span>
+<span id="cb993-2"><a href="LRMULTI.html#cb993-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_var=</span><span class="fu">var</span>(total_pr))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   total_var
 ##       &lt;dbl&gt;
 ## 1      83.1</code></pre>
-<div class="sourceCode" id="cb993"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb993-1"><a href="LRMULTI.html#cb993-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="fl">-23.34</span><span class="sc">/</span><span class="fl">83.05864</span></span></code></pre></div>
+<div class="sourceCode" id="cb995"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb995-1"><a href="LRMULTI.html#cb995-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="fl">-23.34</span><span class="sc">/</span><span class="fl">83.05864</span></span></code></pre></div>
 <pre><code>## [1] 0.7189937</code></pre>
-<div class="sourceCode" id="cb995"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb995-1"><a href="LRMULTI.html#cb995-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod_multi)<span class="sc">$</span>r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb997"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb997-1"><a href="LRMULTI.html#cb997-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod_multi)<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.7190261</code></pre>
 <p>This strategy for estimating <span class="math inline">\(R^2\)</span> is acceptable when there is just a single variable. However, it becomes less helpful when there are many variables. The regular <span class="math inline">\(R^2\)</span> is actually a biased estimate of the amount of variability explained by the model. To get a better estimate, we use the adjusted <span class="math inline">\(R^2\)</span>.</p>
 <blockquote>
@@ -1289,7 +1289,7 @@ where <span class="math inline">\(n\)</span> is the number of cases used to fit 
 <p><strong>Exercise</strong>:<br />
 There were <span class="math inline">\(n=141\)</span> auctions in the <code>mariokart</code> data set and <span class="math inline">\(k=4\)</span> predictor variables in the model. Use <span class="math inline">\(n\)</span>, <span class="math inline">\(k\)</span>, and the appropriate variances to calculate <span class="math inline">\(R_{adj}^2\)</span> for the Mario Kart model.<a href="#fn101" class="footnote-ref" id="fnref101"><sup>101</sup></a></p>
 </blockquote>
-<div class="sourceCode" id="cb997"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb997-1"><a href="LRMULTI.html#cb997-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod_multi)<span class="sc">$</span>adj.r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb999"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb999-1"><a href="LRMULTI.html#cb999-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod_multi)<span class="sc">$</span>adj.r.squared</span></code></pre></div>
 <pre><code>## [1] 0.7107622</code></pre>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
@@ -1300,9 +1300,9 @@ Suppose you added another predictor to the model, but the variance of the errors
 <div id="reduced-model" class="section level3" number="30.3.5">
 <h3><span class="header-section-number">30.3.5</span> Reduced model</h3>
 <p>Now let’s drop <code>duration</code> from the model and compare to our previous model:</p>
-<div class="sourceCode" id="cb999"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb999-1"><a href="LRMULTI.html#cb999-1" aria-hidden="true" tabindex="-1"></a>mario_mod_multi2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_pr<span class="sc">~</span>cond<span class="sc">+</span>stock_photo<span class="sc">+</span>wheels, <span class="at">data=</span>mariokart_new)</span></code></pre></div>
+<div class="sourceCode" id="cb1001"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1001-1"><a href="LRMULTI.html#cb1001-1" aria-hidden="true" tabindex="-1"></a>mario_mod_multi2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_pr<span class="sc">~</span>cond<span class="sc">+</span>stock_photo<span class="sc">+</span>wheels, <span class="at">data=</span>mariokart_new)</span></code></pre></div>
 <p>And the summary:</p>
-<div class="sourceCode" id="cb1000"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1000-1"><a href="LRMULTI.html#cb1000-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod_multi2)</span></code></pre></div>
+<div class="sourceCode" id="cb1002"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1002-1"><a href="LRMULTI.html#cb1002-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod_multi2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = total_pr ~ cond + stock_photo + wheels, data = mariokart_new)
@@ -1324,7 +1324,7 @@ Suppose you added another predictor to the model, but the variance of the errors
 ## Multiple R-squared:  0.719,  Adjusted R-squared:  0.7128 
 ## F-statistic: 116.8 on 3 and 137 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>As a reminder, the previous model summary is:</p>
-<div class="sourceCode" id="cb1002"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1002-1"><a href="LRMULTI.html#cb1002-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod_multi)</span></code></pre></div>
+<div class="sourceCode" id="cb1004"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1004-1"><a href="LRMULTI.html#cb1004-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod_multi)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = total_pr ~ ., data = mariokart_new)
@@ -1347,8 +1347,8 @@ Suppose you added another predictor to the model, but the variance of the errors
 ## Multiple R-squared:  0.719,  Adjusted R-squared:  0.7108 
 ## F-statistic: 87.01 on 4 and 136 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Notice that the adjusted <span class="math inline">\(R^2\)</span> improved by dropping <code>duration</code>. Finally, let’s drop <code>stock_photo</code>.</p>
-<div class="sourceCode" id="cb1004"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1004-1"><a href="LRMULTI.html#cb1004-1" aria-hidden="true" tabindex="-1"></a>mario_mod_multi3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_pr<span class="sc">~</span>cond<span class="sc">+</span>wheels, <span class="at">data=</span>mariokart_new)</span></code></pre></div>
-<div class="sourceCode" id="cb1005"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1005-1"><a href="LRMULTI.html#cb1005-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod_multi3)</span></code></pre></div>
+<div class="sourceCode" id="cb1006"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1006-1"><a href="LRMULTI.html#cb1006-1" aria-hidden="true" tabindex="-1"></a>mario_mod_multi3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_pr<span class="sc">~</span>cond<span class="sc">+</span>wheels, <span class="at">data=</span>mariokart_new)</span></code></pre></div>
+<div class="sourceCode" id="cb1007"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1007-1"><a href="LRMULTI.html#cb1007-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mario_mod_multi3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = total_pr ~ cond + wheels, data = mariokart_new)
@@ -1373,7 +1373,7 @@ Suppose you added another predictor to the model, but the variance of the errors
 <div id="confidence-and-prediction-intervals" class="section level3" number="30.3.6">
 <h3><span class="header-section-number">30.3.6</span> Confidence and prediction intervals</h3>
 <p>Let’s suppose we want to predict the average total price for a Mario Kart sale with 2 wheels and in new condition. We can again use the <code>predict()</code> function.</p>
-<div class="sourceCode" id="cb1007"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1007-1"><a href="LRMULTI.html#cb1007-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(mario_mod_multi3,<span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="at">cond=</span><span class="st">&quot;new&quot;</span>,<span class="at">wheels=</span><span class="dv">2</span>),<span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1009"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1009-1"><a href="LRMULTI.html#cb1009-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(mario_mod_multi3,<span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="at">cond=</span><span class="st">&quot;new&quot;</span>,<span class="at">wheels=</span><span class="dv">2</span>),<span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 56.83544 55.49789 58.17299</code></pre>
 <p>We are 95% confident that the average price of a Mario Kart sale for a new item with 2 wheels will be between 55.50 and 58.17.</p>
@@ -1381,7 +1381,7 @@ Suppose you added another predictor to the model, but the variance of the errors
 <p><strong>Exercise</strong>:
 Find and interpret the prediction interval for a new Mario Kart with 2 wheels.</p>
 </blockquote>
-<div class="sourceCode" id="cb1009"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1009-1"><a href="LRMULTI.html#cb1009-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(mario_mod_multi3,<span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="at">cond=</span><span class="st">&quot;new&quot;</span>,<span class="at">wheels=</span><span class="dv">2</span>),<span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1011"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1011-1"><a href="LRMULTI.html#cb1011-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(mario_mod_multi3,<span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="at">cond=</span><span class="st">&quot;new&quot;</span>,<span class="at">wheels=</span><span class="dv">2</span>),<span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 56.83544 47.07941 66.59147</code></pre>
 <p>We are 95% confident that the price of a Mario Kart sale for a new item with 2 wheels will be between 47.07 and 66.59.</p>
@@ -1389,7 +1389,7 @@ Find and interpret the prediction interval for a new Mario Kart with 2 wheels.</
 <div id="diagnostics" class="section level3" number="30.3.7">
 <h3><span class="header-section-number">30.3.7</span> Diagnostics</h3>
 <p>The diagnostics for the model are similar to what we did in a previous lesson. Nothing in these plots gives us concern, Figure <a href="LRMULTI.html#fig:diag305-fig">30.7</a>.</p>
-<div class="sourceCode" id="cb1011"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1011-1"><a href="LRMULTI.html#cb1011-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mario_mod_multi3)</span></code></pre></div>
+<div class="sourceCode" id="cb1013"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1013-1"><a href="LRMULTI.html#cb1013-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mario_mod_multi3)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:diag305-fig"></span>
 <img src="30-Multiple-Regression_files/figure-html/diag305-fig-1.png" alt="Diagnostic residual plots for multiple regression model." width="50%" /><img src="30-Multiple-Regression_files/figure-html/diag305-fig-2.png" alt="Diagnostic residual plots for multiple regression model." width="50%" /><img src="30-Multiple-Regression_files/figure-html/diag305-fig-3.png" alt="Diagnostic residual plots for multiple regression model." width="50%" /><img src="30-Multiple-Regression_files/figure-html/diag305-fig-4.png" alt="Diagnostic residual plots for multiple regression model." width="50%" />
 <p class="caption">
@@ -1402,9 +1402,9 @@ Figure 30.7: Diagnostic residual plots for multiple regression model.
 <h2><span class="header-section-number">30.4</span> Interaction and Higher Order Terms</h2>
 <p>As a final short topic we want to explore <strong>feature engineering</strong>. Thus far we have not done any transformation to the predictors in the data set except maybe making categorical variables into factors. In data analysis competitions, such as Kaggle, feature engineering is often one of the most important steps. In Math 378, we will look at different tools but in this class we will look at simple transformations such as higher order terms and interactions.</p>
 <p>To make this section more relevant, we are going to switch to a different data set. Load the library <code>ISLR</code>, this is a package that you will use a great deal in Math 378.</p>
-<div class="sourceCode" id="cb1012"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1012-1"><a href="LRMULTI.html#cb1012-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span></code></pre></div>
+<div class="sourceCode" id="cb1014"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1014-1"><a href="LRMULTI.html#cb1014-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span></code></pre></div>
 <p>The data set of interest is <code>Credit</code>. Use the help menu to read about the variables. This is a simulated data set of credit card debt.</p>
-<div class="sourceCode" id="cb1013"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1013-1"><a href="LRMULTI.html#cb1013-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Credit)</span></code></pre></div>
+<div class="sourceCode" id="cb1015"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1015-1"><a href="LRMULTI.html#cb1015-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Credit)</span></code></pre></div>
 <pre><code>## Rows: 400
 ## Columns: 12
 ## $ ID        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
@@ -1421,8 +1421,8 @@ Figure 30.7: Diagnostic residual plots for multiple regression model.
 ## $ Balance   &lt;int&gt; 333, 903, 580, 964, 331, 1151, 203, 872, 279, 1350, 1407, 0,…</code></pre>
 <p>Suppose we suspected that there is a relationship between <code>Balance</code>, the response, and the predictors <code>Income</code> and <code>Student</code>. Note: we actually are using this model for educational purposes and did not go through a model selection process.</p>
 <p>The first model simply has these predictors in the model.</p>
-<div class="sourceCode" id="cb1015"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1015-1"><a href="LRMULTI.html#cb1015-1" aria-hidden="true" tabindex="-1"></a>credit_mod1<span class="ot">&lt;-</span><span class="fu">lm</span>(Balance<span class="sc">~</span>Income<span class="sc">+</span>Student,<span class="at">data=</span>Credit)</span></code></pre></div>
-<div class="sourceCode" id="cb1016"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1016-1"><a href="LRMULTI.html#cb1016-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(credit_mod1)</span></code></pre></div>
+<div class="sourceCode" id="cb1017"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1017-1"><a href="LRMULTI.html#cb1017-1" aria-hidden="true" tabindex="-1"></a>credit_mod1<span class="ot">&lt;-</span><span class="fu">lm</span>(Balance<span class="sc">~</span>Income<span class="sc">+</span>Student,<span class="at">data=</span>Credit)</span></code></pre></div>
+<div class="sourceCode" id="cb1018"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1018-1"><a href="LRMULTI.html#cb1018-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(credit_mod1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Balance ~ Income + Student, data = Credit)
@@ -1443,11 +1443,11 @@ Figure 30.7: Diagnostic residual plots for multiple regression model.
 ## Multiple R-squared:  0.2775, Adjusted R-squared:  0.2738 
 ## F-statistic: 76.22 on 2 and 397 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Let’s plot the data and the regression line. The impact of putting in the categorical variable <code>Student</code> is to just shift the intercept. The slope remains the same, Figure <a href="LRMULTI.html#fig:scat305-fig">30.8</a>.</p>
-<div class="sourceCode" id="cb1018"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1018-1"><a href="LRMULTI.html#cb1018-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(credit_mod1) <span class="sc">%&gt;%</span></span>
-<span id="cb1018-2"><a href="LRMULTI.html#cb1018-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(Balance<span class="sc">~</span>Income,<span class="at">color=</span><span class="sc">~</span>Student) <span class="sc">%&gt;%</span></span>
-<span id="cb1018-3"><a href="LRMULTI.html#cb1018-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_line</span>(.fitted<span class="sc">~</span>Income,<span class="at">data=</span><span class="fu">subset</span>(<span class="fu">augment</span>(credit_mod1), Student <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>),<span class="at">color=</span><span class="sc">~</span>Student)<span class="sc">%&gt;%</span></span>
-<span id="cb1018-4"><a href="LRMULTI.html#cb1018-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_line</span>(.fitted<span class="sc">~</span>Income,<span class="at">data=</span><span class="fu">subset</span>(<span class="fu">augment</span>(credit_mod1), Student <span class="sc">==</span> <span class="st">&quot;No&quot;</span>),<span class="at">color=</span><span class="sc">~</span>Student) <span class="sc">%&gt;%</span></span>
-<span id="cb1018-5"><a href="LRMULTI.html#cb1018-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb1020"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1020-1"><a href="LRMULTI.html#cb1020-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(credit_mod1) <span class="sc">%&gt;%</span></span>
+<span id="cb1020-2"><a href="LRMULTI.html#cb1020-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(Balance<span class="sc">~</span>Income,<span class="at">color=</span><span class="sc">~</span>Student) <span class="sc">%&gt;%</span></span>
+<span id="cb1020-3"><a href="LRMULTI.html#cb1020-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_line</span>(.fitted<span class="sc">~</span>Income,<span class="at">data=</span><span class="fu">subset</span>(<span class="fu">augment</span>(credit_mod1), Student <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>),<span class="at">color=</span><span class="sc">~</span>Student)<span class="sc">%&gt;%</span></span>
+<span id="cb1020-4"><a href="LRMULTI.html#cb1020-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_line</span>(.fitted<span class="sc">~</span>Income,<span class="at">data=</span><span class="fu">subset</span>(<span class="fu">augment</span>(credit_mod1), Student <span class="sc">==</span> <span class="st">&quot;No&quot;</span>),<span class="at">color=</span><span class="sc">~</span>Student) <span class="sc">%&gt;%</span></span>
+<span id="cb1020-5"><a href="LRMULTI.html#cb1020-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:scat305-fig"></span>
 <img src="30-Multiple-Regression_files/figure-html/scat305-fig-1.png" alt="Scatterplot of credit card balance for income and student status." width="672" />
 <p class="caption">
@@ -1467,8 +1467,8 @@ Write the equation for the regression model.</p>
 \]</span></p>
 <p>If the observation is a student, then the intercept is increased by 382.67.</p>
 <p>In this case, we would want to include an interaction term in the model: an <strong>interaction</strong> term allows the slope to change as well. To include an interaction term when building a model in <code>R</code>, we use <code>*</code>.</p>
-<div class="sourceCode" id="cb1019"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1019-1"><a href="LRMULTI.html#cb1019-1" aria-hidden="true" tabindex="-1"></a>credit_mod2<span class="ot">&lt;-</span><span class="fu">lm</span>(Balance<span class="sc">~</span>Income<span class="sc">*</span>Student,<span class="at">data=</span>Credit)</span></code></pre></div>
-<div class="sourceCode" id="cb1020"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1020-1"><a href="LRMULTI.html#cb1020-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(credit_mod2)</span></code></pre></div>
+<div class="sourceCode" id="cb1021"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1021-1"><a href="LRMULTI.html#cb1021-1" aria-hidden="true" tabindex="-1"></a>credit_mod2<span class="ot">&lt;-</span><span class="fu">lm</span>(Balance<span class="sc">~</span>Income<span class="sc">*</span>Student,<span class="at">data=</span>Credit)</span></code></pre></div>
+<div class="sourceCode" id="cb1022"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1022-1"><a href="LRMULTI.html#cb1022-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(credit_mod2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Balance ~ Income * Student, data = Credit)
@@ -1489,11 +1489,11 @@ Write the equation for the regression model.</p>
 ## Residual standard error: 391.6 on 396 degrees of freedom
 ## Multiple R-squared:  0.2799, Adjusted R-squared:  0.2744 
 ## F-statistic:  51.3 on 3 and 396 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb1022"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1022-1"><a href="LRMULTI.html#cb1022-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(credit_mod2) <span class="sc">%&gt;%</span></span>
-<span id="cb1022-2"><a href="LRMULTI.html#cb1022-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(Balance<span class="sc">~</span>Income,<span class="at">color=</span><span class="sc">~</span>Student) <span class="sc">%&gt;%</span></span>
-<span id="cb1022-3"><a href="LRMULTI.html#cb1022-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_line</span>(.fitted<span class="sc">~</span>Income,<span class="at">data=</span><span class="fu">subset</span>(<span class="fu">augment</span>(credit_mod2), Student <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>),<span class="at">color=</span><span class="sc">~</span>Student)<span class="sc">%&gt;%</span></span>
-<span id="cb1022-4"><a href="LRMULTI.html#cb1022-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_line</span>(.fitted<span class="sc">~</span>Income,<span class="at">data=</span><span class="fu">subset</span>(<span class="fu">augment</span>(credit_mod2), Student <span class="sc">==</span> <span class="st">&quot;No&quot;</span>),<span class="at">color=</span><span class="sc">~</span>Student) <span class="sc">%&gt;%</span></span>
-<span id="cb1022-5"><a href="LRMULTI.html#cb1022-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb1024"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1024-1"><a href="LRMULTI.html#cb1024-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(credit_mod2) <span class="sc">%&gt;%</span></span>
+<span id="cb1024-2"><a href="LRMULTI.html#cb1024-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(Balance<span class="sc">~</span>Income,<span class="at">color=</span><span class="sc">~</span>Student) <span class="sc">%&gt;%</span></span>
+<span id="cb1024-3"><a href="LRMULTI.html#cb1024-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_line</span>(.fitted<span class="sc">~</span>Income,<span class="at">data=</span><span class="fu">subset</span>(<span class="fu">augment</span>(credit_mod2), Student <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>),<span class="at">color=</span><span class="sc">~</span>Student)<span class="sc">%&gt;%</span></span>
+<span id="cb1024-4"><a href="LRMULTI.html#cb1024-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_line</span>(.fitted<span class="sc">~</span>Income,<span class="at">data=</span><span class="fu">subset</span>(<span class="fu">augment</span>(credit_mod2), Student <span class="sc">==</span> <span class="st">&quot;No&quot;</span>),<span class="at">color=</span><span class="sc">~</span>Student) <span class="sc">%&gt;%</span></span>
+<span id="cb1024-5"><a href="LRMULTI.html#cb1024-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:scat306-fig"></span>
 <img src="30-Multiple-Regression_files/figure-html/scat306-fig-1.png" alt="Scatterplot of credit card balance for income and student status with an interaction term." width="672" />
 <p class="caption">
@@ -1502,8 +1502,8 @@ Figure 30.9: Scatterplot of credit card balance for income and student status wi
 </div>
 <p>Now we have a different slope and intercept for each case of the <code>Student</code> variable, Figure <a href="LRMULTI.html#fig:scat306-fig">30.9</a>. Thus there is a synergy or interaction between these variables. The student status changes the impact of <code>Income</code> on <code>Balance</code>. If you are a student, then for every increase in income of 1 the balance increase by 4.219 on average. If you are not a student, every increase in income of 1 increases the average balance by 6.2182.</p>
 <p>Furthermore, if you suspect that perhaps a curved relationship exists between two variables, we could include a higher order term. As an example, let’s add a quadratic term for <code>Income</code> to our model (without the interaction). To do this in <code>R</code>, we need to wrap the higher order term in <code>I()</code>. If we include a higher order term, we usually want to include the lower order terms as well, in Math 378 you will make the decision on what to include using predictive performance.</p>
-<div class="sourceCode" id="cb1023"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1023-1"><a href="LRMULTI.html#cb1023-1" aria-hidden="true" tabindex="-1"></a>credit_mod3<span class="ot">&lt;-</span><span class="fu">lm</span>(Balance<span class="sc">~</span>Income<span class="sc">+</span><span class="fu">I</span>(Income<span class="sc">^</span><span class="dv">2</span>),<span class="at">data=</span>Credit)</span></code></pre></div>
-<div class="sourceCode" id="cb1024"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1024-1"><a href="LRMULTI.html#cb1024-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(credit_mod3)</span></code></pre></div>
+<div class="sourceCode" id="cb1025"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1025-1"><a href="LRMULTI.html#cb1025-1" aria-hidden="true" tabindex="-1"></a>credit_mod3<span class="ot">&lt;-</span><span class="fu">lm</span>(Balance<span class="sc">~</span>Income<span class="sc">+</span><span class="fu">I</span>(Income<span class="sc">^</span><span class="dv">2</span>),<span class="at">data=</span>Credit)</span></code></pre></div>
+<div class="sourceCode" id="cb1026"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1026-1"><a href="LRMULTI.html#cb1026-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(credit_mod3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Balance ~ Income + I(Income^2), data = Credit)
@@ -1523,10 +1523,10 @@ Figure 30.9: Scatterplot of credit card balance for income and student status wi
 ## Residual standard error: 408 on 397 degrees of freedom
 ## Multiple R-squared:  0.2166, Adjusted R-squared:  0.2127 
 ## F-statistic: 54.88 on 2 and 397 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb1026"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1026-1"><a href="LRMULTI.html#cb1026-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(credit_mod3) <span class="sc">%&gt;%</span></span>
-<span id="cb1026-2"><a href="LRMULTI.html#cb1026-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(Balance<span class="sc">~</span>Income) <span class="sc">%&gt;%</span></span>
-<span id="cb1026-3"><a href="LRMULTI.html#cb1026-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_line</span>(.fitted<span class="sc">~</span>Income) <span class="sc">%&gt;%</span></span>
-<span id="cb1026-4"><a href="LRMULTI.html#cb1026-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb1028"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1028-1"><a href="LRMULTI.html#cb1028-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(credit_mod3) <span class="sc">%&gt;%</span></span>
+<span id="cb1028-2"><a href="LRMULTI.html#cb1028-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(Balance<span class="sc">~</span>Income) <span class="sc">%&gt;%</span></span>
+<span id="cb1028-3"><a href="LRMULTI.html#cb1028-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_line</span>(.fitted<span class="sc">~</span>Income) <span class="sc">%&gt;%</span></span>
+<span id="cb1028-4"><a href="LRMULTI.html#cb1028-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:scat307-fig"></span>
 <img src="30-Multiple-Regression_files/figure-html/scat307-fig-1.png" alt="Scatterplot of credit card balance for income with a quadratic fit." width="672" />
 <p class="caption">

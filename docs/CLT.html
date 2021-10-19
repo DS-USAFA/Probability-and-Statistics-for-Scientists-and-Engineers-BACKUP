@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-17" />
+<meta name="date" content="2021-10-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -817,15 +817,15 @@ Describe the shape of the distribution and note anything that you find interesti
 Figure 21.2: Sampling distribution of the sample proportion.
 </p>
 </div>
-<p>This similarity between the empirical and theoretical distributions is not a coincidence, but rather, is guaranteed by mathematical theory. This lesson will be a little more notation and algebra intensive than the previous lessons. However, the goal is to develop a tool that will help us find sampling distributions for test statistics and thus find p-values. This lesson is classical statistics often taught in AP high school classes as well as many introductory undergraduate statistics courses. Remember that before the advances of modern computing, these mathematical solutions were all that was available.</p>
+<p>This similarity between the empirical and theoretical distributions is not a coincidence, but rather, is guaranteed by mathematical theory. This chapter will be a little more notation and algebra intensive than the previous chapters. However, the goal is to develop a tool that will help us find sampling distributions for test statistics and thus find p-values. This chapter is classical statistics often taught in AP high school classes as well as many introductory undergraduate statistics courses. Remember that before the advances of modern computing, these mathematical solutions were all that was available.</p>
 </div>
 <div id="theorem---central-limit-theorem" class="section level3" number="21.2.2">
 <h3><span class="header-section-number">21.2.2</span> Theorem - central limit theorem</h3>
-<p>Theorem: Let <span class="math inline">\(X_1,X_2,...,X_n\)</span> be a sequence of iid random variables from a distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma&lt;\infty\)</span>. Then,
+<p>Theorem: Let <span class="math inline">\(X_1,X_2,...,X_n\)</span> be a sequence of iid, independent and identically distributed, random variables from a distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma&lt;\infty\)</span>. Then,
 <span class="math display">\[
 \bar{X} \overset{approx}{\sim}\textsf{Norm}\left(\mu,{\sigma\over\sqrt{n}}\right)
 \]</span></p>
-<p>There is a lot going on in this theorem. First is that we are drawing independent samples from the same parent population. The central limit theorem (CLT) does not specify the form of this parent distribution, only that it has a finite variance. Then if we form a new random variable that involves the sum of the individual random variables, in this case the sample mean, the distribution of the new random variable is approximately normal. In the case of the sample mean, the expected value is the same mean as the parent population and the variance is the variance of the parent population divided by the sample size. Let’s summarize these ideas.</p>
+<p>There is a lot going on in this theorem. First notice we are drawing independent samples from the same parent population. The central limit theorem (CLT) does not specify the form of this parent distribution, only that it has a finite variance. Then if we form a new random variable that involves the sum of the individual random variables, in this case the sample mean, the distribution of the new random variable is approximately normal. In the case of the sample mean, the expected value is the same mean as the parent population and the variance is the variance of the parent population divided by the sample size. Let’s summarize these ideas.</p>
 <ol style="list-style-type: decimal">
 <li>The process of creating a new random variable from the sum of independent identically distributed random variables is approximately normal.</li>
 <li>The approximation to a normal distribution improves with sample size <span class="math inline">\(n\)</span>.</li>
@@ -836,7 +836,7 @@ Figure 21.2: Sampling distribution of the sample proportion.
 </div>
 <div id="simulating-data-for-clt" class="section level3" number="21.2.3">
 <h3><span class="header-section-number">21.2.3</span> Simulating data for CLT</h3>
-<p>For this next section, we are going to use an artificial example where we know the population distribution and parameters. We will repeat sampling from this many times and plot the distribution of the summary statistic of interest to demonstrate the CLT. This is purely an educational thought experiment to convince ourselves about the validity of the CLT.</p>
+<p>For this section, we are going to use an artificial example where we know the population distribution and parameters. We will repeat sampling from this many times and plot the distribution of the summary statistic of interest, the sample mean, to demonstrate the CLT. This is purely an educational thought experiment to give ourselves confidence about the validity of the CLT.</p>
 <p>Suppose there is an upcoming election in Colorado and Proposition A is on the ballot. Now suppose that 65% of Colorado voters support Proposition A. We poll a random sample of <span class="math inline">\(n\)</span> Colorado voters. Prior to conducting the sample, we can think about the sample as a sequence of iid random variables from the binomial distribution with one trial in each run and a probability of success (support for the measure) of 0.65. In other words, each random variable will take a value of 1 (support) or 0 (oppose). Figure <a href="CLT.html#fig:dens213-fig">21.3</a> is a plot of the pmf of the parent distribution (<span class="math inline">\(\textsf{Binom}(1,0.65)\)</span>):</p>
 <div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="CLT.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_dist</span>(<span class="st">&quot;binom&quot;</span>,<span class="at">size=</span><span class="dv">1</span>,<span class="at">prob=</span>.<span class="dv">65</span>,<span class="at">plot_size=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb568-2"><a href="CLT.html#cb568-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
@@ -897,12 +897,12 @@ Figure 21.6: Sampling distribution of the proportion for different trail sizes.
 </div>
 <div id="summary-of-example" class="section level3" number="21.2.4">
 <h3><span class="header-section-number">21.2.4</span> Summary of example</h3>
-<p>In this example, we knew the true proportion of voters who supported the proposition. Based on that knowledge, we simulated the behavior of the sample proportion. We did this by taking a sample of size <span class="math inline">\(n\)</span>, recording the sample proportion, sample mean, and repeating that process thousands of times. In reality, we will not know the true underlying level of support; further, we will not take a sample repeatedly thousands of times from the parent population. Sampling can be expensive and time-consuming. Thus, we would take one random sample of size <span class="math inline">\(n\)</span>, and acknowledge that the resulting sample proportion is but one observation from an underlying normal distribution. We would then figure out what values of <span class="math inline">\(\pi\)</span> (the true unknown population proportion) could reasonably have resulted in the observed sample proportion.</p>
+<p>In this example, we knew the true proportion of voters who supported the proposition. Based on that knowledge, we simulated the behavior of the sample proportion. We did this by taking a sample of size <span class="math inline">\(n\)</span>, recording the sample proportion, sample mean, and repeating that process thousands of times. In reality, we will not know the true underlying level of support; further, we will not take a sample repeatedly thousands of times from the parent population. Sampling can be expensive and time-consuming. Thus, we would take one random sample of size <span class="math inline">\(n\)</span>, and acknowledge that the resulting sample proportion is but one observation from an underlying normal distribution. We would then determine what values of <span class="math inline">\(\pi\)</span> (the true unknown population proportion) could reasonably have resulted in the observed sample proportion.</p>
 </div>
 </div>
 <div id="other-distribution-for-estimators" class="section level2" number="21.3">
 <h2><span class="header-section-number">21.3</span> Other distribution for estimators</h2>
-<p>Prior to using the CLT in hypothesis testing, we want to discuss other sampling distributions that are based on the CLT or normality assumptions. A large part of theoretical statistics has been mathematically deriving the distribution of sample statistics. In these methods we obtain a sample statistic, determine the distribution of that statistic under certain conditions, and then use that information to make a statement about the population parameter.</p>
+<p>Prior to using the CLT in hypothesis testing, we want to discuss other sampling distributions that are based on the CLT or normality assumptions. A large part of theoretical statistics has been about mathematically deriving the distribution of sample statistics. In these methods we obtain a sample statistic, determine the distribution of that statistic under certain conditions, and then use that information to make a statement about the population parameter.</p>
 <div id="chi-sqaured" class="section level3" number="21.3.1">
 <h3><span class="header-section-number">21.3.1</span> Chi-sqaured</h3>
 <p>Recall that the central limit theorem tells us that for reasonably large sample sizes, <span class="math inline">\(\bar{X}\overset{approx}{\sim}\textsf{Norm}(\mu,\sigma/\sqrt{n})\)</span>. However, this expression involves two unknowns: <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. In the case of binary data, population variance is a function of population proportion (<span class="math inline">\(\mbox{Var}(X)=\pi(1-\pi)\)</span>), so there is really just one unknown. In the case of continuous data, the standard deviation would need to be estimated.</p>
@@ -915,8 +915,8 @@ S^2={\sum (X_i-\bar{X})^2\over n-1}
 <span class="math display">\[
 {(n-1)S^2\over \sigma^2}\sim \textsf{Chisq}(n-1)
 \]</span></p>
-<p>The <span class="math inline">\(\textsf{Chisq}(n-1)\)</span> distribution is read as the “chi-squared” distribution (“chi” is pronounced “kye”). The chi-squared distribution has one parameter: degrees of freedom. The chi-squared distribution is used in other contexts such as goodness of fit problems like the golf ball example from last lesson, we will discuss this particular application in a later lesson.</p>
-<p>The proof of this lemma is outside the scope of this class, but it is not terribly complicated. It follows from the fact that the sum of <span class="math inline">\(n\)</span> squared random variables, each with the standard normal distribution, follows the chi-squared distribution with <span class="math inline">\(n\)</span> degrees of freedom.</p>
+<p>The <span class="math inline">\(\textsf{Chisq}(n-1)\)</span> distribution is read as the “chi-squared” distribution (“chi” is pronounced “kye”). The chi-squared distribution has one parameter: degrees of freedom. The chi-squared distribution is used in other contexts such as goodness of fit problems like the golf ball example from last lesson, we will discuss this particular application in a later chapter.</p>
+<p>The proof of this lemma is outside the scope of this book, but it is not terribly complicated. It follows from the fact that the sum of <span class="math inline">\(n\)</span> squared random variables, each with the standard normal distribution, follows the chi-squared distribution with <span class="math inline">\(n\)</span> degrees of freedom.</p>
 <p>This lemma can be used to draw inferences about <span class="math inline">\(\sigma^2\)</span>. For a particular value of <span class="math inline">\(\sigma^2\)</span>, we know how <span class="math inline">\(S^2\)</span> should behave. So, for a particular value of <span class="math inline">\(S^2\)</span>, we can figure out reasonable values of <span class="math inline">\(\sigma^2\)</span>.</p>
 <p>In practice, one rarely estimates <span class="math inline">\(\sigma\)</span> for the purpose of inferring on <span class="math inline">\(\sigma\)</span>. Typically, we are interested in estimating <span class="math inline">\(\mu\)</span> and we need to account for the added uncertainty in estimating <span class="math inline">\(\sigma\)</span> as well. That is what we will discuss in the next section.</p>
 </div>
@@ -989,7 +989,7 @@ In the calculation of the standard deviation of the sampling distribution, we us
 <div id="step-4---draw-a-conclusion-7" class="section level4" number="21.4.1.4">
 <h4><span class="header-section-number">21.4.1.4</span> Step 4 - Draw a conclusion</h4>
 <p>Based on our data, if the listeners were guessing correct 50% of the time, there is less than a 1 in 1000 probability that only 42 or less or 78 or more listeners would get it right. This is much less than 0.05, so we reject that the listeners are guessing correctly half of the time.</p>
-<p>Now <code>R</code> has built in functions to perform this test. If you explore these functions, use <code>?prop.test</code> to learn more, you will find options to improve the performance of the test. You are welcome and should read about these methods. Again, before computers, researchers spent time optimizing the performance of the asymptotic methods such as the CLT.</p>
+<p>Note that <code>R</code> has built in functions to perform this test. If you explore these functions, use <code>?prop.test</code> to learn more, you will find options to improve the performance of the test. You are welcome and should read about these methods. Again, before computers, researchers spent time optimizing the performance of the asymptotic methods such as the CLT.</p>
 <p>Here is the test of a single proportion using <code>R</code>.</p>
 <div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="CLT.html#cb581-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">42</span>,<span class="dv">120</span>)</span></code></pre></div>
 <pre><code>## 
@@ -1024,6 +1024,9 @@ How do you conduct a one-sided test? What if the null value where 0.45?<a href="
 ## sample estimates:
 ## probability of success 
 ##                   0.35</code></pre>
+<p>This is the same as</p>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="CLT.html#cb587-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pbinom</span>(<span class="dv">42</span>,<span class="dv">120</span>,.<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.001299333</code></pre>
 </div>
 </div>
 <div id="body-temperature" class="section level3" number="21.4.2">
@@ -1042,13 +1045,13 @@ How do you conduct a one-sided test? What if the null value where 0.45?<a href="
 \]</span>
 thus our test statistic is</p>
 <p><span class="math display">\[
-\frac{\bar{x}-98.6}{S/\sqrt{n}}
+\frac{\bar{x}-98.6}{s/\sqrt{n}}
 \]</span></p>
-<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="CLT.html#cb587-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature)</span></code></pre></div>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="CLT.html#cb589-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature)</span></code></pre></div>
 <pre><code>##   min   Q1 median   Q3   max     mean        sd   n missing
 ##  96.3 97.8   98.3 98.7 100.8 98.24923 0.7331832 130       0</code></pre>
-<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="CLT.html#cb589-1" aria-hidden="true" tabindex="-1"></a>temperature <span class="sc">%&gt;%</span></span>
-<span id="cb589-2"><a href="CLT.html#cb589-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean=</span><span class="fu">mean</span>(temperature),<span class="at">sd=</span><span class="fu">sd</span>(temperature),<span class="at">test_stat=</span>(mean<span class="fl">-98.6</span>)<span class="sc">/</span>(sd<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">130</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="CLT.html#cb591-1" aria-hidden="true" tabindex="-1"></a>temperature <span class="sc">%&gt;%</span></span>
+<span id="cb591-2"><a href="CLT.html#cb591-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean=</span><span class="fu">mean</span>(temperature),<span class="at">sd=</span><span class="fu">sd</span>(temperature),<span class="at">test_stat=</span>(mean<span class="fl">-98.6</span>)<span class="sc">/</span>(sd<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">130</span>)))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##    mean    sd test_stat
 ##   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
@@ -1058,10 +1061,10 @@ thus our test statistic is</p>
 <div id="step-3---determine-the-p-value.-8" class="section level4" number="21.4.2.3">
 <h4><span class="header-section-number">21.4.2.3</span> Step 3 - Determine the p-value.</h4>
 <p>We now want to find the p-value from <span class="math inline">\(\mbox{P}(t \leq -5.45)\)</span> on 129 degrees of freedom, given the null hypothesis is true, which is that the probability of success is 0.50. We will use <code>R</code> to get the one-sided p-value.</p>
-<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="CLT.html#cb591-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">5.45</span>,<span class="dv">129</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="CLT.html#cb593-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">5.45</span>,<span class="dv">129</span>)</span></code></pre></div>
 <pre><code>## [1] 1.232178e-07</code></pre>
 <p>We could also use the <code>R</code> function <code>t_test()</code>.</p>
-<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="CLT.html#cb593-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t_test</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature,<span class="at">mu=</span><span class="fl">98.6</span>,<span class="at">alternative=</span><span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="CLT.html#cb595-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t_test</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature,<span class="at">mu=</span><span class="fl">98.6</span>,<span class="at">alternative=</span><span class="st">&quot;less&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -1073,6 +1076,7 @@ thus our test statistic is</p>
 ## sample estimates:
 ## mean of x 
 ##  98.24923</code></pre>
+<p>Notice this p-value is much smaller than the p-value from the method used in homework problem 3 in the last chapter. That is because this test statistic has more assumptions and uses the data as continuous and not discrete.</p>
 </div>
 <div id="step-4---draw-a-conclusion-8" class="section level4" number="21.4.2.4">
 <h4><span class="header-section-number">21.4.2.4</span> Step 4 - Draw a conclusion</h4>
@@ -1098,9 +1102,9 @@ thus our test statistic is</p>
 </ol>
 <p>A typical plot to use to evaluate the normality assumption is called the quantile-quantile plot. We form a scatterplot of the empirical quantiles from the data versus exact quantile values from the theoretical distribution. If the points fall along a line then the data match the distribution. An exact match is not realistic, so we look for major departures from the line.</p>
 <p>Figure <a href="CLT.html#fig:qq211-fig">21.8</a> is our normal-quantile plot for the body temperature data. The largest value may be an outlier, we may want to verify it was entered correctly. The fact that the points are above the line for the larger values and below the line for the smaller values indicates that our data may have longer tails than the normal distribution. There are really only 3 values in the larger quantiles so in fact the data may be slightly skewed to the left, this was also indicated by a comparison of the mean and median. However, since we have 130 data points these results should not impact our findings.</p>
-<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="CLT.html#cb595-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_qq</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature) <span class="sc">%&gt;%</span></span>
-<span id="cb595-2"><a href="CLT.html#cb595-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_qqline</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature) <span class="sc">%&gt;%</span></span>
-<span id="cb595-3"><a href="CLT.html#cb595-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="CLT.html#cb597-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_qq</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature) <span class="sc">%&gt;%</span></span>
+<span id="cb597-2"><a href="CLT.html#cb597-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_qqline</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature) <span class="sc">%&gt;%</span></span>
+<span id="cb597-3"><a href="CLT.html#cb597-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:qq211-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/qq211-fig-1.png" alt="Q-Q plot for body temperature data." width="672" />
 <p class="caption">
