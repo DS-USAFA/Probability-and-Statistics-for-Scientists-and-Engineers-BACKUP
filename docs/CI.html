@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-19" />
+<meta name="date" content="2021-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -853,12 +853,13 @@ Figure 22.1: The pdf of a standard normal distribution showing idea of how to de
 <span class="math display">\[
 \mbox{P}\left(\bar{X}-z_{\alpha/2}{\sigma\over\sqrt{n}}\leq \mu \leq \bar{X}+z_{\alpha/2}{\sigma\over\sqrt{n}}\right)=1-\alpha
 \]</span></p>
-<p>Be careful with the interpretation of this expression. As a reminder <span class="math inline">\(\bar{X}\)</span> is the random variable here. The population mean, <span class="math inline">\(\mu\)</span>, is NOT a variable. It is an unknown parameter. Thus, the above expression is NOT a probabilistic statement about <span class="math inline">\(\mu\)</span>, but rather about <span class="math inline">\(\bar{X}\)</span>.</p>
+<p>Be careful with the interpretation of this expression. As a reminder <span class="math inline">\(\bar{X}\)</span> is the random variable here. The population mean, <span class="math inline">\(\mu\)</span>, is NOT a variable. It is an unknown parameter. Thus, the above expression is NOT a probabilistic statement about <span class="math inline">\(\mu\)</span>, but rather about the random variable <span class="math inline">\(\bar{X}\)</span>.</p>
 <p>Nonetheless, the above expression gives us a nice interval for “reasonable” values of <span class="math inline">\(\mu\)</span> given a particular sample.</p>
 <p>A <span class="math inline">\((1-\alpha)*100\%\)</span> <em>confidence interval for the mean</em> is given by:
 <span class="math display">\[
 \mu\in\left(\bar{x}\pm z_{\alpha/2}{\sigma\over\sqrt{n}}\right)
 \]</span></p>
+<p>Notice in this equation we are using the lower case <span class="math inline">\(\bar{x}\)</span>, the sample mean, and thus nothing is random in the interval. Thus we will not use probabilistic statements about confidence intervals when we calculate numerical values from data for the upper and/or lower limits.</p>
 <p>In most applications, the most common value of <span class="math inline">\(\alpha\)</span> is 0.05. In that case, to construct a 95% confidence interval, we would need to find <span class="math inline">\(z_{0.025}\)</span> which can be found quickly with <code>qnorm()</code>:</p>
 <div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="CI.html#cb602-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="dv">1</span><span class="fl">-0.05</span><span class="sc">/</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
@@ -890,7 +891,7 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 <span id="cb606-5"><a href="CI.html#cb606-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">upper_bound=</span>mean<span class="sc">+</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">129</span>)<span class="sc">*</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(n))</span></code></pre></div>
 <pre><code>##   lower_bound upper_bound
 ## 1      98.122    98.37646</code></pre>
-<p>The 95% confidence interval for <span class="math inline">\(\mu\)</span> is <span class="math inline">\((98.12,98.38)\)</span>. We am 95% <em>confident</em> that <span class="math inline">\(\mu\)</span>, the average human body temperature, is in this interval. Also, we could say that 95% of similarly constructed intervals will contain the true mean, <span class="math inline">\(\mu\)</span>.</p>
+<p>The 95% confidence interval for <span class="math inline">\(\mu\)</span> is <span class="math inline">\((98.12,98.38)\)</span>. We are 95% <em>confident</em> that <span class="math inline">\(\mu\)</span>, the average human body temperature, is in this interval. Alternatively and equally relevant, we could say that 95% of similarly constructed intervals will contain the true mean, <span class="math inline">\(\mu\)</span>. It is important to understand the use of the word confident and not the word probability.</p>
 <p>There is a link between hypothesis testing and confidence intervals. Remember when we used this data in a hypothesis test, the null hypothesis was <span class="math inline">\(H_0\)</span>: The average body temperature is 98.6 <span class="math inline">\(\mu = 98.6\)</span>. This null hypothesized value is not in the interval, so we could reject the null hypothesis with this confidence interval.</p>
 <p>We could also use <code>R</code> to find the confidence interval and conduct the hypothesis test. Read about the function <code>t_test()</code> in the help menu to determine why we used the <code>mu</code> option.</p>
 <div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="CI.html#cb608-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t_test</span>(<span class="sc">~</span>temperature,<span class="at">data=</span>temperature,<span class="at">mu=</span><span class="fl">98.6</span>)</span></code></pre></div>
@@ -934,8 +935,8 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 </div>
 <div id="confidence-intervals-for-two-proportions" class="section level2" number="22.3">
 <h2><span class="header-section-number">22.3</span> Confidence intervals for two proportions</h2>
-<p>In hypothesis testing we had several examples of two proportions. We tested these problems with a permutation test or using a hypergeometric. In our notes or applications, we have not presented the hypothesis test for two proportions using the asymptotic normal distribution, the central limit theorem. So in this section we will present three methods of answering our research question, a permutation test, a hypothesis test using the normal distribution, and a confidence interval.</p>
-<p>Earlier this semester, in fact in the first lesson notes, we encountered an experiment that examined whether implanting a stent in the brain of a patient at risk for a stroke helps reduce the risk of a stroke. The results from the first 30 days of this study, which included 451 patients, are summarized in the <code>R</code> code below. These results are surprising! The point estimate suggests that patients who received stents may have a <strong>higher</strong> risk of stroke: <span class="math inline">\(p_{trmt} - p_{control} = 0.090\)</span>.</p>
+<p>In hypothesis testing we had several examples of two proportions. We tested these problems with a permutation test or using a hypergeometric. In our chapters and homework, we have not presented the hypothesis test for two proportions using the asymptotic normal distribution, the central limit theorem. So in this chapter we will present three methods of answering our research question, a permutation test, a hypothesis test using the normal distribution, and a confidence interval.</p>
+<p>Earlier this book, in fact in the first chapter, we encountered an experiment that examined whether implanting a stent in the brain of a patient at risk for a stroke helps reduce the risk of a stroke. The results from the first 30 days of this study, which included 451 patients, are summarized in the <code>R</code> code below. These results are surprising! The point estimate suggests that patients who received stents may have a <strong>higher</strong> risk of stroke: <span class="math inline">\(p_{trmt} - p_{control} = 0.090\)</span>.</p>
 <div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="CI.html#cb616-1" aria-hidden="true" tabindex="-1"></a>stent <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/stent_study.csv&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="CI.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>group<span class="sc">+</span>outcome30,<span class="at">data=</span>stent,<span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##          outcome30
@@ -957,7 +958,7 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 <div id="permutation-test-for-two-proportions" class="section level3" number="22.3.1">
 <h3><span class="header-section-number">22.3.1</span> Permutation test for two proportions</h3>
 <p>We start with the null hypothesis which is two-sided since we don’t know if the treatment is harmful or beneficial.</p>
-<p><span class="math inline">\(H_0\)</span>: The treatment and outcome are independent. <span class="math inline">\(p_{control} - p_{trmt} = 0\)</span> or <span class="math inline">\(p_{control} = p_{trmt}\)</span>.
+<p><span class="math inline">\(H_0\)</span>: The treatment and outcome are independent. <span class="math inline">\(p_{control} - p_{trmt} = 0\)</span> or <span class="math inline">\(p_{control} = p_{trmt}\)</span>.<br />
 <span class="math inline">\(H_A\)</span>: The treatment and outcome are dependent <span class="math inline">\(p_{control} \neq p_{trmt}\)</span>.</p>
 <p>We will use <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 <p>The test statistic is the difference in proportions of patients with stroke in the control and treatment groups.</p>
@@ -981,6 +982,7 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 Figure 22.2: Sampling distribution of the difference in proportions.
 </p>
 </div>
+<p>We next calculate the p-value. We will calculate it as if it were a one-sided test and then double the result to account for the fact that we would reject with a similar value in the opposite tail. Note that the <code>prop1()</code> includes the observed value in the calculation of the p-value.</p>
 <div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="CI.html#cb627-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">prop1</span>(<span class="sc">~</span>(diffprop<span class="sc">&lt;=</span>obs),<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>##  prop_TRUE 
 ## 0.00259974</code></pre>
@@ -1011,7 +1013,7 @@ where <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p
 <p>The calculation of the standard error for our problem must be done carefully. Remember in hypothesis testing, we assume the null hypothesis is true; this means the proportions of strokes must be the same.</p>
 <p><span class="math display">\[SE = \sqrt{\frac{p(1-p)}{n_{control}} + \frac{p(1-p)}{n_{trmt}}}\]</span>
 We don’t know the exposure rate, <span class="math inline">\(p\)</span>, but we can obtain a good estimate of it by <strong>pooling</strong> the results of both samples:
-<span class="math display">\[\hat{p} = \frac{\text{\# of ``successes&#39;&#39;}}{\text{\# of cases}} = \frac{13 + 33}{451} = 0.102\]</span>
+<span class="math display">\[\hat{p} = \frac{\text{# of ``successes&#39;&#39;}}{\text{# of cases}} = \frac{13 + 33}{451} = 0.102\]</span>
 This is called the <em>pooled estimate</em> of the sample proportion, and we use it to compute the standard error when the null hypothesis is that <span class="math inline">\(p_{control} = p_{trmt}\)</span>.</p>
 <p><span class="math display">\[SE \approx \sqrt{\frac{\hat{p}(1-\hat{p})}{n_{control}} + \frac{\hat{p}(1-\hat{p})}{n_{trmt}}}\]</span></p>
 <p><span class="math display">\[SE \approx \sqrt{\frac{0.102(1-0.102)}{227} + \frac{0.102(1-0.102)}{224}} = 0.0285\]</span></p>
@@ -1088,7 +1090,7 @@ We are 95% confident that the difference in proportions of strokes in the contro
 <p>Suppose we want to consider confidence intervals where the confidence level is somewhat higher than 95%; perhaps we would like a confidence level of 99%. Think back to the analogy about trying to catch a fish: if we want to be more sure that we will catch the fish, we should use a wider net. To create a 99% confidence level, we must also widen our 95% interval. On the other hand, if we want an interval with lower confidence, such as 90%, we could make our original 95% interval slightly slimmer.</p>
 <p>The 95% confidence interval structure provides guidance in how to make intervals with new confidence levels. Below is a general 95% confidence interval for a point estimate that comes from a nearly normal distribution:</p>
 <p><span class="math display">\[\text{point estimate}\ \pm\ 1.96\times SE \]</span></p>
-<p>There are three components to this interval: the point estimate, ``1.96’’, and the standard error. The choice of <span class="math inline">\(1.96\times SE\)</span>, which is also called <strong>margin of error</strong>, was based on capturing 95% of the data since the estimate is within 1.96 standard errors of the true value about 95% of the time. The choice of 1.96 corresponds to a 95% confidence level.</p>
+<p>There are three components to this interval: the point estimate, “1.96,” and the standard error. The choice of <span class="math inline">\(1.96\times SE\)</span>, which is also called <strong>margin of error</strong>, was based on capturing 95% of the data since the estimate is within 1.96 standard errors of the true value about 95% of the time. The choice of 1.96 corresponds to a 95% confidence level.</p>
 <blockquote>
 <p><strong>Exercise</strong>:
 If <span class="math inline">\(X\)</span> is a normally distributed random variable, how often will <span class="math inline">\(X\)</span> be within 2.58 standard deviations of the mean?<a href="#fn87" class="footnote-ref" id="fnref87"><sup>87</sup></a></p>

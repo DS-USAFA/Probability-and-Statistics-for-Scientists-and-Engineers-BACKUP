@@ -100,7 +100,7 @@ $$
 \Prob\left(\bar{X}-z_{\alpha/2}{\sigma\over\sqrt{n}}\leq \mu \leq \bar{X}+z_{\alpha/2}{\sigma\over\sqrt{n}}\right)=1-\alpha
 $$
 
-Be careful with the interpretation of this expression. As a reminder $\bar{X}$ is the random variable here. The population mean, $\mu$, is NOT a variable. It is an unknown parameter. Thus, the above expression is NOT a probabilistic statement about $\mu$, but rather about $\bar{X}$. 
+Be careful with the interpretation of this expression. As a reminder $\bar{X}$ is the random variable here. The population mean, $\mu$, is NOT a variable. It is an unknown parameter. Thus, the above expression is NOT a probabilistic statement about $\mu$, but rather about the random variable $\bar{X}$. 
 
 Nonetheless, the above expression gives us a nice interval for "reasonable" values of $\mu$ given a particular sample. 
 
@@ -108,6 +108,8 @@ A $(1-\alpha)*100\%$ *confidence interval for the mean* is given by:
 $$
 \mu\in\left(\bar{x}\pm z_{\alpha/2}{\sigma\over\sqrt{n}}\right)
 $$
+
+Notice in this equation we are using the lower case $\bar{x}$, the sample mean, and thus nothing is random in the interval. Thus we will not use probabilistic statements about confidence intervals when we calculate numerical values from data for the upper and/or lower limits.   
 
 In most applications, the most common value of $\alpha$ is 0.05. In that case, to construct a 95% confidence interval, we would need to find $z_{0.025}$ which can be found quickly with `qnorm()`:
 
@@ -168,7 +170,7 @@ temperature %>%
 ## 1      98.122    98.37646
 ```
 
-The 95% confidence interval for $\mu$ is $(98.12,98.38)$. We am 95% *confident* that $\mu$, the average human body temperature, is in this interval. Also, we could say that 95% of similarly constructed intervals will contain the true mean, $\mu$. 
+The 95% confidence interval for $\mu$ is $(98.12,98.38)$. We are 95% *confident* that $\mu$, the average human body temperature, is in this interval. Alternatively and equally relevant, we could say that 95% of similarly constructed intervals will contain the true mean, $\mu$. It is important to understand the use of the word confident and not the word probability.   
 
 There is a link between hypothesis testing and confidence intervals. Remember when we used this data in a hypothesis test, the null hypothesis was $H_0$: The average body temperature is 98.6 $\mu = 98.6$. This null hypothesized value is not in the interval, so we could reject the null hypothesis with this confidence interval. 
 
@@ -249,9 +251,9 @@ Notice the upper bound in the one-sided interval is smaller than the upper bound
 
 ## Confidence intervals for two proportions  
 
-In hypothesis testing we had several examples of two proportions. We tested these problems with a permutation test or using a hypergeometric. In our notes or applications, we have not presented the hypothesis test for two proportions using the asymptotic normal distribution, the central limit theorem. So in this section we will present three methods of answering our research question, a permutation test, a hypothesis test using the normal distribution, and a confidence interval.
+In hypothesis testing we had several examples of two proportions. We tested these problems with a permutation test or using a hypergeometric. In our chapters and homework, we have not presented the hypothesis test for two proportions using the asymptotic normal distribution, the central limit theorem. So in this chapter we will present three methods of answering our research question, a permutation test, a hypothesis test using the normal distribution, and a confidence interval.
 
-Earlier this semester, in fact in the first lesson notes, we encountered an experiment that examined whether implanting a stent in the brain of a patient at risk for a stroke helps reduce the risk of a stroke. The results from the first 30 days of this study, which included 451 patients, are summarized in the `R` code below. These results are surprising! The point estimate suggests that patients who received stents may have a **higher** risk of stroke: $p_{trmt} - p_{control} = 0.090$.
+Earlier this book, in fact in the first chapter, we encountered an experiment that examined whether implanting a stent in the brain of a patient at risk for a stroke helps reduce the risk of a stroke. The results from the first 30 days of this study, which included 451 patients, are summarized in the `R` code below. These results are surprising! The point estimate suggests that patients who received stents may have a **higher** risk of stroke: $p_{trmt} - p_{control} = 0.090$.
 
 
 ```r
@@ -301,7 +303,7 @@ Notice that because `R` uses the variables by names in alphabetic order we have 
 
 We start with the null hypothesis which is two-sided since we don't know if the treatment is harmful or beneficial.
 
-$H_0$: The treatment and outcome are independent. $p_{control} - p_{trmt} = 0$ or $p_{control} = p_{trmt}$.
+$H_0$: The treatment and outcome are independent. $p_{control} - p_{trmt} = 0$ or $p_{control} = p_{trmt}$.  
 $H_A$: The treatment and outcome are dependent $p_{control} \neq p_{trmt}$.
 
 We will use $\alpha = 0.05$.
@@ -344,6 +346,8 @@ results %>%
 <p class="caption">(\#fig:dens222-fig)Sampling distribution of the difference in proportions.</p>
 </div>
 
+We next calculate the p-value. We will calculate it as if it were a one-sided test and then double the result to account for the fact that we would reject with a similar value in the opposite tail.  Note that the `prop1()` includes the observed value in the calculation of the p-value.  
+
 
 ```r
 2*prop1(~(diffprop<=obs),data=results)
@@ -385,7 +389,7 @@ The calculation of the standard error for our problem must be done carefully. Re
 
 $$SE = \sqrt{\frac{p(1-p)}{n_{control}} + \frac{p(1-p)}{n_{trmt}}}$$
 We don't know the exposure rate, $p$, but we can obtain a good estimate of it by **pooling** the results of both samples:
-$$\hat{p} = \frac{\text{\# of ``successes''}}{\text{\# of cases}} = \frac{13 + 33}{451} = 0.102$$
+$$\hat{p} = \frac{\text{# of ``successes''}}{\text{# of cases}} = \frac{13 + 33}{451} = 0.102$$
 This is called the *pooled estimate* of the sample proportion, and we use it to compute the standard error when the null hypothesis is that $p_{control} = p_{trmt}$. 
 
 $$SE \approx \sqrt{\frac{\hat{p}(1-\hat{p})}{n_{control}} + \frac{\hat{p}(1-\hat{p})}{n_{trmt}}}$$
@@ -514,7 +518,7 @@ The 95\% confidence interval structure provides guidance in how to make interval
 
 $$\text{point estimate}\ \pm\ 1.96\times SE $$
 
-There are three components to this interval: the point estimate, ``1.96'', and the standard error. The choice of $1.96\times SE$, which is also called **margin of error**, was based on capturing 95\% of the data since the estimate is within 1.96 standard errors of the true value about 95\% of the time. The choice of 1.96 corresponds to a 95\% confidence level. 
+There are three components to this interval: the point estimate, "1.96", and the standard error. The choice of $1.96\times SE$, which is also called **margin of error**, was based on capturing 95\% of the data since the estimate is within 1.96 standard errors of the true value about 95\% of the time. The choice of 1.96 corresponds to a 95\% confidence level. 
 
 >**Exercise**:
 If $X$ is a normally distributed random variable, how often will $X$ be within 2.58 standard deviations of the mean?^[This is equivalent to asking how often a standard normal variable will be larger than -2.58 but less than 2.58. To determine this probability, look up -2.58 and 2.58 in `R` using `pnorm()` (0.0049 and 0.9951). Thus, there is a $0.9951-0.0049 \approx 0.99$ probability that the unobserved random variable $X$ will be within 2.58 standard deviations of the mean.]
