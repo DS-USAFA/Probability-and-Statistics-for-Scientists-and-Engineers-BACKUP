@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-21" />
+<meta name="date" content="2021-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1092,8 +1092,8 @@ thus our test statistic is</p>
 <ol style="list-style-type: decimal">
 <li><p>The central limit works regardless of the distribution. However, if the parent population is highly skewed, then more data is needed. The CLT works well once the sample sizes exceed 30 to 40. If the data is fairly symmetric, then less data is needed.</p></li>
 <li><p>When estimating the mean and standard error from a sample of numerical data, the <span class="math inline">\(t\)</span> distribution is a little more accurate than the normal model. But there is an assumption that the parent population is normally distributed. This distribution works well even for small samples as long as the data is close to symmetrical and unimodal.</p></li>
-<li><p>For medium samples, at least 15 data points, the <span class="math inline">\(t\)</span> distribution still works as long as the data is roughly symmetric.</p></li>
-<li><p>For large data sets 30-40 or more, the <span class="math inline">\(t\)</span> or even the normal can be used.</p></li>
+<li><p>For medium samples, at least 15 data points, the <span class="math inline">\(t\)</span> distribution still works as long as the data is roughly symmetric and unimodal.</p></li>
+<li><p>For large data sets 30-40 or more, the <span class="math inline">\(t\)</span> or even the normal can be used but we suggest you always use the <span class="math inline">\(t\)</span>.</p></li>
 </ol>
 <p>Now, let’s discuss the assumptions of the <span class="math inline">\(t\)</span> distribution and how to check them.</p>
 <ol style="list-style-type: decimal">
@@ -1111,6 +1111,7 @@ thus our test statistic is</p>
 Figure 21.8: Q-Q plot for body temperature data.
 </p>
 </div>
+<p>Extreme data points, outliers, can be cause for concern. In later chapters, we will look for ways to detect outliers but we have seen them in our boxplots. Outliers are problematic because normal distributions rarely have outliers so the presence of one may indicate a departure from normality. Second, outliers have a big impact on estimation methods for the mean and standard deviation whether it is a method of moments or maximum likelihood estimate.</p>
 <p>We can also check the impacts of the assumptions by using other methods for the hypothesis test. If all methods give the same conclusion, we can be confident in the results. Another way to check robustness to assumptions is to simulate data from different distributions and evaluate the performance of the test under the simulated data.</p>
 </div>
 <div id="binary-data" class="section level3" number="21.5.2">

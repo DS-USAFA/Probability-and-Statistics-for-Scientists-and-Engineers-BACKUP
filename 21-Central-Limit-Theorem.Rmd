@@ -369,9 +369,9 @@ We have covered a great deal in this lesson. At its core, the central limit theo
 
 2. When estimating the mean and standard error from a sample of numerical data, the $t$ distribution is a little more accurate than the normal model. But there is an assumption that the parent population is normally distributed. This distribution works well even for small samples as long as the data is close to symmetrical and unimodal.
 
-3. For medium samples, at least 15 data points, the $t$ distribution still works as long as the data is roughly symmetric.
+3. For medium samples, at least 15 data points, the $t$ distribution still works as long as the data is roughly symmetric and unimodal.
 
-4. For large data sets 30-40 or more, the $t$ or even the normal can be used.
+4. For large data sets 30-40 or more, the $t$ or even the normal can be used but we suggest you always use the $t$. 
 
 
 Now, let's discuss the assumptions of the $t$ distribution and how to check them.
@@ -389,6 +389,8 @@ gf_qq(~temperature,data=temperature) %>%
   gf_qqline(~temperature,data=temperature) %>%
   gf_theme(theme_bw())
 ```
+
+Extreme data points, outliers, can be cause for concern. In later chapters, we will look for ways to detect outliers but we have seen them in our boxplots.  Outliers are problematic because normal distributions rarely have outliers so the presence of one may indicate a departure from normality. Second, outliers have a big impact on estimation methods for the mean and standard deviation whether it is a method of moments or maximum likelihood estimate.  
 
 We can also check the impacts of the assumptions by using other methods for the hypothesis test. If all methods give the same conclusion, we can be confident in the results. Another way to check robustness to assumptions is to simulate data from different distributions and evaluate the performance of the test under the simulated data.
 

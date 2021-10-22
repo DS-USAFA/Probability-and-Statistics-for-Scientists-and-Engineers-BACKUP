@@ -389,7 +389,7 @@ The calculation of the standard error for our problem must be done carefully. Re
 
 $$SE = \sqrt{\frac{p(1-p)}{n_{control}} + \frac{p(1-p)}{n_{trmt}}}$$
 We don't know the exposure rate, $p$, but we can obtain a good estimate of it by **pooling** the results of both samples:
-$$\hat{p} = \frac{\text{# of ``successes''}}{\text{# of cases}} = \frac{13 + 33}{451} = 0.102$$
+$$\hat{p} = \frac{\text{# of successes}}{\text{# of cases}} = \frac{13 + 33}{451} = 0.102$$
 This is called the *pooled estimate* of the sample proportion, and we use it to compute the standard error when the null hypothesis is that $p_{control} = p_{trmt}$. 
 
 $$SE \approx \sqrt{\frac{\hat{p}(1-\hat{p})}{n_{control}} + \frac{\hat{p}(1-\hat{p})}{n_{trmt}}}$$
@@ -460,7 +460,7 @@ qnorm(.975)
 The 95% confidence interval is 
 
 $$ - 0.09 \ \pm\ 1.96 \times  0.0284 \quad \to \quad (-0.146,- 0.034)$$
-We are 95\% confident that the difference in proportions of strokes in the control and treatment groups is between -0.146 and -0.034. Since this does not include zero, we are confident they are different. This supports the hypothesis tests.
+We are 95\% confident that the difference in proportions of strokes in the control and treatment groups is between -0.146 and -0.034. Since this does not include zero, we are confident they are different. This supports the hypothesis tests. This confidence interval is not an accurate method for smaller samples sizes. This is because the actual coverage rate, the percentage of intervals that contain the true population parameter, will not be the nomial coverage rate. This means it is not true that 95% of similarly constructed 95% confidence intervals will contain the true parameter.  This because the pooled estimate of the standard error is not accurate for small sample sizes. For the example above, the sample sizes are large and the performance of the method should be adequate.  
 
 Of course, `R` has a built in function to calculate the hypothesis test and confidence interval for two proportions.
 

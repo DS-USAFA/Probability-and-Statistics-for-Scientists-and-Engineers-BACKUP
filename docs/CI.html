@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-21" />
+<meta name="date" content="2021-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1013,7 +1013,7 @@ where <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p
 <p>The calculation of the standard error for our problem must be done carefully. Remember in hypothesis testing, we assume the null hypothesis is true; this means the proportions of strokes must be the same.</p>
 <p><span class="math display">\[SE = \sqrt{\frac{p(1-p)}{n_{control}} + \frac{p(1-p)}{n_{trmt}}}\]</span>
 We don’t know the exposure rate, <span class="math inline">\(p\)</span>, but we can obtain a good estimate of it by <strong>pooling</strong> the results of both samples:
-<span class="math display">\[\hat{p} = \frac{\text{# of ``successes&#39;&#39;}}{\text{# of cases}} = \frac{13 + 33}{451} = 0.102\]</span>
+<span class="math display">\[\hat{p} = \frac{\text{# of successes}}{\text{# of cases}} = \frac{13 + 33}{451} = 0.102\]</span>
 This is called the <em>pooled estimate</em> of the sample proportion, and we use it to compute the standard error when the null hypothesis is that <span class="math inline">\(p_{control} = p_{trmt}\)</span>.</p>
 <p><span class="math display">\[SE \approx \sqrt{\frac{\hat{p}(1-\hat{p})}{n_{control}} + \frac{\hat{p}(1-\hat{p})}{n_{trmt}}}\]</span></p>
 <p><span class="math display">\[SE \approx \sqrt{\frac{0.102(1-0.102)}{227} + \frac{0.102(1-0.102)}{224}} = 0.0285\]</span></p>
@@ -1053,7 +1053,7 @@ Figure 22.3: The sampling distribution of the randomization test with a normal d
 <pre><code>## [1] 1.959964</code></pre>
 <p>The 95% confidence interval is</p>
 <p><span class="math display">\[ - 0.09 \ \pm\ 1.96 \times  0.0284 \quad \to \quad (-0.146,- 0.034)\]</span>
-We are 95% confident that the difference in proportions of strokes in the control and treatment groups is between -0.146 and -0.034. Since this does not include zero, we are confident they are different. This supports the hypothesis tests.</p>
+We are 95% confident that the difference in proportions of strokes in the control and treatment groups is between -0.146 and -0.034. Since this does not include zero, we are confident they are different. This supports the hypothesis tests. This confidence interval is not an accurate method for smaller samples sizes. This is because the actual coverage rate, the percentage of intervals that contain the true population parameter, will not be the nomial coverage rate. This means it is not true that 95% of similarly constructed 95% confidence intervals will contain the true parameter. This because the pooled estimate of the standard error is not accurate for small sample sizes. For the example above, the sample sizes are large and the performance of the method should be adequate.</p>
 <p>Of course, <code>R</code> has a built in function to calculate the hypothesis test and confidence interval for two proportions.</p>
 <div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="CI.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop_test</span>(outcome30<span class="sc">~</span>group,<span class="at">data=</span>stent)</span></code></pre></div>
 <pre><code>## 
