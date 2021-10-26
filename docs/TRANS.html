@@ -926,10 +926,10 @@ f_Y(y)=f_X(\sqrt{y})\bigg|\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y} \
 <div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="TRANS.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class         min        Q1    median        Q3       max     mean
-## ...1 sqrt numeric 0.004148455 0.5024522 0.7077488 0.8675286 0.9999134 0.667554
+##      name   class         min        Q1    median        Q3       max      mean
+## ...1 sqrt numeric 0.006105461 0.5030902 0.7042312 0.8640075 0.9999438 0.6658256
 ##             sd     n missing
-## ...1 0.2364952 10000       0</code></pre>
+## ...1 0.2347986 10000       0</code></pre>
 <p>Figure <a href="TRANS.html#fig:dens161-fig">16.2</a> is a density plot of the simulated original random variable.</p>
 <div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="TRANS.html#cb410-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
 <span id="cb410-2"><a href="TRANS.html#cb410-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_density</span>(<span class="sc">~</span>sqrt,<span class="at">xlab=</span><span class="st">&quot;X&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -959,9 +959,9 @@ Figure 16.3: The density plot of the transformed random variable from the simula
 <pre><code>## 
 ## quantitative variables:  
 ##      name   class       min         Q1     median         Q3           max
-## ...1    y numeric -5.485019 -0.6882548 -0.3456661 -0.1421068 -8.658324e-05
+## ...1    y numeric -5.098572 -0.6869859 -0.3506485 -0.1461738 -5.623211e-05
 ##            mean        sd     n missing
-## ...1 -0.4996736 0.5036836 10000       0</code></pre>
+## ...1 -0.5015042 0.5034985 10000       0</code></pre>
 </div>
 <div id="multivariate-transformations" class="section level3" number="16.2.6">
 <h3><span class="header-section-number">16.2.6</span> Multivariate Transformations</h3>

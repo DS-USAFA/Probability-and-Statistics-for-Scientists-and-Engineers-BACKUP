@@ -395,7 +395,7 @@ There is a little difference between these two methods but not as large as we ma
 
 ### Summary bootstrap
 
-The key idea behind the bootstrap is that we estimate the population with the sample, this is called the *plug in principle*. We can then generate new samples from this population estimate. The bootstrap does not improve the accuracy of the original estimate, in fact the bootstrap distribution is centered on the original sample estimate. Instead we only get information about the variability of the sample estimate. Some people are suspicious that we are using the data over and over. But remember we are just getting estimates of variability. In traditional statistics, when we calculate the sample standard deviation, we are using sample mean. Thus we are using the data twice. Always think of the bootstrap as providing a way to find the variability in an estimate.
+The key idea behind the bootstrap is that we estimate the population with the sample, this is called the *plug in principle*, if something is unknown then substitute an estimate of it. We can then generate new samples from this population estimate. The bootstrap does not improve the accuracy of the original estimate, in fact the bootstrap distribution is centered on the original sample estimate. Instead we only get information about the variability of the sample estimate. Some people are suspicious that we are using the data over and over. But remember we are just getting estimates of variability. In traditional statistics, when we calculate the sample standard deviation, we are using sample mean. Thus we are using the data twice. Always think of the bootstrap as providing a way to find the variability in an estimate.
 
 
 ## Confidence interval for difference in means
@@ -818,7 +818,7 @@ g. ADVANCED: Do you think sample MAD is an unbiased estimator of population MAD?
 
 2. Bootstrap hypothesis testing  
 
-Bootstrap hypothesis testing is relatively undeveloped, and is generally not as accurate as permutation testing. Therefore in general avoid it. But for our problem in the notes, it may work. We will sample in a way that is consistent with the null hypothesis, then calculate a P-value as a tail probability like we do in permutation tests. This example does not generalize well to other applications like relative risk, correlation, regression, or categorical data.
+Bootstrap hypothesis testing is relatively undeveloped, and is generally not as accurate as permutation testing. Therefore in general avoid it. But for our problem in the reading above, it may work. We will sample in a way that is consistent with the null hypothesis, then calculate a p-value as a tail probability like we do in permutation tests. This example does not generalize well to other applications like relative risk, correlation, regression, or categorical data.
 
 a. Using the `HELPrct` data, the null hypothesis requires the means of each group to be equal. Pick one group to adjust, either `male` or `female`. First zero the mean of the selected group by subtracting the sample mean of this group from data points only in this group. Then add the sample mean of the other group to each data point in the selected group. Store in a new object called `HELP_null`. set, store the observed value of the difference of means for male and female.
 b. The null hypothesis requires the means of each group to be equal. Pick one group to adjust, either `male` or `female`. First zero the mean of the selected group by subtracting the sample mean of this group from data points only in this group. Then add the sample mean of the other group to each data point in the selected group. Store in a new object called `HELP_null`.  
@@ -826,7 +826,7 @@ c. Run `favstats()` to check that the means are equal.
 d. On this new adjusted data set, generate a bootstrap distribution of the difference in sample means.  
 e. Plot the bootstrap distribution and a line at the observed difference in sample means.  
 f. Find a p-value.  
-g. How does the p-value compare with those in the notes.
+g. How does the p-value compare with those in the reading.
 
 3. Paired data  
 
