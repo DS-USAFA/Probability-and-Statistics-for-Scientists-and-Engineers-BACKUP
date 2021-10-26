@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-22" />
+<meta name="date" content="2021-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -577,7 +577,7 @@ div.csl-indent {
 <li class="chapter" data-level="23.3" data-path="BOOT.html"><a href="BOOT.html#bootstrapping"><i class="fa fa-check"></i><b>23.3</b> Bootstrapping</a></li>
 <li class="chapter" data-level="23.4" data-path="BOOT.html"><a href="BOOT.html#bootstrap-example"><i class="fa fa-check"></i><b>23.4</b> Bootstrap example</a>
 <ul>
-<li class="chapter" data-level="23.4.1" data-path="BOOT.html"><a href="BOOT.html#using-clt"><i class="fa fa-check"></i><b>23.4.1</b> Using CLT</a></li>
+<li class="chapter" data-level="23.4.1" data-path="BOOT.html"><a href="BOOT.html#using-traditional-mathematically-methods"><i class="fa fa-check"></i><b>23.4.1</b> Using traditional mathematically methods</a></li>
 <li class="chapter" data-level="23.4.2" data-path="BOOT.html"><a href="BOOT.html#bootstrap"><i class="fa fa-check"></i><b>23.4.2</b> Bootstrap</a></li>
 </ul></li>
 <li class="chapter" data-level="23.5" data-path="BOOT.html"><a href="BOOT.html#non-standard-sample-statistics"><i class="fa fa-check"></i><b>23.5</b> Non-standard sample statistics</a>
@@ -589,7 +589,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="23.6.1" data-path="BOOT.html"><a href="BOOT.html#health-evaluation-and-linkage-of-primary-care"><i class="fa fa-check"></i><b>23.6.1</b> Health evaluation and linkage of primary care</a></li>
 <li class="chapter" data-level="23.6.2" data-path="BOOT.html"><a href="BOOT.html#permutation-test"><i class="fa fa-check"></i><b>23.6.2</b> Permutation test</a></li>
-<li class="chapter" data-level="23.6.3" data-path="BOOT.html"><a href="BOOT.html#clt"><i class="fa fa-check"></i><b>23.6.3</b> CLT</a></li>
+<li class="chapter" data-level="23.6.3" data-path="BOOT.html"><a href="BOOT.html#traditional-mathematical-methods"><i class="fa fa-check"></i><b>23.6.3</b> Traditional mathematical methods</a></li>
 <li class="chapter" data-level="23.6.4" data-path="BOOT.html"><a href="BOOT.html#hypothesis-tests"><i class="fa fa-check"></i><b>23.6.4</b> Hypothesis tests</a></li>
 <li class="chapter" data-level="23.6.5" data-path="BOOT.html"><a href="BOOT.html#confidence-intervals-1"><i class="fa fa-check"></i><b>23.6.5</b> Confidence intervals</a></li>
 <li class="chapter" data-level="23.6.6" data-path="BOOT.html"><a href="BOOT.html#bootstrap-1"><i class="fa fa-check"></i><b>23.6.6</b> Bootstrap</a></li>
@@ -805,8 +805,8 @@ div.csl-indent {
 <div id="load-packages" class="section level3" number="25.3.1">
 <h3><span class="header-section-number">25.3.1</span> Load packages</h3>
 <p>Let’s load the packages.</p>
-<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="CS4.html#cb766-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb766-2"><a href="CS4.html#cb766-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span></code></pre></div>
+<div class="sourceCode" id="cb770"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb770-1"><a href="CS4.html#cb770-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb770-2"><a href="CS4.html#cb770-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span></code></pre></div>
 </div>
 <div id="the-data-and-exploratory-analysis" class="section level3" number="25.3.2">
 <h3><span class="header-section-number">25.3.2</span> The data and exploratory analysis</h3>
@@ -816,15 +816,15 @@ short for Human Freedom Index.</p>
 <p><strong>Exercise</strong><br />
 Read the data into <code>R</code>. What are the dimensions of the dataset?</p>
 </blockquote>
-<div class="sourceCode" id="cb767"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb767-1"><a href="CS4.html#cb767-1" aria-hidden="true" tabindex="-1"></a>hfi<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="fu">read_csv</span>(<span class="st">&quot;data/hfi.csv&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="CS4.html#cb768-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(hfi)</span></code></pre></div>
+<div class="sourceCode" id="cb771"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb771-1"><a href="CS4.html#cb771-1" aria-hidden="true" tabindex="-1"></a>hfi<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="fu">read_csv</span>(<span class="st">&quot;data/hfi.csv&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb772"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb772-1"><a href="CS4.html#cb772-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(hfi)</span></code></pre></div>
 <pre><code>## [1] 1458  123</code></pre>
 <p>There are 1458 observations and 123 variables in the data frame.</p>
 <blockquote>
 <p><strong>Exercise</strong><br />
 Create summaries of the first 10 variables in the data. We just don’t want a large printout.</p>
 </blockquote>
-<div class="sourceCode" id="cb770"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb770-1"><a href="CS4.html#cb770-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(hfi[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb774"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb774-1"><a href="CS4.html#cb774-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(hfi[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])</span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
 ##        name     class levels    n missing
@@ -857,25 +857,25 @@ Create summaries of the first 10 variables in the data. We just don’t want a l
 <p><strong>Exercise</strong><br />
 Create a scatter plot to display the relationship between the personal freedom score, <code>pf_score</code>, as the response and <code>pf_expression_control</code> as the predictor. Does the relationship look linear?</p>
 </blockquote>
-<div class="sourceCode" id="cb772"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb772-1"><a href="CS4.html#cb772-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_lm</span>(pf_score<span class="sc">~</span>pf_expression_control,<span class="at">data=</span>hfi,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb772-2"><a href="CS4.html#cb772-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb772-3"><a href="CS4.html#cb772-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(<span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb772-4"><a href="CS4.html#cb772-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Personal freedom score versus Expression control&quot;</span>,</span>
-<span id="cb772-5"><a href="CS4.html#cb772-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Political pressures and controls on media&quot;</span>,</span>
-<span id="cb772-6"><a href="CS4.html#cb772-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">y=</span><span class="st">&quot;Personal freedom score&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb776-1"><a href="CS4.html#cb776-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_lm</span>(pf_score<span class="sc">~</span>pf_expression_control,<span class="at">data=</span>hfi,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb776-2"><a href="CS4.html#cb776-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb776-3"><a href="CS4.html#cb776-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(<span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb776-4"><a href="CS4.html#cb776-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Personal freedom score versus Expression control&quot;</span>,</span>
+<span id="cb776-5"><a href="CS4.html#cb776-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Political pressures and controls on media&quot;</span>,</span>
+<span id="cb776-6"><a href="CS4.html#cb776-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">y=</span><span class="st">&quot;Personal freedom score&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:scat251-fig"></span>
 <img src="25-Linear-Regression-Case-Study_files/figure-html/scat251-fig-1.png" alt="A scatterplot of personal freedom versus expression control using the ggformula package." width="672" />
 <p class="caption">
 Figure 25.1: A scatterplot of personal freedom versus expression control using the ggformula package.
 </p>
 </div>
-<div class="sourceCode" id="cb773"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb773-1"><a href="CS4.html#cb773-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hfi,<span class="fu">aes</span>(<span class="at">x=</span>pf_expression_control,<span class="at">y=</span>pf_score))<span class="sc">+</span></span>
-<span id="cb773-2"><a href="CS4.html#cb773-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb773-3"><a href="CS4.html#cb773-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb773-4"><a href="CS4.html#cb773-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_lm</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>)<span class="sc">+</span></span>
-<span id="cb773-5"><a href="CS4.html#cb773-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Personal freedom score versus Expression control&quot;</span>,</span>
-<span id="cb773-6"><a href="CS4.html#cb773-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Political pressures and controls on media&quot;</span>,</span>
-<span id="cb773-7"><a href="CS4.html#cb773-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y=</span><span class="st">&quot;Personal freedom score&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb777"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb777-1"><a href="CS4.html#cb777-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hfi,<span class="fu">aes</span>(<span class="at">x=</span>pf_expression_control,<span class="at">y=</span>pf_score))<span class="sc">+</span></span>
+<span id="cb777-2"><a href="CS4.html#cb777-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb777-3"><a href="CS4.html#cb777-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb777-4"><a href="CS4.html#cb777-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_lm</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>)<span class="sc">+</span></span>
+<span id="cb777-5"><a href="CS4.html#cb777-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Personal freedom score versus Expression control&quot;</span>,</span>
+<span id="cb777-6"><a href="CS4.html#cb777-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Political pressures and controls on media&quot;</span>,</span>
+<span id="cb777-7"><a href="CS4.html#cb777-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y=</span><span class="st">&quot;Personal freedom score&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:scat252-fig"></span>
 <img src="25-Linear-Regression-Case-Study_files/figure-html/scat252-fig-1.png" alt="A scatterplot of personal freedom versus expression control using the ggplot2 package." width="672" />
 <p class="caption">
@@ -888,8 +888,8 @@ Figure 25.2: A scatterplot of personal freedom versus expression control using t
 The relationship looks linear, quantify the strength of the
 relationship with the correlation coefficient.</p>
 </blockquote>
-<div class="sourceCode" id="cb774"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb774-1"><a href="CS4.html#cb774-1" aria-hidden="true" tabindex="-1"></a>hfi <span class="sc">%&gt;%</span></span>
-<span id="cb774-2"><a href="CS4.html#cb774-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">cor</span>(pf_expression_control, pf_score, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb778-1"><a href="CS4.html#cb778-1" aria-hidden="true" tabindex="-1"></a>hfi <span class="sc">%&gt;%</span></span>
+<span id="cb778-2"><a href="CS4.html#cb778-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">cor</span>(pf_expression_control, pf_score, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   `cor(pf_expression_control, pf_score, use = &quot;complete.obs&quot;)`
 ##                                                          &lt;dbl&gt;
@@ -911,63 +911,63 @@ Looking at your scatterplot above, describe the relationship between these two v
 <p>Just as you’ve used the mean and standard deviation to summarize a single variable, you can summarize the relationship between these two variables by finding the
 line that best follows their association. Use the following interactive function to select the line that you think does the best job of going through the cloud of points.</p>
 <p>First we must remove missing values from the data set and to make the visualization easier, we will just randomly sample 30 of the data points. We included <code>hf_score</code> because we will need it later.</p>
-<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb776-1"><a href="CS4.html#cb776-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4011</span>)</span>
-<span id="cb776-2"><a href="CS4.html#cb776-2" aria-hidden="true" tabindex="-1"></a>hfi_sub <span class="ot">&lt;-</span> hfi <span class="sc">%&gt;%</span></span>
-<span id="cb776-3"><a href="CS4.html#cb776-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(pf_expression_control,pf_score,hf_score) <span class="sc">%&gt;%</span></span>
-<span id="cb776-4"><a href="CS4.html#cb776-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb776-5"><a href="CS4.html#cb776-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pf_expression_control) <span class="sc">%&gt;%</span></span>
-<span id="cb776-6"><a href="CS4.html#cb776-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb780-1"><a href="CS4.html#cb780-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4011</span>)</span>
+<span id="cb780-2"><a href="CS4.html#cb780-2" aria-hidden="true" tabindex="-1"></a>hfi_sub <span class="ot">&lt;-</span> hfi <span class="sc">%&gt;%</span></span>
+<span id="cb780-3"><a href="CS4.html#cb780-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(pf_expression_control,pf_score,hf_score) <span class="sc">%&gt;%</span></span>
+<span id="cb780-4"><a href="CS4.html#cb780-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb780-5"><a href="CS4.html#cb780-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pf_expression_control) <span class="sc">%&gt;%</span></span>
+<span id="cb780-6"><a href="CS4.html#cb780-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">1</span>)</span></code></pre></div>
 <p>We used the function <code>slice_sample()</code> to ensure we have unique values of <code>pf_expression_control</code> is our sample.</p>
 <blockquote>
 <p><strong>Exercise</strong><br />
 In your <code>R</code> console, run the code above to create the object <code>hfi_sub</code>. You are going to have to load packages and read in the <code>hfi</code> data set. Then execute the next set of code. Pick two locations in the plot to create a line. Record the sum of squares.</p>
 </blockquote>
 <p>First, run this code chunk to create a function <code>plot_ss()</code> that you will use next.</p>
-<div class="sourceCode" id="cb777"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb777-1"><a href="CS4.html#cb777-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to create plot and residuals.</span></span>
-<span id="cb777-2"><a href="CS4.html#cb777-2" aria-hidden="true" tabindex="-1"></a>plot_ss <span class="ot">&lt;-</span> <span class="cf">function</span> (x, y, data, <span class="at">showSquares =</span> <span class="cn">FALSE</span>, <span class="at">leastSquares =</span> <span class="cn">FALSE</span>) </span>
-<span id="cb777-3"><a href="CS4.html#cb777-3" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb777-4"><a href="CS4.html#cb777-4" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">eval</span>(<span class="fu">substitute</span>(x), data)</span>
-<span id="cb777-5"><a href="CS4.html#cb777-5" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">eval</span>(<span class="fu">substitute</span>(y), data)</span>
-<span id="cb777-6"><a href="CS4.html#cb777-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(y <span class="sc">~</span> x, <span class="at">asp =</span> <span class="dv">1</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span>
-<span id="cb777-7"><a href="CS4.html#cb777-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (leastSquares) {</span>
-<span id="cb777-8"><a href="CS4.html#cb777-8" aria-hidden="true" tabindex="-1"></a>        m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
-<span id="cb777-9"><a href="CS4.html#cb777-9" aria-hidden="true" tabindex="-1"></a>        y.hat <span class="ot">&lt;-</span> m1<span class="sc">$</span>fit</span>
-<span id="cb777-10"><a href="CS4.html#cb777-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb777-11"><a href="CS4.html#cb777-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> {</span>
-<span id="cb777-12"><a href="CS4.html#cb777-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">&quot;Click two points to make a line.&quot;</span>)</span>
-<span id="cb777-13"><a href="CS4.html#cb777-13" aria-hidden="true" tabindex="-1"></a>        pt1 <span class="ot">&lt;-</span> <span class="fu">locator</span>(<span class="dv">1</span>)</span>
-<span id="cb777-14"><a href="CS4.html#cb777-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">points</span>(pt1<span class="sc">$</span>x, pt1<span class="sc">$</span>y, <span class="at">pch =</span> <span class="dv">4</span>)</span>
-<span id="cb777-15"><a href="CS4.html#cb777-15" aria-hidden="true" tabindex="-1"></a>        pt2 <span class="ot">&lt;-</span> <span class="fu">locator</span>(<span class="dv">1</span>)</span>
-<span id="cb777-16"><a href="CS4.html#cb777-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">points</span>(pt2<span class="sc">$</span>x, pt2<span class="sc">$</span>y, <span class="at">pch =</span> <span class="dv">4</span>)</span>
-<span id="cb777-17"><a href="CS4.html#cb777-17" aria-hidden="true" tabindex="-1"></a>        pts <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(pt1<span class="sc">$</span>x, pt2<span class="sc">$</span>x), <span class="at">y =</span> <span class="fu">c</span>(pt1<span class="sc">$</span>y, pt2<span class="sc">$</span>y))</span>
-<span id="cb777-18"><a href="CS4.html#cb777-18" aria-hidden="true" tabindex="-1"></a>        m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> pts)</span>
-<span id="cb777-19"><a href="CS4.html#cb777-19" aria-hidden="true" tabindex="-1"></a>        y.hat <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">data.frame</span>(x))</span>
-<span id="cb777-20"><a href="CS4.html#cb777-20" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb777-21"><a href="CS4.html#cb777-21" aria-hidden="true" tabindex="-1"></a>    r <span class="ot">&lt;-</span> y <span class="sc">-</span> y.hat</span>
-<span id="cb777-22"><a href="CS4.html#cb777-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">abline</span>(m1)</span>
-<span id="cb777-23"><a href="CS4.html#cb777-23" aria-hidden="true" tabindex="-1"></a>    oSide <span class="ot">&lt;-</span> x <span class="sc">-</span> r</span>
-<span id="cb777-24"><a href="CS4.html#cb777-24" aria-hidden="true" tabindex="-1"></a>    LLim <span class="ot">&lt;-</span> <span class="fu">par</span>()<span class="sc">$</span>usr[<span class="dv">1</span>]</span>
-<span id="cb777-25"><a href="CS4.html#cb777-25" aria-hidden="true" tabindex="-1"></a>    RLim <span class="ot">&lt;-</span> <span class="fu">par</span>()<span class="sc">$</span>usr[<span class="dv">2</span>]</span>
-<span id="cb777-26"><a href="CS4.html#cb777-26" aria-hidden="true" tabindex="-1"></a>    oSide[oSide <span class="sc">&lt;</span> LLim <span class="sc">|</span> oSide <span class="sc">&gt;</span> RLim] <span class="ot">&lt;-</span> <span class="fu">c</span>(x <span class="sc">+</span> r)[oSide <span class="sc">&lt;</span> LLim <span class="sc">|</span> </span>
-<span id="cb777-27"><a href="CS4.html#cb777-27" aria-hidden="true" tabindex="-1"></a>        oSide <span class="sc">&gt;</span> RLim]</span>
-<span id="cb777-28"><a href="CS4.html#cb777-28" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">length</span>(y.hat)</span>
-<span id="cb777-29"><a href="CS4.html#cb777-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
-<span id="cb777-30"><a href="CS4.html#cb777-30" aria-hidden="true" tabindex="-1"></a>        <span class="fu">lines</span>(<span class="fu">rep</span>(x[i], <span class="dv">2</span>), <span class="fu">c</span>(y[i], y.hat[i]), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb777-31"><a href="CS4.html#cb777-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (showSquares) {</span>
-<span id="cb777-32"><a href="CS4.html#cb777-32" aria-hidden="true" tabindex="-1"></a>            <span class="fu">lines</span>(<span class="fu">rep</span>(oSide[i], <span class="dv">2</span>), <span class="fu">c</span>(y[i], y.hat[i]), <span class="at">lty =</span> <span class="dv">3</span>, </span>
-<span id="cb777-33"><a href="CS4.html#cb777-33" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
-<span id="cb777-34"><a href="CS4.html#cb777-34" aria-hidden="true" tabindex="-1"></a>            <span class="fu">lines</span>(<span class="fu">c</span>(oSide[i], x[i]), <span class="fu">rep</span>(y.hat[i], <span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">3</span>, </span>
-<span id="cb777-35"><a href="CS4.html#cb777-35" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
-<span id="cb777-36"><a href="CS4.html#cb777-36" aria-hidden="true" tabindex="-1"></a>            <span class="fu">lines</span>(<span class="fu">c</span>(oSide[i], x[i]), <span class="fu">rep</span>(y[i], <span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
-<span id="cb777-37"><a href="CS4.html#cb777-37" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb777-38"><a href="CS4.html#cb777-38" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb777-39"><a href="CS4.html#cb777-39" aria-hidden="true" tabindex="-1"></a>    SS <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">sum</span>(r<span class="sc">^</span><span class="dv">2</span>), <span class="dv">3</span>)</span>
-<span id="cb777-40"><a href="CS4.html#cb777-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\r</span><span class="st">                                &quot;</span>)</span>
-<span id="cb777-41"><a href="CS4.html#cb777-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(m1)</span>
-<span id="cb777-42"><a href="CS4.html#cb777-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Sum of Squares: &quot;</span>, SS)</span>
-<span id="cb777-43"><a href="CS4.html#cb777-43" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb781-1"><a href="CS4.html#cb781-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to create plot and residuals.</span></span>
+<span id="cb781-2"><a href="CS4.html#cb781-2" aria-hidden="true" tabindex="-1"></a>plot_ss <span class="ot">&lt;-</span> <span class="cf">function</span> (x, y, data, <span class="at">showSquares =</span> <span class="cn">FALSE</span>, <span class="at">leastSquares =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb781-3"><a href="CS4.html#cb781-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb781-4"><a href="CS4.html#cb781-4" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">eval</span>(<span class="fu">substitute</span>(x), data)</span>
+<span id="cb781-5"><a href="CS4.html#cb781-5" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">eval</span>(<span class="fu">substitute</span>(y), data)</span>
+<span id="cb781-6"><a href="CS4.html#cb781-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(y <span class="sc">~</span> x, <span class="at">asp =</span> <span class="dv">1</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span>
+<span id="cb781-7"><a href="CS4.html#cb781-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (leastSquares) {</span>
+<span id="cb781-8"><a href="CS4.html#cb781-8" aria-hidden="true" tabindex="-1"></a>        m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb781-9"><a href="CS4.html#cb781-9" aria-hidden="true" tabindex="-1"></a>        y.hat <span class="ot">&lt;-</span> m1<span class="sc">$</span>fit</span>
+<span id="cb781-10"><a href="CS4.html#cb781-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb781-11"><a href="CS4.html#cb781-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> {</span>
+<span id="cb781-12"><a href="CS4.html#cb781-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">&quot;Click two points to make a line.&quot;</span>)</span>
+<span id="cb781-13"><a href="CS4.html#cb781-13" aria-hidden="true" tabindex="-1"></a>        pt1 <span class="ot">&lt;-</span> <span class="fu">locator</span>(<span class="dv">1</span>)</span>
+<span id="cb781-14"><a href="CS4.html#cb781-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">points</span>(pt1<span class="sc">$</span>x, pt1<span class="sc">$</span>y, <span class="at">pch =</span> <span class="dv">4</span>)</span>
+<span id="cb781-15"><a href="CS4.html#cb781-15" aria-hidden="true" tabindex="-1"></a>        pt2 <span class="ot">&lt;-</span> <span class="fu">locator</span>(<span class="dv">1</span>)</span>
+<span id="cb781-16"><a href="CS4.html#cb781-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">points</span>(pt2<span class="sc">$</span>x, pt2<span class="sc">$</span>y, <span class="at">pch =</span> <span class="dv">4</span>)</span>
+<span id="cb781-17"><a href="CS4.html#cb781-17" aria-hidden="true" tabindex="-1"></a>        pts <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(pt1<span class="sc">$</span>x, pt2<span class="sc">$</span>x), <span class="at">y =</span> <span class="fu">c</span>(pt1<span class="sc">$</span>y, pt2<span class="sc">$</span>y))</span>
+<span id="cb781-18"><a href="CS4.html#cb781-18" aria-hidden="true" tabindex="-1"></a>        m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> pts)</span>
+<span id="cb781-19"><a href="CS4.html#cb781-19" aria-hidden="true" tabindex="-1"></a>        y.hat <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">data.frame</span>(x))</span>
+<span id="cb781-20"><a href="CS4.html#cb781-20" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb781-21"><a href="CS4.html#cb781-21" aria-hidden="true" tabindex="-1"></a>    r <span class="ot">&lt;-</span> y <span class="sc">-</span> y.hat</span>
+<span id="cb781-22"><a href="CS4.html#cb781-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">abline</span>(m1)</span>
+<span id="cb781-23"><a href="CS4.html#cb781-23" aria-hidden="true" tabindex="-1"></a>    oSide <span class="ot">&lt;-</span> x <span class="sc">-</span> r</span>
+<span id="cb781-24"><a href="CS4.html#cb781-24" aria-hidden="true" tabindex="-1"></a>    LLim <span class="ot">&lt;-</span> <span class="fu">par</span>()<span class="sc">$</span>usr[<span class="dv">1</span>]</span>
+<span id="cb781-25"><a href="CS4.html#cb781-25" aria-hidden="true" tabindex="-1"></a>    RLim <span class="ot">&lt;-</span> <span class="fu">par</span>()<span class="sc">$</span>usr[<span class="dv">2</span>]</span>
+<span id="cb781-26"><a href="CS4.html#cb781-26" aria-hidden="true" tabindex="-1"></a>    oSide[oSide <span class="sc">&lt;</span> LLim <span class="sc">|</span> oSide <span class="sc">&gt;</span> RLim] <span class="ot">&lt;-</span> <span class="fu">c</span>(x <span class="sc">+</span> r)[oSide <span class="sc">&lt;</span> LLim <span class="sc">|</span> </span>
+<span id="cb781-27"><a href="CS4.html#cb781-27" aria-hidden="true" tabindex="-1"></a>        oSide <span class="sc">&gt;</span> RLim]</span>
+<span id="cb781-28"><a href="CS4.html#cb781-28" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">length</span>(y.hat)</span>
+<span id="cb781-29"><a href="CS4.html#cb781-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb781-30"><a href="CS4.html#cb781-30" aria-hidden="true" tabindex="-1"></a>        <span class="fu">lines</span>(<span class="fu">rep</span>(x[i], <span class="dv">2</span>), <span class="fu">c</span>(y[i], y.hat[i]), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb781-31"><a href="CS4.html#cb781-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (showSquares) {</span>
+<span id="cb781-32"><a href="CS4.html#cb781-32" aria-hidden="true" tabindex="-1"></a>            <span class="fu">lines</span>(<span class="fu">rep</span>(oSide[i], <span class="dv">2</span>), <span class="fu">c</span>(y[i], y.hat[i]), <span class="at">lty =</span> <span class="dv">3</span>, </span>
+<span id="cb781-33"><a href="CS4.html#cb781-33" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb781-34"><a href="CS4.html#cb781-34" aria-hidden="true" tabindex="-1"></a>            <span class="fu">lines</span>(<span class="fu">c</span>(oSide[i], x[i]), <span class="fu">rep</span>(y.hat[i], <span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">3</span>, </span>
+<span id="cb781-35"><a href="CS4.html#cb781-35" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb781-36"><a href="CS4.html#cb781-36" aria-hidden="true" tabindex="-1"></a>            <span class="fu">lines</span>(<span class="fu">c</span>(oSide[i], x[i]), <span class="fu">rep</span>(y[i], <span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb781-37"><a href="CS4.html#cb781-37" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb781-38"><a href="CS4.html#cb781-38" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb781-39"><a href="CS4.html#cb781-39" aria-hidden="true" tabindex="-1"></a>    SS <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">sum</span>(r<span class="sc">^</span><span class="dv">2</span>), <span class="dv">3</span>)</span>
+<span id="cb781-40"><a href="CS4.html#cb781-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\r</span><span class="st">                                &quot;</span>)</span>
+<span id="cb781-41"><a href="CS4.html#cb781-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(m1)</span>
+<span id="cb781-42"><a href="CS4.html#cb781-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Sum of Squares: &quot;</span>, SS)</span>
+<span id="cb781-43"><a href="CS4.html#cb781-43" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Next run the next code chunk that for us resulted in Figure <a href="CS4.html#fig:plotss-expression-score">25.3</a>. You will have to pick to points on the plot that you think gives the best line.</p>
-<div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb778-1"><a href="CS4.html#cb778-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ss</span>(<span class="at">x =</span> pf_expression_control, <span class="at">y =</span> pf_score, <span class="at">data =</span> hfi_sub)</span></code></pre></div>
+<div class="sourceCode" id="cb782"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb782-1"><a href="CS4.html#cb782-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ss</span>(<span class="at">x =</span> pf_expression_control, <span class="at">y =</span> pf_score, <span class="at">data =</span> hfi_sub)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:plotss-expression-score"></span>
 <img src="25-Linear-Regression-Case-Study_files/figure-html/plotss-expression-score-1.png" alt="Plot of selected line and the associated residuals." width="672" />
 <p class="caption">
@@ -990,7 +990,7 @@ Figure 25.3: Plot of selected line and the associated residuals.
 \]</span></p>
 <p>The most common way to do linear regression is to select the line that minimizes the sum of squared residuals. To visualize the squared residuals, you can rerun
 the plot command and add the argument <code>showSquares = TRUE</code>.</p>
-<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb780-1"><a href="CS4.html#cb780-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ss</span>(<span class="at">x =</span> pf_expression_control, <span class="at">y =</span> pf_score, <span class="at">data =</span> hfi_sub, <span class="at">showSquares =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb784"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb784-1"><a href="CS4.html#cb784-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ss</span>(<span class="at">x =</span> pf_expression_control, <span class="at">y =</span> pf_score, <span class="at">data =</span> hfi_sub, <span class="at">showSquares =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Note that the output from the <code>plot_ss</code> function provides you with the slope and intercept of your line as well as the sum of squares.</p>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
@@ -1001,11 +1001,11 @@ Using <code>plot_ss</code>, choose a line that does a good job of minimizing the
 <h2><span class="header-section-number">25.5</span> The linear model</h2>
 <p>It is rather cumbersome to try to get the correct least squares line, i.e. the line that minimizes the sum of squared residuals, through trial and error. Instead, you can use the <code>lm()</code> function in <code>R</code> to fit the linear model (a.k.a.
 regression line).</p>
-<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb781-1"><a href="CS4.html#cb781-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(pf_score <span class="sc">~</span> pf_expression_control, <span class="at">data =</span> hfi_sub)</span></code></pre></div>
+<div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb785-1"><a href="CS4.html#cb785-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(pf_score <span class="sc">~</span> pf_expression_control, <span class="at">data =</span> hfi_sub)</span></code></pre></div>
 <p>The first argument in the function <code>lm</code> is a formula that takes the form <code>y ~ x</code>. Here it can be read that we want to make a linear model of <code>pf_score</code> as a function of <code>pf_expression_control</code>. The second argument specifies
 that <code>R</code> should look in the <code>hfi_sub</code> data frame to find the two variables. This should be familiar to us since we have been doing this when we used the <code>mosaic</code> package.</p>
 <p>The output of <code>lm</code> is an object that contains all of the information we need about the linear model that was just fit. We can access this information using the <code>summary()</code> function.</p>
-<div class="sourceCode" id="cb782"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb782-1"><a href="CS4.html#cb782-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb786-1"><a href="CS4.html#cb786-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = pf_score ~ pf_expression_control, data = hfi_sub)
@@ -1035,8 +1035,8 @@ linear model:</p>
 <p><strong>Exercise</strong>:<br />
 Fit a new model that uses <code>pf_expression_control</code> to predict <code>hf_score</code>, or the total human freedom score. Using the estimates from the <code>R</code> output, write the equation of the regression line. What does the slope tell us in the context of the relationship between human freedom and the amount of political pressure on media content?</p>
 </blockquote>
-<div class="sourceCode" id="cb784"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb784-1"><a href="CS4.html#cb784-1" aria-hidden="true" tabindex="-1"></a>m2<span class="ot">&lt;-</span><span class="fu">lm</span>(hf_score <span class="sc">~</span> pf_expression_control, <span class="at">data =</span> hfi_sub)</span></code></pre></div>
-<div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb785-1"><a href="CS4.html#cb785-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb788"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb788-1"><a href="CS4.html#cb788-1" aria-hidden="true" tabindex="-1"></a>m2<span class="ot">&lt;-</span><span class="fu">lm</span>(hf_score <span class="sc">~</span> pf_expression_control, <span class="at">data =</span> hfi_sub)</span></code></pre></div>
+<div class="sourceCode" id="cb789"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb789-1"><a href="CS4.html#cb789-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = hf_score ~ pf_expression_control, data = hfi_sub)
@@ -1063,13 +1063,13 @@ As the political pressure increases by one unit, the <strong>average</strong> hu
 <div id="prediction-and-prediction-errors" class="section level2" number="25.6">
 <h2><span class="header-section-number">25.6</span> Prediction and prediction errors</h2>
 <p>Let’s create a scatterplot with the least squares line for <code>m1</code> laid on top, Figure <a href="CS4.html#fig:reg-with-line">25.4</a>.</p>
-<div class="sourceCode" id="cb787"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb787-1"><a href="CS4.html#cb787-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hfi_sub, <span class="fu">aes</span>(<span class="at">x =</span> pf_expression_control, <span class="at">y =</span> pf_score)) <span class="sc">+</span></span>
-<span id="cb787-2"><a href="CS4.html#cb787-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb787-3"><a href="CS4.html#cb787-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb787-4"><a href="CS4.html#cb787-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb787-5"><a href="CS4.html#cb787-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Personal freedom score versus Expression control&quot;</span>,</span>
-<span id="cb787-6"><a href="CS4.html#cb787-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Political pressures and controls on media&quot;</span>,</span>
-<span id="cb787-7"><a href="CS4.html#cb787-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y=</span><span class="st">&quot;Personal freedom score&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb791"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb791-1"><a href="CS4.html#cb791-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hfi_sub, <span class="fu">aes</span>(<span class="at">x =</span> pf_expression_control, <span class="at">y =</span> pf_score)) <span class="sc">+</span></span>
+<span id="cb791-2"><a href="CS4.html#cb791-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb791-3"><a href="CS4.html#cb791-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb791-4"><a href="CS4.html#cb791-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb791-5"><a href="CS4.html#cb791-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Personal freedom score versus Expression control&quot;</span>,</span>
+<span id="cb791-6"><a href="CS4.html#cb791-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Political pressures and controls on media&quot;</span>,</span>
+<span id="cb791-7"><a href="CS4.html#cb791-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y=</span><span class="st">&quot;Personal freedom score&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:reg-with-line"></span>
 <img src="25-Linear-Regression-Case-Study_files/figure-html/reg-with-line-1.png" alt="Scatterplot of personal expression control and personal freedom score." width="672" />
 <p class="caption">
@@ -1085,26 +1085,26 @@ predictions made within the range of the data are more reliable. They’re also 
 If someone saw the least squares regression line and not the actual data, how would they predict a country’s personal freedom score for one with a 6.75 rating for <code>pf_expression_control</code>? Is this an overestimate or an underestimate, and by how much? In other words, what is the residual for this prediction?</p>
 </blockquote>
 <p>To predict, we will use the predict function, but we have to send the new data as a data frame.</p>
-<div class="sourceCode" id="cb788"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb788-1"><a href="CS4.html#cb788-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m1,<span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="at">pf_expression_control=</span><span class="fl">6.75</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb792"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb792-1"><a href="CS4.html#cb792-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m1,<span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="at">pf_expression_control=</span><span class="fl">6.75</span>))</span></code></pre></div>
 <pre><code>##        1 
 ## 7.861402</code></pre>
 <p>We thus predict a value of 7.86 for the <code>pf_score</code>.</p>
 <p>The observed value is 8.628272.</p>
-<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb790-1"><a href="CS4.html#cb790-1" aria-hidden="true" tabindex="-1"></a>hfi_sub <span class="sc">%&gt;%</span></span>
-<span id="cb790-2"><a href="CS4.html#cb790-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pf_expression_control<span class="sc">==</span><span class="fl">6.75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="CS4.html#cb794-1" aria-hidden="true" tabindex="-1"></a>hfi_sub <span class="sc">%&gt;%</span></span>
+<span id="cb794-2"><a href="CS4.html#cb794-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pf_expression_control<span class="sc">==</span><span class="fl">6.75</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ## # Groups:   pf_expression_control [1]
 ##   pf_expression_control pf_score hf_score
 ##                   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
 ## 1                  6.75     8.63     8.25</code></pre>
 <p>The residual is:</p>
-<div class="sourceCode" id="cb792"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb792-1"><a href="CS4.html#cb792-1" aria-hidden="true" tabindex="-1"></a><span class="fl">8.628272</span> <span class="sc">-</span> <span class="fl">7.861402</span></span></code></pre></div>
+<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="CS4.html#cb796-1" aria-hidden="true" tabindex="-1"></a><span class="fl">8.628272</span> <span class="sc">-</span> <span class="fl">7.861402</span></span></code></pre></div>
 <pre><code>## [1] 0.76687</code></pre>
 <p>We underestimated the actual value.</p>
 <p>Another way to do this is to use the <code>broom</code> package.</p>
-<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="CS4.html#cb794-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
-<div class="sourceCode" id="cb795"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb795-1"><a href="CS4.html#cb795-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(m1) <span class="sc">%&gt;%</span></span>
-<span id="cb795-2"><a href="CS4.html#cb795-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(pf_expression_control<span class="sc">==</span><span class="fl">6.75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="CS4.html#cb798-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
+<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="CS4.html#cb799-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(m1) <span class="sc">%&gt;%</span></span>
+<span id="cb799-2"><a href="CS4.html#cb799-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(pf_expression_control<span class="sc">==</span><span class="fl">6.75</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 8
 ##   pf_score pf_expression_control .fitted .resid   .hat .sigma .cooksd .std.resid
 ##      &lt;dbl&gt;                 &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
@@ -1117,11 +1117,11 @@ If someone saw the least squares regression line and not the actual data, how wo
 2. nearly normal residuals, and<br />
 3. constant variability.</p>
 <p><strong>Linearity</strong>: You already checked if the relationship between <code>pf_score</code> and `pf_expression_control’ is linear using a scatterplot. We should also verify this condition with a plot of the residuals vs. fitted (predicted) values, Figure <a href="CS4.html#fig:residuals">25.5</a>.</p>
-<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb797-1"><a href="CS4.html#cb797-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> m1, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
-<span id="cb797-2"><a href="CS4.html#cb797-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb797-3"><a href="CS4.html#cb797-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb797-4"><a href="CS4.html#cb797-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fitted values&quot;</span>,<span class="at">y=</span><span class="st">&quot;Residuals&quot;</span>,<span class="at">title=</span><span class="st">&quot;Residual analysis&quot;</span>) <span class="sc">+</span></span>
-<span id="cb797-5"><a href="CS4.html#cb797-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb801-1"><a href="CS4.html#cb801-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> m1, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb801-2"><a href="CS4.html#cb801-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb801-3"><a href="CS4.html#cb801-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb801-4"><a href="CS4.html#cb801-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fitted values&quot;</span>,<span class="at">y=</span><span class="st">&quot;Residuals&quot;</span>,<span class="at">title=</span><span class="st">&quot;Residual analysis&quot;</span>) <span class="sc">+</span></span>
+<span id="cb801-5"><a href="CS4.html#cb801-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:residuals"></span>
 <img src="25-Linear-Regression-Case-Study_files/figure-html/residuals-1.png" alt="Scatterplot of residuals and fitted values used to assess the assumptions of linearity and constant variance." width="672" />
 <p class="caption">
@@ -1135,10 +1135,10 @@ Is there any apparent pattern in the residuals plot? What does this indicate abo
 </blockquote>
 <p>The width is constant and there is no trend in the data. The linearity assumption is not bad.</p>
 <p><strong>Nearly normal residuals</strong>: To check this condition, we can look at a histogram, Figure <a href="CS4.html#fig:hist-res">25.6</a>.</p>
-<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="CS4.html#cb798-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> m1, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span></span>
-<span id="cb798-2"><a href="CS4.html#cb798-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> .<span class="dv">4</span>,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb798-3"><a href="CS4.html#cb798-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Residuals&quot;</span>) <span class="sc">+</span></span>
-<span id="cb798-4"><a href="CS4.html#cb798-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="CS4.html#cb802-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> m1, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb802-2"><a href="CS4.html#cb802-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> .<span class="dv">4</span>,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb802-3"><a href="CS4.html#cb802-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Residuals&quot;</span>) <span class="sc">+</span></span>
+<span id="cb802-4"><a href="CS4.html#cb802-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:hist-res"></span>
 <img src="25-Linear-Regression-Case-Study_files/figure-html/hist-res-1.png" alt="Histogram of residuals from linear regression model." width="672" />
 <p class="caption">
@@ -1146,10 +1146,10 @@ Figure 25.6: Histogram of residuals from linear regression model.
 </p>
 </div>
 <p>or a normal probability plot of the residuals, <a href="CS4.html#fig:qq-res">25.7</a>.</p>
-<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="CS4.html#cb799-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> m1, <span class="fu">aes</span>(<span class="at">sample =</span> .resid)) <span class="sc">+</span></span>
-<span id="cb799-2"><a href="CS4.html#cb799-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
-<span id="cb799-3"><a href="CS4.html#cb799-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb799-4"><a href="CS4.html#cb799-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="dv">1</span>,<span class="at">intercept =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="CS4.html#cb803-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> m1, <span class="fu">aes</span>(<span class="at">sample =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb803-2"><a href="CS4.html#cb803-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
+<span id="cb803-3"><a href="CS4.html#cb803-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb803-4"><a href="CS4.html#cb803-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="dv">1</span>,<span class="at">intercept =</span> <span class="dv">0</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:qq-res"></span>
 <img src="25-Linear-Regression-Case-Study_files/figure-html/qq-res-1.png" alt="The quantile-quantile residual plot used to assess the normality assumption." width="672" />
 <p class="caption">

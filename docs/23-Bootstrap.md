@@ -47,7 +47,7 @@ Once you have completed the procedure, the bootstrap distribution can be used to
 To help us understand the bootstrap, let's use an example of a single mean. We would like to estimate the mean height of students at a local college. We collect a sample of size 50 (stored in vector `heights` below). 
 
 > **Exercise**
-Using both an asymptotic method, via the CLT, and the bootstrap method, find 95% confidence intervals for $\mu$. Compare the two intervals. 
+Using both a traditional method, via the CLT or the t-distribution, and the bootstrap method, find 95% confidence intervals for $\mu$. Compare the two intervals. 
 
 
 ```r
@@ -96,9 +96,9 @@ favstats(~heights)
 ##  54.9 64.7   67.6 74.675 81.7 68.938 6.345588 50       0
 ```
 
-### Using CLT  
+### Using traditional mathematically methods    
 
-The data comes from less that 10\% of the population so we feel good about the assumption of independence. However, the data is bimodal and clearly does not come from a normal distribution. The sample size is larger, so this may help us. Let's continue and generate a confidence interval using the CLT and then compare with the bootstrap.
+The data comes from less that 10\% of the population so we feel good about the assumption of independence. However, the data is bimodal and clearly does not come from a normal distribution. The sample size is larger, so this may help us. We will use the t-distribution and compare with the answer from the CLT then compare with the bootstrap.
 
 
 ```r
@@ -114,7 +114,7 @@ We can also calculate by hand.
 
 
 ```r
-##Asymptotically
+## Using t
 xbar<-mean(heights)
 sd<-sd(heights)
 n<-length(heights)
@@ -125,6 +125,7 @@ xbar+c(-1,1)*tval*sd/sqrt(n)
 ```
 ## [1] 67.1346 70.7414
 ```
+
 If we want to use the `tidyverse`, we must convert to a `dataframe`.
 
 
@@ -153,7 +154,7 @@ head(heights)
 
 ```r
 heights %>%
-  summarise(mean=mean(height),stand_dev=sd(height),n=n(),
+  summarize(mean=mean(height),stand_dev=sd(height),n=n(),
             ci=mean+c(-1,1)*qt(0.975,n-1)*stand_dev/sqrt(n))
 ```
 
@@ -165,11 +166,30 @@ heights %>%
 ## 2  68.9      6.35    50  70.7
 ```
 
+Using the CLT we have 
+
+
+```r
+heights %>%
+  summarize(mean=mean(height),stand_dev=sd(height),n=n(),
+            ci=mean+c(-1,1)*qnorm(0.975)*stand_dev/sqrt(n))
+```
+
+```
+## # A tibble: 2 × 4
+##    mean stand_dev     n    ci
+##   <dbl>     <dbl> <int> <dbl>
+## 1  68.9      6.35    50  67.2
+## 2  68.9      6.35    50  70.7
+```
+
+This is not much different from the results using the $t$ distribution.  
+
 ### Bootstrap
 
-The idea behind the bootstrap is that we will get an estimate of the distribution of the statistic of interest by sampling the original data with replacement. We must sample under the same regime as the original data was collected. In `R`, we will use the `resample()` function from the `mosaic` package. There are entire packages dedicated to resampling and you will learn more about them in Math 378.
+The idea behind the bootstrap is that we will get an estimate of the distribution of the statistic of interest by sampling the original data with replacement. We must sample under the same regime as the original data was collected. In `R`, we will use the `resample()` function from the `mosaic` package. There are entire packages dedicated to resampling such as **boot** and this is a great deal of information about these types of packages online.
 
-When applied to a data frame, the `resample()` function samples rows with replacement to produce a new data
+When applied to a dataframe, the `resample()` function samples rows with replacement to produce a new data
 frame with the same number of rows as the original, but some rows will be duplicated and others missing.
 
 To illustrate, let's use `resample()` on the first 10 positive integers.
@@ -183,9 +203,10 @@ resample(1:10)
 ```
 ##  [1] 8 7 8 1 4 4 2 2 6 9
 ```
+
 Notice that 8, 4 and 2 appeared at least twice. The number 3 did not appear. This is a single bootstrap replicate of the data.
 
-We then calculate a point estimate of the result. We repeat a large number of times, 1000 or maybe even 10000. The collection of the point estimates is called the bootstrap distribution. For the sample mean, ideally, the bootstrap distribution should be unimodal, roughly symmetric, and centered at the original estimate
+We then calculate a point estimate on the bootstrap replicate. We repeat this process a large number of times, 1000 or maybe even 10000. The collection of the point estimates is called the bootstrap distribution. For the sample mean, ideally, the bootstrap distribution should be unimodal, roughly symmetric, and centered at the original estimate.
 
 Here we go with our problem.
 
@@ -194,6 +215,25 @@ Here we go with our problem.
 set.seed(2115)
 boot_results<-do(1000)*mean(~height,data=resample(heights))
 ```
+
+The first few rows of the results are:
+
+
+```r
+head(boot_results)
+```
+
+```
+##     mean
+## 1 68.390
+## 2 68.048
+## 3 67.732
+## 4 68.534
+## 5 70.980
+## 6 68.424
+```
+
+The `do()` function by default gives the column name to the last function used, in this case *mean*. This is an unfortunate name as it can cause us some confusion.
 
 Figure \@ref(fig:boot231-fig) is a plot of the bootstrap sampling distribution. 
 
@@ -297,7 +337,7 @@ The three intervals are very similar.
 
 ## Non-standard sample statistics
 
-One of the huge advantages of simulation-based methods is the ability to build confidence intervals on parameters whose estimates don't have nice tidy distributions. 
+One of the huge advantages of simulation-based methods is the ability to build confidence intervals for parameters whose estimates don't have known sampling distributions or the distributions are difficult to derive. 
 
 ### Example median
 
@@ -327,7 +367,7 @@ boot_results %>%
 <p class="caption">(\#fig:boot232-fig)The sampling distribution approximated using a bootstrap distribution.</p>
 </div>
 
-From Figure \@ref(fig:boot232-fig), the bootstrap sampling distribution is not symmetrical so we would not want to use the t interval approach. We will still calculate the confidence interval based on the assumption of symmetry. 
+From Figure \@ref(fig:boot232-fig), the bootstrap sampling distribution is not symmetrical so we may not want to use the t interval approach. We will still calculate the confidence interval based on both approaches to compare the results. 
 
 
 
@@ -351,7 +391,7 @@ confint(boot_results, method = c("percentile", "stderr"),level=0.9)
 ## 2 median 65.4648 70.1297   0.9     stderr     67.6        2.332455
 ```
 
-
+There is a little difference between these two methods but not as large as we may have expected. 
 
 ### Summary bootstrap
 
@@ -360,7 +400,7 @@ The key idea behind the bootstrap is that we estimate the population with the sa
 
 ## Confidence interval for difference in means
 
-To bring all the ideas we have learned so far in this block, we will work an example of testing for a difference of two means. In our opinion, the easiest method to understand is the permutation test and the most difficult is the one based on the CLT, because of the assumptions necessary to get a mathematical solution for the sampling distribution.  We will also introduce the bootstrap to get a confidence interval.
+To bring all the ideas we have learned so far in this block we will work an example of testing for a difference of two means. In our opinion, the easiest method to understand is the permutation test and the most difficult is the one based on the mathematical derivation, because of the assumptions necessary to get a mathematical solution for the sampling distribution.  We will also introduce how to use the bootstrap to get a confidence interval.
 
 ### Health evaluation and linkage of primary care
 
@@ -422,7 +462,7 @@ Figures \@ref(fig:box232-fig) and \@ref(fig:hist232-fig) indicate there might be
 
 ### Permutation test
 
-The permutation test is ideally suited for a hypothesis test. So we will conduct that first and then see if we can generate a confidence interval.
+The permutation test is ideally suited for a hypothesis test. So we will conduct this first and then see if we can generate a confidence interval.
 
 The hypotheses are: 
 
@@ -519,9 +559,9 @@ We are 95% confident that the true difference in mean ages between female and ma
 
 We are assuming that the test statistic can be transformed. It turns out that the percentile method is transformation invariant so we can do the transform of shifting the null distribution by the observed value.
 
-### CLT  
+### Traditional mathematical methods  
 
-Using the CLT becomes difficult because we have to find a way to calculate the standard error. There have been many proposed methods, you are welcome to research them, but we will only present a couple of ideas in this section. Let's summarize the process for both hypothesis testing and confidence intervals in the case of the difference of two means using the CLT.
+Using the CLT or the $t$ distribution becomes difficult because we have to find a way to calculate the standard error. There have been many proposed methods, you are welcome to research them, but we will only present a couple of ideas in this section. Let's summarize the process for both hypothesis testing and confidence intervals in the case of the difference of two means using the $t$ distribution.
 
 ### Hypothesis tests 
 
@@ -546,7 +586,7 @@ Similarly, the following is how we generally computed a confidence interval usin
 If the assumptions above are met, each sample mean can itself be modeled using a $t$ distribution and if the samples are independent, then the sample difference of two means, $\bar{x}_1 - \bar{x}_2$, can be modeled using the $t$ distribution and the standard error
 $$SE_{\bar{x}_{1} - \bar{x}_{2}} = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$$
 
-To calculate the degrees of freedom, use statistical software or the smaller of $n_1 - 1$ and $n_2 - 1$.
+To calculate the degrees of freedom, use statistical software or conservatively use the smaller of $n_1 - 1$ and $n_2 - 1$.
 
 #### Results  
 
@@ -564,6 +604,7 @@ HELP_sub %>%
 <img src="23-Bootstrap_files/figure-html/qq231-fig-1.png" alt="The quantile-quantile plots to check normality assumption." width="672" />
 <p class="caption">(\#fig:qq231-fig)The quantile-quantile plots to check normality assumption.</p>
 </div>
+
 The distribution of males tends to have longer tails than a normal and the female distribution is skewed to the right. The sample sizes are large enough that this does not worry us.
 
 
@@ -633,7 +674,7 @@ t_test(age~sex,data=HELP_sub)
 ##             36.25234             35.46821
 ```
 
-Notice that the degrees of freedom are not an integer, this is because it is a weighted average of the two different samples sizes and standard deviations. 
+Notice that the degrees of freedom are not an integer, this is because it is a weighted average of the two different samples sizes and standard deviations. This method is called the Satterwaite approximation. 
 
 #### Pooled standard deviation
 

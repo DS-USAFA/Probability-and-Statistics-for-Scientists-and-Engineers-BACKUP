@@ -480,7 +480,7 @@ objectives-21
 confidence-intervals
 bootstrapping
 bootstrap-example
-using-clt
+using-traditional-mathematically-methods
 bootstrap
 bootstrap-percentile
 t-interval-with-bootstrap-standard-error
@@ -490,7 +490,7 @@ summary-bootstrap
 confidence-interval-for-difference-in-means
 health-evaluation-and-linkage-of-primary-care
 permutation-test
-clt
+traditional-mathematical-methods
 hypothesis-tests
 confidence-intervals-1
 results
