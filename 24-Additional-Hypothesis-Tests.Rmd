@@ -5,19 +5,19 @@
 1) Conduct and interpret a hypothesis test for equality of two or more means using both permutation and the $F$ distribution.   
 2) Conduct and interpret a goodness of fit test using both Pearson's chi-squared and randomization to evaluate the independence between two categorical variables.   
 3) Conduct and interpret a hypothesis test for the equality of two variances.   
-4) Know and check assumptions for the tests in this lesson.
+4) Know and check assumptions for the tests in the reading.
 
 ## Introduction
 
-The purpose of this lesson is to put all we learned in the block into perspective and then to also add a couple of new tests to demonstrate other statistical tests.
+The purpose of this chapter is to put all we learned in this block into perspective and then to also add a couple of new tests to demonstrate other statistical tests.
 
 Remember that we have been using data to answer research questions. So far we can do this with hypothesis tests or confidence intervals. There is a close link between these two methods. The key ideas have been to generate a single number metric to use in answering our research question and then to obtain the sampling distribution of this metric. 
 
 In obtaining the sampling distribution we used randomization as an approximation to permutation exact tests, probability models, mathematical models, and the bootstrap. Each of these had different assumptions and different areas where they could be applied. In some cases, several methods can be applied to the problem to get a sense of the robustness to the different assumptions. For example, if you run a randomization test and a test using the CLT and they both give you similar results, you can feel better about your decision.
 
-Finding a single number metric to answer our research question can be difficult. For example, in the homework for last lesson, we wanted to determine if the prices of books at a campus bookstore were different from Amazon's prices. The metric we decided to use was the mean of the differences in prices. But is this the best way to answer the question? This metric has been used historically because of the need to use the $t$ distribution. However, there are other ways in which the prices of books can differ. Jack Welch was the CEO of GE for years and he made the claim that customers don't care about average but they do care about variability. The average temperature setting of your GE refrigerator could be off and you would adapt. However if the temperature had great variability, then you would be upset. So maybe metrics that incorporate variability might be good. In our bootstrap notes, we looked at the ages of males and females in the HELP study. In using a randomization permutation test, we assumed there was no difference in the distribution of ages between males and females. However, in the alternative we measured the difference in the distributions using only means. The means of these two populations could be equal but the distributions differ in other ways, for example variability. We could conduct a separate test for variances but we have to be careful about multiple comparisons because in that case the Type 1 error is inflated.
+Finding a single number metric to answer our research question can be difficult. For example, in the homework for last chapter, we wanted to determine if the prices of books at a campus bookstore were different from Amazon's prices. The metric we decided to use was the mean of the differences in prices. But is this the best way to answer the question? This metric has been used historically because of the need to use the $t$ distribution. However, there are other ways in which the prices of books can differ. Jack Welch was the CEO of GE for years and he made the claim that customers don't care about average but they do care about variability. The average temperature setting of your GE refrigerator could be off and you would adapt. However if the temperature had great variability, then you would be upset. So maybe metrics that incorporate variability might be good. In our bootstrap notes, we looked at the ages of males and females in the HELP study. In using a randomization permutation test, we assumed there was no difference in the distribution of ages between males and females. However, in the alternative we measured the difference in the distributions using only means. The means of these two populations could be equal but the distributions differ in other ways, for example variability. We could conduct a separate test for variances but we have to be careful about multiple comparisons because in that case the Type 1 error is inflated.
 
-We also learned that the use of the information in the data impacts the power of the test. In the golf ball example, when we used range as our metric, we did not have the same power as looking at the differences from expected values under the null hypothesis. There is some mathematical theory that leads to better estimators, they are called likelihood ratio tests, but this is beyond the scope of the class. What you can do is create a simulation where you simulate data from the alternative hypothesis and then measure the power. This will give you a sense of the quality of your metric. We only briefly looked at measuring power in one lesson earlier and will not go further into this idea in this class.
+We also learned that the use of the information in the data impacts the power of the test. In the golf ball example, when we used range as our metric, we did not have the same power as looking at the differences from expected values under the null hypothesis. There is some mathematical theory that leads to better estimators, they are called likelihood ratio tests, but this is beyond the scope of the book. What you can do is create a simulation where you simulate data from the alternative hypothesis and then measure the power. This will give you a sense of the quality of your metric. We only briefly looked at measuring power an earlier chapter and will not go further into this idea in this chapter.  
 
 We will finish this block by examining problems with two variables. In the first case they will both be categorical but at least one of the categorical variables has more than two levels. In the second case, we will examine two variables where one is numeric and the other categorical. The categorical variable has more than two levels.
 
@@ -25,15 +25,15 @@ We will finish this block by examining problems with two variables. In the first
 
 It is worth spending some time on common approaches to categorical data that you may come across. We have already dealt with categorical data to some extent in this course. We have performed hypothesis tests and built confidence intervals for $\pi$, the population proportion of "success" in binary cases (for example, support for a local measure in a vote). This problem had a single variable. Also, the golf ball example involved counts of four types of golf ball. This is considered categorical data because each observation is characterized by a qualitative value (number on the ball). The data are summarized by counting how many balls in a sample belong to each type. This again was a single variable. 
 
-In another scenario, suppose we are presented with two qualitative variables and would like to know if they are correlated. For example, we have discussed methods for determining whether a coin could be fair. What if we wanted to know whether flipping the coin during the day or night changes the fairness of the coin? In this case, we have two categorical variables with two levels each: result of coin flip (heads vs tails) and time of day (day vs night). We have solved this type of problem by looking at a difference in probabilities of success using randomization and the CLT. We also used a hypergeometric distribution to obtain an exact p-value. 
+In another scenario, suppose we are presented with two qualitative variables and would like to know if they are independent. For example, we have discussed methods for determining whether a coin could be fair. What if we wanted to know whether flipping the coin during the day or night changes the fairness of the coin? In this case, we have two categorical variables with two levels each: result of coin flip (heads vs tails) and time of day (day vs night). We have solved this type of problem by looking at a difference in probabilities of success using randomization and mathematically derived solutions, CLT. We also used a hypergeometric distribution to obtain an exact p-value. 
 
-We will next explore a scenario that involves categorical data with two variables but where at least one variable has more than two levels. However, note that we are only merely scratching the surface in our studies. You could take an entire course on statistical methods for categorical data. This course is giving you a solid foundation to learn more advanced methods in other courses. 
+We will next explore a scenario that involves categorical data with two variables but where at least one variable has more than two levels. However, note that we are only merely scratching the surface in our studies. You could take an entire course on statistical methods for categorical data. This book is giving you a solid foundation to learn more advanced methods. 
 
 ### HELP example  
 
-Let’s return to Health Evaluation and Linkage to Primary Care data set, `HELPrct` in the `mosaicData` package. Previously, we looked at the differences in ages between males and females, let's now do the same thing for the variable `substance`, the primary substance of abuse. 
+Let’s return to Health Evaluation and Linkage to Primary Care data set, `HELPrct` in the **mosaicData** package. Previously, we looked at the differences in ages between males and females, let's now do the same thing for the variable `substance`, the primary substance of abuse. 
 
-There are three substances: alcohol, cocaine, and heroin. We’d like to know if there is evidence that these proportions differ for men and for women. In our data set, we observe modest differences.
+There are three substances: alcohol, cocaine, and heroin. We’d like to know if there is evidence that the proportions of use differ for men and for women. In our data set, we observe modest differences.
 
 ```{r}
 tally( substance ~ sex, data = HELPrct,
@@ -284,7 +284,7 @@ When these three conditions are met, we may perform an ANOVA to determine whethe
 
 ### MLB batting performance
 
-We would like to discern whether there are real differences between the batting performance of baseball players according to their position: outfielder (`OF`), infielder (`IF`), designated hitter (`DH`), and catcher (`C`). We will use a data set `mlbbat10` from the `openintro` package. The data is in the file `mlb_obp.csv` which has been modified from the original data set to include only those with more than 200 at bats. The batting performance will be measured with the on-base percentage. The on-base percentage roughly represents the fraction of the time a player successfully gets on base or hits a home run.
+We would like to discern whether there are real differences between the batting performance of baseball players according to their position: outfielder (`OF`), infielder (`IF`), designated hitter (`DH`), and catcher (`C`). We will use a data set `mlbbat10` from the **openintro** package but we saved it is in the file `mlb_obp.csv` which has been modified from the original data set to include only those with more than 200 at bats. The batting performance will be measured with the on-base percentage. The on-base percentage roughly represents the fraction of the time a player successfully gets on base or hits a home run.
 
 Read the data into `R`.
 
@@ -344,22 +344,22 @@ In the next section we will learn how to use the $F$ statistic and ANOVA to test
 
 ### Analysis of variance (ANOVA) and the F test  
 
-The method of analysis of variance in this context focuses on answering one question: is the variability in the sample means so large that it seems unlikely to be from chance alone? This question is different from earlier testing procedures since we will *simultaneously* consider many groups, and evaluate whether their sample means differ more than we would expect from natural variation. We call this variability the **mean square between groups** ($MSG$), and it has an associated degrees of freedom, $df_{G}=k-1$ when there are $k$ groups. The $MSG$ can be thought of as a scaled variance formula for means. If the null hypothesis is true, any variation in the sample means is due to chance and shouldn't be too large. Details of $MSG$ calculations are provided in the footnote,^[Let $\bar{x}$ represent the mean of outcomes across all groups. Then the mean square between groups is computed as  
+The method of analysis of variance in this context focuses on answering one question: is the variability in the sample means so large that it seems unlikely to be from chance alone? This question is different from earlier testing procedures since we will *simultaneously* consider many groups, and evaluate whether their sample means differ more than we would expect from natural variation. We call this variability the **mean square between groups** ($MSG$), and it has an associated degrees of freedom, $df_{G}=k-1$ when there are $k$ groups. The $MSG$ can be thought of as a scaled variance formula for means. If the null hypothesis is true, any variation in the sample means is due to chance and shouldn't be too large. We typically use software to find $MSG$, however, the derivation follows. Let $\bar{x}$ represent the mean of outcomes across all groups. Then the mean square between groups is computed as  
 $$
 MSG = \frac{1}{df_{G}}SSG = \frac{1}{k-1}\sum_{i=1}^{k} n_{i}\left(\bar{x}_{i} - \bar{x}\right)^2
 $$ 
 
-where $SSG$ is called the **sum of squares between groups** and $n_{i}$ is the sample size of group $i$.] however, we typically use software for these computations.
+where $SSG$ is called the **sum of squares between groups** and $n_{i}$ is the sample size of group $i$.    
 
-The mean square between the groups is, on its own, quite useless in a hypothesis test. We need a benchmark value for how much variability should be expected among the sample means if the null hypothesis is true. To this end, we compute a pooled variance estimate, often abbreviated as the **mean square error** ($MSE$), which has an associated degrees of freedom value $df_E=n-k$. It is helpful to think of $MSE$ as a measure of the variability within the groups. Details of the computations of the $MSE$ are provided in the footnote^[Let $\bar{x}$ represent the mean of outcomes across all groups. Then the **sum of squares total** ($SST$)} is computed as
+The mean square between the groups is, on its own, quite useless in a hypothesis test. We need a benchmark value for how much variability should be expected among the sample means if the null hypothesis is true. To this end, we compute a pooled variance estimate, often abbreviated as the **mean square error** ($MSE$), which has an associated degrees of freedom value $df_E=n-k$. It is helpful to think of $MSE$ as a measure of the variability within the groups. To find $MSE$, let $\bar{x}$ represent the mean of outcomes across all groups. Then the **sum of squares total** ($SST$)} is computed as
 $SST = \sum_{i=1}^{n} \left(x_{i} - \bar{x}\right)^2$,
-where the sum is over all observations in the data set. Then we compute the **sum of squared errors** ($SSE$)} in one of two equivalent ways:  
+where the sum is over all observations in the data set. Then we compute the **sum of squared errors** ($SSE$) in one of two equivalent ways:  
 
 $$
 SSE = SST - SSG = (n_1-1)s_1^2 + (n_2-1)s_2^2 + \cdots + (n_k-1)s_k^2
 $$
 
-where $s_i^2$ is the sample variance (square of the standard deviation) of the residuals in group $i$. Then the $MSE$ is the standardized form of $SSE$: $MSE = \frac{1}{df_{E}}SSE$.] for interested readers.
+where $s_i^2$ is the sample variance (square of the standard deviation) of the residuals in group $i$. Then the $MSE$ is the standardized form of $SSE$: $MSE = \frac{1}{df_{E}}SSE$.  
 
 When the null hypothesis is true, any differences among the sample means are only due to chance, and the $MSG$ and $MSE$ should be about equal. As a test statistic for ANOVA, we examine the fraction of $MSG$ and $MSE$:
 
@@ -432,7 +432,7 @@ gf_dist("f",df1=3,df2=323) %>%
 
 We can repeat the same analysis using a permutation test. We will first run it using a ratio of variances and then for interest as a difference in variances.
 
-We need a way to extract the mean squared errors from the output. There is a package called `broom` and within it a function called `tidy()` that cleans up output from functions and makes them into data frames.
+We need a way to extract the mean squared errors from the output. There is a package called **broom** and within it a function called `tidy()` that cleans up output from functions and makes them into data frames.
 
 ```{r}
 library(broom)
@@ -477,14 +477,14 @@ f_stat(mlb_obp)
 ```
 
 
-Next we run the randomization test using the `do()` function. There is an easier way to do all of this work with the `purrr` package but we will not introduce those ideas in this course.
+Next we run the randomization test using the `do()` function. There is an easier way to do all of this work with the **purrr** package but we will continue with the work we have started.
 
 ```{r cache=TRUE}
 set.seed(5321)
 results<-do(1000)*(f_stat(mlb_obp))
 ```
 
-That was slow in executing because we are using `tidyverse` functions that are slow. Again, we could optimize using the `purrr` package.
+That was slow in executing because we are using **tidyverse** functions that are slow. 
 
 Figure \@ref(fig:hist243-fig) is a plot of the sampling distribution from the randomization test.
 
@@ -559,7 +559,7 @@ If we reject in the ANOVA test, we know there is a difference in at least one me
 
 1. Golf balls   
 
-Repeat the analysis of the golf ball problem from earlier this semester.
+Repeat the analysis of the golf ball problem from earlier in the book.
 
 
 a. Load the data and tally the data into a table. The data is in `golf_balls.csv`.   
@@ -568,19 +568,20 @@ c. Repeat part b. but assume balls with the numbers 1 and 2 occur 30\% of the ti
 
 2. Bootstrap hypothesis testing  
 
-Repeat the analysis of the MLB data from the lesson but this time generate a bootstrap distribution of the $F$ statistic.  
+Repeat the analysis of the MLB data from the reading but this time generate a bootstrap distribution of the $F$ statistic.  
 
 3. Test of variance
 
 We have not performed a test of variance so we will create our own.
 
 
-a. Using the MLB from the lesson, subset on `IF` and `OF`.   
+a. Using the MLB from the reading, subset on `IF` and `OF`.   
+
 b. Create a side-by-side boxplot.  
 
 The hypotheses are:  
-$H_0$: $\sigma^2_{IF}=\sigma^2{OF}$. There is no difference in the variance of on base percentage for infielders and outfielders.   
-$H_A$: $\sigma^2_{IF}\neq \sigma^2{OF}$. There is a difference in variances.
+$H_0$: $\sigma^2_{IF}=\sigma^2_{OF}$. There is no difference in the variance of on base percentage for infielders and outfielders.   
+$H_A$: $\sigma^2_{IF}\neq \sigma^2_{OF}$. There is a difference in variances.
  
 c. Use the differences in sample standard deviations as your test statistic. Using a permutation test, find the p-value and discuss your decision.   
 d. Create a bootstrap distribution of the differences in sample standard deviations, and report a 95\% confidence interval. Compare with part d.
