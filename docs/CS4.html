@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-29" />
+<meta name="date" content="2021-11-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -801,7 +801,7 @@ div.csl-indent {
 <h2><span class="header-section-number">25.3</span> Case study introduction</h2>
 <p>The Human Freedom Index is a report that attempts to summarize the idea of “freedom” through a bunch of different variables for many countries around the globe. It serves as a rough objective measure for the relationships between the different types of freedom - whether it’s political, religious, economical or personal freedom - and other social and economic circumstances. The Human Freedom Index is an annually co-published report by the Cato Institute, the Fraser Institute, and the Liberales Institut at the Friedrich Naumann Foundation for Freedom.</p>
 <p>In this case study, you’ll be analyzing data from Human Freedom Index reports from 2008-2016. Your aim will be to summarize a few of the relationships within the data both graphically and numerically in order to find which variables can help tell a story about freedom. This will be done using the tool of regression.</p>
-<p>Again, like our previous case studies, this lesson will introduce many of the ideas of the block. Don’t worry if they seem difficult and you feel overwhelmed a bit, we will come back to the ideas in the following lessons.</p>
+<p>Again, like our previous case studies, this chapter will introduce many of the ideas of the block. Don’t worry if they seem difficult and you feel overwhelmed a bit, we will come back to the ideas in the following chapters.</p>
 <div id="load-packages" class="section level3" number="25.3.1">
 <h3><span class="header-section-number">25.3.1</span> Load packages</h3>
 <p>Let’s load the packages.</p>
@@ -882,7 +882,7 @@ Figure 25.1: A scatterplot of personal freedom versus expression control using t
 Figure 25.2: A scatterplot of personal freedom versus expression control using the ggplot2 package.
 </p>
 </div>
-<p>Figures <a href="CS4.html#fig:scat251-fig">25.1</a> and <a href="CS4.html#fig:scat252-fig">25.2</a> are both scatterplots, we included both to demonstrate both the <code>ggformula</code> and <code>ggplot2</code> packages. In this figures, the relationship does look linear. We should be uncomfortable using the model at the end points. That is because there are less points at the edge and and linear estimation has larger variance at the endpoints, the predictions at the endpoints is more suspect.</p>
+<p>Figures <a href="CS4.html#fig:scat251-fig">25.1</a> and <a href="CS4.html#fig:scat252-fig">25.2</a> are both scatterplots, we included both to demonstrate both the <strong>ggformula</strong> and <strong>ggplot2</strong> packages. In these figures, the relationship does look linear. Although, we should be uncomfortable using the model at the end points. That is because there are less points at the edge and and linear estimation has larger variance at the endpoints, the predictions at the endpoints is more suspect.</p>
 <blockquote>
 <p><strong>Exercise</strong><br />
 The relationship looks linear, quantify the strength of the
@@ -895,7 +895,7 @@ relationship with the correlation coefficient.</p>
 ##                                                          &lt;dbl&gt;
 ## 1                                                        0.796</code></pre>
 <p>The sample correlation coefficient, indicates a strong positive linear relationship between the variables.</p>
-<p>Note that we set the <code>use</code> argument to “complete.obs” since there are some observations with missing values, NA.</p>
+<p>Note that we set the <code>use</code> argument to “complete.obs” since there are some observations with missing values, <code>NA</code>.</p>
 </div>
 </div>
 <div id="sum-of-squared-residuals" class="section level2" number="25.4">
@@ -917,10 +917,10 @@ line that best follows their association. Use the following interactive function
 <span id="cb780-4"><a href="CS4.html#cb780-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb780-5"><a href="CS4.html#cb780-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pf_expression_control) <span class="sc">%&gt;%</span></span>
 <span id="cb780-6"><a href="CS4.html#cb780-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">1</span>)</span></code></pre></div>
-<p>We used the function <code>slice_sample()</code> to ensure we have unique values of <code>pf_expression_control</code> is our sample.</p>
+<p>We used the function <code>slice_sample()</code> to ensure we have unique values of <code>pf_expression_control</code> in our sample.</p>
 <blockquote>
 <p><strong>Exercise</strong><br />
-In your <code>R</code> console, run the code above to create the object <code>hfi_sub</code>. You are going to have to load packages and read in the <code>hfi</code> data set. Then execute the next set of code. Pick two locations in the plot to create a line. Record the sum of squares.</p>
+In your <code>R</code> console, run the code above to create the object <code>hfi_sub</code>. You are going to have to load packages and read in the <code>hfi</code> data set. Then execute the next lines of code. Pick two locations in the plot to create a line. Record the sum of squares.</p>
 </blockquote>
 <p>First, run this code chunk to create a function <code>plot_ss()</code> that you will use next.</p>
 <div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb781-1"><a href="CS4.html#cb781-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to create plot and residuals.</span></span>
@@ -1003,7 +1003,7 @@ Using <code>plot_ss</code>, choose a line that does a good job of minimizing the
 regression line).</p>
 <div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb785-1"><a href="CS4.html#cb785-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(pf_score <span class="sc">~</span> pf_expression_control, <span class="at">data =</span> hfi_sub)</span></code></pre></div>
 <p>The first argument in the function <code>lm</code> is a formula that takes the form <code>y ~ x</code>. Here it can be read that we want to make a linear model of <code>pf_score</code> as a function of <code>pf_expression_control</code>. The second argument specifies
-that <code>R</code> should look in the <code>hfi_sub</code> data frame to find the two variables. This should be familiar to us since we have been doing this when we used the <code>mosaic</code> package.</p>
+that <code>R</code> should look in the <code>hfi_sub</code> data frame to find the two variables. This should be familiar to us since we have been doing this when we used the <strong>mosaic</strong> package.</p>
 <p>The output of <code>lm</code> is an object that contains all of the information we need about the linear model that was just fit. We can access this information using the <code>summary()</code> function.</p>
 <div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb786-1"><a href="CS4.html#cb786-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
@@ -1028,7 +1028,7 @@ that <code>R</code> should look in the <code>hfi_sub</code> data frame to find t
 column displays the linear model’s y-intercept and the coefficient of <code>pf_expression_control</code>. With this table, we can write down the least squares regression line for the
 linear model:</p>
 <p><span class="math display">\[
-  \hat{pf\_score} = 5.02721 + 0.41988 \times pf\_expression\_control
+  \hat{\text{pf_score}} = 5.02721 + 0.41988 \times \text{pf_expression_control}
 \]</span></p>
 <p>At least these are the values we got on our machine using the <em>seed</em> provided. Yours may differ slightly. One last piece of information we will discuss from the summary output is the <code>Multiple R-squared</code>, or more simply, <span class="math inline">\(R^2\)</span>. The <span class="math inline">\(R^2\)</span> value represents the proportion of variability in the response variable that is explained by the explanatory variable. For this model, 72.48% of the variability in <code>pf_score</code> is explained by <code>pr_expression_control</code>.</p>
 <blockquote>
@@ -1056,27 +1056,28 @@ Fit a new model that uses <code>pf_expression_control</code> to predict <code>hf
 ## Multiple R-squared:  0.6191, Adjusted R-squared:  0.6085 
 ## F-statistic:  58.5 on 1 and 36 DF,  p-value: 4.718e-09</code></pre>
 <p><span class="math display">\[
-  \hat{hf\_score} = 5.45660 + 0.30707 \times pf\_expression\_control
+  \hat{\text{hf_score}} = 5.45660 + 0.30707 \times \text{pf_expression_control}
 \]</span>
 As the political pressure increases by one unit, the <strong>average</strong> human freedom score increases by 0.307.</p>
 </div>
 <div id="prediction-and-prediction-errors" class="section level2" number="25.6">
 <h2><span class="header-section-number">25.6</span> Prediction and prediction errors</h2>
-<p>Let’s create a scatterplot with the least squares line for <code>m1</code> laid on top, Figure <a href="CS4.html#fig:reg-with-line">25.4</a>.</p>
+<p>Let’s create a scatterplot with the least squares line for <code>m1</code>, our first model, laid on top, Figure <a href="CS4.html#fig:reg-with-line">25.4</a>.</p>
 <div class="sourceCode" id="cb791"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb791-1"><a href="CS4.html#cb791-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hfi_sub, <span class="fu">aes</span>(<span class="at">x =</span> pf_expression_control, <span class="at">y =</span> pf_score)) <span class="sc">+</span></span>
 <span id="cb791-2"><a href="CS4.html#cb791-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb791-3"><a href="CS4.html#cb791-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb791-4"><a href="CS4.html#cb791-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb791-5"><a href="CS4.html#cb791-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Personal freedom score versus Expression control&quot;</span>,</span>
-<span id="cb791-6"><a href="CS4.html#cb791-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Political pressures and controls on media&quot;</span>,</span>
-<span id="cb791-7"><a href="CS4.html#cb791-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y=</span><span class="st">&quot;Personal freedom score&quot;</span>)</span></code></pre></div>
+<span id="cb791-3"><a href="CS4.html#cb791-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_lm(color=&quot;black&quot;) +</span></span>
+<span id="cb791-4"><a href="CS4.html#cb791-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb791-5"><a href="CS4.html#cb791-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb791-6"><a href="CS4.html#cb791-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Personal freedom score versus Expression control&quot;</span>,</span>
+<span id="cb791-7"><a href="CS4.html#cb791-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Political pressures and controls on media&quot;</span>,</span>
+<span id="cb791-8"><a href="CS4.html#cb791-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">y=</span><span class="st">&quot;Personal freedom score&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:reg-with-line"></span>
 <img src="25-Linear-Regression-Case-Study_files/figure-html/reg-with-line-1.png" alt="Scatterplot of personal expression control and personal freedom score." width="672" />
 <p class="caption">
 Figure 25.4: Scatterplot of personal expression control and personal freedom score.
 </p>
 </div>
-<p>Here, we are literally adding a layer on top of our plot. The <code>geom_smooth()</code> function creates the line by fitting a linear model. It can also show us the standard error <code>se</code>
+<p>Here, we are literally adding a layer on top of our plot. The <code>stat_smooth()</code> function creates the line by fitting a linear model, we could use <code>geom_lm()</code> as well. It can also show us the standard error <code>se</code>
 associated with our line, but we’ll suppress that for now.</p>
 <p>This line can be used to predict <span class="math inline">\(y\)</span> at any value of <span class="math inline">\(x\)</span>. When predictions are made for values of <span class="math inline">\(x\)</span> that are beyond the range of the observed data, it is referred to as <em>extrapolation</em> and is not usually recommended. However,
 predictions made within the range of the data are more reliable. They’re also used to compute the residuals.</p>
@@ -1088,7 +1089,7 @@ If someone saw the least squares regression line and not the actual data, how wo
 <div class="sourceCode" id="cb792"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb792-1"><a href="CS4.html#cb792-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m1,<span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="at">pf_expression_control=</span><span class="fl">6.75</span>))</span></code></pre></div>
 <pre><code>##        1 
 ## 7.861402</code></pre>
-<p>We thus predict a value of 7.86 for the <code>pf_score</code>.</p>
+<p>We thus predict a value of 7.86 for the average <code>pf_score</code>.</p>
 <p>The observed value is 8.628272.</p>
 <div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="CS4.html#cb794-1" aria-hidden="true" tabindex="-1"></a>hfi_sub <span class="sc">%&gt;%</span></span>
 <span id="cb794-2"><a href="CS4.html#cb794-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pf_expression_control<span class="sc">==</span><span class="fl">6.75</span>)</span></code></pre></div>
@@ -1101,7 +1102,7 @@ If someone saw the least squares regression line and not the actual data, how wo
 <div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="CS4.html#cb796-1" aria-hidden="true" tabindex="-1"></a><span class="fl">8.628272</span> <span class="sc">-</span> <span class="fl">7.861402</span></span></code></pre></div>
 <pre><code>## [1] 0.76687</code></pre>
 <p>We underestimated the actual value.</p>
-<p>Another way to do this is to use the <code>broom</code> package.</p>
+<p>Another way to do this is to use the <strong>broom</strong> package.</p>
 <div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="CS4.html#cb798-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
 <div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="CS4.html#cb799-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(m1) <span class="sc">%&gt;%</span></span>
 <span id="cb799-2"><a href="CS4.html#cb799-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(pf_expression_control<span class="sc">==</span><span class="fl">6.75</span>)</span></code></pre></div>
@@ -1112,11 +1113,16 @@ If someone saw the least squares regression line and not the actual data, how wo
 </div>
 <div id="model-diagnostics" class="section level2" number="25.7">
 <h2><span class="header-section-number">25.7</span> Model diagnostics</h2>
-<p>To assess whether the linear model is reliable, we need to check for
-1. linearity,<br />
-2. nearly normal residuals, and<br />
-3. constant variability.</p>
-<p><strong>Linearity</strong>: You already checked if the relationship between <code>pf_score</code> and `pf_expression_control’ is linear using a scatterplot. We should also verify this condition with a plot of the residuals vs. fitted (predicted) values, Figure <a href="CS4.html#fig:residuals">25.5</a>.</p>
+<p>To assess whether the linear model is reliable, we need to check for</p>
+<ol style="list-style-type: decimal">
+<li>linearity,<br />
+</li>
+<li>independence,</li>
+<li>nearly normal residuals, and<br />
+</li>
+<li>constant variability.</li>
+</ol>
+<p><strong>Linearity</strong>: You already checked if the relationship between <code>pf_score</code> and <code>pf_expression_control</code> is linear using a scatterplot. We should also verify this condition with a plot of the residuals vs. fitted (predicted) values, Figure <a href="CS4.html#fig:residuals">25.5</a>.</p>
 <div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb801-1"><a href="CS4.html#cb801-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> m1, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
 <span id="cb801-2"><a href="CS4.html#cb801-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb801-3"><a href="CS4.html#cb801-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
@@ -1134,6 +1140,7 @@ Figure 25.5: Scatterplot of residuals and fitted values used to assess the assum
 Is there any apparent pattern in the residuals plot? What does this indicate about the linearity of the relationship between the two variables?</p>
 </blockquote>
 <p>The width is constant and there is no trend in the data. The linearity assumption is not bad.</p>
+<p><strong>Independence</strong>: This is difficult to check with residuals and depends on how the data was collected.</p>
 <p><strong>Nearly normal residuals</strong>: To check this condition, we can look at a histogram, Figure <a href="CS4.html#fig:hist-res">25.6</a>.</p>
 <div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="CS4.html#cb802-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> m1, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span></span>
 <span id="cb802-2"><a href="CS4.html#cb802-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> .<span class="dv">4</span>,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
@@ -1156,9 +1163,9 @@ Figure 25.6: Histogram of residuals from linear regression model.
 Figure 25.7: The quantile-quantile residual plot used to assess the normality assumption.
 </p>
 </div>
-<p>Note that the syntax for making a normal probability plot is a bit different than what you’re used to seeing: we set <code>sample</code> equal to the residuals instead of <code>x</code>, and we set a statistical method <code>qq</code>, which stands for“quantile-quantile,”
+<p>Note that the syntax for making a normal probability plot is a bit different than what you’re used to seeing: we set <code>sample</code> equal to the residuals instead of <code>x</code>, and we set a statistical method <code>qq</code>, which stands for “quantile-quantile,”
 another name commonly used for normal probability plots.</p>
-<p>It is a little difficult at first to understand how the <code>qq</code> plot indicated that the distribution was skewed to the left. The points indicate the quantile from the sample, standardized to have mean zero and standard deviation one, plotted against the same quantiles from a standard normal. It the sample matched a standard normal the points would align on the 45-degree line. From the plot, we see that has the theoretical quantile get larger, further from zero, the sample do not. That is why the trajectory of the points in the upper right looks flat, below the 45-degree line. Thus the distribution is compressed on the right making it skewed to the left.</p>
+<p>It is a little difficult at first to understand how the <code>qq</code> plot indicated that the distribution was skewed to the left. The points indicate the quantile from the sample, standardized to have mean zero and standard deviation one, plotted against the same quantiles from a standard normal. It the sample matched a standard normal the points would align on the 45-degree line. From the plot, we see that as the theoretical quantile get larger, further from zero, the sample do not. That is why the trajectory of the points in the upper right looks flat, below the 45-degree line. Thus the distribution is compressed on the right making it skewed to the left.</p>
 <blockquote>
 <p><strong>Exercise</strong>:
 Based on the histogram and the normal probability plot, does the nearly normal residuals condition appear to be met?</p>
@@ -1180,7 +1187,7 @@ Based on the residuals vs. fitted plot, does the constant variability condition
 <ol style="list-style-type: decimal">
 <li>HFI</li>
 </ol>
-<p>Choose another freedom variable and a variable you think would strongly correlate with it. The <code>openintro</code> package contains the data set <code>hfi</code>. Type <code>?openintro::hfi</code> in the Console window in <code>RStudio</code> to learn more about the variables.</p>
+<p>Choose another freedom variable and a variable you think would strongly correlate with it. The <strong>openintro</strong> package contains the data set <code>hfi</code>. Type <code>?openintro::hfi</code> in the Console window in <code>RStudio</code> to learn more about the variables.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Produce a scatterplot of the two variables.<br />
 </li>
