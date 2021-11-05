@@ -8,7 +8,7 @@
 \newcommand{\diff}{\,\mathrm{d}}
 
 
-```{r include=FALSE}
+```{r setup, include=FALSE}
 library(MASS)
 library(cubature)
 library(mosaicCalc)
@@ -514,10 +514,31 @@ c. Find $\Cov(X,Y)$ and $\rho$. Are $X$ and $Y$ independent?
 d. Find $\Var(3X+2Y)$. 
 
 
-
-&nbsp;
-
 2. Optional - not difficult but does have small Calc III idea. Let $X$ and $Y$ be continuous random variables with joint pmf: 
 $$
 f_{X,Y}(x,y)=1
 $$
+
+
+3. Suppose $X$ and $Y$ are *independent* random variables. Show that $\E(XY)=\E(X)\E(Y)$. 
+
+4. You are playing a game with a friend. Each of you roll a fair sided die and record the result.
+
+a. Write the joint probability mass function.
+
+b. Find the expected value of the product of your score and your friend's score.
+
+c. Verify the previous part using simulation.
+
+d. Using simulation, find the expected value of the maximum number on the two roles. 
+
+5. A miner is trapped in a mine containing three doors. The first door leads to a tunnel that takes him to safety after two hours of travel. The second door leads to a tunnel that returns him to the mine after three hours of travel. The third door leads to a tunnel that returns him to his mine after five hours. Assuming that the miner is at all times equally likely to choose any one of the doors, yes a bad assumption but it makes for a nice problem, what is the expected length of time until the miner reaches safety?
+
+
+6. ADVANCED: Let $X_1,X_2,...,X_n$ be independent, identically distributed random variables. (This is often abbreviated as "iid"). Each $X_i$ has mean $\mu$ and variance $\sigma^2$ (i.e., for all $i$, $\E(X_i)=\mu$ and $\Var(X_i)=\sigma^2$). 
+
+Let $S=X_1+X_2+...+X_n=\sum_{i=1}^n X_i$. And let $\bar{X}={\sum_{i=1}^n X_i \over n}$. 
+
+Find $\E(S)$, $\Var(S)$, $\E(\bar{X})$ and $\Var(\bar{X})$. 
+
+
