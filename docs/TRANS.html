@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-11-05" />
+<meta name="date" content="2021-11-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -926,10 +926,10 @@ f_Y(y)=f_X(\sqrt{y})\bigg|\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y} \
 <div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="TRANS.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class        min        Q1    median        Q3       max     mean
-## ...1 sqrt numeric 0.00559696 0.4997058 0.7116367 0.8660556 0.9999663 0.666783
+##      name   class       min        Q1    median        Q3       max      mean
+## ...1 sqrt numeric 0.0152745 0.4939328 0.7038204 0.8658554 0.9999972 0.6643319
 ##             sd     n missing
-## ...1 0.2374661 10000       0</code></pre>
+## ...1 0.2364227 10000       0</code></pre>
 <p>Figure <a href="TRANS.html#fig:dens161-fig">16.2</a> is a density plot of the simulated original random variable.</p>
 <div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="TRANS.html#cb410-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
 <span id="cb410-2"><a href="TRANS.html#cb410-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_density</span>(<span class="sc">~</span>sqrt,<span class="at">xlab=</span><span class="st">&quot;X&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -959,9 +959,9 @@ Figure 16.3: The density plot of the transformed random variable from the simula
 <pre><code>## 
 ## quantitative variables:  
 ##      name   class       min         Q1     median         Q3           max
-## ...1    y numeric -5.185532 -0.6937357 -0.3401878 -0.1438062 -3.369825e-05
-##           mean        sd     n missing
-## ...1 -0.500428 0.4994386 10000       0</code></pre>
+## ...1    y numeric -4.181571 -0.7053558 -0.3512321 -0.1440373 -2.796071e-06
+##            mean        sd     n missing
+## ...1 -0.5036125 0.4972923 10000       0</code></pre>
 </div>
 <div id="multivariate-transformations" class="section level3" number="16.2.6">
 <h3><span class="header-section-number">16.2.6</span> Multivariate Transformations</h3>
