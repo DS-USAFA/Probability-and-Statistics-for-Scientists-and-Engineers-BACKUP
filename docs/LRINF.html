@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-11-08" />
+<meta name="date" content="2021-11-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -796,37 +796,37 @@ div.csl-indent {
 </div>
 <div id="introduction-3" class="section level2" number="27.2">
 <h2><span class="header-section-number">27.2</span> Introduction</h2>
-<p>In this lesson we discuss uncertainty in the estimates of the slope and y-intercept for a regression line. This will allow us to perform inference and predictions. Just as we identified standard errors for point estimates in previous lessons, we first discuss standard errors for these new estimates. This lesson is a classical lesson in the sense that we will be using the normal distribution. We will assume that the errors are normally distributed with constant variance. Later in the course, we will relax these assumptions.</p>
+<p>In this chapter we discuss uncertainty in the estimates of the slope and y-intercept for a regression line. This will allow us to perform inference and predictions. Just as we identified standard errors for point estimates in previous chapters, we first discuss standard errors for these new estimates. This chapter is a classical chapter in the sense that we will be using the normal distribution. We will assume that the errors are normally distributed with constant variance. Later in the book, we will relax these assumptions.</p>
 <div id="regression" class="section level3" number="27.2.1">
 <h3><span class="header-section-number">27.2.1</span> Regression</h3>
-<p>Last lesson, we introduced linear models using the simple linear regression model:
+<p>Last chapter, we introduced linear models using the simple linear regression model:
 <span class="math display">\[
 Y=\beta_0+\beta_1X+e
 \]</span></p>
-<p>where here we assume the error term follows a normal distribution with mean 0 and constant standard deviation <span class="math inline">\(\sigma\)</span>. Using the method of least squares, which does not require the assumption of normality, we obtain estimates of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>:
+<p>where now we assume the error term follows a normal distribution with mean 0 and constant standard deviation <span class="math inline">\(\sigma\)</span>. Using the method of least squares, which does not require the assumption of normality, we obtain estimates of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>:
 <span class="math display">\[
 \hat{\beta}_1 = {\sum x_i y_i - n\bar{x}\bar{y} \over \sum x_i^2 -n\bar{x}^2}
 \]</span>
 <span class="math display">\[
 \hat{\beta}_0=\bar{y}-\hat{\beta}_1\bar{x}
 \]</span></p>
-<p>If we assume a probability distribution for the errors, we could also find point estimates using maximum likelihood methods. This will not be discussed in this course.</p>
+<p>If we assume a probability distribution for the errors, we could also find point estimates using maximum likelihood methods. This will not be discussed in this book.</p>
 <p>Using these estimates, for a given value of the predictor, <span class="math inline">\(x_*\)</span>, we can obtain a prediction of the response variable. Here we are using the subscript <span class="math inline">\(_*\)</span> to denote a new value for the explanatory variable. The resulting prediction, which we will denote <span class="math inline">\(\hat{Y}_*\)</span>, is the <strong>average</strong> or <strong>expected value</strong> of the response given predictor value <span class="math inline">\(x_*\)</span>:</p>
 <p><span class="math display">\[
 \hat{Y}_*=\hat{\beta}_0+\hat{\beta}_1x_*
 \]</span></p>
-<p>The reason this model returns the expected value of the response at the given value of the predictor is because the error term has an expected value of zero. As a review of the properties of expectation as well as last lesson, we have:</p>
+<p>The reason this model returns the expected value of the response at the given value of the predictor is because the error term has an expected value of zero. As a review of the properties of expectation as well as last chapter, we have:</p>
 <p><span class="math display">\[
 E(Y|X=x)=E(\beta_0+\beta_1x+e)=Y=\beta_0+\beta_1x+E(e)=\beta_0+\beta_1x
 \]</span>
 because <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, and <span class="math inline">\(x\)</span> are constants.</p>
-<p>It should be abundantly clear by now that <span class="math inline">\(\hat{Y}_*\)</span>, <span class="math inline">\(\hat{\beta}_0\)</span>, and <span class="math inline">\(\hat{\beta}_1\)</span> are <strong><em>estimators</em></strong>. Being estimators, they are dependent on our random sample, our data. If we collect a new random sample from the same population, we will get new estimates from these estimators. Thus, we can think of <span class="math inline">\(\hat{Y}_*\)</span>, <span class="math inline">\(\hat{\beta}_0\)</span>, and <span class="math inline">\(\hat{\beta}_1\)</span> as <strong>random variables</strong>. Like all random variables, they have distributions. We can use the distribution of an estimator to build confidence intervals and conduct hypothesis tests about the true values of the parameter it is intended to estimate. These estimators are unbiased, their distributions are centered around the actual values of <span class="math inline">\(Y\)</span>, <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, respectively.</p>
+<p>It should be abundantly clear by now that <span class="math inline">\(\hat{Y}_*\)</span>, <span class="math inline">\(\hat{\beta}_0\)</span>, and <span class="math inline">\(\hat{\beta}_1\)</span> are <strong><em>estimators</em></strong>. Being estimators, they are dependent on our random sample, our data. If we collect a new random sample from the same population, we will get new estimates from these estimators. Thus, we can think of <span class="math inline">\(\hat{Y}_*\)</span>, <span class="math inline">\(\hat{\beta}_0\)</span>, and <span class="math inline">\(\hat{\beta}_1\)</span> as <strong>random variables</strong>. Like all random variables, they have distributions. We can use the distribution of an estimator to build confidence intervals and conduct hypothesis tests about the true values of the parameter it is intended to estimate. The estimators based on least squares are unbiased, their distributions are centered around the actual values of <span class="math inline">\(Y\)</span>, <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, respectively.</p>
 </div>
 <div id="review-of-assumptions" class="section level3" number="27.2.2">
 <h3><span class="header-section-number">27.2.2</span> Review of assumptions</h3>
 <p>We will review the assumptions of the least squares model because they are important for inference. Refer to Figure <a href="LRINF.html#fig:assump271-fig">27.1</a>, which plots the linear regression in the top row and the residuals in the second row. We generally assume the following:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Fit</strong>. The data should show a linear trend. If there is a nonlinear trend, a transformation of the explanatory variable or an advanced regression method from Math 378 should be applied. When looking at the residual plot, if the trend is linear, we should see a spread of points that are flat. The left column of Figure <a href="LRINF.html#fig:assump271-fig">27.1</a> is an example of a nonlinear relationship. The top plot is the regression plot and we can see what looks like a quadratic relationship instead of a linear one. The residual plot, the plot in the lower left corner of Figure <a href="LRINF.html#fig:assump271-fig">27.1</a>, also exhibits this non-linear trend.<br />
+<li><strong>Fit</strong>. The data should show a linear trend. If there is a nonlinear trend, a transformation of the explanatory variable or a more advanced regression method should be applied. When looking at the residual plot, if the trend is linear, we should see a spread of points that are flat. The left column of Figure <a href="LRINF.html#fig:assump271-fig">27.1</a> is an example of a nonlinear relationship. The top plot is the regression plot and we can see what looks like a quadratic relationship instead of a linear one. The residual plot, the plot in the lower left corner of Figure <a href="LRINF.html#fig:assump271-fig">27.1</a>, also exhibits this non-linear trend.<br />
 </li>
 <li><strong>Nearly normal residuals</strong>. Generally the residuals must be nearly normal to use a <span class="math inline">\(t\)</span> or <span class="math inline">\(F\)</span> for inference. When this assumption is found to be unreasonable, it is usually because of <strong>outliers</strong> or concerns about <strong>influential</strong> points. An example of non-normal residuals is shown in the second column of Figure <a href="LRINF.html#fig:assump271-fig">27.1</a>. A <strong>qq</strong> plot is also useful as a diagnostic tool as we have seen. We can still use the <strong>bootstrap</strong> as an inference tool if the normality assumption is unreasonable.<br />
 </li>
@@ -834,7 +834,7 @@ because <span class="math inline">\(\beta_0\)</span>, <span class="math inline">
 </li>
 <li><strong>Independent observations</strong>. Be cautious about applying regression to data collected sequentially in what is called a <strong>time series</strong>. Such data may have an underlying structure that should be considered in a model and analysis. An example of a time series where independence is violated is shown in the fourth panel of Figure <a href="LRINF.html#fig:assump271-fig">27.1</a>. More advanced methods are required for time series data even including using a bootstrap.</li>
 </ol>
-<p>In a future lesson we will explore more regression diagnostics.</p>
+<p>In a later chapter we will explore more regression diagnostics.</p>
 <div class="figure"><span style="display:block;" id="fig:assump271-fig"></span>
 <img src="27-Regression-Inference_files/figure-html/assump271-fig-1.png" alt="Plots of linear regression and residual to illustrate the assumptions of the model." width="672" />
 <p class="caption">
@@ -854,7 +854,7 @@ Figure 27.1: Plots of linear regression and residual to illustrate the assumptio
 <p><span class="math display">\[
 \hat{Y}_* \sim N\left(\beta_0+\beta_1x_*, \sigma\sqrt{{1\over n}+{(x_*-\bar{x})^2\over \sum (x_i-\bar{x})^2}}\right)
 \]</span></p>
-<p>Notice that all three of these are unbiased, the expected value is equal to the parameter being estimated. Looking at the variance of the slope estimate we can see that is a function of the underlying unexplained variance, <span class="math inline">\(\sigma^2\)</span> and the data. The denominator is increased by having a larger spread in the explanatory variable. The slope of the estimated line is more stable, less variable, if the independent variable has high variance. That is interesting. If you are designing an experiment, this gives you insight in how to select the range of values for your explanatory variable. Math 359 is a course that discusses this point in detail.</p>
+<p>Notice that all three of these are unbiased, the expected value is equal to the parameter being estimated. Looking at the variance of the slope estimate we can see that is a function of the underlying unexplained variance, <span class="math inline">\(\sigma^2\)</span> and the data. The denominator is increased by having a larger spread in the explanatory variable. The slope of the estimated line is more stable, less variable, if the independent variable has high variance. That is interesting. If you are designing an experiment, this gives you insight in how to select the range of values for your explanatory variable.</p>
 </div>
 </div>
 <div id="inference" class="section level2" number="27.3">
@@ -893,7 +893,7 @@ We only have <span class="math inline">\(n-2\)</span> degrees of freedom because
 <p>Similarly, we can use the distribution of <span class="math inline">\(\hat \beta_0\)</span> to build a confidence interval or conduct a hypothesis test on <span class="math inline">\(\beta_0\)</span>, but we usually don’t. This has to do with the interpretation of <span class="math inline">\(\beta_0\)</span>.</p>
 <div id="starbucks" class="section level3" number="27.3.1">
 <h3><span class="header-section-number">27.3.1</span> Starbucks</h3>
-<p>That was a great deal of mathematics and theory. Let’s put it to use on the example from Starbucks. In the file <code>data/starbucks.csv</code> we have nutritional facts for several Starbucks’ food items. We used this data in the homework for last lesson. We will use this data again to illustrate the ideas we have introduced in this section.</p>
+<p>That was a great deal of mathematics and theory. Let’s put it to use on the example from Starbucks. In the file <code>data/starbucks.csv</code> we have nutritional facts for several Starbucks’ food items. We used this data in the homework for last chapter. We will use this data again to illustrate the ideas we have introduced in this section.</p>
 <p>Read in the data.</p>
 <div class="sourceCode" id="cb828"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb828-1"><a href="LRINF.html#cb828-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/starbucks.csv&quot;</span>)  <span class="sc">%&gt;%</span></span>
 <span id="cb828-2"><a href="LRINF.html#cb828-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type=</span><span class="fu">factor</span>(type))</span></code></pre></div>
@@ -997,7 +997,7 @@ The denominator is the standard error of the estimate. The estimate of the resid
 <p>This is slightly different from the table value because of the precision of the computer and the small p-value.</p>
 <p>We reject <span class="math inline">\(H_0\)</span> in favor of <span class="math inline">\(H_A\)</span> because the data provide strong evidence that the true slope parameter is greater than zero.</p>
 <p>The computer software uses zero in the null hypothesis, if you wanted to test another value of the slope then you would have to do the calculations step by step like we did above.</p>
-<p>By the way, this was not a <code>tidy</code> way to do the calculation. The <code>broom</code> package makes it easier to use <code>tidy</code> ideas on the regression model. We used these ideas in the last lesson.</p>
+<p>By the way, this was not a <code>tidy</code> way to do the calculation. The <strong>broom</strong> package makes it easier to use <code>tidy</code> ideas on the regression model. We used these ideas in the last chapter.</p>
 <p>As a reminder:</p>
 <div class="sourceCode" id="cb845"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb845-1"><a href="LRINF.html#cb845-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
 <div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb846-1"><a href="LRINF.html#cb846-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(star_mod) </span></code></pre></div>
@@ -1086,13 +1086,13 @@ Give the 90% prediction interval of average calories for 70 grams of carbohydrat
 </div>
 <div id="summary-2" class="section level3" number="27.4.2">
 <h3><span class="header-section-number">27.4.2</span> Summary</h3>
-<p>This lesson has introduced the process of inference for a simple linear regression model. We tested the slope estimate as well as generated confidence intervals for average and individual predicted values.</p>
+<p>This chapter has introduced the process of inference for a simple linear regression model. We tested the slope estimate as well as generated confidence intervals for average and individual predicted values.</p>
 </div>
 </div>
 <div id="homework-problems-26" class="section level2" number="27.5">
 <h2><span class="header-section-number">27.5</span> Homework Problems</h2>
 <ol style="list-style-type: decimal">
-<li><p>In the lesson notes, we noticed that the 95% prediction interval was much wider than the 95% confidence interval. In words, explain why this is.</p></li>
+<li><p>In the chapter reading, we noticed that the 95% prediction interval was much wider than the 95% confidence interval. In words, explain why this is.</p></li>
 <li><p>Beer and blood alcohol content</p></li>
 </ol>
 <p>Many people believe that gender, weight, drinking habits, and many other factors are much more important in predicting blood alcohol content (BAC) than simply considering the number of drinks a person consumed. Here we examine data from sixteen student volunteers at Ohio State University who each drank a randomly assigned number of cans of beer. These students were evenly divided between men and women, and they differed in weight and drinking habits. Thirty minutes later, a police officer measured their blood alcohol content (BAC) in grams of alcohol per deciliter of blood. The data is in the <code>bac.csv</code> file under the <code>data</code> folder.</p>

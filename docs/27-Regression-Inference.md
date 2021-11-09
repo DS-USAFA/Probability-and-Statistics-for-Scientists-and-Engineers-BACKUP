@@ -8,17 +8,17 @@
 
 ## Introduction  
 
-In this lesson we discuss uncertainty in the estimates of the slope and y-intercept for a regression line. This will allow us to perform inference and predictions. Just as we identified standard errors for point estimates in previous lessons, we first discuss standard errors for these new estimates. This lesson is a classical lesson in the sense that we will be using the normal distribution. We will assume that the errors are normally distributed with constant variance. Later in the course, we will relax these assumptions.
+In this chapter we discuss uncertainty in the estimates of the slope and y-intercept for a regression line. This will allow us to perform inference and predictions. Just as we identified standard errors for point estimates in previous chapters, we first discuss standard errors for these new estimates. This chapter is a classical chapter in the sense that we will be using the normal distribution. We will assume that the errors are normally distributed with constant variance. Later in the book, we will relax these assumptions.
 
 ### Regression  
 
 
-Last lesson, we introduced linear models using the simple linear regression model:
+Last chapter, we introduced linear models using the simple linear regression model:
 $$
 Y=\beta_0+\beta_1X+e
 $$
 
-where here we assume the error term follows a normal distribution with mean 0 and constant standard deviation $\sigma$. Using the method of least squares, which does not require the assumption of normality, we obtain estimates of $\beta_0$ and $\beta_1$: 
+where now we assume the error term follows a normal distribution with mean 0 and constant standard deviation $\sigma$. Using the method of least squares, which does not require the assumption of normality, we obtain estimates of $\beta_0$ and $\beta_1$: 
 $$
 \hat{\beta}_1 = {\sum x_i y_i - n\bar{x}\bar{y} \over \sum x_i^2 -n\bar{x}^2}
 $$
@@ -26,7 +26,7 @@ $$
 \hat{\beta}_0=\bar{y}-\hat{\beta}_1\bar{x}
 $$
 
-If we assume a probability distribution for the errors, we could also find point estimates using maximum likelihood methods. This will not be discussed in this course.
+If we assume a probability distribution for the errors, we could also find point estimates using maximum likelihood methods. This will not be discussed in this book.  
 
 Using these estimates, for a given value of the predictor, $x_*$, we can obtain a prediction of the response variable. Here we are using the subscript $_*$ to denote a new value for the explanatory variable. The resulting prediction, which we will denote $\hat{Y}_*$, is the **average** or **expected value** of the response given predictor value $x_*$:  
 
@@ -34,25 +34,25 @@ $$
 \hat{Y}_*=\hat{\beta}_0+\hat{\beta}_1x_*
 $$
 
-The reason this model returns the expected value of the response at the given value of the predictor is because the error term has an expected value of zero. As a review of the properties of expectation as well as last lesson, we have:
+The reason this model returns the expected value of the response at the given value of the predictor is because the error term has an expected value of zero. As a review of the properties of expectation as well as last chapter, we have:
 
 $$
 E(Y|X=x)=E(\beta_0+\beta_1x+e)=Y=\beta_0+\beta_1x+E(e)=\beta_0+\beta_1x
 $$
 because $\beta_0$, $\beta_1$, and $x$ are constants.  
 
-It should be abundantly clear by now that $\hat{Y}_*$, $\hat{\beta}_0$, and $\hat{\beta}_1$ are ***estimators***. Being estimators, they are dependent on our random sample, our data. If we collect a new random sample from the same population, we will get new estimates from these estimators. Thus, we can think of $\hat{Y}_*$, $\hat{\beta}_0$, and $\hat{\beta}_1$ as **random variables**. Like all random variables, they have distributions. We can use the distribution of an estimator to build confidence intervals and conduct hypothesis tests about the true values of the parameter it is intended to estimate. These estimators are unbiased, their distributions are centered around the actual values of $Y$, $\beta_0$ and $\beta_1$, respectively.
+It should be abundantly clear by now that $\hat{Y}_*$, $\hat{\beta}_0$, and $\hat{\beta}_1$ are ***estimators***. Being estimators, they are dependent on our random sample, our data. If we collect a new random sample from the same population, we will get new estimates from these estimators. Thus, we can think of $\hat{Y}_*$, $\hat{\beta}_0$, and $\hat{\beta}_1$ as **random variables**. Like all random variables, they have distributions. We can use the distribution of an estimator to build confidence intervals and conduct hypothesis tests about the true values of the parameter it is intended to estimate. The estimators based on least squares are unbiased, their distributions are centered around the actual values of $Y$, $\beta_0$ and $\beta_1$, respectively.
 
 ### Review of assumptions
 
 We will review the assumptions of the least squares model because they are important for inference. Refer to Figure \@ref(fig:assump271-fig), which plots the linear regression in the top row and the residuals in the second row. We generally assume the following:
 
-1. **Fit**.  The data should show a linear trend. If there is a nonlinear trend, a transformation of the explanatory variable or an advanced regression method from Math 378 should be applied. When looking at the residual plot, if the trend is linear, we should see a spread of points that are flat. The left column of Figure \@ref(fig:assump271-fig) is an example of a nonlinear relationship. The top plot is the regression plot and we can see what looks like a quadratic relationship instead of a linear one. The residual plot, the plot in the lower left corner of Figure \@ref(fig:assump271-fig), also exhibits this non-linear trend.     
+1. **Fit**.  The data should show a linear trend. If there is a nonlinear trend, a transformation of the explanatory variable or a more advanced regression method should be applied. When looking at the residual plot, if the trend is linear, we should see a spread of points that are flat. The left column of Figure \@ref(fig:assump271-fig) is an example of a nonlinear relationship. The top plot is the regression plot and we can see what looks like a quadratic relationship instead of a linear one. The residual plot, the plot in the lower left corner of Figure \@ref(fig:assump271-fig), also exhibits this non-linear trend.     
 2. **Nearly normal residuals**.  Generally the residuals must be nearly normal to use a $t$ or $F$ for inference. When this assumption is found to be unreasonable, it is usually because of **outliers** or concerns about **influential** points. An example of non-normal residuals is shown in the second column of Figure \@ref(fig:assump271-fig). A **qq** plot is also useful as a diagnostic tool as we have seen. We can still use the **bootstrap** as an inference tool if the normality assumption is unreasonable.    
 3. **Constant variability**.  The variability of points around the least squares line remains roughly constant. An example of non-constant variability is shown in the third panel of Figure \@ref(fig:assump271-fig).  The constant variability assumption is needed for the $t$ and $F$ distributions. It is not required for the bootstrap method.  
 4. **Independent observations**.  Be cautious about applying regression to data collected sequentially in what is called a **time series**. Such data may have an underlying structure that should be considered in a model and analysis. An example of a time series where independence is violated is shown in the fourth panel of Figure \@ref(fig:assump271-fig). More advanced methods are required for time series data even including using a bootstrap. 
 
-In a future lesson we will explore more regression diagnostics.
+In a later chapter we will explore more regression diagnostics.
 
 
 
@@ -81,7 +81,7 @@ $$
 \hat{Y}_* \sim N\left(\beta_0+\beta_1x_*, \sigma\sqrt{{1\over n}+{(x_*-\bar{x})^2\over \sum (x_i-\bar{x})^2}}\right)
 $$
 
-Notice that all three of these are unbiased, the expected value is equal to the parameter being estimated. Looking at the variance of the slope estimate we can see that is a function of the underlying unexplained variance, $\sigma^2$ and the data. The denominator is increased by having a larger spread in the explanatory variable. The slope of the estimated line is more stable, less variable, if the independent variable has high variance. That is interesting. If you are designing an experiment, this gives you insight in how to select the range of values for your explanatory variable. Math 359 is a course that discusses this point in detail. 
+Notice that all three of these are unbiased, the expected value is equal to the parameter being estimated. Looking at the variance of the slope estimate we can see that is a function of the underlying unexplained variance, $\sigma^2$ and the data. The denominator is increased by having a larger spread in the explanatory variable. The slope of the estimated line is more stable, less variable, if the independent variable has high variance. That is interesting. If you are designing an experiment, this gives you insight in how to select the range of values for your explanatory variable.   
 
 ## Inference
 
@@ -136,7 +136,7 @@ Similarly, we can use the distribution of $\hat \beta_0$ to build a confidence i
 
 ### Starbucks
 
-That was a great deal of mathematics and theory. Let's put it to use on the example from Starbucks. In the file `data/starbucks.csv` we have nutritional facts for several Starbucks' food items. We used this data in the homework for last lesson. We will use this data again to illustrate the ideas we have introduced in this section.  
+That was a great deal of mathematics and theory. Let's put it to use on the example from Starbucks. In the file `data/starbucks.csv` we have nutritional facts for several Starbucks' food items. We used this data in the homework for last chapter.  We will use this data again to illustrate the ideas we have introduced in this section.  
 
 Read in the data.
 
@@ -312,7 +312,7 @@ We reject $H_0$ in favor of $H_A$ because the data provide strong evidence that 
 
 The computer software uses zero in the null hypothesis, if you wanted to test another value of the slope then you would have to do the calculations step by step like we did above.
 
-By the way, this was not a `tidy` way to do the calculation. The `broom` package makes it easier to use `tidy` ideas on the regression model. We used these ideas in the last lesson.
+By the way, this was not a `tidy` way to do the calculation. The **broom** package makes it easier to use `tidy` ideas on the regression model. We used these ideas in the last chapter.  
 
 As a reminder:
 
@@ -462,11 +462,11 @@ We are 90\% confident the next Starbucks' menu item that has 70 grams of carbs w
 
 ### Summary 
 
-This lesson has introduced the process of inference for a simple linear regression model. We tested the slope estimate as well as generated confidence intervals for average and individual predicted values.  
+This chapter has introduced the process of inference for a simple linear regression model. We tested the slope estimate as well as generated confidence intervals for average and individual predicted values.  
 
 ## Homework Problems
 
-1. In the lesson notes, we noticed that the 95% prediction interval was much wider than the 95% confidence interval. In words, explain why this is. 
+1. In the chapter reading, we noticed that the 95% prediction interval was much wider than the 95% confidence interval. In words, explain why this is. 
 
 2. Beer and blood alcohol content 
 
