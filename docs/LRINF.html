@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-11-09" />
+<meta name="date" content="2021-11-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1060,6 +1060,13 @@ Figure 27.3: Confidence and predictions bands for linear regression model of cal
 <pre><code>##        fit      lwr      upr
 ## 1 403.8455 379.7027 427.9883
 ## 2 446.8163 414.3687 479.2640</code></pre>
+<p>Or using the <strong>broom</strong> package.</p>
+<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb855-1"><a href="LRINF.html#cb855-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(star_mod,<span class="at">newdata=</span>new_carb,<span class="at">interval=</span><span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 4
+##    carb .fitted .lower .upper
+##   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1    60    404.   380.   428.
+## 2    70    447.   414.   479.</code></pre>
 <p>As an example, we are 95% confident that the average calories in a Starbucks’ menu item with 60 grams of carbs is between 379.7 and 428.0.</p>
 <blockquote>
 <p><strong>Exercise</strong>:
@@ -1067,8 +1074,8 @@ Give the 95% confidence interval of average calories for 70 grams of carbohydrat
 </blockquote>
 <p>We are 95% confident that the average calories in a Starbucks’ menu item with 70 grams carbs is between 414.4 and 479.3.</p>
 <p>For the prediction interval, we simply need to change the option in <code>interval</code>:</p>
-<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb855-1"><a href="LRINF.html#cb855-1" aria-hidden="true" tabindex="-1"></a>new_carb <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">carb=</span><span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">70</span>))</span>
-<span id="cb855-2"><a href="LRINF.html#cb855-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(star_mod, <span class="at">newdata =</span> new_carb, <span class="at">interval =</span> <span class="st">&#39;prediction&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb857-1"><a href="LRINF.html#cb857-1" aria-hidden="true" tabindex="-1"></a>new_carb <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">carb=</span><span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">70</span>))</span>
+<span id="cb857-2"><a href="LRINF.html#cb857-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(star_mod, <span class="at">newdata =</span> new_carb, <span class="at">interval =</span> <span class="st">&#39;prediction&#39;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 403.8455 246.0862 561.6048
 ## 2 446.8163 287.5744 606.0582</code></pre>
@@ -1078,7 +1085,7 @@ Give the 95% confidence interval of average calories for 70 grams of carbohydrat
 Give the 90% prediction interval of average calories for 70 grams of carbohydrates.</p>
 </blockquote>
 <p>We changed the confidence level. Since we are less confident, the interval will be narrower than the 95% prediction interval we just calculated.</p>
-<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb857-1"><a href="LRINF.html#cb857-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(star_mod, <span class="at">newdata =</span> new_carb, <span class="at">level=</span><span class="fl">0.9</span>, <span class="at">interval =</span> <span class="st">&#39;prediction&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb859-1"><a href="LRINF.html#cb859-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(star_mod, <span class="at">newdata =</span> new_carb, <span class="at">level=</span><span class="fl">0.9</span>, <span class="at">interval =</span> <span class="st">&#39;prediction&#39;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 403.8455 271.9565 535.7345
 ## 2 446.8163 313.6879 579.9448</code></pre>

@@ -529,6 +529,13 @@ new_carb <- data.frame(carb=c(60,70))
 predict(star_mod, newdata = new_carb, interval = 'confidence')
 ```
 
+Or using the **broom** package.
+
+```{r}
+augment(star_mod,newdata=new_carb,interval="confidence")
+```
+
+
 As an example, we are 95\% confident that the average calories in a Starbucks' menu item with 60 grams of carbs is between 379.7 and 428.0.
 
 >**Exercise**:

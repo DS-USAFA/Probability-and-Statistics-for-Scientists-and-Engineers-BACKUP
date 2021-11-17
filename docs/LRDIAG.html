@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-11-09" />
+<meta name="date" content="2021-11-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -796,16 +796,16 @@ div.csl-indent {
 </div>
 <div id="introduction-4" class="section level2" number="28.2">
 <h2><span class="header-section-number">28.2</span> Introduction</h2>
-<p>Over the last two chapters, we have detailed simple linear regression. First, we described the model and its underlying assumptions. Next, we obtained parameter estimates using the method of least squares. Finally, we obtained the distributions of parameter estimates and used that information to conduct inference on parameters and predictions. Implementation was relatively straightforward; once we obtained the expressions of interest, we used <code>R</code> to find parameters estimates, interval estimates, etc. In this lesson we will explore more tools to assess the quality of our simple linear regression model. Some these will generalize when we move to multiple predictors.</p>
+<p>Over the last two chapters, we have detailed simple linear regression. First, we described the model and its underlying assumptions. Next, we obtained parameter estimates using the method of least squares. Finally, we obtained the distributions of parameter estimates and used that information to conduct inference on parameters and predictions. Implementation was relatively straightforward; once we obtained the expressions of interest, we used <code>R</code> to find parameters estimates, interval estimates, etc. In this chapter we will explore more tools to assess the quality of our simple linear regression model. Some of these tools will generalize when we move to multiple predictors.</p>
 </div>
 <div id="assessing-our-model---understanding-the-output-from-lm" class="section level2" number="28.3">
 <h2><span class="header-section-number">28.3</span> Assessing our model - understanding the output from <code>lm</code></h2>
 <p>There is more that we can do with the output from the <code>lm()</code> function than just estimating parameters and predicting responses. There are metrics that allow us to assess the fit of our model. To explore some of these ideas let’s use the Starbucks example again.</p>
 <p>First load the data:</p>
-<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb859-1"><a href="LRDIAG.html#cb859-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/starbucks.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb861-1"><a href="LRDIAG.html#cb861-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/starbucks.csv&quot;</span>)</span></code></pre></div>
 <p>Next build and summarize the model:</p>
-<div class="sourceCode" id="cb860"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb860-1"><a href="LRDIAG.html#cb860-1" aria-hidden="true" tabindex="-1"></a>star_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(calories<span class="sc">~</span>carb,<span class="at">data=</span>starbucks)</span></code></pre></div>
-<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb861-1"><a href="LRDIAG.html#cb861-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(star_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb862"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb862-1"><a href="LRDIAG.html#cb862-1" aria-hidden="true" tabindex="-1"></a>star_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(calories<span class="sc">~</span>carb,<span class="at">data=</span>starbucks)</span></code></pre></div>
+<div class="sourceCode" id="cb863"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb863-1"><a href="LRDIAG.html#cb863-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(star_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = calories ~ carb, data = starbucks)
@@ -824,34 +824,34 @@ div.csl-indent {
 ## Residual standard error: 78.26 on 75 degrees of freedom
 ## Multiple R-squared:  0.4556, Adjusted R-squared:  0.4484 
 ## F-statistic: 62.77 on 1 and 75 DF,  p-value: 1.673e-11</code></pre>
-<p>You may have noticed some other information that appeared in the summary of our model. We discussed the output in a previous lesson but let’s go a little more in depth.</p>
+<p>You may have noticed some other information that appeared in the summary of our model. We discussed the output in a previous chapter but let’s go a little more in depth.</p>
 <div id="residual-standard-error" class="section level3" number="28.3.1">
 <h3><span class="header-section-number">28.3.1</span> Residual Standard Error</h3>
-<p>The “residual standard error” is the estimate of <span class="math inline">\(\sigma\)</span>, the unexplained variance in our response. In our example, this turned out to be 78.26. If the assumption of normality is valid, we would expect the majority, 68%, of the observed values at a given input to be within <span class="math inline">\(\pm 78.26\)</span> of the mean value.</p>
+<p>The “residual standard error” is the estimate of <span class="math inline">\(\sigma\)</span>, the unexplained variance in our response. In our example, this turned out to be 78.26. If the assumptions of normality and constant variance are valid, we would expect the majority, 68%, of the observed values at a given input to be within <span class="math inline">\(\pm 78.26\)</span> of the mean value.</p>
 <p>If we want to extract just this value from the model object, first recognize that <code>summary(my.model)</code> is a list with several components:</p>
-<div class="sourceCode" id="cb863"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb863-1"><a href="LRDIAG.html#cb863-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">summary</span>(star_mod))</span></code></pre></div>
+<div class="sourceCode" id="cb865"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb865-1"><a href="LRDIAG.html#cb865-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">summary</span>(star_mod))</span></code></pre></div>
 <pre><code>##  [1] &quot;call&quot;          &quot;terms&quot;         &quot;residuals&quot;     &quot;coefficients&quot; 
 ##  [5] &quot;aliased&quot;       &quot;sigma&quot;         &quot;df&quot;            &quot;r.squared&quot;    
 ##  [9] &quot;adj.r.squared&quot; &quot;fstatistic&quot;    &quot;cov.unscaled&quot;</code></pre>
 <p>As expected, the <code>sigma</code> component shows the estimated value of <span class="math inline">\(\sigma\)</span>.</p>
-<div class="sourceCode" id="cb865"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb865-1"><a href="LRDIAG.html#cb865-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(star_mod)<span class="sc">$</span>sigma</span></code></pre></div>
+<div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb867-1"><a href="LRDIAG.html#cb867-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(star_mod)<span class="sc">$</span>sigma</span></code></pre></div>
 <pre><code>## [1] 78.25956</code></pre>
 <p>Again, this value is smaller the closer the points are to the regression fit. It is a measure of unexplained variance in the response variable.</p>
 </div>
 <div id="r-squared" class="section level3" number="28.3.2">
 <h3><span class="header-section-number">28.3.2</span> R-squared</h3>
-<p>Another quantity that appears is <span class="math inline">\(R\)</span>-squared. <span class="math inline">\(R\)</span>-squared is one measure of goodness of fit. Essentially, <span class="math inline">\(R\)</span>-squared is a ratio of variance (in the response) explained by the model to overall variance of the response. It helps to describe the decomposition of variance:</p>
+<p>Another quantity that appears is <span class="math inline">\(R\)</span>-squared, also know as the coefficient of determination. <span class="math inline">\(R\)</span>-squared is one measure of goodness of fit. Essentially <span class="math inline">\(R\)</span>-squared is a ratio of variance (in the response) explained by the model to overall variance of the response. It helps to describe the decomposition of variance:</p>
 <p><span class="math display">\[
 \underbrace{\sum_{i=1}^n (y_i-\bar{y})^2}_{SS_{\text{Total}}} = \underbrace{\sum_{i=1}^n (\hat{y}_i-\bar y)^2}_{SS_{\text{Regression}}}+\underbrace{\sum_{i=1}^n(y_i-\hat{y}_i)^2}_{SS_{\text{Error}}}
 \]</span></p>
-<p>In other words, the overall variation in <span class="math inline">\(y\)</span> can be separated into two parts: variation due to the linear relationship between <span class="math inline">\(y\)</span> and the predictor variable(s), called <span class="math inline">\(SS_\text{Regression}\)</span>, and residual variation (due to random scatter or perhaps a poorly chosen model), called <span class="math inline">\(SS_\text{Error}\)</span>.</p>
+<p>In other words, the overall variation in <span class="math inline">\(y\)</span> can be separated into two parts: variation due to the linear relationship between <span class="math inline">\(y\)</span> and the predictor variable(s), called <span class="math inline">\(SS_\text{Regression}\)</span>, and residual variation (due to random scatter or perhaps a poorly chosen model), called <span class="math inline">\(SS_\text{Error}\)</span>. Note: <span class="math inline">\(SS_\text{Error}\)</span> is used to estimate residual standard error in the previous section.<a href="#fn93" class="footnote-ref" id="fnref93"><sup>93</sup></a></p>
 <p><span class="math inline">\(R\)</span>-squared simply measures the ratio between <span class="math inline">\(SS_\text{Regression}\)</span> and <span class="math inline">\(SS_\text{Total}\)</span>. A common definition of <span class="math inline">\(R\)</span>-squared is the proportion of overall variation in the response that is explained by the linear model. <span class="math inline">\(R\)</span>-squared can be between 0 and 1. Values of <span class="math inline">\(R\)</span>-squared close to 1 indicate a tight fit (little scatter) around the estimated regression line. Value close to 0 indicate the opposite (large remaining scatter).</p>
 <p>We can obtain <span class="math inline">\(R\)</span>-squared “by hand” or by using the output of the <code>lm()</code> function:</p>
-<div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb867-1"><a href="LRDIAG.html#cb867-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(star_mod)<span class="sc">$</span>r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb869-1"><a href="LRDIAG.html#cb869-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(star_mod)<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.4556237</code></pre>
-<p>For simple linear regression, <span class="math inline">\(R\)</span>-squared is related to <strong>correlation</strong>. We can compute the correlation using a formula, just as we did with the sample mean and standard deviation. However, this formula is rather complex,<a href="#fn93" class="footnote-ref" id="fnref93"><sup>93</sup></a> so we let <code>R</code> do the heavy lifting for us.</p>
-<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb869-1"><a href="LRDIAG.html#cb869-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="sc">%&gt;%</span></span>
-<span id="cb869-2"><a href="LRDIAG.html#cb869-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">correlation=</span><span class="fu">cor</span>(carb,calories),<span class="at">correlation_squared=</span>correlation<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<p>For simple linear regression, <span class="math inline">\(R\)</span>-squared is related to <strong>correlation</strong>. We can compute the correlation using a formula, just as we did with the sample mean and standard deviation. However, this formula is rather complex,<a href="#fn94" class="footnote-ref" id="fnref94"><sup>94</sup></a> so we let <code>R</code> do the heavy lifting for us.</p>
+<div class="sourceCode" id="cb871"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb871-1"><a href="LRDIAG.html#cb871-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="sc">%&gt;%</span></span>
+<span id="cb871-2"><a href="LRDIAG.html#cb871-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">correlation=</span><span class="fu">cor</span>(carb,calories),<span class="at">correlation_squared=</span>correlation<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
 ##   correlation correlation_squared
 ##         &lt;dbl&gt;               &lt;dbl&gt;
@@ -865,9 +865,9 @@ Figure 28.1: Scatterplots demonstrating different correlations.
 </div>
 <blockquote>
 <p><strong>Exercise</strong><br />
-If a linear model has a very strong negative relationship with a correlation of -0.97, how much of the variation in the response is explained by the explanatory variable?<a href="#fn94" class="footnote-ref" id="fnref94"><sup>94</sup></a></p>
+If a linear model has a very strong negative relationship with a correlation of -0.97, how much of the variation in the response is explained by the explanatory variable?<a href="#fn95" class="footnote-ref" id="fnref95"><sup>95</sup></a></p>
 </blockquote>
-<p>Note that one of the components of <code>summary(lm())</code> function is <code>adj.r.squared</code>. This is a value of <span class="math inline">\(R\)</span>-squared adjusted for number of predictors. We’ll cover this concept more closely in Math 378.</p>
+<p>Note that one of the components of <code>summary(lm())</code> function is <code>adj.r.squared</code>. This is a value of <span class="math inline">\(R\)</span>-squared adjusted for number of predictors. This idea is covered more in depth in a machine learning course.</p>
 </div>
 <div id="f-statistic" class="section level3" number="28.3.3">
 <h3><span class="header-section-number">28.3.3</span> F-Statistic</h3>
@@ -881,14 +881,14 @@ If a linear model has a very strong negative relationship with a correlation of 
 \]</span></p>
 <p>Under the null hypothesis, the <span class="math inline">\(F\)</span>-statistic follows the <span class="math inline">\(F\)</span> distribution with parameters <span class="math inline">\(p\)</span> and <span class="math inline">\(n-p-1\)</span>.</p>
 <p>In our example, the <span class="math inline">\(F\)</span>-statistic is redundant since there is only one predictor. In fact, the <span class="math inline">\(p\)</span>-value associated with the <span class="math inline">\(F\)</span>-statistic is equal to the <span class="math inline">\(p\)</span>-value associated with the estimate of <span class="math inline">\(\beta_1\)</span>. However, when we move to cases with more predictor variables, we may be interested in the <span class="math inline">\(F\)</span>-statistic.</p>
-<div class="sourceCode" id="cb871"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb871-1"><a href="LRDIAG.html#cb871-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(star_mod)<span class="sc">$</span>fstatistic</span></code></pre></div>
+<div class="sourceCode" id="cb873"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb873-1"><a href="LRDIAG.html#cb873-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(star_mod)<span class="sc">$</span>fstatistic</span></code></pre></div>
 <pre><code>##    value    numdf    dendf 
 ## 62.77234  1.00000 75.00000</code></pre>
 </div>
 </div>
 <div id="regression-diagnostics" class="section level2" number="28.4">
 <h2><span class="header-section-number">28.4</span> Regression diagnostics</h2>
-<p>Finally, we can use the “lm” object to check the assumptions of the model. We have discussed the assumptions before but in this lesson we will use <code>R</code> to generate visual checks. There are also numeric diagnostic measures.</p>
+<p>Finally, we can use the <code>lm</code> object to check the assumptions of the model. We have discussed the assumptions before but in this chapter we will use <code>R</code> to generate visual checks. There are also numeric diagnostic measures.</p>
 <p>There are several potential problems with a regression model:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Assumptions about the error structure</strong>. We assume:<br />
@@ -904,7 +904,7 @@ If a linear model has a very strong negative relationship with a correlation of 
 <ol start="2" style="list-style-type: decimal">
 <li><p><strong>Assumptions about the fit</strong>. We assume that fit of the model is correct. For a simple linear regression, this means that fit specified by the formula in <code>lm</code> is correct.</p></li>
 <li><p><strong>Problems with outliers and leverage points</strong>. In this case a small number of points in the data could have an unusually large impact on the parameter estimates. These points may give a mistaken sense that our model has a great fit or conversely that there is not relationship between the variables.</p></li>
-<li><p><strong>Missing predictors</strong>. We can potentially improve the fit and predictive performance of our model by including other predictors. We will spend one lesson on this topic, but Math 378 will be devoted extensively to building these more complex models. In the case of multivariate linear regression, many of the diagnostic tools discussed next will also be applicable.</p></li>
+<li><p><strong>Missing predictors</strong>. We can potentially improve the fit and predictive performance of our model by including other predictors. We will spend one chapter on this topic, but machine learning courses devote more time to discussing how to build these more complex models. In the case of multivariate linear regression, many of the diagnostic tools discussed next will also be applicable.</p></li>
 </ol>
 <div id="residual-plots-1" class="section level3" number="28.4.1">
 <h3><span class="header-section-number">28.4.1</span> Residual plots</h3>
@@ -915,14 +915,16 @@ If a linear model has a very strong negative relationship with a correlation of 
 </li>
 <li>a Scale-Location plot of <span class="math inline">\(\sqrt(| \text{residuals} |)\)</span> against fitted values,<br />
 </li>
-<li>a Normal Q-Q plot, a plot of Cook’s distances versus row labels,<br />
+<li>a Normal Q-Q plot,<br />
+</li>
+<li>a plot of Cook’s distances versus row labels,<br />
 </li>
 <li>a plot of residuals against leverages,<br />
 </li>
 <li>and a plot of Cook’s distances against leverage/(1-leverage).</li>
 </ul>
-<p>By default, the first three and 5 are provided by applying <code>plot()</code> to an “lm” object. To obtain all four at once, simply use <code>plot(my.model)</code>, Figure <a href="LRDIAG.html#fig:diag281-fig">28.2</a>.</p>
-<div class="sourceCode" id="cb873"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb873-1"><a href="LRDIAG.html#cb873-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod)</span></code></pre></div>
+<p>By default, the first three and the fifth are provided by applying <code>plot()</code> to an “lm” object. To obtain all four at once, simply use <code>plot(my.model)</code> at the command line, Figure <a href="LRDIAG.html#fig:diag281-fig">28.2</a>.</p>
+<div class="sourceCode" id="cb875"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb875-1"><a href="LRDIAG.html#cb875-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:diag281-fig"></span>
 <img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-1.png" alt="Regression diagnostic plots." width="50%" /><img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-2.png" alt="Regression diagnostic plots." width="50%" /><img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-3.png" alt="Regression diagnostic plots." width="50%" /><img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-4.png" alt="Regression diagnostic plots." width="50%" />
 <p class="caption">
@@ -933,28 +935,28 @@ Figure 28.2: Regression diagnostic plots.
 </div>
 <div id="residuals-vs-fitted" class="section level3" number="28.4.2">
 <h3><span class="header-section-number">28.4.2</span> Residuals vs Fitted</h3>
-<p>By providing the <code>which</code> option, we can select the plot we want, Figure <a href="LRDIAG.html#fig:diag282-fig">28.3</a> is the first diagnostic plot.</p>
-<div class="sourceCode" id="cb874"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb874-1"><a href="LRDIAG.html#cb874-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod,<span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>By providing a number in the <code>which</code> option, we can select the plot we want, Figure <a href="LRDIAG.html#fig:diag282-fig">28.3</a> is the first diagnostic plot.</p>
+<div class="sourceCode" id="cb876"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb876-1"><a href="LRDIAG.html#cb876-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod,<span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:diag282-fig"></span>
 <img src="28-Regression-Diagnostics_files/figure-html/diag282-fig-1.png" alt="A diagnostic residual plot." width="672" />
 <p class="caption">
 Figure 28.3: A diagnostic residual plot.
 </p>
 </div>
-<p>This plot assesses linearity of the model and homoscedasticity (constant variance). The red line is a smoothed estimate of the fitted values versus the residuals. Ideally, the red line should be centered around the dashed horizontal line. This would indicate that a linear fit is appropriate. Furthermore, the scatter around the dashed line should be relatively constant across the plot, homoscedasticity. In this case, it looks like there is some minor concern over linearity and non-constant error variance. We noted this earlier with the cluster of points in the lower left hand corner of the scatterplot.</p>
+<p>This plot assesses linearity of the model and homoscedasticity (constant variance). The red line is a smoothed estimate of the fitted values versus the residuals. Ideally, the red line should coincide with the dashed horizontal line and the residuals should be centered around this dashed line. This would indicate that a linear fit is appropriate. Furthermore, the scatter around the dashed line should be relatively constant across the plot, homoscedasticity. In this case, it looks like there is some minor concern over linearity and non-constant error variance. We noted this earlier with the cluster of points in the lower left hand corner of the scatterplot.</p>
 <p>Note: the points that are labeled are points with a high residual value. They are extreme. We will discuss outliers and leverage points shortly.</p>
 </div>
 <div id="normal-q-q-plot" class="section level3" number="28.4.3">
 <h3><span class="header-section-number">28.4.3</span> Normal Q-Q Plot</h3>
-<p>As it’s name suggests, this plot evaluates the normality of the residuals. We have seen and used this plot several times in our course of study this semester. Remember if the number of data points is small, this plot has a greatly reduced effectiveness.</p>
-<div class="sourceCode" id="cb875"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb875-1"><a href="LRDIAG.html#cb875-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod,<span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p>As it’s name suggests, this plot evaluates the normality of the residuals. We have seen and used this plot several times in this book. Remember if the number of data points is small, this plot has a greatly reduced effectiveness.</p>
+<div class="sourceCode" id="cb877"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb877-1"><a href="LRDIAG.html#cb877-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod,<span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:diag283-fig"></span>
 <img src="28-Regression-Diagnostics_files/figure-html/diag283-fig-1.png" alt="The quantile-quantile plot for checking normality." width="672" />
 <p class="caption">
 Figure 28.4: The quantile-quantile plot for checking normality.
 </p>
 </div>
-<p>Along the <span class="math inline">\(y\)</span>-axis are the actual standardized residuals. Along the <span class="math inline">\(x\)</span>-axis is where those points should be if the residuals were actually normally distributed. Ideally, the dots should fall along the diagonal dashed line. In Figure <a href="LRDIAG.html#fig:diag283-fig">28.4</a>, it appears there is some skewness to the right. We can tell this because for the smaller residuals, they don’t increase as they should to match a normal distribution, the points are above the line. This is concerning.</p>
+<p>Along the <span class="math inline">\(y\)</span>-axis are the actual standardized residuals. Along the <span class="math inline">\(x\)</span>-axis is where those points should be if the residuals were actually normally distributed. Ideally, the dots should fall along the diagonal dashed line. In Figure <a href="LRDIAG.html#fig:diag283-fig">28.4</a>, it appears there is some skewness to the right or just longer tails than a normal distribution. We can tell this because for the smaller residuals, they don’t increase as they should to match a normal distribution, the points are above the line. This is concerning.</p>
 </div>
 <div id="scale-location-plot" class="section level3" number="28.4.4">
 <h3><span class="header-section-number">28.4.4</span> Scale-Location Plot</h3>
@@ -963,7 +965,7 @@ Figure 28.4: The quantile-quantile plot for checking normality.
 e^{&#39;}_i=\frac{e_i}{s}
 \]</span></p>
 <p>This plot illustrates the spread of the residuals over the entire range of the predictor. We are using fitted values because this will generalize well if we have more than one predictor.</p>
-<div class="sourceCode" id="cb876"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb876-1"><a href="LRDIAG.html#cb876-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod,<span class="at">which=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb878"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb878-1"><a href="LRDIAG.html#cb878-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod,<span class="at">which=</span><span class="dv">3</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:diag284-fig"></span>
 <img src="28-Regression-Diagnostics_files/figure-html/diag284-fig-1.png" alt="A scale-location diagnostic residual plot." width="672" />
 <p class="caption">
@@ -975,10 +977,11 @@ Figure 28.5: A scale-location diagnostic residual plot.
 </div>
 <div id="outliers-and-leverage" class="section level2" number="28.5">
 <h2><span class="header-section-number">28.5</span> Outliers and leverage</h2>
-<p>Before discussing the last plot, we need to spend some time discussing outliers. Outliers in regression are observations that fall far from the ``cloud’’ of points. These points are especially important because they can have a strong influence on the least squares line.</p>
+<p>Before discussing the last plot, we need to spend some time discussing outliers. Outliers in regression are observations that fall far from the “cloud” of points. These points are especially important because they can have a strong influence on the least squares line.</p>
 <p>In regression, there are two types of outliers:<br />
 - An outlier in the response variable is one that is not predicted well by the model. This could either be a problem with the data or the model. The residuals for this outlier will be large in absolute value.<br />
-- An outlier in the explanatory variable. These are typically called <strong>leverage points</strong> because they can have a undue impact on the parameter estimates.</p>
+- An outlier in the explanatory variable. These are typically called <strong>leverage points</strong> because they can have a undue impact on the parameter estimates. With multiple predictors, we can have a leverage point when we have an unusual combination of the predictors.</p>
+<p>An outlier is a <strong>influential point</strong> if it drastically alters the regression output. For example by causing large changes in the estimated slope or hypothesis p-values, if it is omitted.</p>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
 There are six plots shown in Figure <a href="LRDIAG.html#fig:resid282-fig">28.6</a> along with the least squares line and residual plots. For each scatterplot and residual plot pair, identify any obvious outliers and note how they influence the least squares line. Recall that an outlier is any point that doesn’t appear to belong with the vast majority of the other points.</p>
@@ -994,25 +997,25 @@ Figure 28.6: Examples of outliers and leverage points.
 </li>
 <li>There is one outlier on the right, though it is quite close to the least squares line, which suggests it wasn’t very influential although it is a leverage point.<br />
 </li>
-<li>There is one point far away from the cloud, and this leverage point appears to pull the least squares line up on the right; examine how the line around the primary cloud doesn’t appear to fit very well. This point has a higher influence on the estimated slope.<br />
+<li>There is one point far away from the cloud, and this leverage point appears to pull the least squares line up on the right; examine how the line around the primary cloud doesn’t appear to fit very well. This point has a high influence on the estimated slope.<br />
 </li>
 <li>There is a primary cloud and then a small secondary cloud of four outliers. The secondary cloud appears to be influencing the line somewhat strongly, making the least square line fit poorly almost everywhere. There might be an interesting explanation for the dual clouds, which is something that could be investigated.<br />
 </li>
 <li>There is no obvious trend in the main cloud of points and the outlier on the right appears to largely control the slope of the least squares line. This point is an outlier in both the response and predictor. It is a highly influential point.<br />
 </li>
-<li>There is one outlier in both the response and predictor far from the cloud, however, it falls quite close to the least squares line and does not appear to be very influential.</li>
+<li>There is one outlier in both the response and predictor, thus a leverage point, far from the cloud, however, it falls quite close to the least squares line and does not appear to be very influential.</li>
 </ol>
 <p>Examining the residual plots in Figure <a href="LRDIAG.html#fig:resid282-fig">28.6</a>, you will probably find that there is some trend in the main clouds of (3) and (4). In these cases, the outliers influenced the slope of the least squares lines. In (5), data with no clear trend were assigned a line with a large trend simply due to one outlier!</p>
 <blockquote>
 <p>Leverage<br />
 Points that fall horizontally away from the center of the cloud tend to pull harder on the line, so we call them points with <strong>high leverage</strong>.</p>
 </blockquote>
-<p>Points that fall horizontally far from the line are points of high leverage; these points can strongly influence the slope of the least squares line. If one of these high leverage points does appear to actually invoke its influence on the slope of the line – as in cases (3), (4), and (5) – then we call it an <strong>influential point</strong>. Usually we can say a point is influential if, had we fitted the line without it, the influential point would have been unusually far from the least squares line.</p>
+<p>Points that fall horizontally far from the line are points of high leverage; these points can strongly influence the slope of the least squares line. If one of these high leverage points does appear to actually invoke its influence on the slope of the line – as in cases (3), (4), and (5) – then we call it an <strong>influential point</strong>. Usually we can say a point is influential if, had we fitted the line without it, the influential point would have been unusually far from the least squares line. Leverage can be calculated from what is called the <strong>hat matrix</strong>, the actual mathematics is beyond the scope of this book.</p>
 <p>A point can be an outlier but not a leverage point as we have already discussed. It is tempting to remove outliers from your data set. Don’t do this without a very good reason. Models that ignore exceptional (and interesting) cases often perform poorly. For instance, if a financial firm ignored the largest market swings – the ``outliers’’ – they would soon go bankrupt by making poorly thought-out investments.</p>
 <div id="residuals-vs-leverage-plot" class="section level3" number="28.5.1">
 <h3><span class="header-section-number">28.5.1</span> Residuals vs Leverage Plot</h3>
 <p>The residuals vs leverage plot is a good way to identify influential observations. Sometimes, influential observations are representative of the population, but they could also indicate an error in recording data, or an otherwise unrepresentative outlier. It could be worth looking into these cases.</p>
-<div class="sourceCode" id="cb877"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb877-1"><a href="LRDIAG.html#cb877-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod,<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb879"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb879-1"><a href="LRDIAG.html#cb879-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod,<span class="dv">5</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:diag286-fig"></span>
 <img src="28-Regression-Diagnostics_files/figure-html/diag286-fig-1.png" alt="Diagnostic plots for Starbucks regression model." width="672" />
 <p class="caption">
@@ -1023,7 +1026,7 @@ Figure 28.7: Diagnostic plots for Starbucks regression model.
 </div>
 <div id="what-if-our-assumptions-are-violated" class="section level3" number="28.5.2">
 <h3><span class="header-section-number">28.5.2</span> What If Our Assumptions Are Violated</h3>
-<p>If the assumptions of the model are violated and/or we have influential points, a linear regression model with normality assumptions is not appropriate. Sometimes it is appropriate to transform the data (either response or predictor), so that the assumptions are met on the transformed data. Other times, it is appropriate to explore other models. There are entire courses on regression where blocks of material are devoted to diagnostics and transformations to reduce the impact of violations of assumptions. We will not go into these methods in this class. Instead, when confronted with clear violated assumptions, we will use resampling as a possible solution. We will learn about this in the next lesson because it does not assume normality in the residuals. This is a limited solution, but as this is an introductory class, this is an excellent first step.</p>
+<p>If the assumptions of the model are violated and/or we have influential points, a linear regression model with normality assumptions is not appropriate. Sometimes it is appropriate to transform the data (either response or predictor), so that the assumptions are met on the transformed data. Other times, it is appropriate to explore other models. There are entire courses on regression where blocks of material are devoted to diagnostics and transformations to reduce the impact of violations of assumptions. We will not go into these methods in this book. Instead, when confronted with clear violated assumptions, we will use resampling as a possible solution. We will learn about this in the next chapter because it does not assume normality in the residuals. This is a limited solution, but as this is an introductory text, this is an excellent first step.</p>
 </div>
 </div>
 <div id="homework-problems-27" class="section level2" number="28.6">
@@ -1068,12 +1071,13 @@ Figure 28.9: Homework problem 3.
 <div class="footnotes">
 <hr />
 <ol start="93">
-<li id="fn93"><p>Formally, we can compute the correlation for observations <span class="math inline">\((x_1, y_1)\)</span>, <span class="math inline">\((x_2, y_2)\)</span>, …, <span class="math inline">\((x_n, y_n)\)</span> using the formula
+<li id="fn93"><p><span class="math inline">\(\hat{\sigma}=\sqrt\frac{\sum_{i=1}^n(y_i-\hat{y}_i)^2}{\text{degrees of freedom}}\)</span><a href="LRDIAG.html#fnref93" class="footnote-back">↩︎</a></p></li>
+<li id="fn94"><p>Formally, we can compute the correlation for observations <span class="math inline">\((x_1, y_1)\)</span>, <span class="math inline">\((x_2, y_2)\)</span>, …, <span class="math inline">\((x_n, y_n)\)</span> using the formula
 <span class="math display">\[
 R = \frac{1}{n-1}\sum_{i=1}^{n} \frac{x_i-\bar{x}}{s_x}\frac{y_i-\bar{y}}{s_y}
 \]</span>
-where <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(\bar{y}\)</span>, <span class="math inline">\(s_x\)</span>, and <span class="math inline">\(s_y\)</span> are the sample means and standard deviations for each variable.<a href="LRDIAG.html#fnref93" class="footnote-back">↩︎</a></p></li>
-<li id="fn94"><p>About <span class="math inline">\(R^2 = (-0.97)^2 = 0.94\)</span> or 94% of the variation is explained by the linear model.<a href="LRDIAG.html#fnref94" class="footnote-back">↩︎</a></p></li>
+where <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(\bar{y}\)</span>, <span class="math inline">\(s_x\)</span>, and <span class="math inline">\(s_y\)</span> are the sample means and standard deviations for each variable.<a href="LRDIAG.html#fnref94" class="footnote-back">↩︎</a></p></li>
+<li id="fn95"><p>About <span class="math inline">\(R^2 = (-0.97)^2 = 0.94\)</span> or 94% of the variation is explained by the linear model.<a href="LRDIAG.html#fnref95" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

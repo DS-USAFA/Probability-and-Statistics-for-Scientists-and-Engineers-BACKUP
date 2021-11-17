@@ -420,6 +420,22 @@ predict(star_mod, newdata = new_carb, interval = 'confidence')
 ## 2 446.8163 414.3687 479.2640
 ```
 
+Or using the **broom** package.
+
+
+```r
+augment(star_mod,newdata=new_carb,interval="confidence")
+```
+
+```
+## # A tibble: 2 × 4
+##    carb .fitted .lower .upper
+##   <dbl>   <dbl>  <dbl>  <dbl>
+## 1    60    404.   380.   428.
+## 2    70    447.   414.   479.
+```
+
+
 As an example, we are 95\% confident that the average calories in a Starbucks' menu item with 60 grams of carbs is between 379.7 and 428.0.
 
 >**Exercise**:
