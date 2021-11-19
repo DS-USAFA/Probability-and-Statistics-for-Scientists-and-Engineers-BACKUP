@@ -149,6 +149,7 @@ fig:resid282-fig
 fig:diag286-fig
 fig:hw1
 fig:hw3
+fig:slope291-fig
 fig:hist291-fig
 fig:hist292-fig
 fig:infer291-fig
