@@ -10,7 +10,7 @@
 
 ## Introduction to multiple regression  
 
-The principles of simple linear regression lay the foundation for more sophisticated regression methods used in a wide range of challenging settings. In our last two lessons, we will explore multiple regression, which introduces the possibility of more than one predictor.
+The principles of simple linear regression lay the foundation for more sophisticated regression methods used in a wide range of challenging settings. In our last two chapters, we will explore multiple regression, which introduces the possibility of more than one predictor.
 
 ## Multiple regression  
 
@@ -18,7 +18,7 @@ Multiple regression extends simple two-variable regression to the case that stil
 
 To explore and explain these ideas, we will consider Ebay auctions of a video game called **Mario Kart** for the Nintendo Wii. The outcome variable of interest is the total price of an auction, which is the highest bid plus the shipping cost. We will try to determine how total price is related to each characteristic in an auction while simultaneously controlling for other variables. For instance, with all other characteristics held constant, are longer auctions associated with higher or lower prices? And, on average, how much more do buyers tend to pay for additional Wii wheels (plastic steering wheels that attach to the Wii controller) in auctions? Multiple regression will help us answer these and other questions.
 
-The data set is in the file `mariokart.csv` in the `data` folder. This data set includes results from 141 auctions.^[Diez DM, Barr CD, and \c{C}etinkaya-Rundel M. 2012. `openintro`: OpenIntro data sets and supplemental functions. http://cran.r-project.org/web/packages/openintro] Ten observations from this data set are shown in the `R` code below. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for Math 378.
+The data set is in the file `mariokart.csv` in the `data` folder. This data set includes results from 141 auctions.^[Diez DM, Barr CD, and \c{C}etinkaya-Rundel M. 2012. `openintro`: OpenIntro data sets and supplemental functions. http://cran.r-project.org/web/packages/openintro] Ten observations from this data set are shown in the `R` code below. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for advanced regression or machine learning courses.
 
 
 ```r
@@ -159,13 +159,14 @@ $$
 \hat{\text{totalprice}} = 53.771 - 6.623 \times \text{condused}
 $$  
 
-A scatterplot for price versus game condition is shown in Figure \@ref(fig:scat301-fig).
+A scatterplot for price versus game condition is shown in Figure \@ref(fig:scat301-fig). Since the predictor is binary, the scatterplot is not appropriate but we will look at it for reference.  
 
 
 ```r
 mariokart %>%
   gf_point(total_pr~cond) %>%
-  gf_theme(theme_classic())
+  gf_theme(theme_classic()) %>%
+  gf_labs(title="Ebay Auction Prices",x="Condition", y="Total Price")
 ```
 
 <div class="figure">
@@ -173,7 +174,7 @@ mariokart %>%
 <p class="caption">(\#fig:scat301-fig)Scatterplot of total price of Mario Kart on Ebay versus condition.</p>
 </div>
 
-That outlier probably is significantly impacting the relationship in the model. If we find the mean and median for the two groups, we will see this.
+The largest outlier probably is significantly impacting the relationship in the model. If we find the mean and median for the two groups, we will see this.
 
 
 ```r
@@ -190,7 +191,7 @@ mariokart %>%
 ## 2 used   47.1     32.7     42.8
 ```
 
-It appears that **used** items have a higher average price solely because of at least one of the outliers.
+It appears that **used** items have a right skewed distribution where their average is higher because of at least one of the outliers.
 
 There are at least two outliers in the plot. Let's gather more information about them.
 
@@ -209,7 +210,7 @@ mariokart %>%
 ## # … with 3 more variables: stock_photo <fct>, wheels <dbl>, title <chr>
 ```
 
-If you look at the variable `title` there were additional items in the sale for these two observations. Let's remove those two outliers and run the model again. Note that the reason we are removing them is not because they are annoying us and messing up our model. It is because we don't think they are representative of the population of interest. Figure \@ref(fig:scat302-fig) is a scatterplot of the data with the outliers dropped.
+If you look at the variable `title` there were additional items in the sale for these two observations. Let's remove those two outliers and run the model again. Note that the reason we are removing them is not because they are annoying us and messing up our model. It is because we don't think they are representative of the population of interest. Figure \@ref(fig:scat302-fig) is a boxplot of the data with the outliers dropped.
 
 
 ```r
@@ -243,8 +244,8 @@ mariokart_new %>%
 ```
 
 <div class="figure">
-<img src="30-Multiple-Regression_files/figure-html/scat302-fig-1.png" alt="Scatterplot of total price and condition with outliers removed." width="672" />
-<p class="caption">(\#fig:scat302-fig)Scatterplot of total price and condition with outliers removed.</p>
+<img src="30-Multiple-Regression_files/figure-html/scat302-fig-1.png" alt="Boxplot of total price and condition with outliers removed." width="672" />
+<p class="caption">(\#fig:scat302-fig)Boxplot of total price and condition with outliers removed.</p>
 </div>
 
 
@@ -286,12 +287,12 @@ $$
 \hat{total price} = 53.771 - 10.90 \times condused
 $$
 
-Now we see that the average price for a used items is \$10.90 less. 
+Now we see that the average price for a used items is \$10.90 less than the average of new items. 
 
 > **Exercise**:  
 Does the linear model seem reasonable? Which assumptions should you check?
 
-The model does seem reasonable although prices for new items appears to be skewed to the left and may not meet the normality assumptions, Figure \@ref(fig:qq301-fig). 
+The model does seem reasonable in the sense that the assumptions on the errors is plausible. The residuals indicate some skewness to the right which may be driven predominantly by the skewness in the new items, Figure \@ref(fig:qq301-fig). 
 
 
 ```r
@@ -416,6 +417,7 @@ summary(mario_mod_multi)
 ## F-statistic: 87.01 on 4 and 136 DF,  p-value: < 2.2e-16
 ```
 
+Which we can summarize in a tibble using the **broom** package.  
 
 <table>
 <caption>(\#tab:tab301)Multiple regression coefficients.</caption>
@@ -501,7 +503,7 @@ mario_mod_multi$residuals[1]
 ## 1.923402
 ```
 
-The `broom` package has a function `augment` that will calculate the predicted and residuals.
+The **broom** package has a function `augment()` that will calculate the predicted and residuals.
 
 
 ```r
@@ -537,7 +539,7 @@ The estimated value of the intercept is 41.34, and one might be tempted to make 
 
 ### Inference  
 
-From the printout of the model summary, we can see that both the `stock_photo` and `duration` variables are not significantly different from zero. Thus we may want to drop them from the model. In Math 378, we will explore ways to determine the best model including the use of p-values. 
+From the printout of the model summary, we can see that both the `stock_photo` and `duration` variables are not significantly different from zero. Thus we may want to drop them from the model. In a machine learning course, you explore different ways to determine the best model. 
 
 Likewise, we could generate confidence intervals for the coefficients:
 
@@ -559,51 +561,27 @@ This confirms that the `stock_photo` and `duration` may not have an impact on to
 
 ### Adjusted $R^2$ as a better estimate of explained variance
 
-We first used $R^2$ in simple linear regression to determine the amount of variability in the response that was explained by the model:
+We first used $R^2$ in simple linear regression to determine the amount of variability, we used sum of squares and not mean squared errors, in the response that was explained by the model:
 $$
-R^2 = 1 - \frac{\text{variability in residuals}}{\text{variability in the outcome}}
-	= 1 - \frac{Var(e_i)}{Var(y_i)}
+R^2 = 1 - \frac{\text{sum of squares of residuals}}{\text{sum of squares of the outcome}}
 $$
-where $e_i$ represents the residuals of the model and $y_i$ the outcomes. This equation remains valid in the multiple regression framework, but a small enhancement can often be even more informative.
+This equation remains valid in the multiple regression framework, but a small enhancement can often be even more informative.
 
 >**Exercise**:
-The variance of the residuals for the model is 23.34, and the variance of the total price in all the auctions is 83.06. Calculate $R^2$ for this model.^[$R^2 = 1 - \frac{23.34}{83.06} = 0.719$.]
+The variance of the residuals for the model is $4.901^2$, and the variance of the total price in all the auctions is 83.06. Estimate the $R^2$ for this model.^[$R^2 = 1 - \frac{24.0198}{83.06} = 0.7108$.]
 
-
-
-```r
-augment(mario_mod_multi) %>%
-  summarise(var_resid=var(.resid))
-```
-
-```
-## # A tibble: 1 × 1
-##   var_resid
-##       <dbl>
-## 1      23.3
-```
-
+To get the $R^2$ we need the sum of squares and not variance, so we multiply by the appropriate degrees of freedom.  
 
 
 ```r
-mariokart_new %>%
-  summarise(total_var=var(total_pr))
+1-(24.0198*136)/(83.05864*140)
 ```
 
 ```
-## # A tibble: 1 × 1
-##   total_var
-##       <dbl>
-## 1      83.1
+## [1] 0.7190717
 ```
 
-```r
-1-23.34/83.05864
-```
 
-```
-## [1] 0.7189937
-```
 
 ```r
 summary(mario_mod_multi)$r.squared
@@ -619,29 +597,16 @@ This strategy for estimating $R^2$ is acceptable when there is just a single var
 >**Adjusted $\mathbf{R^2}$ as a tool for model assessment**:    
 The adjusted $\mathbf{R^2}$ is computed as: 
 $$
-R_{adj}^{2} = 1-\frac{Var(e_i) / (n-k-1)}{Var(y_i) / (n-1)}
-	= 1-\frac{Var(e_i)}{Var(y_i)} \times \frac{n-1}{n-k-1}
+R_{adj}^{2} = 1-\frac{\text{sum of squares of residuals} / (n-k-1)}{\text{sum of squares of the outcome} / (n-1)}
 $$
 where $n$ is the number of cases used to fit the model and $k$ is the number of predictor variables in the model.
 
-Because $k$ is never negative, the adjusted $R^2$ will be smaller -- often times just a little smaller -- than the unadjusted $R^2$. The reasoning behind the adjusted $R^2$ lies in the **degrees of freedom** associated with each variance.^[In multiple regression, the degrees of freedom associated with the variance of the estimate of the residuals is $n-k-1$, not $n-1$. For instance, if we were to make predictions for new data using our current model, we would find that the unadjusted $R^2$ is an overly optimistic estimate of the reduction in variance in the response, and using the degrees of freedom in the adjusted $R^2$ formula helps correct this bias.]
+Because $k$ is never negative, the adjusted $R^2$ will be smaller -- often times just a little smaller -- than the unadjusted $R^2$. The reasoning behind the adjusted $R^2$ lies in the **degrees of freedom** associated with each variance. ^[In multiple regression, the degrees of freedom associated with the variance of the estimate of the residuals is $n-k-1$, not $n-1$. For instance, if we were to make predictions for new data using our current model, we would find that the unadjusted $R^2$ is an overly optimistic estimate of the reduction in variance in the response, and using the degrees of freedom in the adjusted $R^2$ formula helps correct this bias.]
 
 > **Exercise**:  
-There were $n=141$ auctions in the `mariokart` data set and $k=4$ predictor variables in the model. Use $n$, $k$, and the appropriate variances to calculate $R_{adj}^2$ for the Mario Kart model.^[$R_{adj}^2 = 1 - \frac{23.34}{83.06}\times \frac{141-1}{141-4-1} = 0.711$.]
+Suppose you added another predictor to the model, but the variance of the errors didn't go down. What would happen to the $R^2$? What would happen to the adjusted $R^2$?^[The unadjusted $R^2$ would stay the same and the adjusted $R^2$ would go down. Note that unadjusted $R^2$ never decreases by adding another predictor, it can only stay the same or increase. The adjusted $R^2$ increases only if the addition of a predictor reduces the variance of the error larger than add one to $k$ in denominator.]
 
-
-```r
-summary(mario_mod_multi)$adj.r.squared
-```
-
-```
-## [1] 0.7107622
-```
-
-> **Exercise**:  
-Suppose you added another predictor to the model, but the variance of the errors $Var(e_i)$ didn't go down. What would happen to the $R^2$? What would happen to the adjusted $R^2$?^[The unadjusted $R^2$ would stay the same and the adjusted $R^2$ would go down. Note that unadjusted $R^2$ never decreases by adding another predictor, it can only stay the same or increase. The adjusted $R^2$ increases only if the addition of a predictor reduces the variance of the error larger than add one to $k$ in denominator.]
-
-Again, in Math 378 we will spend more time on how to select models. Using internal metrics of performance such as p-values or adjusted $R$ squared are one way but using external measures of predictive performance such as **cross validation** or **hold out** sets will be introduced.
+Again, in a machine learning course, you will spend more time on how to select models. Using internal metrics of performance such as p-values or adjusted $R$ squared are one way but using external measures of predictive performance such as **cross validation** or **hold out** sets will be introduced.
 
 ### Reduced model
 
@@ -711,6 +676,7 @@ summary(mario_mod_multi)
 ## Multiple R-squared:  0.719,	Adjusted R-squared:  0.7108 
 ## F-statistic: 87.01 on 4 and 136 DF,  p-value: < 2.2e-16
 ```
+
 Notice that the adjusted $R^2$ improved by dropping `duration`. Finally, let's drop `stock_photo`.
 
 
@@ -747,7 +713,7 @@ summary(mario_mod_multi3)
 ## F-statistic: 174.4 on 2 and 138 DF,  p-value: < 2.2e-16
 ```
 
-Though the adjusted $R^2$dropped a little, it is only in the fourth decimal place and thus essentially the same value. We therefor will go with this model. Again, Math 378 will go more into depth about model selection.
+Though the adjusted $R^2$ dropped a little, it is only in the fourth decimal place and thus essentially the same value. We therefore will go with this model. 
 
 ### Confidence and prediction intervals
 
@@ -781,7 +747,7 @@ We are 95\% confident that the price of a Mario Kart sale for a new item with 2 
 
 ### Diagnostics
 
-The diagnostics for the model are similar to what we did in a previous lesson. Nothing in these plots gives us concern, Figure \@ref(fig:diag305-fig).
+The diagnostics for the model are similar to what we did in a previous lesson. Nothing in these plots gives us concern; however, there is one leverage point, Figure \@ref(fig:diag305-fig).
 
 
 ```r
@@ -796,9 +762,9 @@ plot(mario_mod_multi3)
 
 ## Interaction and Higher Order Terms
 
-As a final short topic we want to explore **feature engineering**. Thus far we have not done any transformation to the predictors in the data set except maybe making categorical variables into factors. In data analysis competitions, such as Kaggle, feature engineering is often one of the most important steps. In Math 378, we will look at different tools but in this class we will look at simple transformations such as higher order terms and interactions. 
+As a final short topic we want to explore **feature engineering**. Thus far we have not done any transformation to the predictors in the data set except maybe making categorical variables into factors. In data analysis competitions, such as Kaggle, feature engineering is often one of the most important steps. In a machine learning course, you will look at different tools but in this book we will look at simple transformations such as higher order terms and interactions. 
 
-To make this section more relevant, we are going to switch to a different data set. Load the library `ISLR`, this is a package that you will use a great deal in Math 378.
+To make this section more relevant, we are going to switch to a different data set. Load the library **ISLR**.
 
 
 ```r
@@ -897,7 +863,7 @@ $$
 
 If the observation is a student, then the intercept is increased by 382.67.
 
-In this case, we would want to include an interaction term in the model: an **interaction** term allows the slope to change as well. To include an interaction term when building a model in `R`, we use `*`. 
+In this next case, we would want to include an interaction term in the model: an **interaction** term allows the slope to change as well. To include an interaction term when building a model in `R`, we use `*`. 
 
 
 ```r
@@ -948,7 +914,7 @@ augment(credit_mod2) %>%
 
 Now we have a different slope and intercept for each case of the `Student` variable, Figure \@ref(fig:scat306-fig). Thus there is a synergy or interaction between these variables. The student status changes the impact of `Income` on `Balance`. If you are a student, then for every increase in income of 1 the balance increase by 4.219 on average. If you are not a student, every increase in income of 1 increases the average balance by 6.2182. 
 
-Furthermore, if you suspect that perhaps a curved relationship exists between two variables, we could include a higher order term. As an example, let's add a quadratic term for `Income` to our model (without the interaction). To do this in `R`, we need to wrap the higher order term in `I()`. If we include a higher order term, we usually want to include the lower order terms as well, in Math 378 you will make the decision on what to include using predictive performance.
+Furthermore, if you suspect that perhaps a curved relationship exists between two variables, we could include a higher order term. As an example, let's add a quadratic term for `Income` to our model (without the interaction). To do this in `R`, we need to wrap the higher order term in `I()`. If we include a higher order term, we usually want to include the lower order terms as well; a better approach is to make the decision on what to include using predictive performance.
 
 
 ```r
@@ -999,7 +965,7 @@ There is not much of a quadratic relationship, Figure \@ref(fig:scat307-fig).
 
 ### Summary  
 
-In this lesson we have extended the linear regression model by allowing multiple predictors. This allows us to account for confounding variables and make more sophisticated models. The interpretation and evaluation of the model changes.
+In this chapter we have extended the linear regression model by allowing multiple predictors. This allows us to account for confounding variables and make more sophisticated models. The interpretation and evaluation of the model changes.
 
 ## Homework Problems  
 

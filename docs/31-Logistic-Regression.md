@@ -4,7 +4,7 @@
 
 1) Using `R`, conduct logistic regression and interpret the output and perform model selection.  
 2) Write the logistic regression model and predict outputs for given inputs.  
-3) Use the bootstrap to find confidence intervals for parameter estimates and predictions.  
+3) Find confidence intervals for parameter estimates and predictions.  
 
 ## Logistic regression introduction
 
@@ -144,7 +144,7 @@ tally(cond~stock_photo,data=mariokart
 ##   Total 1.0000000 1.0000000
 ```
 
-We could analyze this by comparing the proportion of new condition games for each stock photo value using both randomization, empirical p-values, and the central limit theorem. We will just use an exact permutation test, **Fisher Exact Test."  
+We could analyze this by comparing the proportion of new condition games for each stock photo value using both randomization, empirical p-values, and the central limit theorem. We will just use an exact permutation test, **Fisher Exact Test**, which just uses the hypergeometric distribution.  
 
 
 ```r
@@ -193,14 +193,20 @@ $$
 	= \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \cdots + \beta_k x_{k,i}
 $$  
 
-The logit transformation is shown in Figure \@ref(fig:logit-fig). 
+Solving for $p_i$ we get the logistic function:
+
+$$
+p_i 	= \frac{1}{1+e^{-(\beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \cdots + \beta_k x_{k,i})}}
+$$
+
+The logistic function is shown in Figure \@ref(fig:logit-fig). 
 
 <div class="figure">
 <img src="31-Logistic-Regression_files/figure-html/logit-fig-1.png" alt="Logitstic function with some example points plotted." width="672" />
 <p class="caption">(\#fig:logit-fig)Logitstic function with some example points plotted.</p>
 </div>
 
-Notice the output of the `logit` function restricts the values between 0 and 1. The curve is fairly flat on the edges with a sharp rise in the center. There are other functions that achieve this same result. However, for reasons beyond the scope of this class, the logit function has desirable mathematical properties that relate making sure all the common GLMs fall within the exponential family of distributions. This topic is at the graduate school level and not needed for our studies. 
+Notice the output of the `logistic` function restricts the values between 0 and 1. The curve is fairly flat on the edges with a sharp rise in the center. There are other functions that achieve this same result. However, for reasons beyond the scope of this book, the logit function has desirable mathematical properties that relate making sure all the common GLMs fall within the exponential family of distributions. This topic is at the graduate school level and not needed for our studies. 
 
 In our Mario Kart example, there are 4 predictor variables, so $k = 4$. This nonlinear model isn't very intuitive, but it still has some resemblance to multiple regression, and we can fit this model using software. In fact, once we look at results from software, it will start to feel like we're back in multiple regression, even if the interpretation of the coefficients is more complex.
 
@@ -321,7 +327,7 @@ summary(mario_mod2)
 
 Examining the **p-value** associated with the coefficient for `stock_photo`, we can see that it is significant. Thus we reject the null hypothesis that the coefficient is zero. There is a relationship between `cond` and `stock_photo`, as we found with the Fisher's test.
 
-We can use the `broom` package to summarize the output and generate model fits.
+We can use the **broom** package to summarize the output and generate model fits.
 
 
 ```r
@@ -431,7 +437,7 @@ augment(mario_mod3,
 
 This matches the output from the `tally()` function we observed above.  
 
-Notice that is was not important whether we select new condition as the desired outcome or used status. In either case, the logistic regression model returns the conditional probability given the value of the predictor.  
+Notice that it was not important whether we select new or used condition as the desired outcome. In either case, the logistic regression model returns the conditional probability given the value of the predictor.  
 
 ### Interpreting the coefficients  
 
@@ -555,7 +561,7 @@ anova(mario_mod1,mario_mod2,test="Chisq")
 
 Adding, `stock_photo` is a statistically significant result. The p-value is different from the `summary()` function, because it assumes the coefficient follows a normal distribution. Different assumptions, but the same conclusion.   
 
-The use of p-value to pick a best model uses statistical assumptions to select the features. Another approach is to use a predictive measure. In machine learning contexts, which we will learn about in Math 378, use many different predictive performance measures for model selection but many are based on a **confusion matrix**.  
+The use of p-value to pick a best model uses statistical assumptions to select the features. Another approach is to use a predictive measure. In machine learning contexts, we use many different predictive performance measures for model selection but many are based on a **confusion matrix**.  
 
 A confusion matrix generates a 2 by 2 matrix of predicted outcomes versus actual outcomes. For logistic regression, the output is a probability of success. To convert this to 0/1 outcome we pick a threshold. It is common to use 0.5 as the threshold. Probabilities above 0.5 are considered a success, in the context of our problem a new game. Let's generate the confusion matrix.
 
@@ -591,11 +597,11 @@ tally(~cond+stock_photo,data=mariokart)
 ##   used 32  50
 ```
 
-If we change the threshold we get a different accuracy. In Math 378, we will learn about other metrics such as area under the ROC curve. But let's add another variable to see if we can improve the model.  
+If we change the threshold we get a different accuracy. In a machine learning course, we learn about other metrics such as area under the ROC curve. Back to our problem, let's add another variable to see if we can improve the model.  
 
 ## Multiple logistic regression  
 
-Let's add `total_pr` to the model. This model is something that we could not have done in the previous models we learned.  
+Let's add `total_pr` to the model. This model is something that we could not have done in the previous models we learned about.  
 
 
 ```r
@@ -663,9 +669,9 @@ augment(mario_mod4,type.predict = "response") %>%
 ##      0 71 16
 ##      1 11 43
 ```
-For our new model, the accuracy improved to $71 + 43$ out of the 141 cases, or 80.9.7%. Without a measure of variability, we don't know if this significant improvement or just the variability in the modeling procedure. On the surface, it appears to be an improvement.    
+For our new model, the accuracy improved to $71 + 43$ out of the 141 cases, or 80.9.7%. Without a measure of variability, we don't know if this is significant improvement or just the variability in the modeling procedure. On the surface, it appears to be an improvement.    
 
-As another preview of what we will be doing in Math 378, let's use a quadratic term in our model.
+As we experiment to improve the model, let's use a quadratic term in our model.
 
 
 ```r
@@ -747,7 +753,7 @@ augment(mario_mod5,type.predict = "response") %>%
 ```
 
 
-Almost any classifier will have some error. In the model above, we have decided that it is okay to allow up to 9\%, 13 out of 141, of the games for sale to be classified as new when they are really used. If we wanted to make it a little harder to classify  as new, we could use a cutoff of 0.75. This would have two effects. Because it raises the standard for what can be classified as new, it reduces the number of used games that are classified as new. However, it will also fail to correctly classify an increased fraction of new games as new, see the code below. No matter the complexity and the confidence we might have in our model, these practical considerations are absolutely crucial to making a helpful classification model. Without them, we could actually do more harm than good by using our statistical model. This tradeoff is similar to the one we found between Type 1 and Type 2 errors. Notice that the accuracy has also dropped slightly.  
+Almost any classifier will have some error. In the model above, we have decided that it is okay to allow up to 9\%, 13 out of 141, of the games for sale to be classified as new when they are really used. If we wanted to make it a little harder to classify an item as new, we could use a cutoff, threshold, of 0.75. This would have two effects. Because it raises the standard for what can be classified as new, it reduces the number of used games that are classified as new. However, it will also fail to correctly classify an increased fraction of new games as new, see the code below. No matter the complexity and the confidence we might have in our model, these practical considerations are absolutely crucial to making a helpful classification model. Without them, we could actually do more harm than good by using our statistical model. This tradeoff is similar to the one we found between Type 1 and Type 2 errors. Notice that the accuracy has also dropped slightly.  
 
 
 
@@ -766,7 +772,7 @@ augment(mario_mod5,type.predict = "response") %>%
 ##      1  4 37
 ```
 
-In Math 378, we will learn about better methods to assess predictive accuracy as well as more sophisticated methods to transform and adapt our predictor variables.  
+In a machine learning course, we learn about better methods to assess predictive accuracy as well as more sophisticated methods to transform and adapt our predictor variables.  
 
 > **Exercise** Find the probability that an auctioned game is new if the total price is 50 and it uses a stock photo.  
 
@@ -786,7 +792,7 @@ augment(mario_mod5,
 ## 1 yes               50   0.693
 ```
 
-We predict that the probability of the game being new if it uses a stock photo and the total price is 50 is 0.693%.
+We predict that the probability of the game being new if it uses a stock photo and the total price is 50 is 69.3%.
 
 If we want to recreate the calculation, we need to use a **raw** polynomial.  
 
@@ -850,7 +856,7 @@ The assumptions for logistic regression and the diagnostic tools are similar to 
 
 ## Confidence intervals  
 
-In this section we will generate confidence intervals. This section is experimental since we are not sure how `do()` from the `mosaic` package will work with the `glm()` function, but let's experiment.  
+In this section we will generate confidence intervals. This section is experimental since we are not sure how `do()` from the **mosaic** package will work with the `glm()` function, but let's experiment.  
 
 ### Confidence intervals for a parameter
 
@@ -925,7 +931,7 @@ do(1)*glm(cond=="new"~stock_photo+total_pr,
 
 ```
 ##   Intercept stock_photoyes  total_pr .row .index
-## 1 -10.81321      0.8293052 0.2025508    1      1
+## 1 -12.97646       3.544191 0.2039409    1      1
 ```
 
 Again, it looks like what we expect. Now let's bootstrap the coefficients and summarize the results.

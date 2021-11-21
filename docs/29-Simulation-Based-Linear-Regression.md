@@ -139,7 +139,7 @@ ggplot(starbucks, aes(x=carb, y=calories)) +
   geom_abline(data = results,
               aes(slope =  carb, intercept = Intercept), 
               alpha = 0.01,color="red") +
-  geom_point(shape = 19, color = "red") +
+  geom_point() +
   theme_classic() +
   labs(x="Carbohydrates (g)",y="Calories",title="Bootstrap Slopes",subtitle ="1000 Slopes") +
   geom_lm(interval="confidence")
