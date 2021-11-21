@@ -5,7 +5,7 @@ author:
 - Brianna Hitt
 - Ken Horton
 - Bradley Warner
-date: "2021-11-19"
+date: "2021-11-21"
 header-includes:
    - \usepackage{multirow}
    - \usepackage{multicol}
@@ -17,6 +17,8 @@ link-citations: yes
 cover-image: "figures/Cover.png"
 description: "This is a set of notes for Math 356 that has been compiled into a book."
 ---
+
+\input{latex/math-definitions.tex}
 
 # Preface {-}
 
@@ -79,7 +81,7 @@ This book is licensed under the [Creative Commons Attribution-NonCommercial-Shar
 
 ## File Creation Information 
 
-  * File creation date: 2021-11-19
+  * File creation date: 2021-11-21
   * R version 4.1.0 (2021-05-18)
 
 

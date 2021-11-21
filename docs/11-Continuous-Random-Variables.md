@@ -1,11 +1,5 @@
 # Continuous Random Variables {#CONRANDVAR}
 
-\newcommand{\E}{\mbox{E}}
-\newcommand{\Var}{\mbox{Var}}
-\newcommand{\Cov}{\mbox{Cov}}
-\newcommand{\Prob}{\mbox{P}}
-\newcommand*\diff{\mathop{}\!\mathrm{d}}
-
 
 ## Objectives
 
@@ -191,7 +185,7 @@ sqrt(runif(1))
 ```
 
 ```
-## [1] 0.7305464
+## [1] 0.6615687
 ```
 
 
@@ -209,10 +203,10 @@ inspect(results)
 ```
 ## 
 ## quantitative variables:  
-##      name   class        min        Q1    median       Q3       max     mean
-## ...1 sqrt numeric 0.01672273 0.4882685 0.6998733 0.865403 0.9999595 0.661789
-##            sd     n missing
-## ...1 0.236089 10000       0
+##      name   class         min        Q1    median        Q3       max     mean
+## ...1 sqrt numeric 0.003855948 0.4906844 0.7055538 0.8668733 0.9998335 0.663898
+##             sd     n missing
+## ...1 0.2388377 10000       0
 ```
 
 \pagebreak 
@@ -299,7 +293,7 @@ mean(~sqrt,data=results)
 ```
 
 ```
-## [1] 0.661789
+## [1] 0.663898
 ```
 
 
@@ -335,7 +329,7 @@ var(~sqrt,data=results)*9999/10000
 ```
 
 ```
-## [1] 0.05573244
+## [1] 0.05703776
 ```
 
 

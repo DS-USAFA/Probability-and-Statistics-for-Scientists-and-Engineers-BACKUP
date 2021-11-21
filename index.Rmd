@@ -18,6 +18,8 @@ cover-image: "figures/Cover.png"
 description: "This is a set of notes for Math 356 that has been compiled into a book."
 ---
 
+\input{latex/math-definitions.tex}
+
 # Preface {-}
 
 
