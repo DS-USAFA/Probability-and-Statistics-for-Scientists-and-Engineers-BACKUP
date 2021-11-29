@@ -4,7 +4,8 @@
 
 1) Using `R`, conduct logistic regression and interpret the output and perform model selection.  
 2) Write the logistic regression model and predict outputs for given inputs.  
-3) Find confidence intervals for parameter estimates and predictions.  
+3) Find confidence intervals for parameter estimates and predictions.   
+4) Create and interpret a confusion matrix.   
 
 ## Logistic regression introduction
 
