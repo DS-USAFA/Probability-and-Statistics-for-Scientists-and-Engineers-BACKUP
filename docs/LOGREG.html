@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-11-29" />
+<meta name="date" content="2021-12-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -915,7 +915,7 @@ p_i     = \frac{1}{1+e^{-(\beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \cdots +
 Figure 29.1: Logitstic function with some example points plotted.
 </p>
 </div>
-<p>Notice the output of the <code>logistic</code> function restricts the values between 0 and 1. The curve is fairly flat on the edges with a sharp rise in the center. There are other functions that achieve this same result. However, for reasons beyond the scope of this book, the logit function has desirable mathematical properties that relate making sure all the common GLMs fall within the exponential family of distributions. This topic is at the graduate school level and not needed for our studies.</p>
+<p>Notice the output of the <code>logistic</code> function restricts the values between 0 and 1. The curve is fairly flat on the edges with a sharp rise in the center. There are other functions that achieve this same result. However, for reasons beyond the scope of this book, the logit function has desirable mathematical properties that relate to making sure all the common GLMs fall within the exponential family of distributions. This topic is at the graduate school level and not needed for our studies.</p>
 <p>In our Mario Kart example, there are 4 predictor variables, so <span class="math inline">\(k = 4\)</span>. This nonlinear model isn’t very intuitive, but it still has some resemblance to multiple regression, and we can fit this model using software. In fact, once we look at results from software, it will start to feel like we’re back in multiple regression, even if the interpretation of the coefficients is more complex.</p>
 </div>
 <div id="first-model---intercept-only" class="section level3" number="29.2.4">
@@ -1092,7 +1092,7 @@ Fit a logistic regression model with <code>cond</code> as used and <code>stock_p
 \]</span></p>
 <p>For our problem, the log odds more than double if the photo is a stock photo. It is easier to interpret odds ratios, so often analysts use <span class="math inline">\(e^{\beta_1}\)</span> as the odds ratio. Again, for our problem, the odds of a new condition game increase by a factor of 8.8 if a stock photo is used. Note that an odds ratio is not a relative risk. Relative risk is the ratio of the probability of a new game with stock photo to the probability of a new game without a stock photo. Be careful in your interpretation.</p>
 <p><span class="math display">\[
-\left(\frac{p_{\mbox{new|stock photo}}}{p_{\mbox{new|no stock photo}}} \right) 
+\text{Relative Risk} = \left(\frac{p_{\mbox{new|stock photo}}}{p_{\mbox{new|no stock photo}}} \right) 
 \]</span></p>
 </div>
 <div id="comparing-models" class="section level3" number="29.2.7">
@@ -1356,7 +1356,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <span id="cb1065-2"><a href="LOGREG.html#cb1065-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data=</span><span class="fu">resample</span>(mariokart),</span>
 <span id="cb1065-3"><a href="LOGREG.html#cb1065-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>)</span></code></pre></div>
 <pre><code>##   Intercept stock_photoyes  total_pr .row .index
-## 1 -14.03167       2.469618 0.2447378    1      1</code></pre>
+## 1 -7.021717       1.310334 0.1221849    1      1</code></pre>
 <p>Again, it looks like what we expect. Now let’s bootstrap the coefficients and summarize the results.</p>
 <div class="sourceCode" id="cb1067"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1067-1"><a href="LOGREG.html#cb1067-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5011</span>)</span>
 <span id="cb1067-2"><a href="LOGREG.html#cb1067-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">glm</span>(cond<span class="sc">==</span><span class="st">&quot;new&quot;</span><span class="sc">~</span>stock_photo<span class="sc">+</span>total_pr,</span>
