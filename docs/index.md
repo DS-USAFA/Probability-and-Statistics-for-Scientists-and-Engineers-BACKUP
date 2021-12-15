@@ -3,7 +3,6 @@ title: "Probability and Statistics for Scientists and Engineers"
 author: 
 - Matthew Davis
 - Brianna Hitt
-- Calli Holaway
 - Ken Horton
 - Bradley Warner
 date: "2021-12-15"
