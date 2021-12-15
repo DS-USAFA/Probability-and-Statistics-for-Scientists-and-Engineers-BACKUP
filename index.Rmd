@@ -3,6 +3,7 @@ title: "Probability and Statistics for Scientists and Engineers"
 author: 
 - Matthew Davis
 - Brianna Hitt
+- Calli Holaway
 - Ken Horton
 - Bradley Warner
 date: "`r Sys.Date()`"
