@@ -119,6 +119,7 @@ Using `R`, we will display seven rows of the `county` data frame.
 head(county_tidy,n=7)
 ```
 
+
 ### Types of variables
 
 

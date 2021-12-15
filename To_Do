@@ -9,3 +9,4 @@ a lead in to ML in Math 378.
 - Solution: take out indent and problem number continue with 18
 
 - To produce pdf, take comment out of kable function for format.
+- Learn more about datatables in https://rstudio.github.io/DT/ 

@@ -218,6 +218,7 @@ head(county_tidy,n=7)
 ## 7       13.7  16916      30659
 ```
 
+
 ### Types of variables
 
 
