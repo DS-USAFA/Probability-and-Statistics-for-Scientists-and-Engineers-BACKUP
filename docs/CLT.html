@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-12-15" />
+<meta name="date" content="2021-12-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1024,7 +1024,7 @@ thus our test statistic is</p>
 ##  96.3 97.8   98.3 98.7 100.8 98.24923 0.7331832 130       0</code></pre>
 <div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="CLT.html#cb551-1" aria-hidden="true" tabindex="-1"></a>temperature <span class="sc">%&gt;%</span></span>
 <span id="cb551-2"><a href="CLT.html#cb551-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean=</span><span class="fu">mean</span>(temperature),<span class="at">sd=</span><span class="fu">sd</span>(temperature),<span class="at">test_stat=</span>(mean<span class="fl">-98.6</span>)<span class="sc">/</span>(sd<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">130</span>)))</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 3
+<pre><code>## # A tibble: 1 x 3
 ##    mean    sd test_stat
 ##   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
 ## 1  98.2 0.733     -5.45</code></pre>

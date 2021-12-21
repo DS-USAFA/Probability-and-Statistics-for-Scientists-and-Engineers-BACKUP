@@ -18,29 +18,29 @@ Multiple regression extends simple two-variable regression to the case that stil
 
 To explore and explain these ideas, we will consider Ebay auctions of a video game called **Mario Kart** for the Nintendo Wii. The outcome variable of interest is the total price of an auction, which is the highest bid plus the shipping cost. We will try to determine how total price is related to each characteristic in an auction while simultaneously controlling for other variables. For instance, with all other characteristics held constant, are longer auctions associated with higher or lower prices? And, on average, how much more do buyers tend to pay for additional Wii wheels (plastic steering wheels that attach to the Wii controller) in auctions? Multiple regression will help us answer these and other questions.
 
-The data set is in the file `mariokart.csv` in the `data` folder. This data set includes results from 141 auctions.^[Diez DM, Barr CD, and \c{C}etinkaya-Rundel M. 2012. `openintro`: OpenIntro data sets and supplemental functions. http://cran.r-project.org/web/packages/openintro] Ten observations from this data set are shown in the `R` code below. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for advanced regression or machine learning courses.
+The data set is in the file `mariokart.csv` in the `data` folder. This data set includes results from 141 auctions.^[Diez DM, Barr CD, and \c{C}etinkaya-Rundel M. 2012. `openintro`: OpenIntro data sets and supplemental functions. http://cran.r-project.org/web/packages/openintro] Ten observations from this data set are shown in the `R` code below. Note that we force the first column to be interpreted as a character string since it is the identification code for each sale and has no numeric meaning. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for advanced regression or machine learning courses.
 
 
 ```r
-mariokart <-read_csv("data/mariokart.csv")
+mariokart <-read_csv("data/mariokart.csv", col_types = list(col_character()))
 head(mariokart,n=10)
 ```
 
 ```
-## # A tibble: 10 × 12
-##              id duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##           <dbl>    <dbl>  <dbl> <chr>    <dbl>   <dbl>    <dbl> <chr>         <dbl>
-##  1 150377422259        3     20 new       0.99    4        51.6 standa…        1580
-##  2 260483376854        7     13 used      0.99    3.99     37.0 firstC…         365
-##  3 320432342985        3     16 new       0.99    3.5      45.5 firstC…         998
-##  4 280405224677        3     18 new       0.99    0        44   standa…           7
-##  5 170392227765        1     20 new       0.01    0        71   media           820
-##  6 360195157625        3     19 new       0.99    4        45   standa…      270144
-##  7 120477729093        1     13 used      0.01    0        37.0 standa…        7284
-##  8 300355501482        1     15 new       1       2.99     54.0 upsGro…        4858
-##  9 200392065459        3     29 used      0.99    4        47   priori…          27
-## 10 330364163424        7      8 used     20.0     4        50   firstC…         201
-## # … with 3 more variables: stock_photo <chr>, wheels <dbl>, title <chr>
+## # A tibble: 10 x 12
+##    id       duration n_bids cond  start_pr ship_pr total_pr ship_sp  seller_rate
+##    <chr>       <dbl>  <dbl> <chr>    <dbl>   <dbl>    <dbl> <chr>          <dbl>
+##  1 1503774~        3     20 new       0.99    4        51.6 standard        1580
+##  2 2604833~        7     13 used      0.99    3.99     37.0 firstCl~         365
+##  3 3204323~        3     16 new       0.99    3.5      45.5 firstCl~         998
+##  4 2804052~        3     18 new       0.99    0        44   standard           7
+##  5 1703922~        1     20 new       0.01    0        71   media            820
+##  6 3601951~        3     19 new       0.99    4        45   standard      270144
+##  7 1204777~        1     13 used      0.01    0        37.0 standard        7284
+##  8 3003555~        1     15 new       1       2.99     54.0 upsGrou~        4858
+##  9 2003920~        3     29 used      0.99    4        47   priority          27
+## 10 3303641~        7      8 used     20.0     4        50   firstCl~         201
+## # ... with 3 more variables: stock_photo <chr>, wheels <dbl>, title <chr>
 ```
 
 We are only interested in `total_pr`, `cond`, `stock_photo`, `duration`, and `wheels`. These variables are described in the following list:
@@ -72,35 +72,35 @@ inspect(mariokart)
 ## 
 ## categorical variables:  
 ##          name     class levels   n missing
-## 1        cond    factor      2 143       0
-## 2     ship_sp character      8 143       0
-## 3 stock_photo    factor      2 143       0
-## 4       title character     80 142       1
+## 1          id character    143 143       0
+## 2        cond    factor      2 143       0
+## 3     ship_sp character      8 143       0
+## 4 stock_photo    factor      2 143       0
+## 5       title character     80 142       1
 ##                                    distribution
-## 1 used (58.7%), new (41.3%)                    
-## 2 standard (23.1%), upsGround (21.7%) ...      
-## 3 yes (73.4%), no (26.6%)                      
-## 4  (%) ...                                     
+## 1 110439174663 (0.7%) ...                      
+## 2 used (58.7%), new (41.3%)                    
+## 3 standard (23.1%), upsGround (21.7%) ...      
+## 4 yes (73.4%), no (26.6%)                      
+## 5  (%) ...                                     
 ## 
 ## quantitative variables:  
-##             name   class          min           Q1       median           Q3
-## ...1          id numeric 1.104392e+11 1.403506e+11 2.204911e+11 2.953551e+11
-## ...2    duration numeric 1.000000e+00 1.000000e+00 3.000000e+00 7.000000e+00
-## ...3      n_bids numeric 1.000000e+00 1.000000e+01 1.400000e+01 1.700000e+01
-## ...4    start_pr numeric 1.000000e-02 9.900000e-01 1.000000e+00 1.000000e+01
-## ...5     ship_pr numeric 0.000000e+00 0.000000e+00 3.000000e+00 4.000000e+00
-## ...6    total_pr numeric 2.898000e+01 4.117500e+01 4.650000e+01 5.399000e+01
-## ...7 seller_rate numeric 0.000000e+00 1.090000e+02 8.200000e+02 4.858000e+03
-## ...8      wheels numeric 0.000000e+00 0.000000e+00 1.000000e+00 2.000000e+00
-##               max         mean           sd   n missing
-## ...1 4.000775e+11 2.235290e+11 8.809543e+10 143       0
-## ...2 1.000000e+01 3.769231e+00 2.585693e+00 143       0
-## ...3 2.900000e+01 1.353846e+01 5.878786e+00 143       0
-## ...4 6.995000e+01 8.777203e+00 1.506745e+01 143       0
-## ...5 2.551000e+01 3.143706e+00 3.213179e+00 143       0
-## ...6 3.265100e+02 4.988049e+01 2.568856e+01 143       0
-## ...7 2.701440e+05 1.589842e+04 5.184032e+04 143       0
-## ...8 4.000000e+00 1.146853e+00 8.471829e-01 143       0
+##             name   class   min      Q1 median      Q3       max         mean
+## ...1    duration numeric  1.00   1.000    3.0    7.00     10.00     3.769231
+## ...2      n_bids numeric  1.00  10.000   14.0   17.00     29.00    13.538462
+## ...3    start_pr numeric  0.01   0.990    1.0   10.00     69.95     8.777203
+## ...4     ship_pr numeric  0.00   0.000    3.0    4.00     25.51     3.143706
+## ...5    total_pr numeric 28.98  41.175   46.5   53.99    326.51    49.880490
+## ...6 seller_rate numeric  0.00 109.000  820.0 4858.00 270144.00 15898.419580
+## ...7      wheels numeric  0.00   0.000    1.0    2.00      4.00     1.146853
+##                sd   n missing
+## ...1 2.585693e+00 143       0
+## ...2 5.878786e+00 143       0
+## ...3 1.506745e+01 143       0
+## ...4 3.213179e+00 143       0
+## ...5 2.568856e+01 143       0
+## ...6 5.184032e+04 143       0
+## ...7 8.471829e-01 143       0
 ```
 
 Finally, let's plot the data.
@@ -184,7 +184,7 @@ mariokart %>%
 ```
 
 ```
-## # A tibble: 2 × 4
+## # A tibble: 2 x 4
 ##   cond   xbar stand_dev xmedian
 ##   <fct> <dbl>     <dbl>   <dbl>
 ## 1 new    53.8      7.44    54.0
@@ -202,12 +202,12 @@ mariokart %>%
 ```
 
 ```
-## # A tibble: 2 × 12
-##             id duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##          <dbl>    <dbl>  <dbl> <fct>    <dbl>   <dbl>    <dbl> <chr>         <dbl>
-## 1 110439174663        7     22 used      1       25.5     327. parcel          115
-## 2 130335427560        3     27 used      6.95     4       118. parcel           41
-## # … with 3 more variables: stock_photo <fct>, wheels <dbl>, title <chr>
+## # A tibble: 2 x 12
+##   id         duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
+##   <chr>         <dbl>  <dbl> <fct>    <dbl>   <dbl>    <dbl> <chr>         <dbl>
+## 1 110439174~        7     22 used      1       25.5     327. parcel          115
+## 2 130335427~        3     27 used      6.95     4       118. parcel           41
+## # ... with 3 more variables: stock_photo <fct>, wheels <dbl>, title <chr>
 ```
 
 If you look at the variable `title` there were additional items in the sale for these two observations. Let's remove those two outliers and run the model again. Note that the reason we are removing them is not because they are annoying us and messing up our model. It is because we don't think they are representative of the population of interest. Figure \@ref(fig:scat302-fig) is a boxplot of the data with the outliers dropped.
@@ -517,11 +517,11 @@ augment(mario_mod_multi) %>%
 ```
 
 ```
-## # A tibble: 1 × 11
+## # A tibble: 1 x 11
 ##   total_pr cond  stock_photo duration wheels .fitted .resid   .hat .sigma
 ##      <dbl> <fct> <fct>          <dbl>  <dbl>   <dbl>  <dbl>  <dbl>  <dbl>
 ## 1     51.6 new   yes                3      1    49.6   1.92 0.0215   4.92
-## # … with 2 more variables: .cooksd <dbl>, .std.resid <dbl>
+## # ... with 2 more variables: .cooksd <dbl>, .std.resid <dbl>
 ```
 
 
@@ -781,19 +781,21 @@ glimpse(Credit)
 ```
 ## Rows: 400
 ## Columns: 12
-## $ ID        <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
-## $ Income    <dbl> 14.891, 106.025, 104.593, 148.924, 55.882, 80.180, 20.996, 7…
-## $ Limit     <int> 3606, 6645, 7075, 9504, 4897, 8047, 3388, 7114, 3300, 6819, …
-## $ Rating    <int> 283, 483, 514, 681, 357, 569, 259, 512, 266, 491, 589, 138, …
-## $ Cards     <int> 2, 3, 4, 3, 2, 4, 2, 2, 5, 3, 4, 3, 1, 1, 2, 3, 3, 3, 1, 2, …
-## $ Age       <int> 34, 82, 71, 36, 68, 77, 37, 87, 66, 41, 30, 64, 57, 49, 75, …
-## $ Education <int> 11, 15, 11, 11, 16, 10, 12, 9, 13, 19, 14, 16, 7, 9, 13, 15,…
-## $ Gender    <fct>  Male, Female,  Male, Female,  Male,  Male, Female,  Male, F…
-## $ Student   <fct> No, Yes, No, No, No, No, No, No, No, Yes, No, No, No, No, No…
-## $ Married   <fct> Yes, Yes, No, No, Yes, No, No, No, No, Yes, Yes, No, Yes, Ye…
-## $ Ethnicity <fct> Caucasian, Asian, Asian, Asian, Caucasian, Caucasian, Africa…
-## $ Balance   <int> 333, 903, 580, 964, 331, 1151, 203, 872, 279, 1350, 1407, 0,…
+## $ ID        <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~
+## $ Income    <dbl> 14.891, 106.025, 104.593, 148.924, 55.882, 80.180, 20.996, 7~
+## $ Limit     <int> 3606, 6645, 7075, 9504, 4897, 8047, 3388, 7114, 3300, 6819, ~
+## $ Rating    <int> 283, 483, 514, 681, 357, 569, 259, 512, 266, 491, 589, 138, ~
+## $ Cards     <int> 2, 3, 4, 3, 2, 4, 2, 2, 5, 3, 4, 3, 1, 1, 2, 3, 3, 3, 1, 2, ~
+## $ Age       <int> 34, 82, 71, 36, 68, 77, 37, 87, 66, 41, 30, 64, 57, 49, 75, ~
+## $ Education <int> 11, 15, 11, 11, 16, 10, 12, 9, 13, 19, 14, 16, 7, 9, 13, 15,~
+## $ Gender    <fct>  Male, Female,  Male, Female,  Male,  Male, Female,  Male, F~
+## $ Student   <fct> No, Yes, No, No, No, No, No, No, No, Yes, No, No, No, No, No~
+## $ Married   <fct> Yes, Yes, No, No, Yes, No, No, No, No, Yes, Yes, No, Yes, Ye~
+## $ Ethnicity <fct> Caucasian, Asian, Asian, Asian, Caucasian, Caucasian, Africa~
+## $ Balance   <int> 333, 903, 580, 964, 331, 1151, 203, 872, 279, 1350, 1407, 0,~
 ```
+
+Notice that `ID` is being treated as an integer. We could change it to a character since it is a label, but for our work in this chapter we will not bother. 
 
 Suppose we suspected that there is a relationship between `Balance`, the response, and the predictors `Income` and `Student`. Note: we actually are using this model for educational purposes and did not go through a model selection process. 
 

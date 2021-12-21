@@ -22,7 +22,7 @@ In this chapter, we want the outcome variable of interest to be game condition, 
 Read the data and summarize. 
 
 ```{r warning=FALSE,message=FALSE}
-mariokart <-read_csv("data/mariokart.csv")
+mariokart <-read_csv("data/mariokart.csv", col_types = list(col_character()))
 head(mariokart,n=10)
 ```
 

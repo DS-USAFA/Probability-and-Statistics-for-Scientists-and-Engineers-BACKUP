@@ -23,25 +23,25 @@ Read the data and summarize.
 
 
 ```r
-mariokart <-read_csv("data/mariokart.csv")
+mariokart <-read_csv("data/mariokart.csv", col_types = list(col_character()))
 head(mariokart,n=10)
 ```
 
 ```
-## # A tibble: 10 × 12
-##              id duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##           <dbl>    <dbl>  <dbl> <chr>    <dbl>   <dbl>    <dbl> <chr>         <dbl>
-##  1 150377422259        3     20 new       0.99    4        51.6 standa…        1580
-##  2 260483376854        7     13 used      0.99    3.99     37.0 firstC…         365
-##  3 320432342985        3     16 new       0.99    3.5      45.5 firstC…         998
-##  4 280405224677        3     18 new       0.99    0        44   standa…           7
-##  5 170392227765        1     20 new       0.01    0        71   media           820
-##  6 360195157625        3     19 new       0.99    4        45   standa…      270144
-##  7 120477729093        1     13 used      0.01    0        37.0 standa…        7284
-##  8 300355501482        1     15 new       1       2.99     54.0 upsGro…        4858
-##  9 200392065459        3     29 used      0.99    4        47   priori…          27
-## 10 330364163424        7      8 used     20.0     4        50   firstC…         201
-## # … with 3 more variables: stock_photo <chr>, wheels <dbl>, title <chr>
+## # A tibble: 10 x 12
+##    id       duration n_bids cond  start_pr ship_pr total_pr ship_sp  seller_rate
+##    <chr>       <dbl>  <dbl> <chr>    <dbl>   <dbl>    <dbl> <chr>          <dbl>
+##  1 1503774~        3     20 new       0.99    4        51.6 standard        1580
+##  2 2604833~        7     13 used      0.99    3.99     37.0 firstCl~         365
+##  3 3204323~        3     16 new       0.99    3.5      45.5 firstCl~         998
+##  4 2804052~        3     18 new       0.99    0        44   standard           7
+##  5 1703922~        1     20 new       0.01    0        71   media            820
+##  6 3601951~        3     19 new       0.99    4        45   standard      270144
+##  7 1204777~        1     13 used      0.01    0        37.0 standard        7284
+##  8 3003555~        1     15 new       1       2.99     54.0 upsGrou~        4858
+##  9 2003920~        3     29 used      0.99    4        47   priority          27
+## 10 3303641~        7      8 used     20.0     4        50   firstCl~         201
+## # ... with 3 more variables: stock_photo <chr>, wheels <dbl>, title <chr>
 ```
 
 
@@ -53,35 +53,35 @@ inspect(mariokart)
 ## 
 ## categorical variables:  
 ##          name     class levels   n missing
-## 1        cond character      2 143       0
-## 2     ship_sp character      8 143       0
-## 3 stock_photo character      2 143       0
-## 4       title character     80 142       1
+## 1          id character    143 143       0
+## 2        cond character      2 143       0
+## 3     ship_sp character      8 143       0
+## 4 stock_photo character      2 143       0
+## 5       title character     80 142       1
 ##                                    distribution
-## 1 used (58.7%), new (41.3%)                    
-## 2 standard (23.1%), upsGround (21.7%) ...      
-## 3 yes (73.4%), no (26.6%)                      
-## 4  (%) ...                                     
+## 1 110439174663 (0.7%) ...                      
+## 2 used (58.7%), new (41.3%)                    
+## 3 standard (23.1%), upsGround (21.7%) ...      
+## 4 yes (73.4%), no (26.6%)                      
+## 5  (%) ...                                     
 ## 
 ## quantitative variables:  
-##             name   class          min           Q1       median           Q3
-## ...1          id numeric 1.104392e+11 1.403506e+11 2.204911e+11 2.953551e+11
-## ...2    duration numeric 1.000000e+00 1.000000e+00 3.000000e+00 7.000000e+00
-## ...3      n_bids numeric 1.000000e+00 1.000000e+01 1.400000e+01 1.700000e+01
-## ...4    start_pr numeric 1.000000e-02 9.900000e-01 1.000000e+00 1.000000e+01
-## ...5     ship_pr numeric 0.000000e+00 0.000000e+00 3.000000e+00 4.000000e+00
-## ...6    total_pr numeric 2.898000e+01 4.117500e+01 4.650000e+01 5.399000e+01
-## ...7 seller_rate numeric 0.000000e+00 1.090000e+02 8.200000e+02 4.858000e+03
-## ...8      wheels numeric 0.000000e+00 0.000000e+00 1.000000e+00 2.000000e+00
-##               max         mean           sd   n missing
-## ...1 4.000775e+11 2.235290e+11 8.809543e+10 143       0
-## ...2 1.000000e+01 3.769231e+00 2.585693e+00 143       0
-## ...3 2.900000e+01 1.353846e+01 5.878786e+00 143       0
-## ...4 6.995000e+01 8.777203e+00 1.506745e+01 143       0
-## ...5 2.551000e+01 3.143706e+00 3.213179e+00 143       0
-## ...6 3.265100e+02 4.988049e+01 2.568856e+01 143       0
-## ...7 2.701440e+05 1.589842e+04 5.184032e+04 143       0
-## ...8 4.000000e+00 1.146853e+00 8.471829e-01 143       0
+##             name   class   min      Q1 median      Q3       max         mean
+## ...1    duration numeric  1.00   1.000    3.0    7.00     10.00     3.769231
+## ...2      n_bids numeric  1.00  10.000   14.0   17.00     29.00    13.538462
+## ...3    start_pr numeric  0.01   0.990    1.0   10.00     69.95     8.777203
+## ...4     ship_pr numeric  0.00   0.000    3.0    4.00     25.51     3.143706
+## ...5    total_pr numeric 28.98  41.175   46.5   53.99    326.51    49.880490
+## ...6 seller_rate numeric  0.00 109.000  820.0 4858.00 270144.00 15898.419580
+## ...7      wheels numeric  0.00   0.000    1.0    2.00      4.00     1.146853
+##                sd   n missing
+## ...1 2.585693e+00 143       0
+## ...2 5.878786e+00 143       0
+## ...3 1.506745e+01 143       0
+## ...4 3.213179e+00 143       0
+## ...5 2.568856e+01 143       0
+## ...6 5.184032e+04 143       0
+## ...7 8.471829e-01 143       0
 ```
 
 We are again only interested in `total_pr`, `cond`, `stock_photo`, `duration`, and `wheels`. These variables are described in the following list:
@@ -336,7 +336,7 @@ tidy(mario_mod2)
 ```
 
 ```
-## # A tibble: 2 × 5
+## # A tibble: 2 x 5
 ##   term           estimate std.error statistic   p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>     <dbl>
 ## 1 (Intercept)       -2.08     0.530     -3.92 0.0000881
@@ -353,7 +353,7 @@ augment(mario_mod2,
 ```
 
 ```
-## # A tibble: 2 × 2
+## # A tibble: 2 x 2
 ##   stock_photo .fitted
 ##   <chr>         <dbl>
 ## 1 yes           0.524
@@ -412,7 +412,7 @@ tidy(mario_mod3)
 ```
 
 ```
-## # A tibble: 2 × 5
+## # A tibble: 2 x 5
 ##   term           estimate std.error statistic   p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>     <dbl>
 ## 1 (Intercept)        2.08     0.530      3.92 0.0000881
@@ -429,7 +429,7 @@ augment(mario_mod3,
 ```
 
 ```
-## # A tibble: 2 × 2
+## # A tibble: 2 x 2
 ##   stock_photo .fitted
 ##   <chr>         <dbl>
 ## 1 yes           0.476
@@ -452,7 +452,7 @@ tidy(mario_mod2)
 ```
 
 ```
-## # A tibble: 2 × 5
+## # A tibble: 2 x 5
 ##   term           estimate std.error statistic   p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>     <dbl>
 ## 1 (Intercept)       -2.08     0.530     -3.92 0.0000881
@@ -787,7 +787,7 @@ augment(mario_mod5,
 ```
 
 ```
-## # A tibble: 1 × 3
+## # A tibble: 1 x 3
 ##   stock_photo total_pr .fitted
 ##   <chr>          <dbl>   <dbl>
 ## 1 yes               50   0.693
@@ -806,7 +806,7 @@ tidy(mario_mod6)
 ```
 
 ```
-## # A tibble: 4 × 5
+## # A tibble: 4 x 5
 ##   term            estimate std.error statistic  p.value
 ##   <chr>              <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)    -30.7       9.08        -3.38 0.000732
@@ -913,7 +913,7 @@ tidy(mario_mod4)
 ```
 
 ```
-## # A tibble: 3 × 5
+## # A tibble: 3 x 5
 ##   term           estimate std.error statistic       p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>         <dbl>
 ## 1 (Intercept)     -11.3      1.88       -6.01 0.00000000185
@@ -931,8 +931,8 @@ do(1)*glm(cond=="new"~stock_photo+total_pr,
 ```
 
 ```
-##   Intercept stock_photoyes total_pr .row .index
-## 1 -12.15675       2.161626 0.218431    1      1
+##   Intercept stock_photoyes  total_pr .row .index
+## 1 -12.36339       3.045359 0.1980743    1      1
 ```
 
 Again, it looks like what we expect. Now let's bootstrap the coefficients and summarize the results.
@@ -1003,7 +1003,7 @@ augment(mario_mod5,
 ```
 
 ```
-## # A tibble: 1 × 3
+## # A tibble: 1 x 3
 ##   stock_photo total_pr .fitted
 ##   <chr>          <dbl>   <dbl>
 ## 1 yes               50   0.693

@@ -562,7 +562,7 @@ aov(obp~position,data=mlb_obp) %>%
 ```
 
 ```
-## # A tibble: 2 × 6
+## # A tibble: 2 x 6
 ##   term         df   sumsq  meansq statistic p.value
 ##   <chr>     <dbl>   <dbl>   <dbl>     <dbl>   <dbl>
 ## 1 position      3 0.00756 0.00252      1.99   0.115
@@ -579,7 +579,7 @@ aov(obp~position,data=mlb_obp) %>%
 ```
 
 ```
-## # A tibble: 1 × 1
+## # A tibble: 1 x 1
 ##    stat
 ##   <dbl>
 ## 1  1.99

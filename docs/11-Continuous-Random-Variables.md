@@ -180,12 +180,14 @@ As in the case of the discrete random variable, we can simulate a continuous ran
 In `R` for our example, this looks like the following.
 
 
+
+
 ```r
 sqrt(runif(1))
 ```
 
 ```
-## [1] 0.8553947
+## [1] 0.6137365
 ```
 
 
@@ -204,9 +206,9 @@ inspect(results)
 ## 
 ## quantitative variables:  
 ##      name   class         min        Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.008350114 0.5019994 0.7058246 0.8676843 0.9998582 0.6669266
+## ...1 sqrt numeric 0.005321359 0.4977011 0.7084257 0.8656665 0.9999873 0.6669452
 ##             sd     n missing
-## ...1 0.2360773 10000       0
+## ...1 0.2358056 10000       0
 ```
 
 \pagebreak 
@@ -293,7 +295,7 @@ mean(~sqrt,data=results)
 ```
 
 ```
-## [1] 0.6669266
+## [1] 0.6669452
 ```
 
 
@@ -329,7 +331,7 @@ var(~sqrt,data=results)*9999/10000
 ```
 
 ```
-## [1] 0.0557269
+## [1] 0.05559873
 ```
 
 

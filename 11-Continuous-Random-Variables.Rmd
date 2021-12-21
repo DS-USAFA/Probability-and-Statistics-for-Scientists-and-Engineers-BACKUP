@@ -153,6 +153,10 @@ As in the case of the discrete random variable, we can simulate a continuous ran
 2. Find the random variable $X$ from $F_{X}^{-1}(U)$.  
 In `R` for our example, this looks like the following.
 
+```{r, echo=FALSE}
+set.seed(112)
+```
+
 ```{r}
 sqrt(runif(1))
 ```

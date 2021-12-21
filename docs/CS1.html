@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-12-15" />
+<meta name="date" content="2021-12-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -792,7 +792,7 @@ div.csl-indent {
 </div>
 <div id="case-study" class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> Case study</h2>
-<p>In this lesson we will consider an experiment that studies effectiveness of stents in treating patients at risk of stroke.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Stents are small mesh tubes that are placed inside narrow or weak arteries to assist in patient recovery after cardiac events and reduce the risk of an additional heart attack or death. Many doctors have hoped that there would be similar benefits for patients at risk of stroke. We start by writing the principal question the researchers hope to answer:</p>
+<p>In this lesson we will consider an experiment that studies effectiveness of stents in treating patients at risk of stroke. <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Stents are small mesh tubes that are placed inside narrow or weak arteries to assist in patient recovery after cardiac events and reduce the risk of an additional heart attack or death. Many doctors have hoped that there would be similar benefits for patients at risk of stroke. We start by writing the principal question the researchers hope to answer:</p>
 <div id="research-question" class="section level3" number="1.4.1">
 <h3><span class="header-section-number">1.4.1</span> Research question</h3>
 <blockquote>
@@ -838,7 +838,7 @@ a package can be used, it must be installed on the computer (once per computer o
 <h3><span class="header-section-number">1.4.4</span> Explore data</h3>
 <p>Before we attempt to answer the research question, let’s look at the data. We want <code>R</code> to print out the first 10 rows of the data. The appropriate function is <code>head()</code> and it needs the data object. By default, <code>R</code> will output the first 6 rows. By using the <code>n=</code> argument, we can specify how many rows we want to view.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="CS1.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stent_study,<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 10 × 3
+<pre><code>## # A tibble: 10 x 3
 ##    group   outcome30 outcome365
 ##    &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;     
 ##  1 control no_event  no_event  
@@ -866,7 +866,7 @@ a package can be used, it must be installed on the computer (once per computer o
 <p>To keep things simple we will only look at the <code>outcome30</code> variable in this case study. We will summarize the data in a table. Later in the course, we will learn to do this using the <code>tidy</code> package; for now we use the <code>mosaic</code> package. This package makes use of the modeling formula that you will use extensively later in this course and in Math 378.</p>
 <p>We want to summarize the data by making a table. In <code>mosaic</code> this is the <code>tally()</code> function. Before using this function, we have to understand the basic formula notation that <code>mosaic</code> uses. The basic format is:</p>
 <pre><code>goal( y ~ x, data = MyData, ... ) # pseudo-code for the formula template</code></pre>
-<p>We read <code>y ~ x</code> as “y tilde x” and interpret it in the equivalent forms: “y broken down by x”; “y modeled by x”; “y explained by x”; “y depends on x”; or “y accounted for by x.” For graphics, it’s reasonable to read the formula as “y vs. x,” which is exactly the convention used for coordinate axes.</p>
+<p>We read <code>y ~ x</code> as “y tilde x” and interpret it in the equivalent forms: “y broken down by x”; “y modeled by x”; “y explained by x”; “y depends on x”; or “y accounted for by x.” For graphics, it’s reasonable to read the formula as “y vs. x”, which is exactly the convention used for coordinate axes.</p>
 <p>For this exercise, we want to apply <code>tally()</code> to the variables <code>group</code> and <code>outcome30</code>. In this case it does not matter which we call <code>y</code> and <code>x</code>; however, it is more natural to think of <code>outcome30</code> as a dependent variable.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="CS1.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(outcome30<span class="sc">~</span>group,<span class="at">data=</span>stent_study,<span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##           group
@@ -913,9 +913,9 @@ Figure 1.1: Using <strong>ggformula</strong> to create a bar chart.
 <p><strong>Exercise</strong>:<br />
 Explain Figure <a href="CS1.html#fig:first-fig">1.1</a>..</p>
 </blockquote>
-<p>This plot graphically shows us the total number of “stroke” and the total number of “no_event.” However, this is not what we want. We want to compare the 30-day outcomes for both treatment groups. So we need to break the data into different groups based on treatment type. In the formula language we now update it to the form:</p>
+<p>This plot graphically shows us the total number of “stroke” and the total number of “no_event”. However, this is not what we want. We want to compare the 30-day outcomes for both treatment groups. So we need to break the data into different groups based on treatment type. In the formula language we now update it to the form:</p>
 <pre><code>goal( y ~ x|z, data = MyData, ... ) # pseudo-code for the formula template</code></pre>
-<p>We read <code>y ~ x|z</code> as “y tilde x by z” and interpret in the equivalent forms: “y modeled by x for each z”; “y explained by x within each z”; or “y accounted for by x within z.” For graphics, it’s reasonable to read the formula as “y vs. x for each z.” Figure <a href="CS1.html#fig:split-fig">1.2</a> shows the results.</p>
+<p>We read <code>y ~ x|z</code> as “y tilde x by z” and interpret in the equivalent forms: “y modeled by x for each z”; “y explained by x within each z”; or “y accounted for by x within z.” For graphics, it’s reasonable to read the formula as “y vs. x for each z”. Figure <a href="CS1.html#fig:split-fig">1.2</a> shows the results.</p>
 
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="CS1.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_bar</span>(<span class="sc">~</span>outcome30<span class="sc">|</span>group,<span class="at">data =</span> stent_study) </span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:split-fig"></span>
@@ -1014,7 +1014,7 @@ iii. Create a barchart of the data.</li>
 <li id="fn2"><p><a href="http://www.nytimes.com/2011/09/08/health/research/08stent.html">NY Times article reporting on the study</a><a href="CS1.html#fnref2" class="footnote-back">↩︎</a></p></li>
 <li id="fn3"><p>Formally, a summary statistic is a value computed from the data. Some summary statistics are more useful than others.<a href="CS1.html#fnref3" class="footnote-back">↩︎</a></p></li>
 <li id="fn4"><p><a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html" class="uri">https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html</a><a href="CS1.html#fnref4" class="footnote-back">↩︎</a></p></li>
-<li id="fn5"><p>G. Allais et al. <a href="http://www.ncbi.nlm.nih.gov/pubmed/21533739">“Ear acupuncture in the treatment of migraine attacks: a randomized trial on the efficacy of appropriate versus inappropriate acupoints.”</a> In: Neurological Sci. 32.1 (2011), pp. 173–175.<a href="CS1.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>G. Allais et al. <a href="http://www.ncbi.nlm.nih.gov/pubmed/21533739">“Ear acupuncture in the treatment of migraine attacks: a randomized trial on the efficacy of appropriate versus inappropriate acupoints”.</a> In: Neurological Sci. 32.1 (2011), pp. 173–175.<a href="CS1.html#fnref5" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

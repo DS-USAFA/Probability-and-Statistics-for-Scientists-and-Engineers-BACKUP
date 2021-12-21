@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-12-15" />
+<meta name="date" content="2021-12-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -838,7 +838,7 @@ Figure 21.2: Density plot of heights of local college students.
 <p>If we want to use the <code>tidyverse</code>, we must convert to a <code>dataframe</code>.</p>
 <div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="BOOT.html#cb607-1" aria-hidden="true" tabindex="-1"></a>heights <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">height=</span>heights)</span></code></pre></div>
 <div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="BOOT.html#cb608-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(heights)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 1
+<pre><code>## # A tibble: 6 x 1
 ##   height
 ##    &lt;dbl&gt;
 ## 1   62  
@@ -850,7 +850,7 @@ Figure 21.2: Density plot of heights of local college students.
 <div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="BOOT.html#cb610-1" aria-hidden="true" tabindex="-1"></a>heights <span class="sc">%&gt;%</span></span>
 <span id="cb610-2"><a href="BOOT.html#cb610-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(height),<span class="at">stand_dev=</span><span class="fu">sd</span>(height),<span class="at">n=</span><span class="fu">n</span>(),</span>
 <span id="cb610-3"><a href="BOOT.html#cb610-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">ci=</span>mean<span class="sc">+</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qt</span>(<span class="fl">0.975</span>,n<span class="dv">-1</span>)<span class="sc">*</span>stand_dev<span class="sc">/</span><span class="fu">sqrt</span>(n))</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 4
+<pre><code>## # A tibble: 2 x 4
 ##    mean stand_dev     n    ci
 ##   &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
 ## 1  68.9      6.35    50  67.1
@@ -859,7 +859,7 @@ Figure 21.2: Density plot of heights of local college students.
 <div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="BOOT.html#cb612-1" aria-hidden="true" tabindex="-1"></a>heights <span class="sc">%&gt;%</span></span>
 <span id="cb612-2"><a href="BOOT.html#cb612-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(height),<span class="at">stand_dev=</span><span class="fu">sd</span>(height),<span class="at">n=</span><span class="fu">n</span>(),</span>
 <span id="cb612-3"><a href="BOOT.html#cb612-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">ci=</span>mean<span class="sc">+</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qnorm</span>(<span class="fl">0.975</span>)<span class="sc">*</span>stand_dev<span class="sc">/</span><span class="fu">sqrt</span>(n))</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 4
+<pre><code>## # A tibble: 2 x 4
 ##    mean stand_dev     n    ci
 ##   &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
 ## 1  68.9      6.35    50  67.2

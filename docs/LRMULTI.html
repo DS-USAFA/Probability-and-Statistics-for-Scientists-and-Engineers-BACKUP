@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-12-15" />
+<meta name="date" content="2021-12-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -778,23 +778,23 @@ div.csl-indent {
 <h2><span class="header-section-number">28.3</span> Multiple regression</h2>
 <p>Multiple regression extends simple two-variable regression to the case that still has one response but many predictors (denoted <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, <span class="math inline">\(x_3\)</span>, …). The method is motivated by scenarios where many variables may be simultaneously connected to an output.</p>
 <p>To explore and explain these ideas, we will consider Ebay auctions of a video game called <strong>Mario Kart</strong> for the Nintendo Wii. The outcome variable of interest is the total price of an auction, which is the highest bid plus the shipping cost. We will try to determine how total price is related to each characteristic in an auction while simultaneously controlling for other variables. For instance, with all other characteristics held constant, are longer auctions associated with higher or lower prices? And, on average, how much more do buyers tend to pay for additional Wii wheels (plastic steering wheels that attach to the Wii controller) in auctions? Multiple regression will help us answer these and other questions.</p>
-<p>The data set is in the file <code>mariokart.csv</code> in the <code>data</code> folder. This data set includes results from 141 auctions.<a href="#fn96" class="footnote-ref" id="fnref96"><sup>96</sup></a> Ten observations from this data set are shown in the <code>R</code> code below. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for advanced regression or machine learning courses.</p>
-<div class="sourceCode" id="cb923"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb923-1"><a href="LRMULTI.html#cb923-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/mariokart.csv&quot;</span>)</span>
+<p>The data set is in the file <code>mariokart.csv</code> in the <code>data</code> folder. This data set includes results from 141 auctions.<a href="#fn96" class="footnote-ref" id="fnref96"><sup>96</sup></a> Ten observations from this data set are shown in the <code>R</code> code below. Note that we force the first column to be interpreted as a character string since it is the identification code for each sale and has no numeric meaning. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for advanced regression or machine learning courses.</p>
+<div class="sourceCode" id="cb923"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb923-1"><a href="LRMULTI.html#cb923-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/mariokart.csv&quot;</span>, <span class="at">col_types =</span> <span class="fu">list</span>(<span class="fu">col_character</span>()))</span>
 <span id="cb923-2"><a href="LRMULTI.html#cb923-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mariokart,<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 10 × 12
-##              id duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##           &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
-##  1 150377422259        3     20 new       0.99    4        51.6 standa…        1580
-##  2 260483376854        7     13 used      0.99    3.99     37.0 firstC…         365
-##  3 320432342985        3     16 new       0.99    3.5      45.5 firstC…         998
-##  4 280405224677        3     18 new       0.99    0        44   standa…           7
-##  5 170392227765        1     20 new       0.01    0        71   media           820
-##  6 360195157625        3     19 new       0.99    4        45   standa…      270144
-##  7 120477729093        1     13 used      0.01    0        37.0 standa…        7284
-##  8 300355501482        1     15 new       1       2.99     54.0 upsGro…        4858
-##  9 200392065459        3     29 used      0.99    4        47   priori…          27
-## 10 330364163424        7      8 used     20.0     4        50   firstC…         201
-## # … with 3 more variables: stock_photo &lt;chr&gt;, wheels &lt;dbl&gt;, title &lt;chr&gt;</code></pre>
+<pre><code>## # A tibble: 10 x 12
+##    id       duration n_bids cond  start_pr ship_pr total_pr ship_sp  seller_rate
+##    &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;
+##  1 1503774~        3     20 new       0.99    4        51.6 standard        1580
+##  2 2604833~        7     13 used      0.99    3.99     37.0 firstCl~         365
+##  3 3204323~        3     16 new       0.99    3.5      45.5 firstCl~         998
+##  4 2804052~        3     18 new       0.99    0        44   standard           7
+##  5 1703922~        1     20 new       0.01    0        71   media            820
+##  6 3601951~        3     19 new       0.99    4        45   standard      270144
+##  7 1204777~        1     13 used      0.01    0        37.0 standard        7284
+##  8 3003555~        1     15 new       1       2.99     54.0 upsGrou~        4858
+##  9 2003920~        3     29 used      0.99    4        47   priority          27
+## 10 3303641~        7      8 used     20.0     4        50   firstCl~         201
+## # ... with 3 more variables: stock_photo &lt;chr&gt;, wheels &lt;dbl&gt;, title &lt;chr&gt;</code></pre>
 <p>We are only interested in <code>total_pr</code>, <code>cond</code>, <code>stock_photo</code>, <code>duration</code>, and <code>wheels</code>. These variables are described in the following list:</p>
 <ol style="list-style-type: decimal">
 <li><code>total_pr</code>: final auction price plus shipping costs, in US dollars<br />
@@ -817,35 +817,35 @@ div.csl-indent {
 <pre><code>## 
 ## categorical variables:  
 ##          name     class levels   n missing
-## 1        cond    factor      2 143       0
-## 2     ship_sp character      8 143       0
-## 3 stock_photo    factor      2 143       0
-## 4       title character     80 142       1
+## 1          id character    143 143       0
+## 2        cond    factor      2 143       0
+## 3     ship_sp character      8 143       0
+## 4 stock_photo    factor      2 143       0
+## 5       title character     80 142       1
 ##                                    distribution
-## 1 used (58.7%), new (41.3%)                    
-## 2 standard (23.1%), upsGround (21.7%) ...      
-## 3 yes (73.4%), no (26.6%)                      
-## 4  (%) ...                                     
+## 1 110439174663 (0.7%) ...                      
+## 2 used (58.7%), new (41.3%)                    
+## 3 standard (23.1%), upsGround (21.7%) ...      
+## 4 yes (73.4%), no (26.6%)                      
+## 5  (%) ...                                     
 ## 
 ## quantitative variables:  
-##             name   class          min           Q1       median           Q3
-## ...1          id numeric 1.104392e+11 1.403506e+11 2.204911e+11 2.953551e+11
-## ...2    duration numeric 1.000000e+00 1.000000e+00 3.000000e+00 7.000000e+00
-## ...3      n_bids numeric 1.000000e+00 1.000000e+01 1.400000e+01 1.700000e+01
-## ...4    start_pr numeric 1.000000e-02 9.900000e-01 1.000000e+00 1.000000e+01
-## ...5     ship_pr numeric 0.000000e+00 0.000000e+00 3.000000e+00 4.000000e+00
-## ...6    total_pr numeric 2.898000e+01 4.117500e+01 4.650000e+01 5.399000e+01
-## ...7 seller_rate numeric 0.000000e+00 1.090000e+02 8.200000e+02 4.858000e+03
-## ...8      wheels numeric 0.000000e+00 0.000000e+00 1.000000e+00 2.000000e+00
-##               max         mean           sd   n missing
-## ...1 4.000775e+11 2.235290e+11 8.809543e+10 143       0
-## ...2 1.000000e+01 3.769231e+00 2.585693e+00 143       0
-## ...3 2.900000e+01 1.353846e+01 5.878786e+00 143       0
-## ...4 6.995000e+01 8.777203e+00 1.506745e+01 143       0
-## ...5 2.551000e+01 3.143706e+00 3.213179e+00 143       0
-## ...6 3.265100e+02 4.988049e+01 2.568856e+01 143       0
-## ...7 2.701440e+05 1.589842e+04 5.184032e+04 143       0
-## ...8 4.000000e+00 1.146853e+00 8.471829e-01 143       0</code></pre>
+##             name   class   min      Q1 median      Q3       max         mean
+## ...1    duration numeric  1.00   1.000    3.0    7.00     10.00     3.769231
+## ...2      n_bids numeric  1.00  10.000   14.0   17.00     29.00    13.538462
+## ...3    start_pr numeric  0.01   0.990    1.0   10.00     69.95     8.777203
+## ...4     ship_pr numeric  0.00   0.000    3.0    4.00     25.51     3.143706
+## ...5    total_pr numeric 28.98  41.175   46.5   53.99    326.51    49.880490
+## ...6 seller_rate numeric  0.00 109.000  820.0 4858.00 270144.00 15898.419580
+## ...7      wheels numeric  0.00   0.000    1.0    2.00      4.00     1.146853
+##                sd   n missing
+## ...1 2.585693e+00 143       0
+## ...2 5.878786e+00 143       0
+## ...3 1.506745e+01 143       0
+## ...4 3.213179e+00 143       0
+## ...5 2.568856e+01 143       0
+## ...6 5.184032e+04 143       0
+## ...7 8.471829e-01 143       0</code></pre>
 <p>Finally, let’s plot the data.</p>
 <div class="sourceCode" id="cb928"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb928-1"><a href="LRMULTI.html#cb928-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="sc">%&gt;%</span> </span>
 <span id="cb928-2"><a href="LRMULTI.html#cb928-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_boxplot</span>(total_pr<span class="sc">~</span>cond) <span class="sc">%&gt;%</span></span>
@@ -898,7 +898,7 @@ Figure 28.2: Scatterplot of total price of Mario Kart on Ebay versus condition.
 <div class="sourceCode" id="cb933"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb933-1"><a href="LRMULTI.html#cb933-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="sc">%&gt;%</span></span>
 <span id="cb933-2"><a href="LRMULTI.html#cb933-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cond) <span class="sc">%&gt;%</span></span>
 <span id="cb933-3"><a href="LRMULTI.html#cb933-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">xbar=</span><span class="fu">mean</span>(total_pr), <span class="at">stand_dev=</span><span class="fu">sd</span>(total_pr),<span class="at">xmedian=</span><span class="fu">median</span>(total_pr))</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 4
+<pre><code>## # A tibble: 2 x 4
 ##   cond   xbar stand_dev xmedian
 ##   &lt;fct&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 new    53.8      7.44    54.0
@@ -907,12 +907,12 @@ Figure 28.2: Scatterplot of total price of Mario Kart on Ebay versus condition.
 <p>There are at least two outliers in the plot. Let’s gather more information about them.</p>
 <div class="sourceCode" id="cb935"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb935-1"><a href="LRMULTI.html#cb935-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="sc">%&gt;%</span></span>
 <span id="cb935-2"><a href="LRMULTI.html#cb935-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_pr <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 12
-##             id duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##          &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
-## 1 110439174663        7     22 used      1       25.5     327. parcel          115
-## 2 130335427560        3     27 used      6.95     4       118. parcel           41
-## # … with 3 more variables: stock_photo &lt;fct&gt;, wheels &lt;dbl&gt;, title &lt;chr&gt;</code></pre>
+<pre><code>## # A tibble: 2 x 12
+##   id         duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
+##   &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+## 1 110439174~        7     22 used      1       25.5     327. parcel          115
+## 2 130335427~        3     27 used      6.95     4       118. parcel           41
+## # ... with 3 more variables: stock_photo &lt;fct&gt;, wheels &lt;dbl&gt;, title &lt;chr&gt;</code></pre>
 <p>If you look at the variable <code>title</code> there were additional items in the sale for these two observations. Let’s remove those two outliers and run the model again. Note that the reason we are removing them is not because they are annoying us and messing up our model. It is because we don’t think they are representative of the population of interest. Figure <a href="LRMULTI.html#fig:scat302-fig">28.3</a> is a boxplot of the data with the outliers dropped.</p>
 <div class="sourceCode" id="cb937"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb937-1"><a href="LRMULTI.html#cb937-1" aria-hidden="true" tabindex="-1"></a>mariokart_new <span class="ot">&lt;-</span> mariokart <span class="sc">%&gt;%</span></span>
 <span id="cb937-2"><a href="LRMULTI.html#cb937-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_pr <span class="sc">&lt;=</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
@@ -1190,11 +1190,11 @@ Compute the residual of the first observation in the dataframe using the regress
 <div class="sourceCode" id="cb953"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb953-1"><a href="LRMULTI.html#cb953-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
 <div class="sourceCode" id="cb954"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb954-1"><a href="LRMULTI.html#cb954-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(mario_mod_multi) <span class="sc">%&gt;%</span></span>
 <span id="cb954-2"><a href="LRMULTI.html#cb954-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 11
+<pre><code>## # A tibble: 1 x 11
 ##   total_pr cond  stock_photo duration wheels .fitted .resid   .hat .sigma
 ##      &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;          &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     51.6 new   yes                3      1    49.6   1.92 0.0215   4.92
-## # … with 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;</code></pre>
+## # ... with 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;</code></pre>
 <p><span class="math inline">\(e_i = y_i - \hat{y_i} = 51.55 - 49.62 = 1.93\)</span></p>
 <blockquote>
 <p><em>Example</em>:<br />
@@ -1245,7 +1245,7 @@ R_{adj}^{2} = 1-\frac{\text{sum of squares of residuals} / (n-k-1)}{\text{sum of
 \]</span>
 where <span class="math inline">\(n\)</span> is the number of cases used to fit the model and <span class="math inline">\(k\)</span> is the number of predictor variables in the model.</p>
 </blockquote>
-<p>Because <span class="math inline">\(k\)</span> is never negative, the adjusted <span class="math inline">\(R^2\)</span> will be smaller – often times just a little smaller – than the unadjusted <span class="math inline">\(R^2\)</span>. The reasoning behind the adjusted <span class="math inline">\(R^2\)</span> lies in the <strong>degrees of freedom</strong> associated with each variance.<a href="#fn101" class="footnote-ref" id="fnref101"><sup>101</sup></a></p>
+<p>Because <span class="math inline">\(k\)</span> is never negative, the adjusted <span class="math inline">\(R^2\)</span> will be smaller – often times just a little smaller – than the unadjusted <span class="math inline">\(R^2\)</span>. The reasoning behind the adjusted <span class="math inline">\(R^2\)</span> lies in the <strong>degrees of freedom</strong> associated with each variance. <a href="#fn101" class="footnote-ref" id="fnref101"><sup>101</sup></a></p>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
 Suppose you added another predictor to the model, but the variance of the errors didn’t go down. What would happen to the <span class="math inline">\(R^2\)</span>? What would happen to the adjusted <span class="math inline">\(R^2\)</span>?<a href="#fn102" class="footnote-ref" id="fnref102"><sup>102</sup></a></p>
@@ -1362,18 +1362,19 @@ Figure 28.7: Diagnostic residual plots for multiple regression model.
 <div class="sourceCode" id="cb976"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb976-1"><a href="LRMULTI.html#cb976-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Credit)</span></code></pre></div>
 <pre><code>## Rows: 400
 ## Columns: 12
-## $ ID        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
-## $ Income    &lt;dbl&gt; 14.891, 106.025, 104.593, 148.924, 55.882, 80.180, 20.996, 7…
-## $ Limit     &lt;int&gt; 3606, 6645, 7075, 9504, 4897, 8047, 3388, 7114, 3300, 6819, …
-## $ Rating    &lt;int&gt; 283, 483, 514, 681, 357, 569, 259, 512, 266, 491, 589, 138, …
-## $ Cards     &lt;int&gt; 2, 3, 4, 3, 2, 4, 2, 2, 5, 3, 4, 3, 1, 1, 2, 3, 3, 3, 1, 2, …
-## $ Age       &lt;int&gt; 34, 82, 71, 36, 68, 77, 37, 87, 66, 41, 30, 64, 57, 49, 75, …
-## $ Education &lt;int&gt; 11, 15, 11, 11, 16, 10, 12, 9, 13, 19, 14, 16, 7, 9, 13, 15,…
-## $ Gender    &lt;fct&gt;  Male, Female,  Male, Female,  Male,  Male, Female,  Male, F…
-## $ Student   &lt;fct&gt; No, Yes, No, No, No, No, No, No, No, Yes, No, No, No, No, No…
-## $ Married   &lt;fct&gt; Yes, Yes, No, No, Yes, No, No, No, No, Yes, Yes, No, Yes, Ye…
-## $ Ethnicity &lt;fct&gt; Caucasian, Asian, Asian, Asian, Caucasian, Caucasian, Africa…
-## $ Balance   &lt;int&gt; 333, 903, 580, 964, 331, 1151, 203, 872, 279, 1350, 1407, 0,…</code></pre>
+## $ ID        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~
+## $ Income    &lt;dbl&gt; 14.891, 106.025, 104.593, 148.924, 55.882, 80.180, 20.996, 7~
+## $ Limit     &lt;int&gt; 3606, 6645, 7075, 9504, 4897, 8047, 3388, 7114, 3300, 6819, ~
+## $ Rating    &lt;int&gt; 283, 483, 514, 681, 357, 569, 259, 512, 266, 491, 589, 138, ~
+## $ Cards     &lt;int&gt; 2, 3, 4, 3, 2, 4, 2, 2, 5, 3, 4, 3, 1, 1, 2, 3, 3, 3, 1, 2, ~
+## $ Age       &lt;int&gt; 34, 82, 71, 36, 68, 77, 37, 87, 66, 41, 30, 64, 57, 49, 75, ~
+## $ Education &lt;int&gt; 11, 15, 11, 11, 16, 10, 12, 9, 13, 19, 14, 16, 7, 9, 13, 15,~
+## $ Gender    &lt;fct&gt;  Male, Female,  Male, Female,  Male,  Male, Female,  Male, F~
+## $ Student   &lt;fct&gt; No, Yes, No, No, No, No, No, No, No, Yes, No, No, No, No, No~
+## $ Married   &lt;fct&gt; Yes, Yes, No, No, Yes, No, No, No, No, Yes, Yes, No, Yes, Ye~
+## $ Ethnicity &lt;fct&gt; Caucasian, Asian, Asian, Asian, Caucasian, Caucasian, Africa~
+## $ Balance   &lt;int&gt; 333, 903, 580, 964, 331, 1151, 203, 872, 279, 1350, 1407, 0,~</code></pre>
+<p>Notice that <code>ID</code> is being treated as an integer. We could change it to a character since it is a label, but for our work in this chapter we will not bother.</p>
 <p>Suppose we suspected that there is a relationship between <code>Balance</code>, the response, and the predictors <code>Income</code> and <code>Student</code>. Note: we actually are using this model for educational purposes and did not go through a model selection process.</p>
 <p>The first model simply has these predictors in the model.</p>
 <div class="sourceCode" id="cb978"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb978-1"><a href="LRMULTI.html#cb978-1" aria-hidden="true" tabindex="-1"></a>credit_mod1<span class="ot">&lt;-</span><span class="fu">lm</span>(Balance<span class="sc">~</span>Income<span class="sc">+</span>Student,<span class="at">data=</span>Credit)</span></code></pre></div>

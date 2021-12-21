@@ -405,7 +405,7 @@ temperature %>%
 ```
 
 ```
-## # A tibble: 1 × 3
+## # A tibble: 1 x 3
 ##    mean    sd test_stat
 ##   <dbl> <dbl>     <dbl>
 ## 1  98.2 0.733     -5.45

@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-12-15" />
+<meta name="date" content="2021-12-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -824,7 +824,7 @@ div.csl-indent {
 <p>For simple linear regression, <span class="math inline">\(R\)</span>-squared is related to <strong>correlation</strong>. We can compute the correlation using a formula, just as we did with the sample mean and standard deviation. However, this formula is rather complex,<a href="#fn94" class="footnote-ref" id="fnref94"><sup>94</sup></a> so we let <code>R</code> do the heavy lifting for us.</p>
 <div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="LRDIAG.html#cb831-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="sc">%&gt;%</span></span>
 <span id="cb831-2"><a href="LRDIAG.html#cb831-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">correlation=</span><span class="fu">cor</span>(carb,calories),<span class="at">correlation_squared=</span>correlation<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 2
+<pre><code>## # A tibble: 1 x 2
 ##   correlation correlation_squared
 ##         &lt;dbl&gt;               &lt;dbl&gt;
 ## 1       0.675               0.456</code></pre>

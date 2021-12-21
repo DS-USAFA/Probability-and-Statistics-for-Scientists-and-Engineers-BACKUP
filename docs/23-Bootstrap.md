@@ -133,7 +133,7 @@ head(heights)
 ```
 
 ```
-## # A tibble: 6 × 1
+## # A tibble: 6 x 1
 ##   height
 ##    <dbl>
 ## 1   62  
@@ -153,7 +153,7 @@ heights %>%
 ```
 
 ```
-## # A tibble: 2 × 4
+## # A tibble: 2 x 4
 ##    mean stand_dev     n    ci
 ##   <dbl>     <dbl> <int> <dbl>
 ## 1  68.9      6.35    50  67.1
@@ -170,7 +170,7 @@ heights %>%
 ```
 
 ```
-## # A tibble: 2 × 4
+## # A tibble: 2 x 4
 ##    mean stand_dev     n    ci
 ##   <dbl>     <dbl> <int> <dbl>
 ## 1  68.9      6.35    50  67.2

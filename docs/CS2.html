@@ -27,7 +27,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-12-15" />
+<meta name="date" content="2021-12-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1033,7 +1033,7 @@ Figure 7.4: The number of births for each day of the year in 1969 broken down by
 <div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="CS2.html#cb161-1" aria-hidden="true" tabindex="-1"></a>Births <span class="sc">%&gt;%</span></span>
 <span id="cb161-2"><a href="CS2.html#cb161-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
 <span id="cb161-3"><a href="CS2.html#cb161-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">n</span>())</span></code></pre></div>
-<pre><code>## # A tibble: 20 × 2
+<pre><code>## # A tibble: 20 x 2
 ##     year     n
 ##    &lt;int&gt; &lt;int&gt;
 ##  1  1969   365
@@ -1061,7 +1061,7 @@ Figure 7.4: The number of births for each day of the year in 1969 broken down by
 <span id="cb163-2"><a href="CS2.html#cb163-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1972</span>,<span class="dv">1976</span>,<span class="dv">1980</span>,<span class="dv">1984</span>,<span class="dv">1988</span>))) <span class="sc">%&gt;%</span></span>
 <span id="cb163-3"><a href="CS2.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
 <span id="cb163-4"><a href="CS2.html#cb163-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">n</span>())</span></code></pre></div>
-<pre><code>## # A tibble: 15 × 2
+<pre><code>## # A tibble: 15 x 2
 ##     year     n
 ##    &lt;int&gt; &lt;int&gt;
 ##  1  1969   365
@@ -1086,7 +1086,7 @@ Figure 7.4: The number of births for each day of the year in 1969 broken down by
 <span id="cb165-3"><a href="CS2.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(day_of_year) <span class="sc">%&gt;%</span></span>
 <span id="cb165-4"><a href="CS2.html#cb165-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">sum</span>(births)) </span></code></pre></div>
 <div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="CS2.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(birth_data)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 2
+<pre><code>## # A tibble: 6 x 2
 ##   day_of_year      n
 ##         &lt;int&gt;  &lt;int&gt;
 ## 1           1 120635
