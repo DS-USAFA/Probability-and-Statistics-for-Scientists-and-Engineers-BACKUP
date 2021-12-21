@@ -508,7 +508,7 @@ Births %>%
 ```
 
 ```
-## # A tibble: 20 x 2
+## # A tibble: 20 × 2
 ##     year     n
 ##    <int> <int>
 ##  1  1969   365
@@ -544,7 +544,7 @@ Births %>%
 ```
 
 ```
-## # A tibble: 15 x 2
+## # A tibble: 15 × 2
 ##     year     n
 ##    <int> <int>
 ##  1  1969   365
@@ -584,7 +584,7 @@ head(birth_data)
 ```
 
 ```
-## # A tibble: 6 x 2
+## # A tibble: 6 × 2
 ##   day_of_year      n
 ##         <int>  <int>
 ## 1           1 120635

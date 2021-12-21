@@ -795,7 +795,7 @@ Let’s let <code>R</code> flip a coin for us and record the number of heads and
 ## H H
 ## 
 ## Number of Heads: 2 [Proportion Heads: 1]</code></pre>
-<p>The sample space is <span class="math inline">\(S=\{HH, TH, HT, TT\}\)</span>, an example of an outcome is <span class="math inline">\(HH\)</span> which we see in the output from <code>R</code>, and finally an example of an event is the number of heads, which in this case takes on the values 0, 1, and 2. Another example of an event is “At least one heads”. In this case the event would be <span class="math inline">\(\{HH,TH, HT\}\)</span>. Also notice that <span class="math inline">\(TH\)</span> is different from <span class="math inline">\(HT\)</span> as an outcome; this is because those are different outcomes from flipping a coin twice.</p>
+<p>The sample space is <span class="math inline">\(S=\{HH, TH, HT, TT\}\)</span>, an example of an outcome is <span class="math inline">\(HH\)</span> which we see in the output from <code>R</code>, and finally an example of an event is the number of heads, which in this case takes on the values 0, 1, and 2. Another example of an event is “At least one heads.” In this case the event would be <span class="math inline">\(\{HH,TH, HT\}\)</span>. Also notice that <span class="math inline">\(TH\)</span> is different from <span class="math inline">\(HT\)</span> as an outcome; this is because those are different outcomes from flipping a coin twice.</p>
 <blockquote>
 <p><em>Example of Event</em>:<br />
 Suppose you arrive at a rental car counter and they show you a list of available vehicles, and one is picked for you at random. The sample space in this experiment is
@@ -955,7 +955,7 @@ Figure 8.1: Number of girls in a family of size 3.
 ##            mean sd  n missing
 ## ...1 0.01923077  0 52       0</code></pre>
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="PROBRULES.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Cards)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 3
+<pre><code>## # A tibble: 6 × 3
 ##   rank  suit   probs
 ##   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;
 ## 1 2     Club  0.0192
@@ -973,7 +973,7 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="PROBRULES.html#cb189-1" aria-hidden="true" tabindex="-1"></a>Cards <span class="sc">%&gt;%</span></span>
 <span id="cb189-2"><a href="PROBRULES.html#cb189-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(suit <span class="sc">==</span> <span class="st">&quot;Club&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb189-3"><a href="PROBRULES.html#cb189-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank,suit)</span></code></pre></div>
-<pre><code>## # A tibble: 13 x 2
+<pre><code>## # A tibble: 13 × 2
 ##    rank  suit 
 ##    &lt;chr&gt; &lt;chr&gt;
 ##  1 2     Club 
@@ -994,7 +994,7 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 <p>Remember, ask what do we want <code>R</code> to do and what does <code>R</code> need to do this?</p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="PROBRULES.html#cb191-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">sample</span>(Cards,<span class="dv">1</span>)</span>
 <span id="cb191-2"><a href="PROBRULES.html#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 6
+<pre><code>## # A tibble: 6 × 6
 ##   rank  suit   probs orig.id  .row .index
 ##   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;  &lt;dbl&gt;
 ## 1 9     Spade 0.0192 47          1      1
@@ -1006,14 +1006,14 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="PROBRULES.html#cb193-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
 <span id="cb193-2"><a href="PROBRULES.html#cb193-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(suit <span class="sc">==</span> <span class="st">&quot;Club&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb193-3"><a href="PROBRULES.html#cb193-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prob=</span><span class="fu">n</span>()<span class="sc">/</span><span class="dv">10000</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 1
+<pre><code>## # A tibble: 1 × 1
 ##    prob
 ##   &lt;dbl&gt;
 ## 1 0.243</code></pre>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="PROBRULES.html#cb195-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
 <span id="cb195-2"><a href="PROBRULES.html#cb195-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(suit) <span class="sc">%&gt;%</span></span>
 <span id="cb195-3"><a href="PROBRULES.html#cb195-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prob=</span>n<span class="sc">/</span><span class="fu">sum</span>(n))</span></code></pre></div>
-<pre><code>## # A tibble: 4 x 3
+<pre><code>## # A tibble: 4 × 3
 ##   suit        n  prob
 ##   &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt;
 ## 1 Club     2432 0.243
@@ -1024,7 +1024,7 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 <div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="PROBRULES.html#cb197-1" aria-hidden="true" tabindex="-1"></a>Cards <span class="sc">%&gt;%</span></span>
 <span id="cb197-2"><a href="PROBRULES.html#cb197-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="st">&quot;J&quot;</span>, <span class="st">&quot;Q&quot;</span>, <span class="st">&quot;K&quot;</span>, <span class="st">&quot;A&quot;</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb197-3"><a href="PROBRULES.html#cb197-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank,suit)</span></code></pre></div>
-<pre><code>## # A tibble: 20 x 2
+<pre><code>## # A tibble: 20 × 2
 ##    rank  suit   
 ##    &lt;chr&gt; &lt;chr&gt;  
 ##  1 10    Club   
@@ -1054,7 +1054,7 @@ Using simulation to estimate the probability of 10 or higher.</p>
 </blockquote>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="PROBRULES.html#cb199-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">sample</span>(Cards,<span class="dv">1</span>)</span>
 <span id="cb199-2"><a href="PROBRULES.html#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 6
+<pre><code>## # A tibble: 6 × 6
 ##   rank  suit   probs orig.id  .row .index
 ##   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;  &lt;dbl&gt;
 ## 1 10    Heart 0.0192 35          1      1
@@ -1066,7 +1066,7 @@ Using simulation to estimate the probability of 10 or higher.</p>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="PROBRULES.html#cb201-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
 <span id="cb201-2"><a href="PROBRULES.html#cb201-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="st">&quot;J&quot;</span>, <span class="st">&quot;Q&quot;</span>, <span class="st">&quot;K&quot;</span>, <span class="st">&quot;A&quot;</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb201-3"><a href="PROBRULES.html#cb201-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prob=</span><span class="fu">n</span>()<span class="sc">/</span><span class="dv">10000</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 1
+<pre><code>## # A tibble: 1 × 1
 ##    prob
 ##   &lt;dbl&gt;
 ## 1 0.389</code></pre>
@@ -1074,7 +1074,7 @@ Using simulation to estimate the probability of 10 or higher.</p>
 <div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="PROBRULES.html#cb203-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
 <span id="cb203-2"><a href="PROBRULES.html#cb203-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">face=</span>rank <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="st">&quot;J&quot;</span>, <span class="st">&quot;Q&quot;</span>, <span class="st">&quot;K&quot;</span>, <span class="st">&quot;A&quot;</span>))<span class="sc">%&gt;%</span></span>
 <span id="cb203-3"><a href="PROBRULES.html#cb203-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prob=</span><span class="fu">mean</span>(face))</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 1
+<pre><code>## # A tibble: 1 × 1
 ##    prob
 ##   &lt;dbl&gt;
 ## 1 0.389</code></pre>
@@ -1083,7 +1083,7 @@ Using simulation to estimate the probability of 10 or higher.</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="PROBRULES.html#cb205-1" aria-hidden="true" tabindex="-1"></a>Cards <span class="sc">%&gt;%</span></span>
 <span id="cb205-2"><a href="PROBRULES.html#cb205-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="st">&quot;J&quot;</span>, <span class="st">&quot;Q&quot;</span>, <span class="st">&quot;K&quot;</span>, <span class="st">&quot;A&quot;</span>),suit<span class="sc">==</span><span class="st">&quot;Club&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb205-3"><a href="PROBRULES.html#cb205-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank,suit)</span></code></pre></div>
-<pre><code>## # A tibble: 5 x 2
+<pre><code>## # A tibble: 5 × 2
 ##   rank  suit 
 ##   &lt;chr&gt; &lt;chr&gt;
 ## 1 10    Club 
@@ -1099,7 +1099,7 @@ Simulate drawing one card and estimate the probability of a club that is 10 or g
 <div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="PROBRULES.html#cb207-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
 <span id="cb207-2"><a href="PROBRULES.html#cb207-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">face=</span>(rank <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="st">&quot;J&quot;</span>, <span class="st">&quot;Q&quot;</span>, <span class="st">&quot;K&quot;</span>, <span class="st">&quot;A&quot;</span>))<span class="sc">&amp;</span>(suit<span class="sc">==</span><span class="st">&quot;Club&quot;</span>))<span class="sc">%&gt;%</span></span>
 <span id="cb207-3"><a href="PROBRULES.html#cb207-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prob=</span><span class="fu">mean</span>(face))</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 1
+<pre><code>## # A tibble: 1 × 1
 ##     prob
 ##    &lt;dbl&gt;
 ## 1 0.0963</code></pre>
@@ -1119,7 +1119,7 @@ Simulate drawing one card and estimate the probability of a club that is 10 or g
 <p><em>Example</em>:<br />
 A license plate consists of three numeric digits (0-9) followed by three single letters (A-Z). How many possible license plates exist?</p>
 </blockquote>
-<p>We can divide this problem into two sections. In the numeric section, we are selecting 3 objects from 10, with replacement. This means that a number can be used more than once. Order clearly matters because a license plate starting with “432” is distinct from a license plate starting with “234”. There are <span class="math inline">\(10^3 = 1000\)</span> ways to select the first three digits; 10 for the first, 10 for the second, and 10 for the third. Why do you multiply and not add?<a href="#fn65" class="footnote-ref" id="fnref65"><sup>65</sup></a></p>
+<p>We can divide this problem into two sections. In the numeric section, we are selecting 3 objects from 10, with replacement. This means that a number can be used more than once. Order clearly matters because a license plate starting with “432” is distinct from a license plate starting with “234.” There are <span class="math inline">\(10^3 = 1000\)</span> ways to select the first three digits; 10 for the first, 10 for the second, and 10 for the third. Why do you multiply and not add?<a href="#fn65" class="footnote-ref" id="fnref65"><sup>65</sup></a></p>
 <p>In the alphabet section, we are selecting 3 objects from 26, where order matters. Thus, there are <span class="math inline">\(26^3=17576\)</span> ways to select the last three letters of the plate. Combined, there are <span class="math inline">\(10^3 \times 26^3 = 17576000\)</span> ways to select license plates. Visually,
 <span class="math display">\[
 \underbrace{\underline{\quad 10 \quad }}_\text{number} \times \underbrace{\underline{\quad 10 \quad }}_\text{number} \times \underbrace{\underline{\quad 10 \quad }}_\text{number} \times \underbrace{\underline{\quad 26 \quad }}_\text{letter} \times \underbrace{\underline{\quad 26 \quad }}_\text{letter} \times \underbrace{\underline{\quad 26 \quad }}_\text{letter} = 17,576,000
@@ -1127,9 +1127,9 @@ A license plate consists of three numeric digits (0-9) followed by three single 
 <p>Next we are going to use this new counting method to find a probability.</p>
 <blockquote>
 <p><em>Exercise</em>:<br />
-What is the probability a license plate starts with the number “8” or “0” and ends with the letter “B”?</p>
+What is the probability a license plate starts with the number “8” or “0” and ends with the letter “B?”</p>
 </blockquote>
-<p>In order to find this probability, we simply need to determine the number of ways to select a license plate starting with “8” or “0” and ending with the letter “B”. We can visually represent this event:
+<p>In order to find this probability, we simply need to determine the number of ways to select a license plate starting with “8” or “0” and ending with the letter “B.” We can visually represent this event:
 <span class="math display">\[
 \underbrace{\underline{\quad 2 \quad }}_\text{8 or 0} \times \underbrace{\underline{\quad 10 \quad }}_\text{number} \times \underbrace{\underline{\quad 10 \quad }}_\text{number} \times \underbrace{\underline{\quad 26 \quad }}_\text{letter} \times \underbrace{\underline{\quad 26 \quad }}_\text{letter} \times \underbrace{\underline{\quad 1 \quad }}_\text{B} = 135,200
 \]</span></p>
@@ -1178,7 +1178,7 @@ Assume that all 25 participants are equally likely to win any one of the three p
 <span class="math display">\[
 \binom{n}{k} = \frac{n!}{(n-k)!k!} 
 \]</span></p>
-<p>This is read as “<span class="math inline">\(n\)</span> choose <span class="math inline">\(k\)</span>”. Take a moment to compare combinations to permutations, discussed in Rule 2. The difference between these two rules is that in a combination, order no longer matters. A combination is equivalent to a permutation divided by <span class="math inline">\(k!\)</span>, the number of ways to arrange the <span class="math inline">\(k\)</span> objects selected.</p>
+<p>This is read as “<span class="math inline">\(n\)</span> choose <span class="math inline">\(k\)</span>.” Take a moment to compare combinations to permutations, discussed in Rule 2. The difference between these two rules is that in a combination, order no longer matters. A combination is equivalent to a permutation divided by <span class="math inline">\(k!\)</span>, the number of ways to arrange the <span class="math inline">\(k\)</span> objects selected.</p>
 <blockquote>
 <p><em>Example</em>:<br />
 Suppose we draw 5 cards out of a standard deck (52 cards, no jokers). How many possible 5 card hands are there?</p>
@@ -1260,9 +1260,9 @@ When drawing 5 cards, what is the probability of drawing a “full house” (3 c
 <li>Consider the license plate example from the reading.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>What is the probability that a license plate contains <strong>exactly</strong> one “B”?<br />
+<li>What is the probability that a license plate contains <strong>exactly</strong> one “B?”<br />
 </li>
-<li>What is the probability that a license plate contains <strong>at least one</strong> “B”?</li>
+<li>What is the probability that a license plate contains <strong>at least one</strong> “B?”</li>
 </ol>
 <ol start="6" style="list-style-type: decimal">
 <li>Consider the party example in the reading.</li>
@@ -1270,7 +1270,7 @@ When drawing 5 cards, what is the probability of drawing a “full house” (3 c
 <ol style="list-style-type: lower-alpha">
 <li>Suppose 8 people showed up to the party dressed as zombies. What is the probability that all three awards are won by people dressed as zombies?<br />
 </li>
-<li>What is the probability that zombies win “most creative” and “funniest” but not “scariest”?</li>
+<li>What is the probability that zombies win “most creative” and “funniest” but not “scariest?”</li>
 </ol>
 <ol start="7" style="list-style-type: decimal">
 <li>Consider the cards example from the reading.</li>

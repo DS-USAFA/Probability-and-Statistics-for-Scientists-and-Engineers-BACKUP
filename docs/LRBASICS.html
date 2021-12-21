@@ -798,16 +798,16 @@ Read in the data from <code>data/possum.csv</code> and look at the first few row
 <div class="sourceCode" id="cb765"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb765-1"><a href="LRBASICS.html#cb765-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(possum)</span></code></pre></div>
 <pre><code>## Rows: 104
 ## Columns: 8
-## $ site    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
-## $ pop     &lt;chr&gt; &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;,~
-## $ sex     &lt;chr&gt; &quot;m&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;m&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;m~
-## $ age     &lt;dbl&gt; 8, 6, 6, 6, 2, 1, 2, 6, 9, 6, 9, 5, 5, 3, 5, 4, 1, 2, 5, 4, 3,~
-## $ head_l  &lt;dbl&gt; 94.1, 92.5, 94.0, 93.2, 91.5, 93.1, 95.3, 94.8, 93.4, 91.8, 93~
-## $ skull_w &lt;dbl&gt; 60.4, 57.6, 60.0, 57.1, 56.3, 54.8, 58.2, 57.6, 56.3, 58.0, 57~
-## $ total_l &lt;dbl&gt; 89.0, 91.5, 95.5, 92.0, 85.5, 90.5, 89.5, 91.0, 91.5, 89.5, 89~
-## $ tail_l  &lt;dbl&gt; 36.0, 36.5, 39.0, 38.0, 36.0, 35.5, 36.0, 37.0, 37.0, 37.5, 39~</code></pre>
+## $ site    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+## $ pop     &lt;chr&gt; &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;,…
+## $ sex     &lt;chr&gt; &quot;m&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;m&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;m…
+## $ age     &lt;dbl&gt; 8, 6, 6, 6, 2, 1, 2, 6, 9, 6, 9, 5, 5, 3, 5, 4, 1, 2, 5, 4, 3,…
+## $ head_l  &lt;dbl&gt; 94.1, 92.5, 94.0, 93.2, 91.5, 93.1, 95.3, 94.8, 93.4, 91.8, 93…
+## $ skull_w &lt;dbl&gt; 60.4, 57.6, 60.0, 57.1, 56.3, 54.8, 58.2, 57.6, 56.3, 58.0, 57…
+## $ total_l &lt;dbl&gt; 89.0, 91.5, 95.5, 92.0, 85.5, 90.5, 89.5, 91.0, 91.5, 89.5, 89…
+## $ tail_l  &lt;dbl&gt; 36.0, 36.5, 39.0, 38.0, 36.0, 35.5, 36.0, 37.0, 37.0, 37.5, 39…</code></pre>
 <div class="sourceCode" id="cb767"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb767-1"><a href="LRBASICS.html#cb767-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(possum)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 8
+<pre><code>## # A tibble: 6 × 8
 ##    site pop   sex     age head_l skull_w total_l tail_l
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     1 Vic   m         8   94.1    60.4    89     36  
@@ -963,7 +963,7 @@ Find the slope from the correlation and standard deviations.</p>
 <div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb778-1"><a href="LRBASICS.html#cb778-1" aria-hidden="true" tabindex="-1"></a>possum <span class="sc">%&gt;%</span></span>
 <span id="cb778-2"><a href="LRBASICS.html#cb778-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">correlation=</span><span class="fu">cor</span>(head_l,total_l),<span class="at">sd_head=</span><span class="fu">sd</span>(head_l),</span>
 <span id="cb778-3"><a href="LRBASICS.html#cb778-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_total=</span><span class="fu">sd</span>(total_l),<span class="at">slope=</span>correlation<span class="sc">*</span>sd_head<span class="sc">/</span>sd_total)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 4
+<pre><code>## # A tibble: 1 × 4
 ##   correlation sd_head sd_total slope
 ##         &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
 ## 1       0.691    3.57     4.31 0.573</code></pre>
@@ -1004,7 +1004,7 @@ April 6th, 2010<a href="#fn92" class="footnote-ref" id="fnref92"><sup>92</sup></
 <p>In the <code>tidyverse</code> we may want to have the table above in a <code>tibble</code>. The <strong>broom</strong> package, which we have seen before, helps with this effort.</p>
 <div class="sourceCode" id="cb782"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb782-1"><a href="LRBASICS.html#cb782-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
 <div class="sourceCode" id="cb783"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb783-1"><a href="LRBASICS.html#cb783-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(poss_mod)</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 5
+<pre><code>## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)   42.7      5.17        8.26 5.66e-13

@@ -877,28 +877,28 @@ small
 <p><em>What must we give <code>R</code> for it to do this?</em></p>
 <p>We want the first 10 rows so we use <code>head</code> and <code>R</code> needs the data object and the number of rows. The data object is called <code>email50</code> and is accessible once the <strong>openintro</strong> package is loaded.</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="DB.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(email50,<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 10 x 21
+<pre><code>## # A tibble: 10 × 21
 ##    spam  to_multiple from     cc sent_email time                image attach
 ##    &lt;fct&gt; &lt;fct&gt;       &lt;fct&gt; &lt;int&gt; &lt;fct&gt;      &lt;dttm&gt;              &lt;dbl&gt;  &lt;dbl&gt;
-##  1 0     0           1         0 1          2012-01-04 06:19:16     0      0
-##  2 0     0           1         0 0          2012-02-16 13:10:06     0      0
-##  3 1     0           1         4 0          2012-01-04 08:36:23     0      2
-##  4 0     0           1         0 0          2012-01-04 10:49:52     0      0
-##  5 0     0           1         0 0          2012-01-27 02:34:45     0      0
-##  6 0     0           1         0 0          2012-01-17 10:31:57     0      0
-##  7 0     0           1         0 0          2012-03-17 22:18:55     0      0
-##  8 0     0           1         0 1          2012-03-31 07:58:56     0      0
-##  9 0     0           1         1 1          2012-01-10 18:57:54     0      0
-## 10 0     0           1         0 0          2012-01-07 12:29:16     0      0
-## # ... with 13 more variables: dollar &lt;dbl&gt;, winner &lt;fct&gt;, inherit &lt;dbl&gt;,
+##  1 0     0           1         0 1          2012-01-04 13:19:16     0      0
+##  2 0     0           1         0 0          2012-02-16 20:10:06     0      0
+##  3 1     0           1         4 0          2012-01-04 15:36:23     0      2
+##  4 0     0           1         0 0          2012-01-04 17:49:52     0      0
+##  5 0     0           1         0 0          2012-01-27 09:34:45     0      0
+##  6 0     0           1         0 0          2012-01-17 17:31:57     0      0
+##  7 0     0           1         0 0          2012-03-18 04:18:55     0      0
+##  8 0     0           1         0 1          2012-03-31 13:58:56     0      0
+##  9 0     0           1         1 1          2012-01-11 01:57:54     0      0
+## 10 0     0           1         0 0          2012-01-07 19:29:16     0      0
+## # … with 13 more variables: dollar &lt;dbl&gt;, winner &lt;fct&gt;, inherit &lt;dbl&gt;,
 ## #   viagra &lt;dbl&gt;, password &lt;dbl&gt;, num_char &lt;dbl&gt;, line_breaks &lt;int&gt;,
 ## #   format &lt;fct&gt;, re_subj &lt;fct&gt;, exclaim_subj &lt;dbl&gt;, urgent_subj &lt;fct&gt;,
 ## #   exclaim_mess &lt;dbl&gt;, number &lt;fct&gt;</code></pre>
 <p>In practice, it is especially important to ask clarifying questions to ensure important aspects of the data are understood. For instance, it is always important to be sure we know what each variable means and the units of measurement. Descriptions of all variables in the <code>email50</code> data set are given in its documentation which can be accessed in <code>R</code> by using the <code>?</code> command:</p>
 <pre><code>?email50</code></pre>
 <p>(Note that not all data sets will have associated documentation; the authors of <strong>openintro</strong> package included this documentation with the <code>email50</code> data set contained in the package.)</p>
-<p>The data in <code>email50</code> represent a <strong>data matrix</strong> or in <code>R</code> terminology <strong>data frame</strong> or <strong>tibble</strong> <a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>, which is a common way to organize data. Each row of a data matrix corresponds to a unique case, and each column corresponds to a variable. This is called <strong>tidy data</strong>.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> The data frame for the stroke study introduced in the previous lesson had patients as the cases and there were three variables recorded for each patient. If we are thinking of patients as the unit of observation, then this data is tidy.</p>
-<pre><code>## # A tibble: 10 x 3
+<p>The data in <code>email50</code> represent a <strong>data matrix</strong> or in <code>R</code> terminology <strong>data frame</strong> or <strong>tibble</strong>,<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> which is a common way to organize data. Each row of a data matrix corresponds to a unique case, and each column corresponds to a variable. This is called <strong>tidy data</strong>.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> The data frame for the stroke study introduced in the previous lesson had patients as the cases and there were three variables recorded for each patient. If we are thinking of patients as the unit of observation, then this data is tidy.</p>
+<pre><code>## # A tibble: 10 × 3
 ##    group   outcome30 outcome365
 ##    &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;     
 ##  1 control no_event  no_event  
@@ -912,7 +912,7 @@ small
 ##  9 control no_event  no_event  
 ## 10 control no_event  no_event</code></pre>
 <p>If we think of an outcome as a unit of observation then it is not tidy since the two outcome columns are variable values (month or year). The tidy data for this case would be:</p>
-<pre><code>## # A tibble: 10 x 4
+<pre><code>## # A tibble: 10 × 4
 ##    patient_id group   time  result  
 ##         &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   
 ##  1          1 control month no_event
@@ -941,7 +941,7 @@ small
 <p>Data frames are a convenient way to record and store data. If another individual or case is added to the data set, an additional row can be easily added. Similarly, another column can be added for a new variable.</p>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
-We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called <code>county_tidy</code> data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics, we create this data object in the code following this description. The parent data set is part of the <code>usdata</code> library and is called <code>county_complete</code>. The variables are summarized in help menu built into the <code>usdata</code> package<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>. How might these data be organized in a data matrix? <a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called <code>county_tidy</code> data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics, we create this data object in the code following this description. The parent data set is part of the <code>usdata</code> library and is called <code>county_complete</code>. The variables are summarized in help menu built into the <code>usdata</code> package<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>. How might these data be organized in a data matrix?<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
 </blockquote>
 <p>Using <code>R</code> we will create our data object. First we load the library <code>usdata</code>.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="DB.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;usdata&quot;</span>)</span>
@@ -992,7 +992,7 @@ Data were collected about students in a statistics course. Three variables were 
 <p>The number of siblings and student height represent numerical variables. Because the number of siblings is a count, it is discrete. Height varies continuously, so it is a continuous numerical variable. The last variable classifies students into two categories – those who have and those who have not taken a statistics course – which makes this variable categorical.</p>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
-Consider the variables <code>group</code> and <code>outcome30</code> from the stent study in the case study lesson. Are these numerical or categorical variables? <a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
+Consider the variables <code>group</code> and <code>outcome30</code> from the stent study in the case study lesson. Are these numerical or categorical variables?<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
 </blockquote>
 </div>
 <div id="relationships-between-variables" class="section level3" number="2.2.3">

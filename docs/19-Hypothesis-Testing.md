@@ -56,7 +56,7 @@ ads
 ```
 
 ```
-## # A tibble: 10 x 2
+## # A tibble: 10 × 2
 ##    basic premium
 ##    <dbl>   <dbl>
 ##  1  6.95    3.38
@@ -79,8 +79,8 @@ glimpse(ads)
 ```
 ## Rows: 10
 ## Columns: 2
-## $ basic   <dbl> 6.950, 10.013, 10.620, 10.150, 8.583, 7.620, 8.233, 10.350, 11~
-## $ premium <dbl> 3.383, 7.800, 9.416, 4.660, 5.360, 7.630, 4.950, 8.013, 7.800,~
+## $ basic   <dbl> 6.950, 10.013, 10.620, 10.150, 8.583, 7.620, 8.233, 10.350, 11…
+## $ premium <dbl> 3.383, 7.800, 9.416, 4.660, 5.360, 7.630, 4.950, 8.013, 7.800,…
 ```
 
 
@@ -96,7 +96,7 @@ ads
 ```
 
 ```
-## # A tibble: 20 x 2
+## # A tibble: 20 × 2
 ##    channel length
 ##    <chr>    <dbl>
 ##  1 basic     6.95
@@ -501,7 +501,7 @@ thinner
 ```
 
 ```
-## # A tibble: 90 x 2
+## # A tibble: 90 × 2
 ##    group     outcome 
 ##    <chr>     <chr>   
 ##  1 treatment survived
@@ -514,7 +514,7 @@ thinner
 ##  8 control   died    
 ##  9 treatment died    
 ## 10 treatment survived
-## # ... with 80 more rows
+## # … with 80 more rows
 ```
 
 

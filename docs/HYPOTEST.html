@@ -796,7 +796,7 @@ Is this enough data? You decide to have your friends help you, so you actually o
 <p>The file <code>ads.csv</code> contains the data. Let’s read the data into <code>R</code> and start to summarize. Remember to load the appropriate <code>R</code> packages.</p>
 <div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="HYPOTEST.html#cb426-1" aria-hidden="true" tabindex="-1"></a>ads<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/ads.csv&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="HYPOTEST.html#cb427-1" aria-hidden="true" tabindex="-1"></a>ads</span></code></pre></div>
-<pre><code>## # A tibble: 10 x 2
+<pre><code>## # A tibble: 10 × 2
 ##    basic premium
 ##    &lt;dbl&gt;   &lt;dbl&gt;
 ##  1  6.95    3.38
@@ -812,14 +812,14 @@ Is this enough data? You decide to have your friends help you, so you actually o
 <div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="HYPOTEST.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(ads)</span></code></pre></div>
 <pre><code>## Rows: 10
 ## Columns: 2
-## $ basic   &lt;dbl&gt; 6.950, 10.013, 10.620, 10.150, 8.583, 7.620, 8.233, 10.350, 11~
-## $ premium &lt;dbl&gt; 3.383, 7.800, 9.416, 4.660, 5.360, 7.630, 4.950, 8.013, 7.800,~</code></pre>
+## $ basic   &lt;dbl&gt; 6.950, 10.013, 10.620, 10.150, 8.583, 7.620, 8.233, 10.350, 11…
+## $ premium &lt;dbl&gt; 3.383, 7.800, 9.416, 4.660, 5.360, 7.630, 4.950, 8.013, 7.800,…</code></pre>
 <p>Notice that this data is not <code>tidy</code>, for example does each row represent a single observations? Let’s clean up, <code>tidy</code>, our data. Remember to ask yourself “What do I want <code>R</code> to do?” and “What does it need to do this?” We want one column that specifies the channel type and the other to specify length.</p>
 <p>We need <code>R</code> to put, <em>pivot</em>, the data into a longer form. We need the function <code>pivot_longer()</code>. For more information type <code>vignette("pivot")</code> at the command prompt in <code>R</code>.</p>
 <div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="HYPOTEST.html#cb431-1" aria-hidden="true" tabindex="-1"></a>ads <span class="ot">&lt;-</span> ads <span class="sc">%&gt;%</span></span>
 <span id="cb431-2"><a href="HYPOTEST.html#cb431-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">everything</span>(),<span class="at">names_to=</span><span class="st">&quot;channel&quot;</span>,<span class="at">values_to =</span> <span class="st">&quot;length&quot;</span>)</span>
 <span id="cb431-3"><a href="HYPOTEST.html#cb431-3" aria-hidden="true" tabindex="-1"></a>ads</span></code></pre></div>
-<pre><code>## # A tibble: 20 x 2
+<pre><code>## # A tibble: 20 × 2
 ##    channel length
 ##    &lt;chr&gt;    &lt;dbl&gt;
 ##  1 basic     6.95
@@ -1033,7 +1033,7 @@ How could we reduce the Type 1 Error rate in US courts? What influence would thi
 <p><strong>Exercise</strong>:<br />
 How could we reduce the Type 2 Error rate in US courts? What influence would this have on the Type 1 Error rate?</p>
 </blockquote>
-<p>To lower the Type 2 Error rate, we want to convict more guilty people. We could lower the standards for conviction from “beyond a reasonable doubt” to “beyond a little doubt”. Lowering the bar for guilt will also result in more wrongful convictions, raising the Type 1 Error rate. Think about the cadet honor system, its metric of evaluation, and the impact on the types of errors.</p>
+<p>To lower the Type 2 Error rate, we want to convict more guilty people. We could lower the standards for conviction from “beyond a reasonable doubt” to “beyond a little doubt.” Lowering the bar for guilt will also result in more wrongful convictions, raising the Type 1 Error rate. Think about the cadet honor system, its metric of evaluation, and the impact on the types of errors.</p>
 <p>These exercises provide an important lesson: if we reduce how often we make one type of error, we generally make more of the other type for given amount of data, information.</p>
 </div>
 <div id="choosing-a-significance-level" class="section level3" number="17.4.7">
@@ -1092,7 +1092,7 @@ Form hypotheses for this study in plain and statistical language. Let <span clas
 <p>There were 50 patients in the experiment who did not receive a blood thinner and 40 patients who did. The study results are in the file <code>blood_thinner.csv</code>.</p>
 <div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="HYPOTEST.html#cb456-1" aria-hidden="true" tabindex="-1"></a>thinner <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/blood_thinner.csv&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="HYPOTEST.html#cb457-1" aria-hidden="true" tabindex="-1"></a>thinner</span></code></pre></div>
-<pre><code>## # A tibble: 90 x 2
+<pre><code>## # A tibble: 90 × 2
 ##    group     outcome 
 ##    &lt;chr&gt;     &lt;chr&gt;   
 ##  1 treatment survived
@@ -1105,7 +1105,7 @@ Form hypotheses for this study in plain and statistical language. Let <span clas
 ##  8 control   died    
 ##  9 treatment died    
 ## 10 treatment survived
-## # ... with 80 more rows</code></pre>
+## # … with 80 more rows</code></pre>
 <p>Let’s put it in a table.</p>
 <div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="HYPOTEST.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>group<span class="sc">+</span>outcome,<span class="at">data=</span>thinner,<span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##            outcome
