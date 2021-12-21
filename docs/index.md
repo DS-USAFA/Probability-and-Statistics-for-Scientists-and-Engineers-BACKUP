@@ -3,7 +3,7 @@ title: "Probability and Statistics for Scientists and Engineers"
 author: 
 - Matthew Davis
 - Brianna Hitt
-- Ken Horton
+- Kenneth Horton
 - Bradley Warner
 date: "2021-12-21"
 header-includes:
