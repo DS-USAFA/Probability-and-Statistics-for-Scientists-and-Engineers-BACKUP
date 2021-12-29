@@ -260,7 +260,7 @@ stent_study <-read_csv(___)
   
 
 
-  b. Complete similar steps as in the class notes. The start of code is provided below. 
+  b. Complete similar steps as in the class notes. The start of code is provided below.  
     i. Use `inspect` on the data.  
     ii. Create a table of `outcome365` and `group`. Comment on the results.  
     iii. Create a barchart of the data.  
