@@ -528,7 +528,7 @@ library(usdata)
 
 
 ```r
-county_M377 <- county_complete %>% 
+county_tidy <- county_complete %>% 
   select(name, state, pop2000, pop2010, fed_spend=fed_spending_2009, poverty=poverty_2010, 
          homeownership = homeownership_2010, multi_unit = housing_multi_unit_2010, 
          income = per_capita_income_2010, med_income = median_household_income_2010) %>%
@@ -546,7 +546,7 @@ We will use the `select()` and `inspect()` functions.
 
 
 ```r
-county_M377 %>%
+county_tidy %>%
   select(pop2000,pop2010,med_income) %>%
   inspect()
 ```
@@ -568,7 +568,7 @@ Notice that three counties are missing population values, reported as `NA`. Let'
 
 
 ```r
-cc_reduced <- county_M377 %>%
+cc_reduced <- county_tidy %>%
   drop_na(pop2000) %>%
   select(pop2000,pop2010,med_income) %>%
   mutate(pop_gain = sign(pop2010-pop2000))

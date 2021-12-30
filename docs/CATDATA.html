@@ -496,7 +496,7 @@ Figure 6.8: A pie chart number for the email data set.
 <div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/OpenIntroStat/usdata">usdata</a></span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">county_M377</span> <span class="op">&lt;-</span> <span class="va">county_complete</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+<code class="sourceCode R"><span class="va">county_tidy</span> <span class="op">&lt;-</span> <span class="va">county_complete</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">state</span>, <span class="va">pop2000</span>, <span class="va">pop2010</span>, fed_spend<span class="op">=</span><span class="va">fed_spending_2009</span>, poverty<span class="op">=</span><span class="va">poverty_2010</span>, 
          homeownership <span class="op">=</span> <span class="va">homeownership_2010</span>, multi_unit <span class="op">=</span> <span class="va">housing_multi_unit_2010</span>, 
          income <span class="op">=</span> <span class="va">per_capita_income_2010</span>, med_income <span class="op">=</span> <span class="va">median_household_income_2010</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -506,7 +506,7 @@ Figure 6.8: A pie chart number for the email data set.
 <p><em>What does <code>R</code> need</em>? It needs the data object, and variable names.</p>
 <p>We will use the <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> and <code><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect()</a></code> functions.</p>
 <div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">county_M377</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<code class="sourceCode R"><span class="va">county_tidy</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">pop2000</span>,<span class="va">pop2010</span>,<span class="va">med_income</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
@@ -521,7 +521,7 @@ Figure 6.8: A pie chart number for the email data set.
 ## ...3 3142       0</code></pre>
 <p>Notice that three counties are missing population values, reported as <code>NA</code>. Let’s remove them and find which counties increased population by creating a new variable.</p>
 <div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cc_reduced</span> <span class="op">&lt;-</span> <span class="va">county_M377</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<code class="sourceCode R"><span class="va">cc_reduced</span> <span class="op">&lt;-</span> <span class="va">county_tidy</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">pop2000</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">pop2000</span>,<span class="va">pop2010</span>,<span class="va">med_income</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pop_gain <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sign.html">sign</a></span><span class="op">(</span><span class="va">pop2010</span><span class="op">-</span><span class="va">pop2000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
