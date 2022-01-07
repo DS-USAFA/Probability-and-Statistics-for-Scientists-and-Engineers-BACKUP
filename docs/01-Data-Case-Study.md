@@ -391,6 +391,6 @@ tally(___)
   e. At first glance, does acupuncture appear to be an effective treatment for migraines? Explain your reasoning.  
   f. Do the data provide convincing evidence that there is a real pain reduction for those patients in the treatment group? Or do you think that the observed difference might just be due to chance?  
   
-Compile, `knit`, this report into a pdf.
+Compile, `knit`, this report into an html and a pdf. In order to `knit` the report into a pdf, you may need to install the `knitr` and `tinytex` packages in `R`.
 
 
