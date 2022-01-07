@@ -28,20 +28,20 @@ head(mariokart,n=10)
 ```
 
 ```
-## # A tibble: 10 x 12
-##    id       duration n_bids cond  start_pr ship_pr total_pr ship_sp  seller_rate
-##    <chr>       <dbl>  <dbl> <chr>    <dbl>   <dbl>    <dbl> <chr>          <dbl>
-##  1 1503774~        3     20 new       0.99    4        51.6 standard        1580
-##  2 2604833~        7     13 used      0.99    3.99     37.0 firstCl~         365
-##  3 3204323~        3     16 new       0.99    3.5      45.5 firstCl~         998
-##  4 2804052~        3     18 new       0.99    0        44   standard           7
-##  5 1703922~        1     20 new       0.01    0        71   media            820
-##  6 3601951~        3     19 new       0.99    4        45   standard      270144
-##  7 1204777~        1     13 used      0.01    0        37.0 standard        7284
-##  8 3003555~        1     15 new       1       2.99     54.0 upsGrou~        4858
-##  9 2003920~        3     29 used      0.99    4        47   priority          27
-## 10 3303641~        7      8 used     20.0     4        50   firstCl~         201
-## # ... with 3 more variables: stock_photo <chr>, wheels <dbl>, title <chr>
+## # A tibble: 10 × 12
+##    id           duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
+##    <chr>           <dbl>  <dbl> <chr>    <dbl>   <dbl>    <dbl> <chr>         <dbl>
+##  1 150377422259        3     20 new       0.99    4        51.6 standa…        1580
+##  2 260483376854        7     13 used      0.99    3.99     37.0 firstC…         365
+##  3 320432342985        3     16 new       0.99    3.5      45.5 firstC…         998
+##  4 280405224677        3     18 new       0.99    0        44   standa…           7
+##  5 170392227765        1     20 new       0.01    0        71   media           820
+##  6 360195157625        3     19 new       0.99    4        45   standa…      270144
+##  7 120477729093        1     13 used      0.01    0        37.0 standa…        7284
+##  8 300355501482        1     15 new       1       2.99     54.0 upsGro…        4858
+##  9 200392065459        3     29 used      0.99    4        47   priori…          27
+## 10 330364163424        7      8 used     20.0     4        50   firstC…         201
+## # … with 3 more variables: stock_photo <chr>, wheels <dbl>, title <chr>
 ```
 
 
@@ -336,7 +336,7 @@ tidy(mario_mod2)
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term           estimate std.error statistic   p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>     <dbl>
 ## 1 (Intercept)       -2.08     0.530     -3.92 0.0000881
@@ -353,7 +353,7 @@ augment(mario_mod2,
 ```
 
 ```
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   stock_photo .fitted
 ##   <chr>         <dbl>
 ## 1 yes           0.524
@@ -412,7 +412,7 @@ tidy(mario_mod3)
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term           estimate std.error statistic   p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>     <dbl>
 ## 1 (Intercept)        2.08     0.530      3.92 0.0000881
@@ -429,7 +429,7 @@ augment(mario_mod3,
 ```
 
 ```
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   stock_photo .fitted
 ##   <chr>         <dbl>
 ## 1 yes           0.476
@@ -452,7 +452,7 @@ tidy(mario_mod2)
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term           estimate std.error statistic   p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>     <dbl>
 ## 1 (Intercept)       -2.08     0.530     -3.92 0.0000881
@@ -787,7 +787,7 @@ augment(mario_mod5,
 ```
 
 ```
-## # A tibble: 1 x 3
+## # A tibble: 1 × 3
 ##   stock_photo total_pr .fitted
 ##   <chr>          <dbl>   <dbl>
 ## 1 yes               50   0.693
@@ -806,7 +806,7 @@ tidy(mario_mod6)
 ```
 
 ```
-## # A tibble: 4 x 5
+## # A tibble: 4 × 5
 ##   term            estimate std.error statistic  p.value
 ##   <chr>              <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)    -30.7       9.08        -3.38 0.000732
@@ -913,7 +913,7 @@ tidy(mario_mod4)
 ```
 
 ```
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ##   term           estimate std.error statistic       p.value
 ##   <chr>             <dbl>     <dbl>     <dbl>         <dbl>
 ## 1 (Intercept)     -11.3      1.88       -6.01 0.00000000185
@@ -932,7 +932,7 @@ do(1)*glm(cond=="new"~stock_photo+total_pr,
 
 ```
 ##   Intercept stock_photoyes  total_pr .row .index
-## 1  -9.89058       1.997109 0.1649718    1      1
+## 1 -9.822347       2.259575 0.1644885    1      1
 ```
 
 Again, it looks like what we expect. Now let's bootstrap the coefficients and summarize the results.
@@ -1003,7 +1003,7 @@ augment(mario_mod5,
 ```
 
 ```
-## # A tibble: 1 x 3
+## # A tibble: 1 × 3
 ##   stock_photo total_pr .fitted
 ##   <chr>          <dbl>   <dbl>
 ## 1 yes               50   0.693

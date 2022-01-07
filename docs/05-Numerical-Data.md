@@ -166,7 +166,7 @@ To start we just have to give the formulas and data to `R`.
 
 
 ```r
-gf_histogram(~num_char,data=email50)
+gf_histogram(~num_char,data=email50,color="black",fill="cyan")
 ```
 
 <img src="05-Numerical-Data_files/figure-html/unnamed-chunk-4-1.png" width="672" />
@@ -178,7 +178,8 @@ Here is the code for the exercise
 ```
 email50 %>%
    gf_histogram(~num_char,binwidth = 5,boundary=0,
-   xlab="The Number of Characters (in thousands)") %>%
+   xlab="The Number of Characters (in thousands)"
+   ,color="black",fill="cyan") %>%
    gf_theme(theme_classic())
 ```
 

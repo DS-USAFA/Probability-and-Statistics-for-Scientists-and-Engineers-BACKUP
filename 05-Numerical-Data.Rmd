@@ -154,7 +154,7 @@ These binned counts are plotted as bars in Figure \@ref(fig:hist5-fig) into what
 
 ```{r hist5-fig,echo=FALSE,fig.cap="A histogram of `num_char`. This distribution is very strongly skewed to the right."}
 email50 %>%
-   gf_histogram(~num_char,binwidth = 5,boundary=0,xlab="The Number of Characters (in thousands)") %>%
+   gf_histogram(~num_char,binwidth = 5,boundary=0,xlab="The Number of Characters (in thousands)",color="black",fill="cyan") %>%
    gf_theme(theme_classic())
 ```
 
@@ -192,7 +192,7 @@ We want `R` to make a histogram. In `ggformula` the plots have the form `gf_XXXX
 To start we just have to give the formulas and data to `R`.
 
 ```{r}
-gf_histogram(~num_char,data=email50)
+gf_histogram(~num_char,data=email50,color="black",fill="cyan")
 ```
 
 > **Exercise**:   
@@ -202,7 +202,8 @@ Here is the code for the exercise
 ```
 email50 %>%
    gf_histogram(~num_char,binwidth = 5,boundary=0,
-   xlab="The Number of Characters (in thousands)") %>%
+   xlab="The Number of Characters (in thousands)"
+   ,color="black",fill="cyan") %>%
    gf_theme(theme_classic())
 ```
 
@@ -500,7 +501,7 @@ The distribution of vehicle prices tends to be right skewed, with a few luxury a
 When data are very strongly skewed, we sometimes transform them so they are easier to model. Consider the histogram of salaries for Major League Baseball players' salaries from 2010, which is shown in Figure \@ref(fig:hist510-fig).
 
 ```{r hist510-fig,echo=FALSE,fig.cap="Histogram of MLB player salaries for 2010, in millions of dollars."}
-gf_histogram(~salary/1000,data=mlb,main="", bins=15, xlab="Salary (millions of dollars)", ylab="", fill=COL[1]) %>%
+gf_histogram(~salary/1000,data=mlb,main="", bins=15, xlab="Salary (millions of dollars)", ylab="",color="black",fill="cyan") %>%
    gf_theme(theme_classic())
 ```
 
@@ -512,7 +513,7 @@ The histogram of MLB player salaries is useful in that we can see the data are e
 There are some standard transformations that are often applied when much of the data cluster near zero (relative to the larger values in the data set) and all observations are positive. A **transformation** is a rescaling of the data using a function. For instance, a plot of the natural logarithm^[Statisticians often write the natural logarithm as $\log$. You might be more familiar with it being written as $\ln$.] of player salaries results in a new histogram in Figure \@ref(fig:hist512-fig). Transformed data are sometimes easier to work with when applying statistical models because the transformed data are much less skewed and outliers are usually less extreme.
 
 ```{r hist512-fig,echo=FALSE,fig.cap="Histogram of the log-transformed MLB player salaries for 2010."}
-gf_histogram(~log(salary/1000), data=mlb , bins=15, xlab=expression(log[e]*"(Salary), where Salary is in millions USD"), ylab="", fill=COL[1]) %>%
+gf_histogram(~log(salary/1000), data=mlb , bins=15, xlab=expression(log[e]*"(Salary), where Salary is in millions USD"), ylab="",color="black",fill="cyan") %>%
    gf_theme(theme_classic())
 ```
 
