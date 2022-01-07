@@ -27,20 +27,20 @@ head(mariokart,n=10)
 ```
 
 ```
-## # A tibble: 10 × 12
-##    id           duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##    <chr>           <dbl>  <dbl> <chr>    <dbl>   <dbl>    <dbl> <chr>         <dbl>
-##  1 150377422259        3     20 new       0.99    4        51.6 standa…        1580
-##  2 260483376854        7     13 used      0.99    3.99     37.0 firstC…         365
-##  3 320432342985        3     16 new       0.99    3.5      45.5 firstC…         998
-##  4 280405224677        3     18 new       0.99    0        44   standa…           7
-##  5 170392227765        1     20 new       0.01    0        71   media           820
-##  6 360195157625        3     19 new       0.99    4        45   standa…      270144
-##  7 120477729093        1     13 used      0.01    0        37.0 standa…        7284
-##  8 300355501482        1     15 new       1       2.99     54.0 upsGro…        4858
-##  9 200392065459        3     29 used      0.99    4        47   priori…          27
-## 10 330364163424        7      8 used     20.0     4        50   firstC…         201
-## # … with 3 more variables: stock_photo <chr>, wheels <dbl>, title <chr>
+## # A tibble: 10 x 12
+##    id       duration n_bids cond  start_pr ship_pr total_pr ship_sp  seller_rate
+##    <chr>       <dbl>  <dbl> <chr>    <dbl>   <dbl>    <dbl> <chr>          <dbl>
+##  1 1503774~        3     20 new       0.99    4        51.6 standard        1580
+##  2 2604833~        7     13 used      0.99    3.99     37.0 firstCl~         365
+##  3 3204323~        3     16 new       0.99    3.5      45.5 firstCl~         998
+##  4 2804052~        3     18 new       0.99    0        44   standard           7
+##  5 1703922~        1     20 new       0.01    0        71   media            820
+##  6 3601951~        3     19 new       0.99    4        45   standard      270144
+##  7 1204777~        1     13 used      0.01    0        37.0 standard        7284
+##  8 3003555~        1     15 new       1       2.99     54.0 upsGrou~        4858
+##  9 2003920~        3     29 used      0.99    4        47   priority          27
+## 10 3303641~        7      8 used     20.0     4        50   firstCl~         201
+## # ... with 3 more variables: stock_photo <chr>, wheels <dbl>, title <chr>
 ```
 
 We are only interested in `total_pr`, `cond`, `stock_photo`, `duration`, and `wheels`. These variables are described in the following list:
@@ -184,7 +184,7 @@ mariokart %>%
 ```
 
 ```
-## # A tibble: 2 × 4
+## # A tibble: 2 x 4
 ##   cond   xbar stand_dev xmedian
 ##   <fct> <dbl>     <dbl>   <dbl>
 ## 1 new    53.8      7.44    54.0
@@ -202,12 +202,12 @@ mariokart %>%
 ```
 
 ```
-## # A tibble: 2 × 12
-##   id           duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##   <chr>           <dbl>  <dbl> <fct>    <dbl>   <dbl>    <dbl> <chr>         <dbl>
-## 1 110439174663        7     22 used      1       25.5     327. parcel          115
-## 2 130335427560        3     27 used      6.95     4       118. parcel           41
-## # … with 3 more variables: stock_photo <fct>, wheels <dbl>, title <chr>
+## # A tibble: 2 x 12
+##   id         duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
+##   <chr>         <dbl>  <dbl> <fct>    <dbl>   <dbl>    <dbl> <chr>         <dbl>
+## 1 110439174~        7     22 used      1       25.5     327. parcel          115
+## 2 130335427~        3     27 used      6.95     4       118. parcel           41
+## # ... with 3 more variables: stock_photo <fct>, wheels <dbl>, title <chr>
 ```
 
 If you look at the variable `title` there were additional items in the sale for these two observations. Let's remove those two outliers and run the model again. Note that the reason we are removing them is not because they are annoying us and messing up our model. It is because we don't think they are representative of the population of interest. Figure \@ref(fig:scat302-fig) is a boxplot of the data with the outliers dropped.
@@ -517,11 +517,11 @@ augment(mario_mod_multi) %>%
 ```
 
 ```
-## # A tibble: 1 × 11
+## # A tibble: 1 x 11
 ##   total_pr cond  stock_photo duration wheels .fitted .resid   .hat .sigma
 ##      <dbl> <fct> <fct>          <dbl>  <dbl>   <dbl>  <dbl>  <dbl>  <dbl>
 ## 1     51.6 new   yes                3      1    49.6   1.92 0.0215   4.92
-## # … with 2 more variables: .cooksd <dbl>, .std.resid <dbl>
+## # ... with 2 more variables: .cooksd <dbl>, .std.resid <dbl>
 ```
 
 
@@ -781,18 +781,18 @@ glimpse(Credit)
 ```
 ## Rows: 400
 ## Columns: 12
-## $ ID        <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
-## $ Income    <dbl> 14.891, 106.025, 104.593, 148.924, 55.882, 80.180, 20.996, 7…
-## $ Limit     <int> 3606, 6645, 7075, 9504, 4897, 8047, 3388, 7114, 3300, 6819, …
-## $ Rating    <int> 283, 483, 514, 681, 357, 569, 259, 512, 266, 491, 589, 138, …
-## $ Cards     <int> 2, 3, 4, 3, 2, 4, 2, 2, 5, 3, 4, 3, 1, 1, 2, 3, 3, 3, 1, 2, …
-## $ Age       <int> 34, 82, 71, 36, 68, 77, 37, 87, 66, 41, 30, 64, 57, 49, 75, …
-## $ Education <int> 11, 15, 11, 11, 16, 10, 12, 9, 13, 19, 14, 16, 7, 9, 13, 15,…
-## $ Gender    <fct>  Male, Female,  Male, Female,  Male,  Male, Female,  Male, F…
-## $ Student   <fct> No, Yes, No, No, No, No, No, No, No, Yes, No, No, No, No, No…
-## $ Married   <fct> Yes, Yes, No, No, Yes, No, No, No, No, Yes, Yes, No, Yes, Ye…
-## $ Ethnicity <fct> Caucasian, Asian, Asian, Asian, Caucasian, Caucasian, Africa…
-## $ Balance   <int> 333, 903, 580, 964, 331, 1151, 203, 872, 279, 1350, 1407, 0,…
+## $ ID        <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~
+## $ Income    <dbl> 14.891, 106.025, 104.593, 148.924, 55.882, 80.180, 20.996, 7~
+## $ Limit     <int> 3606, 6645, 7075, 9504, 4897, 8047, 3388, 7114, 3300, 6819, ~
+## $ Rating    <int> 283, 483, 514, 681, 357, 569, 259, 512, 266, 491, 589, 138, ~
+## $ Cards     <int> 2, 3, 4, 3, 2, 4, 2, 2, 5, 3, 4, 3, 1, 1, 2, 3, 3, 3, 1, 2, ~
+## $ Age       <int> 34, 82, 71, 36, 68, 77, 37, 87, 66, 41, 30, 64, 57, 49, 75, ~
+## $ Education <int> 11, 15, 11, 11, 16, 10, 12, 9, 13, 19, 14, 16, 7, 9, 13, 15,~
+## $ Gender    <fct>  Male, Female,  Male, Female,  Male,  Male, Female,  Male, F~
+## $ Student   <fct> No, Yes, No, No, No, No, No, No, No, Yes, No, No, No, No, No~
+## $ Married   <fct> Yes, Yes, No, No, Yes, No, No, No, No, Yes, Yes, No, Yes, Ye~
+## $ Ethnicity <fct> Caucasian, Asian, Asian, Asian, Caucasian, Caucasian, Africa~
+## $ Balance   <int> 333, 903, 580, 964, 331, 1151, 203, 872, 279, 1350, 1407, 0,~
 ```
 
 Notice that `ID` is being treated as an integer. We could change it to a character since it is a label, but for our work in this chapter we will not bother. 

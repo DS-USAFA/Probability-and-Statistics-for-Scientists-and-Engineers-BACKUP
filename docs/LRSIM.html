@@ -111,7 +111,7 @@
 </h2>
 <p>In the last couple of chapters we examined how to perform inference for a simple linear regression model assuming the errors were independent normally distributed random variables. We examined diagnostic tools to check assumptions and look for outliers. In this chapter we will use the <strong>bootstrap</strong> to create confidence and prediction intervals.</p>
 <p>There are at least two ways we can consider creating a bootstrap distribution for a linear model. We can easily fit a linear model to a resampled data set. But in some situations this may have undesirable features. Influential observations, for example, will appear duplicated in some resamples and be missing entirely from other resamples.</p>
-<p>Another option is to use “residual resampling.” In residual resampling, the new data set has all of the predictor values from the original data set and a new response is created by adding to the fitted function a resampled residual.</p>
+<p>Another option is to use “residual resampling”. In residual resampling, the new data set has all of the predictor values from the original data set and a new response is created by adding to the fitted function a resampled residual.</p>
 <p>In summary, suppose we have <span class="math inline">\(n\)</span> observations, each with <span class="math inline">\(Y\)</span> and some number of <span class="math inline">\(X\)</span>’s, with each observation stored as a row in a data set. The two basic procedures when bootstrapping regression are:<br>
 a. bootstrap observations, and<br>
 b. bootstrap residuals.<br>
@@ -256,7 +256,7 @@ Figure 27.3: A histogram of the <span class="math inline">\(R^2\)</span> values 
 <code class="sourceCode R"><span class="va">slope_estimate</span></code></pre></div>
 <pre><code>## Response: calories (numeric)
 ## Explanatory: carb (numeric)
-## # A tibble: 1 × 1
+## # A tibble: 1 x 1
 ##    stat
 ##   &lt;dbl&gt;
 ## 1  4.30</code></pre>
@@ -269,7 +269,7 @@ Figure 27.3: A histogram of the <span class="math inline">\(R^2\)</span> values 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results2</span><span class="op">)</span></code></pre></div>
 <pre><code>## Response: calories (numeric)
 ## Explanatory: carb (numeric)
-## # A tibble: 6 × 2
+## # A tibble: 6 x 2
 ##   replicate  stat
 ##       &lt;int&gt; &lt;dbl&gt;
 ## 1         1  3.75
@@ -283,7 +283,7 @@ Figure 27.3: A histogram of the <span class="math inline">\(R^2\)</span> values 
 <code class="sourceCode R"><span class="va">slope_ci</span><span class="op">&lt;-</span><span class="va">results2</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://infer.tidymodels.org/reference/get_confidence_interval.html">get_confidence_interval</a></span><span class="op">(</span>level<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span>
 <span class="va">slope_ci</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 2
+<pre><code>## # A tibble: 1 x 2
 ##   lower_ci upper_ci
 ##      &lt;dbl&gt;    &lt;dbl&gt;
 ## 1     3.14     5.26</code></pre>
@@ -451,7 +451,7 @@ Figure 27.6: Boxplot of loan interest rates from the Lending Club based on homeo
 <p>It appears that there is some evidence that home ownership impacts the interest rate. We can build a linear model to explore whether this difference in significant. We can use the <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> function in <code>R</code>, but in order to include a categorical predictor, we need to make sure that variable is stored as a “factor” type. If it is not, we’ll need to convert it.</p>
 <div class="sourceCode" id="cb895"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">loans100</span><span class="op">)</span></code></pre></div>
-<pre><code>## tibble [98 × 2] (S3: tbl_df/tbl/data.frame)
+<pre><code>## tibble [98 x 2] (S3: tbl_df/tbl/data.frame)
 ##  $ interest_rate: num [1:98] 19.03 9.44 6.07 7.96 10.9 ...
 ##  $ homeownership: Factor w/ 3 levels "MORTGAGE","OWN",..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 <p>Now we can build the model:</p>
@@ -483,7 +483,7 @@ Figure 27.6: Boxplot of loan interest rates from the Lending Club based on homeo
 <code class="sourceCode R"><span class="va">loans100</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">homeownership</span> <span class="op">==</span> <span class="st">"MORTGAGE"</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>average<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">mean</a></span><span class="op">(</span><span class="va">interest_rate</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 1
+<pre><code>## # A tibble: 1 x 1
 ##   average
 ##     &lt;dbl&gt;
 ## 1    10.5</code></pre>
@@ -492,7 +492,7 @@ Figure 27.6: Boxplot of loan interest rates from the Lending Club based on homeo
 <code class="sourceCode R"><span class="va">loans100</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">homeownership</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>average<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">mean</a></span><span class="op">(</span><span class="va">interest_rate</span><span class="op">)</span>,std_dev<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sd</a></span><span class="op">(</span><span class="va">interest_rate</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 3
+<pre><code>## # A tibble: 3 x 3
 ##   homeownership average std_dev
 ##   &lt;fct&gt;           &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 MORTGAGE         10.5    3.44
@@ -599,7 +599,7 @@ Figure 27.7: Distribution of estimated regression coefficent for homeownership.
 <span class="header-section-number">27.5.4</span> Pairwise Comparisons<a class="anchor" aria-label="anchor" href="#pairwise-comparisons"><i class="fas fa-link"></i></a>
 </h3>
 <p>The ANOVA table above (along with the summary of the linear model output before that) merely tells you whether any difference exists in the mean response across the levels of the categorical predictor. It does not tell you where that difference lies. In the case of using regression we can compare <code>MORTGAGE</code> to the other two levels but can’t conduct a hypothesis of <code>OWN</code> vs <code>RENT</code>. In order to make all pairwise comparisons, we need another tool. A common one is the Tukey method. Essentially, the Tukey method conducts three hypothesis tests (each under the null of no difference in mean) but corrects the <span class="math inline">\(p\)</span>-values based on the understanding that we are conducting three simultaneous hypothesis tests with the same set of data and we don’t want to inflate the Type 1 error.</p>
-<p>We can obtain these pairwise comparisons using the <code><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD()</a></code> function in <code>R</code>. The “HSD” stands for “Honest Significant Differences.” This function requires an <code>anova</code> object, which is obtained by using the <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> function:</p>
+<p>We can obtain these pairwise comparisons using the <code><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD()</a></code> function in <code>R</code>. The “HSD” stands for “Honest Significant Differences”. This function requires an <code>anova</code> object, which is obtained by using the <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> function:</p>
 <div class="sourceCode" id="cb918"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">interest_rate</span><span class="op">~</span><span class="va">homeownership</span>, data<span class="op">=</span><span class="va">loans100</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means

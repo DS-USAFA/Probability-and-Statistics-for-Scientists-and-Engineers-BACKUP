@@ -232,13 +232,13 @@ Summarize and explore the data.</p>
 <code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">starbucks</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 77
 ## Columns: 7
-## $ item     &lt;chr&gt; "8-Grain Roll", "Apple Bran Muffin", "Apple Fritter", "Banana…
-## $ calories &lt;dbl&gt; 350, 350, 420, 490, 130, 370, 460, 370, 310, 420, 380, 320, 3…
-## $ fat      &lt;dbl&gt; 8, 9, 20, 19, 6, 14, 22, 14, 18, 25, 17, 12, 17, 21, 5, 18, 1…
-## $ carb     &lt;dbl&gt; 67, 64, 59, 75, 17, 47, 61, 55, 32, 39, 51, 53, 34, 57, 52, 7…
-## $ fiber    &lt;dbl&gt; 5, 7, 0, 4, 0, 5, 2, 0, 0, 0, 2, 3, 2, 2, 3, 3, 2, 3, 0, 2, 0…
-## $ protein  &lt;dbl&gt; 10, 6, 5, 7, 0, 6, 7, 6, 5, 7, 4, 6, 5, 5, 12, 7, 8, 6, 0, 10…
-## $ type     &lt;fct&gt; bakery, bakery, bakery, bakery, bakery, bakery, bakery, baker…</code></pre>
+## $ item     &lt;chr&gt; "8-Grain Roll", "Apple Bran Muffin", "Apple Fritter", "Banana~
+## $ calories &lt;dbl&gt; 350, 350, 420, 490, 130, 370, 460, 370, 310, 420, 380, 320, 3~
+## $ fat      &lt;dbl&gt; 8, 9, 20, 19, 6, 14, 22, 14, 18, 25, 17, 12, 17, 21, 5, 18, 1~
+## $ carb     &lt;dbl&gt; 67, 64, 59, 75, 17, 47, 61, 55, 32, 39, 51, 53, 34, 57, 52, 7~
+## $ fiber    &lt;dbl&gt; 5, 7, 0, 4, 0, 5, 2, 0, 0, 0, 2, 3, 2, 2, 3, 3, 2, 3, 0, 2, 0~
+## $ protein  &lt;dbl&gt; 10, 6, 5, 7, 0, 6, 7, 6, 5, 7, 4, 6, 5, 5, 12, 7, 8, 6, 0, 10~
+## $ type     &lt;fct&gt; bakery, bakery, bakery, bakery, bakery, bakery, bakery, baker~</code></pre>
 <div class="sourceCode" id="cb791"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">starbucks</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
@@ -338,7 +338,7 @@ The denominator is the standard error of the estimate. The estimate of the resid
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb806"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span> </code></pre></div>
-<pre><code>## # A tibble: 2 × 5
+<pre><code>## # A tibble: 2 x 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)   146.      25.9        5.63 2.93e- 7
@@ -348,7 +348,7 @@ The denominator is the standard error of the estimate. The estimate of the resid
 <code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">term</span><span class="op">==</span><span class="st">"carb"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>test_stat<span class="op">=</span><span class="op">(</span><span class="va">estimate</span><span class="op">-</span><span class="fl">0</span><span class="op">)</span><span class="op">/</span><span class="va">std.error</span>,p_value<span class="op">=</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="va">test_stat</span>,df<span class="op">=</span><span class="fl">73</span>,lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 2
+<pre><code>## # A tibble: 1 x 2
 ##   test_stat  p_value
 ##       &lt;dbl&gt;    &lt;dbl&gt;
 ## 1      7.92 1.97e-11</code></pre>
@@ -410,7 +410,7 @@ Figure 25.3: Confidence and predictions bands for linear regression model of cal
 <p>Or using the <strong>broom</strong> package.</p>
 <div class="sourceCode" id="cb815"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">star_mod</span>,newdata<span class="op">=</span><span class="va">new_carb</span>,interval<span class="op">=</span><span class="st">"confidence"</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 4
+<pre><code>## # A tibble: 2 x 4
 ##    carb .fitted .lower .upper
 ##   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1    60    404.   380.   428.

@@ -180,7 +180,7 @@ where &lt;span class="math inline"&gt;\(\bar{x}\)&lt;/span&gt;, &lt;span class="
 <div class="sourceCode" id="cb831"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starbucks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>correlation<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">cor</a></span><span class="op">(</span><span class="va">carb</span>,<span class="va">calories</span><span class="op">)</span>,correlation_squared<span class="op">=</span><span class="va">correlation</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 2
+<pre><code>## # A tibble: 1 x 2
 ##   correlation correlation_squared
 ##         &lt;dbl&gt;               &lt;dbl&gt;
 ## 1       0.675               0.456</code></pre>

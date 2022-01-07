@@ -123,20 +123,20 @@
 <div class="sourceCode" id="cb923"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mariokart</span> <span class="op">&lt;-</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mariokart.csv"</span>, col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mariokart</span>,n<span class="op">=</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 10 × 12
-##    id           duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##    &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
-##  1 150377422259        3     20 new       0.99    4        51.6 standa…        1580
-##  2 260483376854        7     13 used      0.99    3.99     37.0 firstC…         365
-##  3 320432342985        3     16 new       0.99    3.5      45.5 firstC…         998
-##  4 280405224677        3     18 new       0.99    0        44   standa…           7
-##  5 170392227765        1     20 new       0.01    0        71   media           820
-##  6 360195157625        3     19 new       0.99    4        45   standa…      270144
-##  7 120477729093        1     13 used      0.01    0        37.0 standa…        7284
-##  8 300355501482        1     15 new       1       2.99     54.0 upsGro…        4858
-##  9 200392065459        3     29 used      0.99    4        47   priori…          27
-## 10 330364163424        7      8 used     20.0     4        50   firstC…         201
-## # … with 3 more variables: stock_photo &lt;chr&gt;, wheels &lt;dbl&gt;, title &lt;chr&gt;</code></pre>
+<pre><code>## # A tibble: 10 x 12
+##    id       duration n_bids cond  start_pr ship_pr total_pr ship_sp  seller_rate
+##    &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;
+##  1 1503774~        3     20 new       0.99    4        51.6 standard        1580
+##  2 2604833~        7     13 used      0.99    3.99     37.0 firstCl~         365
+##  3 3204323~        3     16 new       0.99    3.5      45.5 firstCl~         998
+##  4 2804052~        3     18 new       0.99    0        44   standard           7
+##  5 1703922~        1     20 new       0.01    0        71   media            820
+##  6 3601951~        3     19 new       0.99    4        45   standard      270144
+##  7 1204777~        1     13 used      0.01    0        37.0 standard        7284
+##  8 3003555~        1     15 new       1       2.99     54.0 upsGrou~        4858
+##  9 2003920~        3     29 used      0.99    4        47   priority          27
+## 10 3303641~        7      8 used     20.0     4        50   firstCl~         201
+## # ... with 3 more variables: stock_photo &lt;chr&gt;, wheels &lt;dbl&gt;, title &lt;chr&gt;</code></pre>
 <p>We are only interested in <code>total_pr</code>, <code>cond</code>, <code>stock_photo</code>, <code>duration</code>, and <code>wheels</code>. These variables are described in the following list:</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -254,7 +254,7 @@ Figure 28.2: Scatterplot of total price of Mario Kart on Ebay versus condition.
 <code class="sourceCode R"><span class="va">mariokart</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">cond</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>xbar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">mean</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">)</span>, stand_dev<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sd</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">)</span>,xmedian<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">median</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 4
+<pre><code>## # A tibble: 2 x 4
 ##   cond   xbar stand_dev xmedian
 ##   &lt;fct&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 new    53.8      7.44    54.0
@@ -264,12 +264,12 @@ Figure 28.2: Scatterplot of total price of Mario Kart on Ebay versus condition.
 <div class="sourceCode" id="cb935"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mariokart</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">total_pr</span> <span class="op">&gt;</span> <span class="fl">100</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 12
-##   id           duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##   &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
-## 1 110439174663        7     22 used      1       25.5     327. parcel          115
-## 2 130335427560        3     27 used      6.95     4       118. parcel           41
-## # … with 3 more variables: stock_photo &lt;fct&gt;, wheels &lt;dbl&gt;, title &lt;chr&gt;</code></pre>
+<pre><code>## # A tibble: 2 x 12
+##   id         duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
+##   &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+## 1 110439174~        7     22 used      1       25.5     327. parcel          115
+## 2 130335427~        3     27 used      6.95     4       118. parcel           41
+## # ... with 3 more variables: stock_photo &lt;fct&gt;, wheels &lt;dbl&gt;, title &lt;chr&gt;</code></pre>
 <p>If you look at the variable <code>title</code> there were additional items in the sale for these two observations. Let’s remove those two outliers and run the model again. Note that the reason we are removing them is not because they are annoying us and messing up our model. It is because we don’t think they are representative of the population of interest. Figure <a href="LRMULTI.html#fig:scat302-fig">28.3</a> is a boxplot of the data with the outliers dropped.</p>
 <div class="sourceCode" id="cb937"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mariokart_new</span> <span class="op">&lt;-</span> <span class="va">mariokart</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
@@ -561,11 +561,11 @@ Compute the residual of the first observation in the dataframe using the regress
 <div class="sourceCode" id="cb954"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">mario_mod_multi</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 11
+<pre><code>## # A tibble: 1 x 11
 ##   total_pr cond  stock_photo duration wheels .fitted .resid   .hat .sigma
 ##      &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;          &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     51.6 new   yes                3      1    49.6   1.92 0.0215   4.92
-## # … with 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;</code></pre>
+## # ... with 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;</code></pre>
 <p><span class="math inline">\(e_i = y_i - \hat{y_i} = 51.55 - 49.62 = 1.93\)</span></p>
 <blockquote>
 <p><em>Example</em>:<br>
@@ -623,7 +623,7 @@ R_{adj}^{2} = 1-\frac{\text{sum of squares of residuals} / (n-k-1)}{\text{sum of
 \]</span>
 where <span class="math inline">\(n\)</span> is the number of cases used to fit the model and <span class="math inline">\(k\)</span> is the number of predictor variables in the model.</p>
 </blockquote>
-<p>Because <span class="math inline">\(k\)</span> is never negative, the adjusted <span class="math inline">\(R^2\)</span> will be smaller – often times just a little smaller – than the unadjusted <span class="math inline">\(R^2\)</span>. The reasoning behind the adjusted <span class="math inline">\(R^2\)</span> lies in the <strong>degrees of freedom</strong> associated with each variance.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;In multiple regression, the degrees of freedom associated with the variance of the estimate of the residuals is &lt;span class="math inline"&gt;\(n-k-1\)&lt;/span&gt;, not &lt;span class="math inline"&gt;\(n-1\)&lt;/span&gt;. For instance, if we were to make predictions for new data using our current model, we would find that the unadjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; is an overly optimistic estimate of the reduction in variance in the response, and using the degrees of freedom in the adjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; formula helps correct this bias.&lt;/p&gt;'><sup>101</sup></a></p>
+<p>Because <span class="math inline">\(k\)</span> is never negative, the adjusted <span class="math inline">\(R^2\)</span> will be smaller – often times just a little smaller – than the unadjusted <span class="math inline">\(R^2\)</span>. The reasoning behind the adjusted <span class="math inline">\(R^2\)</span> lies in the <strong>degrees of freedom</strong> associated with each variance. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;In multiple regression, the degrees of freedom associated with the variance of the estimate of the residuals is &lt;span class="math inline"&gt;\(n-k-1\)&lt;/span&gt;, not &lt;span class="math inline"&gt;\(n-1\)&lt;/span&gt;. For instance, if we were to make predictions for new data using our current model, we would find that the unadjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; is an overly optimistic estimate of the reduction in variance in the response, and using the degrees of freedom in the adjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; formula helps correct this bias.&lt;/p&gt;'><sup>101</sup></a></p>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
 Suppose you added another predictor to the model, but the variance of the errors didn’t go down. What would happen to the <span class="math inline">\(R^2\)</span>? What would happen to the adjusted <span class="math inline">\(R^2\)</span>?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The unadjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; would stay the same and the adjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; would go down. Note that unadjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; never decreases by adding another predictor, it can only stay the same or increase. The adjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; increases only if the addition of a predictor reduces the variance of the error larger than add one to &lt;span class="math inline"&gt;\(k\)&lt;/span&gt; in denominator.&lt;/p&gt;'><sup>102</sup></a></p>
@@ -758,18 +758,18 @@ Figure 28.7: Diagnostic residual plots for multiple regression model.
 <code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">Credit</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 400
 ## Columns: 12
-## $ ID        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
-## $ Income    &lt;dbl&gt; 14.891, 106.025, 104.593, 148.924, 55.882, 80.180, 20.996, 7…
-## $ Limit     &lt;int&gt; 3606, 6645, 7075, 9504, 4897, 8047, 3388, 7114, 3300, 6819, …
-## $ Rating    &lt;int&gt; 283, 483, 514, 681, 357, 569, 259, 512, 266, 491, 589, 138, …
-## $ Cards     &lt;int&gt; 2, 3, 4, 3, 2, 4, 2, 2, 5, 3, 4, 3, 1, 1, 2, 3, 3, 3, 1, 2, …
-## $ Age       &lt;int&gt; 34, 82, 71, 36, 68, 77, 37, 87, 66, 41, 30, 64, 57, 49, 75, …
-## $ Education &lt;int&gt; 11, 15, 11, 11, 16, 10, 12, 9, 13, 19, 14, 16, 7, 9, 13, 15,…
-## $ Gender    &lt;fct&gt;  Male, Female,  Male, Female,  Male,  Male, Female,  Male, F…
-## $ Student   &lt;fct&gt; No, Yes, No, No, No, No, No, No, No, Yes, No, No, No, No, No…
-## $ Married   &lt;fct&gt; Yes, Yes, No, No, Yes, No, No, No, No, Yes, Yes, No, Yes, Ye…
-## $ Ethnicity &lt;fct&gt; Caucasian, Asian, Asian, Asian, Caucasian, Caucasian, Africa…
-## $ Balance   &lt;int&gt; 333, 903, 580, 964, 331, 1151, 203, 872, 279, 1350, 1407, 0,…</code></pre>
+## $ ID        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~
+## $ Income    &lt;dbl&gt; 14.891, 106.025, 104.593, 148.924, 55.882, 80.180, 20.996, 7~
+## $ Limit     &lt;int&gt; 3606, 6645, 7075, 9504, 4897, 8047, 3388, 7114, 3300, 6819, ~
+## $ Rating    &lt;int&gt; 283, 483, 514, 681, 357, 569, 259, 512, 266, 491, 589, 138, ~
+## $ Cards     &lt;int&gt; 2, 3, 4, 3, 2, 4, 2, 2, 5, 3, 4, 3, 1, 1, 2, 3, 3, 3, 1, 2, ~
+## $ Age       &lt;int&gt; 34, 82, 71, 36, 68, 77, 37, 87, 66, 41, 30, 64, 57, 49, 75, ~
+## $ Education &lt;int&gt; 11, 15, 11, 11, 16, 10, 12, 9, 13, 19, 14, 16, 7, 9, 13, 15,~
+## $ Gender    &lt;fct&gt;  Male, Female,  Male, Female,  Male,  Male, Female,  Male, F~
+## $ Student   &lt;fct&gt; No, Yes, No, No, No, No, No, No, No, Yes, No, No, No, No, No~
+## $ Married   &lt;fct&gt; Yes, Yes, No, No, Yes, No, No, No, No, Yes, Yes, No, Yes, Ye~
+## $ Ethnicity &lt;fct&gt; Caucasian, Asian, Asian, Asian, Caucasian, Caucasian, Africa~
+## $ Balance   &lt;int&gt; 333, 903, 580, 964, 331, 1151, 203, 872, 279, 1350, 1407, 0,~</code></pre>
 <p>Notice that <code>ID</code> is being treated as an integer. We could change it to a character since it is a label, but for our work in this chapter we will not bother.</p>
 <p>Suppose we suspected that there is a relationship between <code>Balance</code>, the response, and the predictors <code>Income</code> and <code>Student</code>. Note: we actually are using this model for educational purposes and did not go through a model selection process.</p>
 <p>The first model simply has these predictors in the model.</p>

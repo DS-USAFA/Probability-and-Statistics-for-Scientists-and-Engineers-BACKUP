@@ -139,17 +139,17 @@ Read in the data from <code>data/possum.csv</code> and look at the first few row
 <code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">possum</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 104
 ## Columns: 8
-## $ site    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
-## $ pop     &lt;chr&gt; "Vic", "Vic", "Vic", "Vic", "Vic", "Vic", "Vic", "Vic", "Vic",…
-## $ sex     &lt;chr&gt; "m", "f", "f", "f", "f", "f", "m", "f", "f", "f", "f", "f", "m…
-## $ age     &lt;dbl&gt; 8, 6, 6, 6, 2, 1, 2, 6, 9, 6, 9, 5, 5, 3, 5, 4, 1, 2, 5, 4, 3,…
-## $ head_l  &lt;dbl&gt; 94.1, 92.5, 94.0, 93.2, 91.5, 93.1, 95.3, 94.8, 93.4, 91.8, 93…
-## $ skull_w &lt;dbl&gt; 60.4, 57.6, 60.0, 57.1, 56.3, 54.8, 58.2, 57.6, 56.3, 58.0, 57…
-## $ total_l &lt;dbl&gt; 89.0, 91.5, 95.5, 92.0, 85.5, 90.5, 89.5, 91.0, 91.5, 89.5, 89…
-## $ tail_l  &lt;dbl&gt; 36.0, 36.5, 39.0, 38.0, 36.0, 35.5, 36.0, 37.0, 37.0, 37.5, 39…</code></pre>
+## $ site    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
+## $ pop     &lt;chr&gt; "Vic", "Vic", "Vic", "Vic", "Vic", "Vic", "Vic", "Vic", "Vic",~
+## $ sex     &lt;chr&gt; "m", "f", "f", "f", "f", "f", "m", "f", "f", "f", "f", "f", "m~
+## $ age     &lt;dbl&gt; 8, 6, 6, 6, 2, 1, 2, 6, 9, 6, 9, 5, 5, 3, 5, 4, 1, 2, 5, 4, 3,~
+## $ head_l  &lt;dbl&gt; 94.1, 92.5, 94.0, 93.2, 91.5, 93.1, 95.3, 94.8, 93.4, 91.8, 93~
+## $ skull_w &lt;dbl&gt; 60.4, 57.6, 60.0, 57.1, 56.3, 54.8, 58.2, 57.6, 56.3, 58.0, 57~
+## $ total_l &lt;dbl&gt; 89.0, 91.5, 95.5, 92.0, 85.5, 90.5, 89.5, 91.0, 91.5, 89.5, 89~
+## $ tail_l  &lt;dbl&gt; 36.0, 36.5, 39.0, 38.0, 36.0, 35.5, 36.0, 37.0, 37.0, 37.5, 39~</code></pre>
 <div class="sourceCode" id="cb767"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">possum</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 8
+<pre><code>## # A tibble: 6 x 8
 ##    site pop   sex     age head_l skull_w total_l tail_l
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     1 Vic   m         8   94.1    60.4    89     36  
@@ -318,7 +318,7 @@ Find the slope from the correlation and standard deviations.</p>
 <code class="sourceCode R"><span class="va">possum</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>correlation<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">cor</a></span><span class="op">(</span><span class="va">head_l</span>,<span class="va">total_l</span><span class="op">)</span>,sd_head<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sd</a></span><span class="op">(</span><span class="va">head_l</span><span class="op">)</span>,
             sd_total<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sd</a></span><span class="op">(</span><span class="va">total_l</span><span class="op">)</span>,slope<span class="op">=</span><span class="va">correlation</span><span class="op">*</span><span class="va">sd_head</span><span class="op">/</span><span class="va">sd_total</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 4
+<pre><code>## # A tibble: 1 x 4
 ##   correlation sd_head sd_total slope
 ##         &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
 ## 1       0.691    3.57     4.31 0.573</code></pre>
@@ -366,7 +366,7 @@ April 6th, 2010<a class="footnote-ref" tabindex="0" data-toggle="popover" data-c
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb783"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">poss_mod</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 5
+<pre><code>## # A tibble: 2 x 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)   42.7      5.17        8.26 5.66e-13

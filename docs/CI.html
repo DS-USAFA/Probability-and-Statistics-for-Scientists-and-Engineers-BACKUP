@@ -446,7 +446,7 @@ We are 95% confident that the difference in proportions of strokes in the contro
 <p>Suppose we want to consider confidence intervals where the confidence level is somewhat higher than 95%; perhaps we would like a confidence level of 99%. Think back to the analogy about trying to catch a fish: if we want to be more sure that we will catch the fish, we should use a wider net. To create a 99% confidence level, we must also widen our 95% interval. On the other hand, if we want an interval with lower confidence, such as 90%, we could make our original 95% interval slightly slimmer.</p>
 <p>The 95% confidence interval structure provides guidance in how to make intervals with new confidence levels. Below is a general 95% confidence interval for a point estimate that comes from a nearly normal distribution:</p>
 <p><span class="math display">\[\text{point estimate}\ \pm\ 1.96\times SE \]</span></p>
-<p>There are three components to this interval: the point estimate, “1.96,” and the standard error. The choice of <span class="math inline">\(1.96\times SE\)</span>, which is also called <strong>margin of error</strong>, was based on capturing 95% of the data since the estimate is within 1.96 standard errors of the true value about 95% of the time. The choice of 1.96 corresponds to a 95% confidence level.</p>
+<p>There are three components to this interval: the point estimate, “1.96”, and the standard error. The choice of <span class="math inline">\(1.96\times SE\)</span>, which is also called <strong>margin of error</strong>, was based on capturing 95% of the data since the estimate is within 1.96 standard errors of the true value about 95% of the time. The choice of 1.96 corresponds to a 95% confidence level.</p>
 <blockquote>
 <p><strong>Exercise</strong>:
 If <span class="math inline">\(X\)</span> is a normally distributed random variable, how often will <span class="math inline">\(X\)</span> be within 2.58 standard deviations of the mean?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;This is equivalent to asking how often a standard normal variable will be larger than -2.58 but less than 2.58. To determine this probability, look up -2.58 and 2.58 in &lt;code&gt;R&lt;/code&gt; using &lt;code&gt;pnorm()&lt;/code&gt; (0.0049 and 0.9951). Thus, there is a &lt;span class="math inline"&gt;\(0.9951-0.0049 \approx 0.99\)&lt;/span&gt; probability that the unobserved random variable &lt;span class="math inline"&gt;\(X\)&lt;/span&gt; will be within 2.58 standard deviations of the mean.&lt;/p&gt;'><sup>87</sup></a></p>
@@ -473,7 +473,7 @@ We are XX% confident that the population parameter is between…</p>
 <ol style="list-style-type: decimal">
 <li>Chronic illness</li>
 </ol>
-<p>In 2013, the Pew Research Foundation reported that “45% of U.S. adults report that they live with one or more chronic conditions.”<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://pewinternet.org/Reports/2013/The-Diagnosis-Difference.aspx" class="uri"&gt;http://pewinternet.org/Reports/2013/The-Diagnosis-Difference.aspx&lt;/a&gt; The Diagnosis Difference. November 26, 2013. Pew Research.&lt;/p&gt;'><sup>88</sup></a> However, this value was based on a sample, so it may not be a perfect estimate for the population parameter of interest on its own. The study reported a standard error of about 1.2%, and a normal model may reasonably be used in this setting.</p>
+<p>In 2013, the Pew Research Foundation reported that “45% of U.S. adults report that they live with one or more chronic conditions”.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://pewinternet.org/Reports/2013/The-Diagnosis-Difference.aspx" class="uri"&gt;http://pewinternet.org/Reports/2013/The-Diagnosis-Difference.aspx&lt;/a&gt; The Diagnosis Difference. November 26, 2013. Pew Research.&lt;/p&gt;'><sup>88</sup></a> However, this value was based on a sample, so it may not be a perfect estimate for the population parameter of interest on its own. The study reported a standard error of about 1.2%, and a normal model may reasonably be used in this setting.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Create a 95% confidence interval for the proportion of U.S. adults who live with one or more chronic conditions. Also interpret the confidence interval in the context of the study.<br>
 </li>
@@ -534,7 +534,7 @@ c. The distribution of sample proportions of random samples of size 140 is appr
 <ol start="6" style="list-style-type: decimal">
 <li>Sleep habits of New Yorkers</li>
 </ol>
-<p>New York is known as “the city that never sleeps.” A random sample of 25 New Yorkers were asked how much sleep they get per night. Statistical summaries of these data are shown below. Do these data provide strong evidence that New Yorkers sleep less than 8 hours a night on average?</p>
+<p>New York is known as “the city that never sleeps”. A random sample of 25 New Yorkers were asked how much sleep they get per night. Statistical summaries of these data are shown below. Do these data provide strong evidence that New Yorkers sleep less than 8 hours a night on average?</p>
 <p><span class="math display">\[
 \begin{array}{ccccc} &amp; &amp; &amp;\\ 
 \hline

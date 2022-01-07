@@ -252,7 +252,7 @@ Do the data provide statistically significant evidence against the null hypothes
 <code class="sourceCode R"><span class="va">thinner</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/blood_thinner.csv"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb482"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">thinner</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 2
+<pre><code>## # A tibble: 6 x 2
 ##   group     outcome 
 ##   &lt;chr&gt;     &lt;chr&gt;   
 ## 1 treatment survived
@@ -341,7 +341,7 @@ Figure 18.3: Hypergeometric pmf showing the cutoff for p-value calculation.
 <span class="header-section-number">18.5</span> Golf Balls<a class="anchor" aria-label="anchor" href="#golf-balls"><i class="fas fa-link"></i></a>
 </h2>
 <p>Our last example will be interesting because the distribution has multiple parameters and a test metric is not obvious at this point.</p>
-<p>The owners of a residence located along a golf course collected the first 500 golf balls that landed on their property. Most golf balls are labeled with the make of the golf ball and a number, for example “Nike 1” or “Titleist 3.” The numbers are typically between 1 and 4, and the owners of the residence wondered if these numbers are equally likely (at least among golf balls used by golfers of poor enough quality that they lose them in the yards of the residences along the fairway.)</p>
+<p>The owners of a residence located along a golf course collected the first 500 golf balls that landed on their property. Most golf balls are labeled with the make of the golf ball and a number, for example “Nike 1” or “Titleist 3”. The numbers are typically between 1 and 4, and the owners of the residence wondered if these numbers are equally likely (at least among golf balls used by golfers of poor enough quality that they lose them in the yards of the residences along the fairway.)</p>
 <p>We will use a significance level of <span class="math inline">\(\alpha = 0.05\)</span> since there is no reason to favor one error over the other.</p>
 <div id="step-1--state-the-null-and-alternative-hypotheses-4" class="section level3" number="18.5.1">
 <h3>

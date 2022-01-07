@@ -83,20 +83,20 @@ head(email50,n=10)
 ```
 
 ```
-## # A tibble: 10 × 21
+## # A tibble: 10 x 21
 ##    spam  to_multiple from     cc sent_email time                image attach
 ##    <fct> <fct>       <fct> <int> <fct>      <dttm>              <dbl>  <dbl>
-##  1 0     0           1         0 1          2012-01-04 13:19:16     0      0
-##  2 0     0           1         0 0          2012-02-16 20:10:06     0      0
-##  3 1     0           1         4 0          2012-01-04 15:36:23     0      2
-##  4 0     0           1         0 0          2012-01-04 17:49:52     0      0
-##  5 0     0           1         0 0          2012-01-27 09:34:45     0      0
-##  6 0     0           1         0 0          2012-01-17 17:31:57     0      0
-##  7 0     0           1         0 0          2012-03-18 04:18:55     0      0
-##  8 0     0           1         0 1          2012-03-31 13:58:56     0      0
-##  9 0     0           1         1 1          2012-01-11 01:57:54     0      0
-## 10 0     0           1         0 0          2012-01-07 19:29:16     0      0
-## # … with 13 more variables: dollar <dbl>, winner <fct>, inherit <dbl>,
+##  1 0     0           1         0 1          2012-01-04 06:19:16     0      0
+##  2 0     0           1         0 0          2012-02-16 13:10:06     0      0
+##  3 1     0           1         4 0          2012-01-04 08:36:23     0      2
+##  4 0     0           1         0 0          2012-01-04 10:49:52     0      0
+##  5 0     0           1         0 0          2012-01-27 02:34:45     0      0
+##  6 0     0           1         0 0          2012-01-17 10:31:57     0      0
+##  7 0     0           1         0 0          2012-03-17 22:18:55     0      0
+##  8 0     0           1         0 1          2012-03-31 07:58:56     0      0
+##  9 0     0           1         1 1          2012-01-10 18:57:54     0      0
+## 10 0     0           1         0 0          2012-01-07 12:29:16     0      0
+## # ... with 13 more variables: dollar <dbl>, winner <fct>, inherit <dbl>,
 ## #   viagra <dbl>, password <dbl>, num_char <dbl>, line_breaks <int>,
 ## #   format <fct>, re_subj <fct>, exclaim_subj <dbl>, urgent_subj <fct>,
 ## #   exclaim_mess <dbl>, number <fct>
@@ -114,7 +114,7 @@ The data in `email50` represent a **data matrix** or in `R` terminology **data f
 
 
 ```
-## # A tibble: 10 × 3
+## # A tibble: 10 x 3
 ##    group   outcome30 outcome365
 ##    <chr>   <chr>     <chr>     
 ##  1 control no_event  no_event  
@@ -133,7 +133,7 @@ If we think of an outcome as a unit of observation then it is not tidy since the
 
 
 ```
-## # A tibble: 10 × 4
+## # A tibble: 10 x 4
 ##    patient_id group   time  result  
 ##         <int> <chr>   <chr> <chr>   
 ##  1          1 control month no_event

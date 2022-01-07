@@ -293,7 +293,7 @@ head(Cards)
 ```
 
 ```
-## # A tibble: 6 × 3
+## # A tibble: 6 x 3
 ##   rank  suit   probs
 ##   <chr> <chr>  <dbl>
 ## 1 2     Club  0.0192
@@ -321,7 +321,7 @@ Cards %>%
 ```
 
 ```
-## # A tibble: 13 × 2
+## # A tibble: 13 x 2
 ##    rank  suit 
 ##    <chr> <chr>
 ##  1 2     Club 
@@ -352,7 +352,7 @@ head(results)
 ```
 
 ```
-## # A tibble: 6 × 6
+## # A tibble: 6 x 6
 ##   rank  suit   probs orig.id  .row .index
 ##   <chr> <chr>  <dbl> <chr>   <int>  <dbl>
 ## 1 9     Spade 0.0192 47          1      1
@@ -371,7 +371,7 @@ results %>%
 ```
 
 ```
-## # A tibble: 1 × 1
+## # A tibble: 1 x 1
 ##    prob
 ##   <dbl>
 ## 1 0.243
@@ -385,7 +385,7 @@ results %>%
 ```
 
 ```
-## # A tibble: 4 × 3
+## # A tibble: 4 x 3
 ##   suit        n  prob
 ##   <chr>   <int> <dbl>
 ## 1 Club     2432 0.243
@@ -405,7 +405,7 @@ Cards %>%
 ```
 
 ```
-## # A tibble: 20 × 2
+## # A tibble: 20 x 2
 ##    rank  suit   
 ##    <chr> <chr>  
 ##  1 10    Club   
@@ -442,7 +442,7 @@ head(results)
 ```
 
 ```
-## # A tibble: 6 × 6
+## # A tibble: 6 x 6
 ##   rank  suit   probs orig.id  .row .index
 ##   <chr> <chr>  <dbl> <chr>   <int>  <dbl>
 ## 1 10    Heart 0.0192 35          1      1
@@ -461,7 +461,7 @@ results %>%
 ```
 
 ```
-## # A tibble: 1 × 1
+## # A tibble: 1 x 1
 ##    prob
 ##   <dbl>
 ## 1 0.389
@@ -477,7 +477,7 @@ results %>%
 ```
 
 ```
-## # A tibble: 1 × 1
+## # A tibble: 1 x 1
 ##    prob
 ##   <dbl>
 ## 1 0.389
@@ -495,7 +495,7 @@ Cards %>%
 ```
 
 ```
-## # A tibble: 5 × 2
+## # A tibble: 5 x 2
 ##   rank  suit 
 ##   <chr> <chr>
 ## 1 10    Club 
@@ -520,7 +520,7 @@ results %>%
 ```
 
 ```
-## # A tibble: 1 × 1
+## # A tibble: 1 x 1
 ##     prob
 ##    <dbl>
 ## 1 0.0963

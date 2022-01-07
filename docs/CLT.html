@@ -410,7 +410,7 @@ thus our test statistic is</p>
 <div class="sourceCode" id="cb551"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">temperature</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">mean</a></span><span class="op">(</span><span class="va">temperature</span><span class="op">)</span>,sd<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sd</a></span><span class="op">(</span><span class="va">temperature</span><span class="op">)</span>,test_stat<span class="op">=</span><span class="op">(</span><span class="va">mean</span><span class="op">-</span><span class="fl">98.6</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">sd</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">130</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 3
+<pre><code>## # A tibble: 1 x 3
 ##    mean    sd test_stat
 ##   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
 ## 1  98.2 0.733     -5.45</code></pre>

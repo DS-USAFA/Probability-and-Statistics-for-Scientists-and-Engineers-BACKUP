@@ -500,7 +500,7 @@ Figure 22.4: The F distribution
 <div class="sourceCode" id="cb710"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span>,data<span class="op">=</span><span class="va">mlb_obp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 6
+<pre><code>## # A tibble: 2 x 6
 ##   term         df   sumsq  meansq statistic p.value
 ##   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 position      3 0.00756 0.00252      1.99   0.115
@@ -510,7 +510,7 @@ Figure 22.4: The F distribution
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span>,data<span class="op">=</span><span class="va">mlb_obp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>stat<span class="op">=</span><span class="va">meansq</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="va">meansq</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> </code></pre></div>
-<pre><code>## # A tibble: 1 × 1
+<pre><code>## # A tibble: 1 x 1
 ##    stat
 ##   &lt;dbl&gt;
 ## 1  1.99</code></pre>
