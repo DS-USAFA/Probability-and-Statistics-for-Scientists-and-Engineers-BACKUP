@@ -3,7 +3,7 @@ title: "Probability and Statistics for Scientists and Engineers"
 author: 
 - Matthew Davis
 - Brianna Hitt
-- Ken Horton
+- Kenneth Horton
 - Bradley Warner
 date: "`r Sys.Date()`"
 header-includes:
@@ -390,7 +390,7 @@ stent_study <-read_csv(___)
   
 
 
-  b. Complete similar steps as in the class notes. The start of code is provided below. 
+  b. Complete similar steps as in the class notes. The start of code is provided below.  
     i. Use `inspect` on the data.  
     ii. Create a table of `outcome365` and `group`. Comment on the results.  
     iii. Create a barchart of the data.  
@@ -450,7 +450,7 @@ tally(___)
   e. At first glance, does acupuncture appear to be an effective treatment for migraines? Explain your reasoning.  
   f. Do the data provide convincing evidence that there is a real pain reduction for those patients in the treatment group? Or do you think that the observed difference might just be due to chance?  
   
-Compile, `knit`, this report into a pdf.
+Compile, `knit`, this report into an html and a pdf. In order to `knit` the report into a pdf, you may need to install the `knitr` and `tinytex` packages in `R`.
 
 
 
@@ -1521,7 +1521,7 @@ b. Suggest a sampling strategy for carrying out this study.
 a. Students at an elementary school are given a questionnaire that they are required to return after their parents have completed it. One of the questions asked is, *Do you find that your work schedule makes it difficult for you to spend time with your kids after school?* Of the parents who replied, 85% said *no*. Based on these results, the school officials conclude that a great majority of the parents have no difficulty spending time with their kids after school.  
 b. A survey is conducted on a simple random sample of 1,000 women who recently gave birth, asking them about whether or not they smoked during pregnancy. A follow-up survey asking if the children have respiratory problems is conducted 3 years later, however, only 567 of these women are reached at the same address. The researcher reports that these 567 women are representative of all mothers.
 
-3. **Sampling strategies**.  A Math 377 student who is curious about the relationship between the amount of time students spend on social networking sites and their performance at school decides to conduct a survey. Four research strategies for collecting data are described below. In each, name the sampling method proposed and any bias you might expect.
+3. **Sampling strategies**.  A statistics student who is curious about the relationship between the amount of time students spend on social networking sites and their performance at school decides to conduct a survey. Four research strategies for collecting data are described below. In each, name the sampling method proposed and any bias you might expect.
 
 a. He randomly samples 40 students from the study's population, gives them the survey, asks them to fill it out and bring it back the next day.  
 b. He gives out the survey only to his friends, and makes sure each one of them fills out the survey.   
@@ -1691,7 +1691,7 @@ The `email50` data set is a sample from a larger population of emails that were 
 > *Example*:
 The average number of characters across all emails can be estimated using the sample data. Based on the sample of 50 emails, what would be a reasonable estimate of $\mu_x$, the mean number of characters in all emails in the `email` data set? (Recall that `email50` is a sample from `email`.)
 
-The sample mean, 11.6, may provide a reasonable estimate of $\mu_x$. While this number will not be perfect, it provides a **point estimate** of the population mean. Later in the semester, we will develop tools to characterize the accuracy of point estimates, and we will find that point estimates based on larger samples tend to be more accurate than those based on smaller samples.
+The sample mean, 11.6, may provide a reasonable estimate of $\mu_x$. While this number will not be perfect, it provides a **point estimate** of the population mean. Later in the course, we will develop tools to characterize the accuracy of point estimates, and we will find that point estimates based on larger samples tend to be more accurate than those based on smaller samples.
 
 
 > *Example*:  
@@ -1715,7 +1715,7 @@ These binned counts are plotted as bars in Figure \@ref(fig:hist5-fig) into what
 
 ```{r hist5-fig,echo=FALSE,fig.cap="A histogram of `num_char`. This distribution is very strongly skewed to the right."}
 email50 %>%
-   gf_histogram(~num_char,binwidth = 5,boundary=0,xlab="The Number of Characters (in thousands)") %>%
+   gf_histogram(~num_char,binwidth = 5,boundary=0,xlab="The Number of Characters (in thousands)",color="black",fill="cyan") %>%
    gf_theme(theme_classic())
 ```
 
@@ -1753,7 +1753,7 @@ We want `R` to make a histogram. In `ggformula` the plots have the form `gf_XXXX
 To start we just have to give the formulas and data to `R`.
 
 ```{r}
-gf_histogram(~num_char,data=email50)
+gf_histogram(~num_char,data=email50,color="black",fill="cyan")
 ```
 
 > **Exercise**:   
@@ -1763,7 +1763,8 @@ Here is the code for the exercise
 ```
 email50 %>%
    gf_histogram(~num_char,binwidth = 5,boundary=0,
-   xlab="The Number of Characters (in thousands)") %>%
+   xlab="The Number of Characters (in thousands)"
+   ,color="black",fill="cyan") %>%
    gf_theme(theme_classic())
 ```
 
@@ -2061,7 +2062,7 @@ The distribution of vehicle prices tends to be right skewed, with a few luxury a
 When data are very strongly skewed, we sometimes transform them so they are easier to model. Consider the histogram of salaries for Major League Baseball players' salaries from 2010, which is shown in Figure \@ref(fig:hist510-fig).
 
 ```{r hist510-fig,echo=FALSE,fig.cap="Histogram of MLB player salaries for 2010, in millions of dollars."}
-gf_histogram(~salary/1000,data=mlb,main="", bins=15, xlab="Salary (millions of dollars)", ylab="", fill=COL[1]) %>%
+gf_histogram(~salary/1000,data=mlb,main="", bins=15, xlab="Salary (millions of dollars)", ylab="",color="black",fill="cyan") %>%
    gf_theme(theme_classic())
 ```
 
@@ -2073,7 +2074,7 @@ The histogram of MLB player salaries is useful in that we can see the data are e
 There are some standard transformations that are often applied when much of the data cluster near zero (relative to the larger values in the data set) and all observations are positive. A **transformation** is a rescaling of the data using a function. For instance, a plot of the natural logarithm^[Statisticians often write the natural logarithm as $\log$. You might be more familiar with it being written as $\ln$.] of player salaries results in a new histogram in Figure \@ref(fig:hist512-fig). Transformed data are sometimes easier to work with when applying statistical models because the transformed data are much less skewed and outliers are usually less extreme.
 
 ```{r hist512-fig,echo=FALSE,fig.cap="Histogram of the log-transformed MLB player salaries for 2010."}
-gf_histogram(~log(salary/1000), data=mlb , bins=15, xlab=expression(log[e]*"(Salary), where Salary is in millions USD"), ylab="", fill=COL[1]) %>%
+gf_histogram(~log(salary/1000), data=mlb , bins=15, xlab=expression(log[e]*"(Salary), where Salary is in millions USD"), ylab="",color="black",fill="cyan") %>%
    gf_theme(theme_classic())
 ```
 
@@ -2450,7 +2451,7 @@ library(usdata)
 
 
 ```{r warning=FALSE,warning=FALSE,message=FALSE}
-county_M377 <- county_complete %>% 
+county_tidy <- county_complete %>% 
   select(name, state, pop2000, pop2010, fed_spend=fed_spending_2009, poverty=poverty_2010, 
          homeownership = homeownership_2010, multi_unit = housing_multi_unit_2010, 
          income = per_capita_income_2010, med_income = median_household_income_2010) %>%
@@ -2467,7 +2468,7 @@ First, as a reminder, let's look at the data.
 We will use the `select()` and `inspect()` functions. 
 
 ```{r}
-county_M377 %>%
+county_tidy %>%
   select(pop2000,pop2010,med_income) %>%
   inspect()
 ```
@@ -2475,7 +2476,7 @@ county_M377 %>%
 Notice that three counties are missing population values, reported as `NA`. Let's remove them and find which counties increased population by creating a new variable.
 
 ```{r}
-cc_reduced <- county_M377 %>%
+cc_reduced <- county_tidy %>%
   drop_na(pop2000) %>%
   select(pop2000,pop2010,med_income) %>%
   mutate(pop_gain = sign(pop2010-pop2000))
@@ -4248,6 +4249,10 @@ As in the case of the discrete random variable, we can simulate a continuous ran
 1. Generate a random number in the interval $[0,1]$, $U$.  
 2. Find the random variable $X$ from $F_{X}^{-1}(U)$.  
 In `R` for our example, this looks like the following.
+
+```{r, echo=FALSE}
+set.seed(112)
+```
 
 ```{r}
 sqrt(runif(1))
@@ -10526,7 +10531,7 @@ x <- runif(100)
 y <- 25*x-20*x^2+rnorm(length(x), sd=1.5)
 plot(x,y, axes=FALSE, pch=pch, cex=cex, col="#00000000")
 box()
-makeTube(x,y, type='Q', addLine=FALSE, col=COL[7,3])
+makeTube(x,y, type='Q', addLine=FALSE, col=COL[7,1])
 points(x,y, pch=pch, cex=cex, col=COL[1,2])
 g <- lm(y ~ x)
 abline(g)
@@ -10543,7 +10548,7 @@ y[2] <- y[2] + 8
 y[1] <- y[1] + 1
 plot(x,y, axes=FALSE, pch=pch, cex=cex, col="#00000000")
 box()
-makeTube(x,y, addLine=FALSE, col=COL[7,3])
+makeTube(x,y, addLine=FALSE, col=COL[7,1])
 points(x,y, pch=pch, cex=cex, col=COL[1,2])
 g <- lm(y ~ x)
 abline(g)
@@ -10558,7 +10563,7 @@ x <- runif(100)
 y <- 5*x + rnorm(length(x), sd=x)
 plot(x,y, axes=FALSE, pch=pch, cex=cex, col="#00000000")
 box()
-makeTubeAdv(x, y, type='l', variance='l', bw=0.03, Z=1.7, col=COL[7,3])
+makeTubeAdv(x, y, type='l', variance='l', bw=0.03, Z=1.7, col=COL[7,1])
 #makeTube(x,y)
 points(x,y, pch=pch, cex=cex, col=COL[1,2])
 g <- lm(y ~ x)
@@ -10575,7 +10580,7 @@ y<-stock$AAPL_Adj_Close
 #y <- cumprod(1+rev(gr$R))
 plot(x,y, axes=FALSE, pch=pch, cex=cex, col="#00000000")
 box()
-makeTube(x,y, addLine=FALSE, col=COL[7,3])
+makeTube(x,y, addLine=FALSE, col=COL[7,1])
 points(x,y, pch=pch, cex=cex, col=COL[1,2])
 g <- lm(y ~ x)
 abline(g)
@@ -10585,7 +10590,7 @@ plot(x, g$residuals, axes=FALSE, pch=pch, cex=cex, col=COL[1,2], ylim=yR)
 abline(h=0, lty=2)
 box()
 
-makeTubeAdv(x,y, col=COL[7,3])
+makeTubeAdv(x,y, col=COL[7,1])
 
 ```
 
@@ -11858,10 +11863,10 @@ Multiple regression extends simple two-variable regression to the case that stil
 
 To explore and explain these ideas, we will consider Ebay auctions of a video game called **Mario Kart** for the Nintendo Wii. The outcome variable of interest is the total price of an auction, which is the highest bid plus the shipping cost. We will try to determine how total price is related to each characteristic in an auction while simultaneously controlling for other variables. For instance, with all other characteristics held constant, are longer auctions associated with higher or lower prices? And, on average, how much more do buyers tend to pay for additional Wii wheels (plastic steering wheels that attach to the Wii controller) in auctions? Multiple regression will help us answer these and other questions.
 
-The data set is in the file `mariokart.csv` in the `data` folder. This data set includes results from 141 auctions.^[Diez DM, Barr CD, and \c{C}etinkaya-Rundel M. 2012. `openintro`: OpenIntro data sets and supplemental functions. http://cran.r-project.org/web/packages/openintro] Ten observations from this data set are shown in the `R` code below. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for advanced regression or machine learning courses.
+The data set is in the file `mariokart.csv` in the `data` folder. This data set includes results from 141 auctions.^[Diez DM, Barr CD, and \c{C}etinkaya-Rundel M. 2012. `openintro`: OpenIntro data sets and supplemental functions. http://cran.r-project.org/web/packages/openintro] Ten observations from this data set are shown in the `R` code below. Note that we force the first column to be interpreted as a character string since it is the identification code for each sale and has no numeric meaning. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for advanced regression or machine learning courses.
 
 ```{r warning=FALSE,message=FALSE}
-mariokart <-read_csv("data/mariokart.csv")
+mariokart <-read_csv("data/mariokart.csv", col_types = list(col_character()))
 head(mariokart,n=10)
 ```
 
@@ -12248,6 +12253,8 @@ The data set of interest is `Credit`. Use the help menu to read about the variab
 glimpse(Credit)
 ```
 
+Notice that `ID` is being treated as an integer. We could change it to a character since it is a label, but for our work in this chapter we will not bother. 
+
 Suppose we suspected that there is a relationship between `Balance`, the response, and the predictors `Income` and `Student`. Note: we actually are using this model for educational purposes and did not go through a model selection process. 
 
 The first model simply has these predictors in the model.
@@ -12374,7 +12381,7 @@ In this chapter, we want the outcome variable of interest to be game condition, 
 Read the data and summarize. 
 
 ```{r warning=FALSE,message=FALSE}
-mariokart <-read_csv("data/mariokart.csv")
+mariokart <-read_csv("data/mariokart.csv", col_types = list(col_character()))
 head(mariokart,n=10)
 ```
 
