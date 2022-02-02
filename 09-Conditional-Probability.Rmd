@@ -80,7 +80,7 @@ See Figure \@ref(fig:sens) for a visual representation of these terms and others
 
 (ref:quote2) A table of true results and test results for a hypothetical disease. The terminology is included in the table. These ideas are important when evaluating machine learning classification models.
 
-```{r sens,echo=FALSE,fig.align="center",fig.cap="(ref:quote2)"}
+```{r sens,echo=FALSE,fig.align="center",fig.cap="(ref:quote2)",out.width="100%"}
 knitr::include_graphics("./figures/sensitivity-specificity_corrected.jpg")  
 ``` 
 
