@@ -81,7 +81,7 @@ See Figure \@ref(fig:sens) for a visual representation of these terms and others
 (ref:quote2) A table of true results and test results for a hypothetical disease. The terminology is included in the table. These ideas are important when evaluating machine learning classification models.
 
 <div class="figure" style="text-align: center">
-<img src="./figures/sensitivity-specificity_corrected.jpg" alt="(ref:quote2)" width="360" />
+<img src="./figures/sensitivity-specificity_corrected.jpg" alt="(ref:quote2)" width="100%" />
 <p class="caption">(\#fig:sens)(ref:quote2)</p>
 </div>
 

@@ -702,7 +702,7 @@ We have just determined that a full house has a lower probability of occurring t
 3. The Birthday Problem Revisited. 
 
 a. Suppose there are $n=20$ students in a classroom. My birthday, the instructor, is April 3rd. What is the probability that at least one student shares my birthday? Assume only 365 days in a year and assume that all birthdays are equally likely.   
-b. In `R`, find the probability that at least one other person shares my birthday for each value of $n$ from 1 to 80. Plot these probabilities with $n$ on the $x$-axis and probability on the $y$-axis. At what value of $n$ would the probability be at least 50%?   
+b. In `R`, find the probability that at least one other person shares my birthday for each value of $n$ from 1 to 300. Plot these probabilities with $n$ on the $x$-axis and probability on the $y$-axis. At what value of $n$ would the probability be at least 50%?   
 
 
 4. Thinking of the cards again. Answer the following questions:
