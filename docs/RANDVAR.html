@@ -123,7 +123,7 @@ S=\{\mbox{HHH}, \mbox{HHT}, \mbox{HTH}, \mbox{HTT}, \mbox{THH}, \mbox{THT}, \mbo
 <span class="math display">\[
 S=\{\underbrace{\mbox{HHH}}_{X=3}, \underbrace{\mbox{HHT}}_{X=2}, \underbrace{\mbox{HTH}}_{X=2}, \underbrace{\mbox{HTT}}_{X=1}, \underbrace{\mbox{THH}}_{X=2}, \underbrace{\mbox{THT}}_{X=1}, \underbrace{\mbox{TTH}}_{X=1}, \underbrace{\mbox{TTT}}_{X=0}\}
 \]</span></p>
-<p>The sample space of <span class="math inline">\(X\)</span>, the support, is the list of numerical values that <span class="math inline">\(X\)</span> can take.
+<p>The sample space of <span class="math inline">\(X\)</span>, sometimes referred to as the support, is the list of numerical values that <span class="math inline">\(X\)</span> can take.
 <span class="math display">\[
 S_X=\{0,1,2,3\}
 \]</span></p>
@@ -145,7 +145,7 @@ S_X=\{0,1,2,3\}
 </h3>
 <p>A <em>discrete</em> random variable has a sample space that consists of a countable set of values. <span class="math inline">\(X\)</span> in our example above is a discrete random variable. Note that “countable” does not necessarily mean “finite”. For example, a random variable with a Poisson distribution (a topic for a later lesson) has a sample space of <span class="math inline">\(\{0,1,2,...\}\)</span>. This sample space is unbounded, but it is considered <em>countably</em> infinite, and thus the random variable would be considered discrete.</p>
 <p>A <em>continuous</em> random variable has a sample space that is a continuous interval. For example, let <span class="math inline">\(Y\)</span> be the random variable corresponding to the height of a randomly selected individual. <span class="math inline">\(Y\)</span> is a continuous random variable because a person could measure 68.1 inches, 68.2 inches, or perhaps any value in between. Note that when we measure height, our precision is limited by our measuring device, so we are technically “discretizing” height. However, even in these cases, we typically consider height to be a continuous random variable.</p>
-<p>A <em>mixed</em> random variable is exactly what it sounds like. It has a sample space that is both discrete and continuous. How could such a thing occur? Consider an experiment where a person rolls a standard six-sided die. If it lands on anything other than one, the result of the die roll is recorded. If it lands on one, the person spins a wheel, and the angle in degrees of the resulting spin, divided by 360, is recorded. If our random variable <span class="math inline">\(Z\)</span> is the number that is recorded in this experiment, the sample space of <span class="math inline">\(Z\)</span> is <span class="math inline">\([0,1] \cup \{2,3,4,5,6\}\)</span>. We will not be spending much time on mixed random variables. However they do occur in practice, consider the job of analyzing bomb eroor data. If the bomb hits within a certain radius, the error is 0. Otherwise it is measured in a radial direction. This data is mixed.</p>
+<p>A <em>mixed</em> random variable is exactly what it sounds like. It has a sample space that is both discrete and continuous. How could such a thing occur? Consider an experiment where a person rolls a standard six-sided die. If it lands on anything other than one, the result of the die roll is recorded. If it lands on one, the person spins a wheel, and the angle in degrees of the resulting spin, divided by 360, is recorded. If our random variable <span class="math inline">\(Z\)</span> is the number that is recorded in this experiment, the sample space of <span class="math inline">\(Z\)</span> is <span class="math inline">\([0,1] \cup \{2,3,4,5,6\}\)</span>. We will not be spending much time on mixed random variables. However they do occur in practice, consider the job of analyzing bomb error data. If the bomb hits within a certain radius, the error is 0. Otherwise it is measured in a radial direction. This data is mixed.</p>
 </div>
 <div id="discrete-distribution-functions" class="section level3" number="10.2.3">
 <h3>
@@ -388,7 +388,7 @@ and
 <li>Suppose we are flipping a fair coin, and the result of a single coin flip is either heads or tails. Let <span class="math inline">\(X\)</span> be a random variable representing the number of flips until the first heads.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>Is <span class="math inline">\(X\)</span> discrete or continuous? What is the domain, support, of <span class="math inline">\(X\)</span>?<br>
+<li>Is <span class="math inline">\(X\)</span> discrete or continuous? What is the domain/support, of <span class="math inline">\(X\)</span>?<br>
 </li>
 <li>What values do you <em>expect</em> <span class="math inline">\(X\)</span> to take? What do you think is the average of <span class="math inline">\(X\)</span>? Don’t actually do any formal math, just think about if you were flipping a regular coin, how long it would take you to get the first heads.<br>
 </li>
@@ -491,7 +491,7 @@ and
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-02-01.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-02-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

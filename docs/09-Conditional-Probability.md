@@ -121,7 +121,7 @@ $$
 
 The numerator can be rewritten, again utilizing the definition of conditional probability: $\Prob(D\cap T)=\Prob(T|D)\Prob(D)$. 
 
-The denominator can be rewritten using the Law of Total Probability (discussed in Lesson 2) and then the definition of conditional probability: $\Prob(T)=\Prob(T\cap D) + \Prob(T \cap D') = \Prob(T|D)\Prob(D) + \Prob(T|D')\Prob(D')$. So, putting it all together,
+The denominator can be rewritten using the Law of Total Probability (discussed [here][Probability properties]) and then the definition of conditional probability: $\Prob(T)=\Prob(T\cap D) + \Prob(T \cap D') = \Prob(T|D)\Prob(D) + \Prob(T|D')\Prob(D')$. So, putting it all together,
 $$
 \Prob(D|T)=\frac{\Prob(T|D)\Prob(D)}{\Prob(T|D)\Prob(D) + \Prob(T|D')\Prob(D')}
 $$

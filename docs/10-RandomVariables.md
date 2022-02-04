@@ -24,7 +24,7 @@ $$
 S=\{\underbrace{\mbox{HHH}}_{X=3}, \underbrace{\mbox{HHT}}_{X=2}, \underbrace{\mbox{HTH}}_{X=2}, \underbrace{\mbox{HTT}}_{X=1}, \underbrace{\mbox{THH}}_{X=2}, \underbrace{\mbox{THT}}_{X=1}, \underbrace{\mbox{TTH}}_{X=1}, \underbrace{\mbox{TTT}}_{X=0}\}
 $$ 
 
-The sample space of $X$, the support, is the list of numerical values that $X$ can take. 
+The sample space of $X$, sometimes referred to as the support, is the list of numerical values that $X$ can take. 
 $$
 S_X=\{0,1,2,3\}
 $$
@@ -48,7 +48,7 @@ A *discrete* random variable has a sample space that consists of a countable set
 
 A *continuous* random variable has a sample space that is a continuous interval. For example, let $Y$ be the random variable corresponding to the height of a randomly selected individual. $Y$ is a continuous random variable because a person could measure 68.1 inches, 68.2 inches, or perhaps any value in between. Note that when we measure height, our precision is limited by our measuring device, so we are technically "discretizing" height. However, even in these cases, we typically consider height to be a continuous random variable. 
 
-A *mixed* random variable is exactly what it sounds like. It has a sample space that is both discrete and continuous. How could such a thing occur? Consider an experiment where a person rolls a standard six-sided die. If it lands on anything other than one, the result of the die roll is recorded. If it lands on one, the person spins a wheel, and the angle in degrees of the resulting spin, divided by 360, is recorded. If our random variable $Z$ is the number that is recorded in this experiment, the sample space of $Z$ is $[0,1] \cup \{2,3,4,5,6\}$. We will not be spending much time on mixed random variables. However they do occur in practice, consider the job of analyzing bomb eroor data. If the bomb hits within a certain radius, the error is 0. Otherwise it is measured in a radial direction. This data is mixed.
+A *mixed* random variable is exactly what it sounds like. It has a sample space that is both discrete and continuous. How could such a thing occur? Consider an experiment where a person rolls a standard six-sided die. If it lands on anything other than one, the result of the die roll is recorded. If it lands on one, the person spins a wheel, and the angle in degrees of the resulting spin, divided by 360, is recorded. If our random variable $Z$ is the number that is recorded in this experiment, the sample space of $Z$ is $[0,1] \cup \{2,3,4,5,6\}$. We will not be spending much time on mixed random variables. However they do occur in practice, consider the job of analyzing bomb error data. If the bomb hits within a certain radius, the error is 0. Otherwise it is measured in a radial direction. This data is mixed.
 
 
 ### Discrete distribution functions
@@ -366,7 +366,7 @@ The proof of this is left as a homework problem.
 
 1. Suppose we are flipping a fair coin, and the result of a single coin flip is either heads or tails. Let $X$ be a random variable representing the number of flips until the first heads. 
 
-a. Is $X$ discrete or continuous? What is the domain, support, of $X$?  
+a. Is $X$ discrete or continuous? What is the domain/support, of $X$?  
 b. What values do you *expect* $X$ to take? What do you think is the average of $X$? Don't actually do any formal math, just think about if you were flipping a regular coin, how long it would take you to get the first heads.  
 c. Advanced: In `R`, generate 10,000 observations from $X$. What is the empirical, from the simulation, pmf? What is the average value of $X$ based on this simulation? Create a bar chart of the proportions. Note: Unlike the example in the Notes, we don't have the pmf, so you will have to simulate the experiment and using `R` to find the number of flips until the first heads.  
 
