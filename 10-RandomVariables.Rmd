@@ -232,7 +232,7 @@ $$
 \mu_X=\E(X)=\sum_x x \cdot f_X(x)
 $$
 
-The mean is also known as the first moment of $X$ around the origin. It is a weighted sum with the weight being the probability. If each outcome were equally likely, the expected value would just be the average of the values of the random variable since each wight is the reciprocal of the number of values.  
+The mean is also known as the first moment of $X$ around the origin. It is a weighted sum with the weight being the probability. If each outcome were equally likely, the expected value would just be the average of the values of the random variable since each weight is the reciprocal of the number of values.  
 
 > *Example*:  
 Find the expected value (or mean) of $X$: the number of heads in three flips of a fair coin. 
