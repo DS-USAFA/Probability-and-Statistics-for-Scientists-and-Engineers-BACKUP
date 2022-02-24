@@ -232,7 +232,7 @@ where $0 \leq y \leq 1$.
 
 ## Homework Problems
 
-1. Let $X$ and $Y$ be continuous random variables with joint pmf: 
+1. Let $X$ and $Y$ be continuous random variables with joint pdf: 
 $$
 f_{X,Y}(x,y)=x + y
 $$
