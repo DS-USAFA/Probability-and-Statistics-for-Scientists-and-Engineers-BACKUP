@@ -422,7 +422,10 @@ What is the distribution if <span class="math inline">\(\alpha=\beta=1\)</span>?
 <li><p>When using <code>R</code> to calculate probabilities related to the gamma distribution, we often use <code>pgamma</code>. Recall that <code>pgamma</code> is equivalent to the cdf of the gamma distribution. If <span class="math inline">\(X\sim\textsf{Gamma}(\alpha,\lambda)\)</span>, then
 <span class="math display">\[
 \mbox{P}(X\leq x)=\textsf{pgamma(x,alpha,lambda)}
-\]</span></p></li>
+\]</span>
+The <code>dgamma</code> function exists in <code>R</code> too. In plain language, explain what <code>dgamma</code> returns. I’m not looking for the definition found in <code>R</code> documentation. I’m looking for a simple description of what that function returns. Is the output of <code>dgamma</code> useful? If so, how?</p></li>
+<li><p>Advanced. You may have heard of the 68-95-99.7 rule. This is a helpful rule of thumb that says if a population has a normal distribution, then 68% of the data will be within one standard deviation of the mean, 95% of the data will be within two standard deviations and 99.7% of the data will be within three standard deviations. Create a function in <code>R</code> that has two inputs (a mean and a standard deviation). It should return a vector with three elements: the probability that a randomly selected observation from the normal distribution with the inputted mean and standard deviation lies within one, two and three standard deviations. Test this function with several values of mu and sd. You should get the same answer each time.</p></li>
+<li><p>Derive the mean of a general uniform distribution, <span class="math inline">\(U(a,b)\)</span>.</p></li>
 </ol>
 </div>
 </div>
@@ -463,7 +466,7 @@ What is the distribution if <span class="math inline">\(\alpha=\beta=1\)</span>?
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-02-24.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
