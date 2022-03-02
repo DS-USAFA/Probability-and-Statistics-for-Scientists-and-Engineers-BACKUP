@@ -932,7 +932,7 @@ do(1)*glm(cond=="new"~stock_photo+total_pr,
 
 ```
 ##   Intercept stock_photoyes  total_pr .row .index
-## 1 -14.47265       3.174232 0.2517694    1      1
+## 1 -12.80127       2.657402 0.2145271    1      1
 ```
 
 Again, it looks like what we expect. Now let's bootstrap the coefficients and summarize the results.

@@ -359,10 +359,13 @@ Or using <code>R</code></p>
 \]</span></p>
 <p>We can simplify this expression to make it a little more usable:
 <span class="math display">\[
-\mbox{Cov}(X,Y)=\mbox{E}\left[(X-\mbox{E}(X))(Y-\mbox{E}(Y))\right] = \mbox{E}\left[XY - Y\mbox{E}(X) - X\mbox{E}(Y) + \mbox{E}(X)\mbox{E}(Y)\right]
-\]</span>
-<span class="math display">\[
-\mbox{E}(XY) - \mbox{E}(Y\mbox{E}(X)) - \mbox{E}(X\mbox{E}(Y)) + \mbox{E}(X)\mbox{E}(Y) = \mbox{E}(XY)-\mbox{E}(X)\mbox{E}(Y)-\mbox{E}(X)\mbox{E}(Y)+\mbox{E}(X)\mbox{E}(Y)
+\begin{align}
+\mbox{Cov}(X,Y) &amp; = \mbox{E}\left[(X-\mbox{E}(X))(Y-\mbox{E}(Y))\right] \\
+ &amp; = \mbox{E}\left[XY - Y\mbox{E}(X) - X\mbox{E}(Y) + \mbox{E}(X)\mbox{E}(Y)\right] \\
+ &amp; = \mbox{E}(XY) - \mbox{E}(Y\mbox{E}(X)) - \mbox{E}(X\mbox{E}(Y)) + \mbox{E}(X)\mbox{E}(Y) \\
+ &amp; = \mbox{E}(XY)-\mbox{E}(X)\mbox{E}(Y)-\mbox{E}(X)\mbox{E}(Y)+\mbox{E}(X)\mbox{E}(Y) \\
+ &amp; = \mbox{E}(XY)-\mbox{E}(X)\mbox{E}(Y)
+\end{align}
 \]</span></p>
 <p>Thus,
 <span class="math display">\[

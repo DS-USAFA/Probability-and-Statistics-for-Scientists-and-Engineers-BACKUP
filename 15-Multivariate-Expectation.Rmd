@@ -279,10 +279,13 @@ $$
 
 We can simplify this expression to make it a little more usable:
 $$
-\Cov(X,Y)=\E\left[(X-\E(X))(Y-\E(Y))\right] = \E\left[XY - Y\E(X) - X\E(Y) + \E(X)\E(Y)\right]
-$$
-$$
-\E(XY) - \E(Y\E(X)) - \E(X\E(Y)) + \E(X)\E(Y) = \E(XY)-\E(X)\E(Y)-\E(X)\E(Y)+\E(X)\E(Y)
+\begin{align}
+\Cov(X,Y) & = \E\left[(X-\E(X))(Y-\E(Y))\right] \\
+ & = \E\left[XY - Y\E(X) - X\E(Y) + \E(X)\E(Y)\right] \\
+ & = \E(XY) - \E(Y\E(X)) - \E(X\E(Y)) + \E(X)\E(Y) \\
+ & = \E(XY)-\E(X)\E(Y)-\E(X)\E(Y)+\E(X)\E(Y) \\
+ & = \E(XY)-\E(X)\E(Y)
+\end{align}
 $$
 
 Thus,
