@@ -5,7 +5,7 @@ author:
 - Brianna Hitt
 - Kenneth Horton
 - Bradley Warner
-date: "2022-03-01"
+date: "2022-03-09"
 header-includes:
    - \usepackage{multirow}
    - \usepackage{multicol}
@@ -83,7 +83,7 @@ This book is licensed under the [Creative Commons Attribution-NonCommercial-Shar
 
 ## File Creation Information 
 
-  * File creation date: 2022-03-01
+  * File creation date: 2022-03-09
   * R version 4.1.2 (2021-11-01)
 
 

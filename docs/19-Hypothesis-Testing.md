@@ -366,7 +366,7 @@ The test we performed is called a one-sided test since we only checked if the me
 In the last lesson we encountered a study from the 1970's that explored whether there was strong evidence that women were less likely to be promoted than men. The research question -- are females discriminated against in promotion decisions made by male managers? -- was framed in the context of hypotheses:  
 
 i. $H_0$: Gender has no effect on promotion decisions.  
-ii. $H_A$:] Women are discriminated against in promotion decisions.  
+ii. $H_A$: Women are discriminated against in promotion decisions.  
 
 We used a difference in promotion proportions as our test statistic. The null hypothesis ($H_0$) was a perspective of no difference. The data provided a point estimate of a -29.2\% difference in recommended promotion rates between men and women. We determined that such a difference from chance alone would be rare: it would only happen about 2 in 100 times. When results like these are inconsistent with $H_0$, we reject $H_0$ in favor of $H_A$. Here, we concluded there was evidence of discrimination against women.
 
@@ -657,10 +657,10 @@ Using the p-value from the analysis, determine whether the data provide statisti
 
 1. Repeat the analysis of the commercial length in the notes. This time use a different test statistic.  
 
-1. State the null and alternative hypotheses.  
-2. Compute a test statistic.  
-3. Determine the p-value.  
-4. Draw a conclusion.    
+a. State the null and alternative hypotheses.  
+b. Compute a test statistic.  Remember to use something different than what was used above.  
+c. Determine the p-value.  
+d. Draw a conclusion.    
 
 
 2. Is yawning contagious? 
