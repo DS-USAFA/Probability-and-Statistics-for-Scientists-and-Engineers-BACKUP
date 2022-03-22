@@ -328,7 +328,7 @@ Find the expected value (or mean) of <span class="math inline">\(X\)</span>: the
 <p>We are using <span class="math inline">\(\mu\)</span> because it is a population parameter.</p>
 <p>From our simulation above, we can find the mean as an estimate of the expected value. This is really a statistic since our simulation is data from the population and thus will have variance from sample to sample.</p>
 <div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">mean</a></span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.5048</code></pre>
 </div>
 <div id="variance" class="section level3" number="10.3.3">
@@ -362,7 +362,7 @@ In <code>R</code> this is:</p>
 <p>The variance of <span class="math inline">\(X\)</span> is 0.75.</p>
 <p>We can find the variance of the simulation but <code>R</code> uses the sample variance and this is the population variance. So we need to multiply by <span class="math inline">\(\frac{n-1}{n}\)</span></p>
 <div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">var</a></span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fl">10000</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">var</a></span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fl">10000</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span></code></pre></div>
 <pre><code>## [1] 0.740777</code></pre>
 </div>
 <div id="mean-and-variance-of-linear-transformations" class="section level3" number="10.3.4">
@@ -396,7 +396,7 @@ and
 </ol>
 <p>Note: There are many ways to do this. Below is a description of one approach. It assumes we are extremely unlikely to go past 1000 flips.</p>
 <ul>
-<li><p>First, let’s sample with replacement from the vector c(“H”,“T”), 1000 times with replacement, use <code><a href="https://rdrr.io/pkg/mosaic/man/resample.html">sample()</a></code>.</p></li>
+<li><p>First, let’s sample with replacement from the vector c(“H”,“T”), 1000 times with replacement, use <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample()</a></code>.</p></li>
 <li><p>As we did in the reading, use <code><a href="https://rdrr.io/r/base/which.html">which()</a></code> and a logical argument to find the first occurrence of a heads.</p></li>
 </ul>
 <ol start="4" style="list-style-type: lower-alpha">
@@ -491,7 +491,7 @@ and
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-09.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

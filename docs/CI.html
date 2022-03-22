@@ -209,7 +209,7 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 <p>We need the mean, standard deviation, and sample size from this data. The following <code>R</code> code calculates the confidence interval, make sure you can follow the code.</p>
 <div class="sourceCode" id="cb566"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">temperature</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">mean</span>,<span class="va">sd</span>,<span class="va">n</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>lower_bound<span class="op">=</span><span class="va">mean</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">0.975</span>,<span class="fl">129</span><span class="op">)</span><span class="op">*</span><span class="va">sd</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>,
             upper_bound<span class="op">=</span><span class="va">mean</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">0.975</span>,<span class="fl">129</span><span class="op">)</span><span class="op">*</span><span class="va">sd</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -217,9 +217,9 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 ## 1      98.122    98.37646</code></pre>
 <p>The 95% confidence interval for <span class="math inline">\(\mu\)</span> is <span class="math inline">\((98.12,98.38)\)</span>. We are 95% <em>confident</em> that <span class="math inline">\(\mu\)</span>, the average human body temperature, is in this interval. Alternatively and equally relevant, we could say that 95% of similarly constructed intervals will contain the true mean, <span class="math inline">\(\mu\)</span>. It is important to understand the use of the word confident and not the word probability.</p>
 <p>There is a link between hypothesis testing and confidence intervals. Remember when we used this data in a hypothesis test, the null hypothesis was <span class="math inline">\(H_0\)</span>: The average body temperature is 98.6 <span class="math inline">\(\mu = 98.6\)</span>. This null hypothesized value is not in the interval, so we could reject the null hypothesis with this confidence interval.</p>
-<p>We could also use <code>R</code> to find the confidence interval and conduct the hypothesis test. Read about the function <code><a href="https://rdrr.io/pkg/mosaic/man/ttest.html">t_test()</a></code> in the help menu to determine why we used the <code>mu</code> option.</p>
+<p>We could also use <code>R</code> to find the confidence interval and conduct the hypothesis test. Read about the function <code><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test()</a></code> in the help menu to determine why we used the <code>mu</code> option.</p>
 <div class="sourceCode" id="cb568"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/ttest.html">t_test</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>,data<span class="op">=</span><span class="va">temperature</span>,mu<span class="op">=</span><span class="fl">98.6</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>,data<span class="op">=</span><span class="va">temperature</span>,mu<span class="op">=</span><span class="fl">98.6</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -233,7 +233,7 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 ##  98.24923</code></pre>
 <p>Or if you just want the interval:</p>
 <div class="sourceCode" id="cb570"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/confint.html">confint</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/ttest.html">t_test</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>,data<span class="op">=</span><span class="va">temperature</span>,mu<span class="op">=</span><span class="fl">98.6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/confint.html">confint</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>,data<span class="op">=</span><span class="va">temperature</span>,mu<span class="op">=</span><span class="fl">98.6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   mean of x  lower    upper level
 ## 1  98.24923 98.122 98.37646  0.95</code></pre>
 <p>In reviewing the hypothesis test for a single mean, you can see how this confidence interval was formed by <em>inverting</em> the test statistic. As a reminder, the following equation inverts the test statistic.</p>
@@ -251,13 +251,13 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 <p>Repeating the analysis with this in mind.</p>
 <div class="sourceCode" id="cb572"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">temperature</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">mean</span>,<span class="va">sd</span>,<span class="va">n</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>upper_bound<span class="op">=</span><span class="va">mean</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">0.95</span>,<span class="fl">129</span><span class="op">)</span><span class="op">*</span><span class="va">sd</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   upper_bound
 ## 1    98.35577</code></pre>
 <div class="sourceCode" id="cb574"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/confint.html">confint</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/ttest.html">t_test</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>,data<span class="op">=</span><span class="va">temperature</span>,alternative<span class="op">=</span><span class="st">"less"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/confint.html">confint</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>,data<span class="op">=</span><span class="va">temperature</span>,alternative<span class="op">=</span><span class="st">"less"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   mean of x lower    upper level
 ## 1  98.24923  -Inf 98.35577  0.95</code></pre>
 <p>Notice the upper bound in the one-sided interval is smaller than the upper bound in the two-sided interval since all 0.05 is going into the upper tail.</p>
@@ -286,7 +286,7 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 ##   stroke   0.05726872 0.14732143
 ##   Total    1.00000000 1.00000000</code></pre>
 <div class="sourceCode" id="cb581"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">stent</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">stent</span><span class="op">)</span>
 <span class="va">obs</span></code></pre></div>
 <pre><code>##    diffprop 
 ## -0.09005271</code></pre>
@@ -300,14 +300,14 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 <p>We will use <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 <p>The test statistic is the difference in proportions of patients with stroke in the control and treatment groups.</p>
 <div class="sourceCode" id="cb583"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">stent</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">stent</span><span class="op">)</span>
 <span class="va">obs</span></code></pre></div>
 <pre><code>##    diffprop 
 ## -0.09005271</code></pre>
 <p>To calculate the p-value, we will shuffle the treatment and control labels because under the null hypothesis, there is no difference.</p>
 <div class="sourceCode" id="cb585"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2027</span><span class="op">)</span>
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/resample.html">shuffle</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span>,data<span class="op">=</span><span class="va">stent</span><span class="op">)</span></code></pre></div>
+<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span>,data<span class="op">=</span><span class="va">stent</span><span class="op">)</span></code></pre></div>
 <p>Figure <a href="CI.html#fig:dens222-fig">20.2</a> a visual summary of the distribution of the test statistics generated under the null hypothesis, the sampling distribution.</p>
 <div class="sourceCode" id="cb586"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -359,7 +359,7 @@ The standard error of the difference in sample proportions is
 where <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span> represent the population proportions, and <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> represent the sample sizes.</p>
 <p>The calculation of the standard error for our problem must be done carefully. Remember in hypothesis testing, we assume the null hypothesis is true; this means the proportions of strokes must be the same.</p>
 <p><span class="math display">\[SE = \sqrt{\frac{p(1-p)}{n_{control}} + \frac{p(1-p)}{n_{trmt}}}\]</span>
-We don’t know the exposure rate, <span class="math inline">\(p\)</span>, but we can obtain a good estimate of it by <strong>pooling</strong> the results of both samples:
+We don’t know the stroke incidence rate, <span class="math inline">\(p\)</span>, but we can obtain a good estimate of it by <strong>pooling</strong> the results of both samples:
 <span class="math display">\[\hat{p} = \frac{\text{# of successes}}{\text{# of cases}} = \frac{13 + 33}{451} = 0.102\]</span>
 This is called the <em>pooled estimate</em> of the sample proportion, and we use it to compute the standard error when the null hypothesis is that <span class="math inline">\(p_{control} = p_{trmt}\)</span>.</p>
 <p><span class="math display">\[SE \approx \sqrt{\frac{\hat{p}(1-\hat{p})}{n_{control}} + \frac{\hat{p}(1-\hat{p})}{n_{trmt}}}\]</span></p>
@@ -405,10 +405,10 @@ Figure 20.3: The sampling distribution of the randomization test with a normal d
 <pre><code>## [1] 1.959964</code></pre>
 <p>The 95% confidence interval is</p>
 <p><span class="math display">\[ - 0.09 \ \pm\ 1.96 \times  0.0284 \quad \to \quad (-0.146,- 0.034)\]</span>
-We are 95% confident that the difference in proportions of strokes in the control and treatment groups is between -0.146 and -0.034. Since this does not include zero, we are confident they are different. This supports the hypothesis tests. This confidence interval is not an accurate method for smaller samples sizes. This is because the actual coverage rate, the percentage of intervals that contain the true population parameter, will not be the nomial coverage rate. This means it is not true that 95% of similarly constructed 95% confidence intervals will contain the true parameter. This because the pooled estimate of the standard error is not accurate for small sample sizes. For the example above, the sample sizes are large and the performance of the method should be adequate.</p>
+We are 95% confident that the difference in proportions of strokes in the control and treatment groups is between -0.146 and -0.034. Since this does not include zero, we are confident they are different. This supports the hypothesis tests. This confidence interval is not an accurate method for smaller samples sizes. This is because the actual coverage rate, the percentage of intervals that contain the true population parameter, will not be the nominal coverage rate. This means it is not true that 95% of similarly constructed 95% confidence intervals will contain the true parameter. This because the pooled estimate of the standard error is not accurate for small sample sizes. For the example above, the sample sizes are large and the performance of the method should be adequate.</p>
 <p>Of course, <code>R</code> has a built in function to calculate the hypothesis test and confidence interval for two proportions.</p>
 <div class="sourceCode" id="cb594"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/prop_test.html">prop_test</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">stent</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/prop_test.html">prop_test</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">stent</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  2-sample test for equality of proportions with continuity correction
 ## 
@@ -422,7 +422,7 @@ We are 95% confident that the difference in proportions of strokes in the contro
 ## 0.9427313 0.8526786</code></pre>
 <p>The p-value is a little different from the one we calculated and closer to the randomization test, which is an approximation of the exact permutation test, because a correction factor was applied. Read online about this correction to learn more. We run the code below with the correction factor off and get the same p-value as we calculated above. The confidence interval is a little different because the function used <em>no stroke</em> as its success event, but since zero is not in the interval, we get the same conclusion.</p>
 <div class="sourceCode" id="cb596"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/prop_test.html">prop_test</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">stent</span>,correct<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/prop_test.html">prop_test</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">stent</span>,correct<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  2-sample test for equality of proportions without continuity
 ##  correction
@@ -560,9 +560,9 @@ n   &amp; \bar{x}   &amp; s     &amp; min   &amp; max \\
 </ol>
 <p>From problem 2 part c, suppose that it has been reported that 8% of college students are vegetarians. We think USAFA is not typical because of their fitness and health awareness, we think there are more vegetarians. We collect a random sample of 125 cadets and find 12% claimed they are vegetarians. Is there enough evidence to claim that USAFA cadets are different?</p>
 <ol style="list-style-type: lower-alpha">
-<li>Use <code><a href="https://rdrr.io/pkg/mosaic/man/binom.test.html">binom.test()</a></code> to conduct the hypothesis test and find a confidence interval.</li>
-<li>Use <code><a href="https://rdrr.io/pkg/mosaic/man/prop.test.html">prop.test()</a></code> with <code>correct=FALSE</code> to conduct the hypothesis test and find a confidence interval.</li>
-<li>Use <code><a href="https://rdrr.io/pkg/mosaic/man/prop.test.html">prop.test()</a></code> with <code>correct=TRUE</code> to conduct the hypothesis test and find a confidence interval.</li>
+<li>Use <code><a href="https://www.mosaic-web.org/mosaic/reference/binom.test.html">binom.test()</a></code> to conduct the hypothesis test and find a confidence interval.</li>
+<li>Use <code><a href="https://www.mosaic-web.org/mosaic/reference/prop.test.html">prop.test()</a></code> with <code>correct=FALSE</code> to conduct the hypothesis test and find a confidence interval.</li>
+<li>Use <code><a href="https://www.mosaic-web.org/mosaic/reference/prop.test.html">prop.test()</a></code> with <code>correct=TRUE</code> to conduct the hypothesis test and find a confidence interval.</li>
 <li>Which test should you use?</li>
 </ol>
 </div>
@@ -611,7 +611,7 @@ n   &amp; \bar{x}   &amp; s     &amp; min   &amp; max \\
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-09.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

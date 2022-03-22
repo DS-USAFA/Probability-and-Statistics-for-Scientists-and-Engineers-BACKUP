@@ -179,7 +179,7 @@ R = \frac{1}{n-1}\sum_{i=1}^{n} \frac{x_i-\bar{x}}{s_x}\frac{y_i-\bar{y}}{s_y}
 where &lt;span class="math inline"&gt;\(\bar{x}\)&lt;/span&gt;, &lt;span class="math inline"&gt;\(\bar{y}\)&lt;/span&gt;, &lt;span class="math inline"&gt;\(s_x\)&lt;/span&gt;, and &lt;span class="math inline"&gt;\(s_y\)&lt;/span&gt; are the sample means and standard deviations for each variable.&lt;/p&gt;'><sup>94</sup></a> so we let <code>R</code> do the heavy lifting for us.</p>
 <div class="sourceCode" id="cb831"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starbucks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>correlation<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">cor</a></span><span class="op">(</span><span class="va">carb</span>,<span class="va">calories</span><span class="op">)</span>,correlation_squared<span class="op">=</span><span class="va">correlation</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>correlation<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">cor</a></span><span class="op">(</span><span class="va">carb</span>,<span class="va">calories</span><span class="op">)</span>,correlation_squared<span class="op">=</span><span class="va">correlation</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 2
 ##   correlation correlation_squared
 ##         &lt;dbl&gt;               &lt;dbl&gt;
@@ -472,7 +472,7 @@ Figure 26.9: Homework problem 3.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-09.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

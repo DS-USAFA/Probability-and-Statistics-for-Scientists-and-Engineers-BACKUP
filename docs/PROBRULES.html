@@ -128,12 +128,12 @@
 <p><em>Example</em>:<br>
 Let’s let <code>R</code> flip a coin for us and record the number of heads and tails. We will have <code>R</code> flip the coin twice. What is the sample space, what is an example of an outcome, and what is an example of an event.</p>
 </blockquote>
-<p>We will load the <strong>mosaic</strong> package as it has a function <code><a href="https://rdrr.io/pkg/mosaic/man/rflip.html">rflip()</a></code> that will simulate flipping a coin.</p>
+<p>We will load the <strong>mosaic</strong> package as it has a function <code><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip()</a></code> that will simulate flipping a coin.</p>
 <div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ProjectMOSAIC/mosaic">mosaic</a></span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">18</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/rflip.html">rflip</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## Flipping 2 coins [ Prob(Heads) = 0.5 ] ...
 ## 
@@ -245,11 +245,11 @@ What is the probability that the family has exactly 2 girls?</p>
 <p><em>Example</em>:<br>
 Use <code>R</code> to simulate the family of three children where each child has the same probability of being a boy or a girl.</p>
 </blockquote>
-<p>Instead of writing our own function, we can use <code><a href="https://rdrr.io/pkg/mosaic/man/rflip.html">rflip()</a></code> in the <strong>mosaic</strong> package. We will let <span class="math inline">\(H\)</span> stand for girl.</p>
+<p>Instead of writing our own function, we can use <code><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip()</a></code> in the <strong>mosaic</strong> package. We will let <span class="math inline">\(H\)</span> stand for girl.</p>
 <p>First simulate one family.</p>
 <div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">73</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/rflip.html">rflip</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## Flipping 3 coins [ Prob(Heads) = 0.5 ] ...
 ## 
@@ -258,7 +258,7 @@ Use <code>R</code> to simulate the family of three children where each child has
 ## Number of Heads: 1 [Proportion Heads: 0.333333333333333]</code></pre>
 <p>In this case we got 1 girl. Next we will use the <code><a href="https://dplyr.tidyverse.org/reference/do.html">do()</a></code> function to repeat this simulation.</p>
 <div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/rflip.html">rflip</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>##   n heads tails      prop
 ## 1 3     1     2 0.3333333
@@ -292,7 +292,7 @@ Figure 8.1: Number of girls in a family of size 3.
 <div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">heads</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prop<span class="op">=</span><span class="va">n</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prop<span class="op">=</span><span class="va">n</span><span class="op">/</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   heads    n   prop
 ## 1     0 1241 0.1241
 ## 2     1 3786 0.3786
@@ -358,7 +358,7 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 <p>We can do this by simulation, this is over kill but gets the idea of simulation across.</p>
 <p>Remember, ask what do we want <code>R</code> to do and what does <code>R</code> need to do this?</p>
 <div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/resample.html">sample</a></span><span class="op">(</span><span class="va">Cards</span>,<span class="fl">1</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">Cards</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   rank  suit   probs orig.id  .row .index
@@ -380,7 +380,7 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 <div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">suit</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prob<span class="op">=</span><span class="va">n</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prob<span class="op">=</span><span class="va">n</span><span class="op">/</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##   suit        n  prob
 ##   &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt;
@@ -422,7 +422,7 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 Using simulation to estimate the probability of 10 or higher.</p>
 </blockquote>
 <div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/resample.html">sample</a></span><span class="op">(</span><span class="va">Cards</span>,<span class="fl">1</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">Cards</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   rank  suit   probs orig.id  .row .index
@@ -445,12 +445,12 @@ Using simulation to estimate the probability of 10 or higher.</p>
 <div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>face<span class="op">=</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"J"</span>, <span class="st">"Q"</span>, <span class="st">"K"</span>, <span class="st">"A"</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">mean</a></span><span class="op">(</span><span class="va">face</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">face</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##    prob
 ##   &lt;dbl&gt;
 ## 1 0.389</code></pre>
-<p>Notice that in the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> function, we are creating a new logical variable called <code>face</code>. This variable takes on the values of TRUE and FALSE. In the next line we use a <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> command with the function <code><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">mean()</a></code>. In <code>R</code> a function that requires numeric input takes a logical variable and converts the TRUE into 1 and the FALSE into 0. Thus the <code><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">mean()</a></code> will find the proportion of TRUE values and that is why we report it as a probability.</p>
+<p>Notice that in the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> function, we are creating a new logical variable called <code>face</code>. This variable takes on the values of TRUE and FALSE. In the next line we use a <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> command with the function <code><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean()</a></code>. In <code>R</code> a function that requires numeric input takes a logical variable and converts the TRUE into 1 and the FALSE into 0. Thus the <code><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean()</a></code> will find the proportion of TRUE values and that is why we report it as a probability.</p>
 <p>Next, let’s find a card that is 10 or greater <strong>and</strong> a club.</p>
 <div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Cards</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -472,7 +472,7 @@ Simulate drawing one card and estimate the probability of a club that is 10 or g
 <div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>face<span class="op">=</span><span class="op">(</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"J"</span>, <span class="st">"Q"</span>, <span class="st">"K"</span>, <span class="st">"A"</span><span class="op">)</span><span class="op">)</span><span class="op">&amp;</span><span class="op">(</span><span class="va">suit</span><span class="op">==</span><span class="st">"Club"</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">mean</a></span><span class="op">(</span><span class="va">face</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">face</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##     prob
 ##    &lt;dbl&gt;
@@ -728,7 +728,7 @@ When drawing 5 cards, what is the probability of drawing a “full house” (3 c
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-09.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

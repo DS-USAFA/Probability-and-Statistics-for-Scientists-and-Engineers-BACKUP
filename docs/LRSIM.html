@@ -157,23 +157,23 @@ The latter is a special case of a more general rule: sample <span class="math in
 ## Residual standard error: 78.26 on 75 degrees of freedom
 ## Multiple R-squared:  0.4556, Adjusted R-squared:  0.4484 
 ## F-statistic: 62.77 on 1 and 75 DF,  p-value: 1.673e-11</code></pre>
-<p>In preparation for resampling, let’s see how <code><a href="https://rdrr.io/pkg/mosaic/man/do.html">do()</a></code> treats a linear model object.</p>
+<p>In preparation for resampling, let’s see how <code><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do()</a></code> treats a linear model object.</p>
 <div class="sourceCode" id="cb844"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">401</span><span class="op">)</span>
-<span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/do.html">do</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="va">star_mod</span>
+<span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="va">star_mod</span>
 <span class="va">obs</span></code></pre></div>
 <pre><code>##   Intercept     carb    sigma r.squared        F numdf dendf .row .index
 ## 1  146.0204 4.297084 78.25956 0.4556237 62.77234     1    75    1      1</code></pre>
-<p>Nice. To resample the data we use <code><a href="https://rdrr.io/pkg/mosaic/man/do.html">do()</a></code> with <code><a href="https://rdrr.io/pkg/mosaic/man/resample.html">resample()</a></code>. This will sample the rows, what we were referring to above as the first method.</p>
+<p>Nice. To resample the data we use <code><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do()</a></code> with <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample()</a></code>. This will sample the rows, what we were referring to above as the first method.</p>
 <div class="sourceCode" id="cb846"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/do.html">do</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">calories</span><span class="op">~</span><span class="va">carb</span>,data<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/resample.html">resample</a></span><span class="op">(</span><span class="va">starbucks</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">calories</span><span class="op">~</span><span class="va">carb</span>,data<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">starbucks</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   Intercept     carb    sigma r.squared        F numdf dendf .row .index
 ## 1  145.6345 4.089065 73.32243 0.4980692 74.42299     1    75    1      1
 ## 2  160.0193 3.828742 66.81016 0.4298148 56.53621     1    75    1      2</code></pre>
 <p>Perfect, we are ready to scale up.</p>
 <div class="sourceCode" id="cb848"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">532</span><span class="op">)</span>
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">calories</span><span class="op">~</span><span class="va">carb</span>,data<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/resample.html">resample</a></span><span class="op">(</span><span class="va">starbucks</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">calories</span><span class="op">~</span><span class="va">carb</span>,data<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">starbucks</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Now let’s look at the first 6 rows of <code>results</code>.</p>
 <div class="sourceCode" id="cb849"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
@@ -213,20 +213,20 @@ Figure 27.1: Plot of slopes from resampled regression.
 Figure 27.2: Histogram of slopes from resampled regression.
 </p>
 </div>
-<p>The confidence interval is found using <code><a href="https://rdrr.io/pkg/mosaic/man/pqrdata.html">cdata()</a></code>.</p>
+<p>The confidence interval is found using <code><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata()</a></code>.</p>
 <div class="sourceCode" id="cb853"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">carb</span>,data<span class="op">=</span><span class="va">results</span>,p<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">carb</span>,data<span class="op">=</span><span class="va">results</span>,p<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span></code></pre></div>
 <pre><code>##         lower    upper central.p
 ## 2.5% 3.166546 5.377743      0.95</code></pre>
 <p>We are 95% confident that the true slope is between 3.17 and 5.37. As a reminder, using the normality assumption we had a 95% confidence interval of <span class="math inline">\((3.21,5.38)\)</span>:</p>
 <div class="sourceCode" id="cb855"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/confint.html">confint</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/confint.html">confint</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span></code></pre></div>
 <pre><code>##                 2.5 %     97.5 %
 ## (Intercept) 94.387896 197.652967
 ## carb         3.216643   5.377526</code></pre>
 <p>The bootstrap confidence interval for <span class="math inline">\(R^2\)</span> is:</p>
 <div class="sourceCode" id="cb857"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">r.squared</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">r.squared</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>##          lower     upper central.p
 ## 2.5% 0.2837033 0.6234751      0.95</code></pre>
 <p>And the bootstrap sampling distribution of <span class="math inline">\(R^2\)</span> is displayed in Figure <a href="LRSIM.html#fig:hist292-fig">27.3</a>.</p>
@@ -306,9 +306,9 @@ Figure 27.4: Sampling distribution of the slope using resampling. (Black line is
 <h3>
 <span class="header-section-number">27.3.2</span> Resample residuals<a class="anchor" aria-label="anchor" href="#resample-residuals"><i class="fas fa-link"></i></a>
 </h3>
-<p>We could also resample the residuals instead of the data. This makes a stronger assumption that the linear model is appropriate. However, it guarantees that every <span class="math inline">\(X\)</span> value is in the resample data frame. In the <code>lm</code> function, we send the model instead of the data to resample the residuals. Since <code>R</code> is an object oriented programming language, in sending a model object to the <code><a href="https://rdrr.io/pkg/mosaic/man/resample.html">resample()</a></code> function, the code automatically resample from the residuals.</p>
+<p>We could also resample the residuals instead of the data. This makes a stronger assumption that the linear model is appropriate. However, it guarantees that every <span class="math inline">\(X\)</span> value is in the resample data frame. In the <code>lm</code> function, we send the model instead of the data to resample the residuals. Since <code>R</code> is an object oriented programming language, in sending a model object to the <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample()</a></code> function, the code automatically resample from the residuals.</p>
 <div class="sourceCode" id="cb869"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results_resid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span> <span class="va">calories</span><span class="op">~</span><span class="va">carb</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/resample.html">resample</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span><span class="op">)</span> <span class="co"># resampled residuals</span>
+<code class="sourceCode R"><span class="va">results_resid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span> <span class="va">calories</span><span class="op">~</span><span class="va">carb</span>, data <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span><span class="op">)</span> <span class="co"># resampled residuals</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results_resid</span><span class="op">)</span></code></pre></div>
 <pre><code>##   Intercept     carb    sigma r.squared        F numdf dendf .row .index
 ## 1  151.9999 4.356740 73.07024 0.4967052 74.01804     1    75    1      1
@@ -332,7 +332,7 @@ Figure 27.5: Histogram of estimated regression slope using resampling from resid
 </div>
 <p>And finally the confidence interval for the slope.</p>
 <div class="sourceCode" id="cb872"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">carb</span>,data<span class="op">=</span><span class="va">results_resid</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">carb</span>,data<span class="op">=</span><span class="va">results_resid</span><span class="op">)</span></code></pre></div>
 <pre><code>##        lower    upper central.p
 ## 2.5% 3.24622 5.323031      0.95</code></pre>
 <p>Similar to the previous bootstrap confidence interval just a little narrower.</p>
@@ -361,7 +361,7 @@ Figure 27.5: Histogram of estimated regression slope using resampling from resid
 <div class="sourceCode" id="cb878"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pred<span class="op">=</span><span class="va">Intercept</span><span class="op">+</span><span class="va">carb</span><span class="op">*</span><span class="fl">60</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">pred</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">pred</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span></code></pre></div>
 <pre><code>##         lower    upper central.p
 ## 2.5% 385.2706 423.6689      0.95</code></pre>
 <p>This is similar to the interval we found last chapter. We are 95% confident that the average calorie content for a menu item with 60 grams of carbohydrates is between 380.8 and 425.7.</p>
@@ -379,9 +379,9 @@ Figure 27.5: Histogram of estimated regression slope using resampling from resid
 <div class="sourceCode" id="cb882"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pred<span class="op">=</span><span class="va">Intercept</span><span class="op">+</span><span class="va">carb</span><span class="op">*</span><span class="fl">60</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>resid<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/resample.html">sample</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">$</span><span class="va">residuals</span>,size<span class="op">=</span><span class="fl">1000</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>resid<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">$</span><span class="va">residuals</span>,size<span class="op">=</span><span class="fl">1000</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pred_ind<span class="op">=</span><span class="va">pred</span><span class="op">+</span><span class="va">resid</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">pred_ind</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">pred_ind</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span></code></pre></div>
 <pre><code>##         lower    upper central.p
 ## 2.5% 277.4886 577.0957      0.95</code></pre>
 <p>This prediction interval appears to be biased. Thus generating a prediction interval is beyond the scope of this book.</p>
@@ -482,7 +482,7 @@ Figure 27.6: Boxplot of loan interest rates from the Lending Club based on homeo
 <div class="sourceCode" id="cb899"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">loans100</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">homeownership</span> <span class="op">==</span> <span class="st">"MORTGAGE"</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>average<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">mean</a></span><span class="op">(</span><span class="va">interest_rate</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>average<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">interest_rate</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   average
 ##     &lt;dbl&gt;
@@ -491,7 +491,7 @@ Figure 27.6: Boxplot of loan interest rates from the Lending Club based on homeo
 <div class="sourceCode" id="cb901"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">loans100</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">homeownership</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>average<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">mean</a></span><span class="op">(</span><span class="va">interest_rate</span><span class="op">)</span>,std_dev<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sd</a></span><span class="op">(</span><span class="va">interest_rate</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>average<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">interest_rate</span><span class="op">)</span>,std_dev<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">interest_rate</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   homeownership average std_dev
 ##   &lt;fct&gt;           &lt;dbl&gt;   &lt;dbl&gt;
@@ -518,7 +518,7 @@ Thus <span class="math display">\[\mu_\text{OWN} -\mu_\text{RENT} = \beta_\text{
 <p>Let’s bootstrap the regression.</p>
 <div class="sourceCode" id="cb903"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">532</span><span class="op">)</span>
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">interest_rate</span> <span class="op">~</span> <span class="va">homeownership</span>,data<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/resample.html">resample</a></span><span class="op">(</span><span class="va">loans100</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">interest_rate</span> <span class="op">~</span> <span class="va">homeownership</span>,data<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">loans100</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb904"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>##   Intercept homeownershipOWN homeownershipRENT    sigma  r.squared        F
@@ -537,7 +537,7 @@ Thus <span class="math display">\[\mu_\text{OWN} -\mu_\text{RENT} = \beta_\text{
 ## 6     2    95    1      6</code></pre>
 <p>We of course can generate a confidence interval on either of the coefficients in the <code>results</code> object.</p>
 <div class="sourceCode" id="cb906"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/do.html">do</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="va">loan_mod</span>
+<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="va">loan_mod</span>
 <span class="va">obs</span></code></pre></div>
 <pre><code>##   Intercept homeownershipOWN homeownershipRENT    sigma  r.squared        F
 ## 1  10.49723         2.613535          2.356976 4.037396 0.08516582 4.421978
@@ -558,12 +558,12 @@ Figure 27.7: Distribution of estimated regression coefficent for homeownership.
 </p>
 </div>
 <div class="sourceCode" id="cb910"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">homeownershipOWN</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">homeownershipOWN</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>##          lower    upper central.p
 ## 2.5% 0.7674164 4.489259      0.95</code></pre>
 <p>Which is similar to the results assuming normality.</p>
 <div class="sourceCode" id="cb912"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/confint.html">confint</a></span><span class="op">(</span><span class="va">loan_mod</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/confint.html">confint</a></span><span class="op">(</span><span class="va">loan_mod</span><span class="op">)</span></code></pre></div>
 <pre><code>##                       2.5 %    97.5 %
 ## (Intercept)       9.3280904 11.666378
 ## homeownershipOWN  0.1018118  5.125259
@@ -572,7 +572,7 @@ Figure 27.7: Distribution of estimated regression coefficent for homeownership.
 <div class="sourceCode" id="cb914"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>own_rent<span class="op">=</span><span class="va">homeownershipOWN</span> <span class="op">-</span> <span class="va">homeownershipRENT</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">own_rent</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">own_rent</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span></code></pre></div>
 <pre><code>##          lower    upper central.p
 ## 2.5% -1.943183 2.536296      0.95</code></pre>
 <p>Done! From this interval we can infer that home owners that own their home and those that rent do not have significantly different interest rates.</p>
@@ -740,7 +740,7 @@ Figure 27.10: Residual plot for outliers and leverage points.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-09.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

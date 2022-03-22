@@ -253,7 +253,7 @@ Figure 28.2: Scatterplot of total price of Mario Kart on Ebay versus condition.
 <div class="sourceCode" id="cb933"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mariokart</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">cond</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>xbar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">mean</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">)</span>, stand_dev<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sd</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">)</span>,xmedian<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">median</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>xbar<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">)</span>, stand_dev<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">)</span>,xmedian<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">median</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##   cond   xbar stand_dev xmedian
 ##   &lt;fct&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
@@ -585,7 +585,7 @@ The estimated value of the intercept is 41.34, and one might be tempted to make 
 <p>From the printout of the model summary, we can see that both the <code>stock_photo</code> and <code>duration</code> variables are not significantly different from zero. Thus we may want to drop them from the model. In a machine learning course, you explore different ways to determine the best model.</p>
 <p>Likewise, we could generate confidence intervals for the coefficients:</p>
 <div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/confint.html">confint</a></span><span class="op">(</span><span class="va">mario_mod_multi</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/confint.html">confint</a></span><span class="op">(</span><span class="va">mario_mod_multi</span><span class="op">)</span></code></pre></div>
 <pre><code>##                     2.5 %     97.5 %
 ## (Intercept)    37.9566036 44.7264601
 ## condused       -7.2092253 -3.0519030
@@ -963,7 +963,7 @@ Figure 28.10: Scatterplot of credit card balance for income with a quadratic fit
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-09.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

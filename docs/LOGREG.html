@@ -722,14 +722,14 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <h2>
 <span class="header-section-number">29.4</span> Confidence intervals<a class="anchor" aria-label="anchor" href="#confidence-intervals-2"><i class="fas fa-link"></i></a>
 </h2>
-<p>In this section we will generate confidence intervals. This section is experimental since we are not sure how <code><a href="https://rdrr.io/pkg/mosaic/man/do.html">do()</a></code> from the <strong>mosaic</strong> package will work with the <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> function, but let’s experiment.</p>
+<p>In this section we will generate confidence intervals. This section is experimental since we are not sure how <code><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do()</a></code> from the <strong>mosaic</strong> package will work with the <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> function, but let’s experiment.</p>
 <div id="confidence-intervals-for-a-parameter" class="section level3" number="29.4.1">
 <h3>
 <span class="header-section-number">29.4.1</span> Confidence intervals for a parameter<a class="anchor" aria-label="anchor" href="#confidence-intervals-for-a-parameter"><i class="fas fa-link"></i></a>
 </h3>
-<p>First, let’s use the <code>R</code> built-in function <code><a href="https://rdrr.io/pkg/mosaic/man/confint.html">confint()</a></code> to find the confidence interval for the simple logistic regression model coefficients.</p>
+<p>First, let’s use the <code>R</code> built-in function <code><a href="https://www.mosaic-web.org/mosaic/reference/confint.html">confint()</a></code> to find the confidence interval for the simple logistic regression model coefficients.</p>
 <div class="sourceCode" id="cb1056"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/confint.html">confint</a></span><span class="op">(</span><span class="va">mario_mod4</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/confint.html">confint</a></span><span class="op">(</span><span class="va">mario_mod4</span><span class="op">)</span></code></pre></div>
 <pre><code>## Waiting for profiling to be done...</code></pre>
 <pre><code>##                      2.5 %     97.5 %
 ## (Intercept)    -15.4048022 -7.9648042
@@ -743,9 +743,9 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ## stock_photoyes   0.7727450  3.4599054
 ## total_pr         0.1236583  0.2632982</code></pre>
 <p>These results are close. We recommend using the profile-likelihood method.</p>
-<p>Now, let’s work with the <code><a href="https://rdrr.io/pkg/mosaic/man/do.html">do()</a></code> function to determine if we can get similar results.</p>
+<p>Now, let’s work with the <code><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do()</a></code> function to determine if we can get similar results.</p>
 <div class="sourceCode" id="cb1061"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/do.html">do</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="va">mario_mod4</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="va">mario_mod4</span></code></pre></div>
 <pre><code>##   Intercept stock_photoyes  total_pr .row .index
 ## 1 -11.31951       2.116325 0.1934783    1      1</code></pre>
 <div class="sourceCode" id="cb1063"><pre class="downlit sourceCode r">
@@ -756,18 +756,18 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ## 1 (Intercept)     -11.3      1.88       -6.01 0.00000000185
 ## 2 stock_photoyes    2.12     0.686       3.09 0.00202      
 ## 3 total_pr          0.193    0.0356      5.43 0.0000000560</code></pre>
-<p>It looks like <code><a href="https://rdrr.io/pkg/mosaic/man/do.html">do()</a></code> is performing as expected. Let’s now perform one resample to see what happens.</p>
+<p>It looks like <code><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do()</a></code> is performing as expected. Let’s now perform one resample to see what happens.</p>
 <div class="sourceCode" id="cb1065"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/do.html">do</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">cond</span><span class="op">==</span><span class="st">"new"</span><span class="op">~</span><span class="va">stock_photo</span><span class="op">+</span><span class="va">total_pr</span>,
-                  data<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/resample.html">resample</a></span><span class="op">(</span><span class="va">mariokart</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">cond</span><span class="op">==</span><span class="st">"new"</span><span class="op">~</span><span class="va">stock_photo</span><span class="op">+</span><span class="va">total_pr</span>,
+                  data<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">mariokart</span><span class="op">)</span>,
                  family<span class="op">=</span><span class="st">"binomial"</span><span class="op">)</span></code></pre></div>
 <pre><code>##   Intercept stock_photoyes  total_pr .row .index
-## 1 -16.80424       2.024055 0.3070377    1      1</code></pre>
+## 1 -10.42995       1.770165 0.1756818    1      1</code></pre>
 <p>Again, it looks like what we expect. Now let’s bootstrap the coefficients and summarize the results.</p>
 <div class="sourceCode" id="cb1067"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">5011</span><span class="op">)</span>
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">cond</span><span class="op">==</span><span class="st">"new"</span><span class="op">~</span><span class="va">stock_photo</span><span class="op">+</span><span class="va">total_pr</span>,
-                  data<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/resample.html">resample</a></span><span class="op">(</span><span class="va">mariokart</span><span class="op">)</span>,
+<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">cond</span><span class="op">==</span><span class="st">"new"</span><span class="op">~</span><span class="va">stock_photo</span><span class="op">+</span><span class="va">total_pr</span>,
+                  data<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">mariokart</span><span class="op">)</span>,
                  family<span class="op">=</span><span class="st">"binomial"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
 <div class="sourceCode" id="cb1069"><pre class="downlit sourceCode r">
@@ -787,12 +787,12 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
   <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Bootstrap sampling distribtuion"</span>,
           x<span class="op">=</span><span class="st">"total price paramater estimate"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="31-Logistic-Regression_files/figure-html/unnamed-chunk-43-1.png" width="672"></div>
-<p>The printout from the logistic regression model assumes normality for the sampling distribution of the <code>total_pr</code> coefficient, but it appears to be positively skewed, skewed to the right. The 95% confidence interval found using <code><a href="https://rdrr.io/pkg/mosaic/man/pqrdata.html">cdata()</a></code>.</p>
+<p>The printout from the logistic regression model assumes normality for the sampling distribution of the <code>total_pr</code> coefficient, but it appears to be positively skewed, skewed to the right. The 95% confidence interval found using <code><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata()</a></code>.</p>
 <div class="sourceCode" id="cb1072"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">total_pr</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">total_pr</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>##          lower     upper central.p
 ## 2.5% 0.1388783 0.3082659      0.95</code></pre>
-<p>This result is closer to the result from profile-likelihood. Since the interval does not include the value of zero, we can be 95% confident that it is not zero. This is close to what we found using the <code>R</code> function <code><a href="https://rdrr.io/pkg/mosaic/man/confint.html">confint()</a></code>.</p>
+<p>This result is closer to the result from profile-likelihood. Since the interval does not include the value of zero, we can be 95% confident that it is not zero. This is close to what we found using the <code>R</code> function <code><a href="https://www.mosaic-web.org/mosaic/reference/confint.html">confint()</a></code>.</p>
 </div>
 <div id="confidence-intervals-for-probability-of-success" class="section level3" number="29.4.2">
 <h3>
@@ -821,7 +821,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <code class="sourceCode R"><span class="va">results_pred</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pred<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">*</span><span class="op">(</span><span class="va">Intercept</span><span class="op">+</span><span class="va">stock_photoyes</span><span class="op">+</span><span class="fl">50</span><span class="op">*</span><span class="va">total_pr</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb1079"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">pred</span>,data<span class="op">=</span><span class="va">results_pred</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">pred</span>,data<span class="op">=</span><span class="va">results_pred</span><span class="op">)</span></code></pre></div>
 <pre><code>##        lower     upper central.p
 ## 2.5% 0.50388 0.7445598      0.95</code></pre>
 <p>We are 95% confident that expected probability a game with a stock photo and a total price of $50 is between 50.4% and 74.4%.</p>
@@ -929,7 +929,7 @@ Are there any outliers that are likely to have a very large influence on the log
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-09.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

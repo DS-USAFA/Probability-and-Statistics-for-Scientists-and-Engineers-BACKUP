@@ -313,12 +313,12 @@ Use <code>R</code> to fit a linear regression model by regressing <code>calories
 \]</span>
 The denominator is the standard error of the estimate. The estimate of the residual standard deviation is reported in the last line as 78.26. But it is just the square root of the sum of squared residuals divided by the degrees of freedom.</p>
 <div class="sourceCode" id="cb797"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sighat</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">star_mod</span><span class="op">$</span><span class="va">residuals</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="fl">75</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">sighat</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">star_mod</span><span class="op">$</span><span class="va">residuals</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="fl">75</span><span class="op">)</span>
 <span class="va">sighat</span></code></pre></div>
 <pre><code>## [1] 78.25956</code></pre>
 <p>The standard error of the slope estimate is, and confirmed in the table:</p>
 <div class="sourceCode" id="cb799"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">std_er</span><span class="op">&lt;-</span><span class="va">sighat</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">starbucks</span><span class="op">$</span><span class="va">carb</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">mean</a></span><span class="op">(</span><span class="va">starbucks</span><span class="op">$</span><span class="va">carb</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">std_er</span><span class="op">&lt;-</span><span class="va">sighat</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">starbucks</span><span class="op">$</span><span class="va">carb</span><span class="op">-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">starbucks</span><span class="op">$</span><span class="va">carb</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 <span class="va">std_er</span></code></pre></div>
 <pre><code>## [1] 0.5423626</code></pre>
 <p>The test statistic is</p>
@@ -359,7 +359,7 @@ The denominator is the standard error of the estimate. The estimate of the resid
 </h4>
 <p>We could calculate the confidence interval from the point estimate, standard error, and critical value but we will let <code>R</code> do it for us.</p>
 <div class="sourceCode" id="cb810"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/confint.html">confint</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/confint.html">confint</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span></code></pre></div>
 <pre><code>##                 2.5 %     97.5 %
 ## (Intercept) 94.387896 197.652967
 ## carb         3.216643   5.377526</code></pre>
@@ -523,7 +523,7 @@ Give the 90% prediction interval of average calories for 70 grams of carbohydrat
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-09.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

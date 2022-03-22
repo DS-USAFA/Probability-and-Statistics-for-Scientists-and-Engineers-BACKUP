@@ -146,30 +146,30 @@ f_X(x)=\left\{\begin{array}{ll}\frac{1}{6}, &amp; x \in \{1,2,3,4,5,6\} \\
 <h3>
 <span class="header-section-number">12.2.2</span> Simulating<a class="anchor" aria-label="anchor" href="#simulating"><i class="fas fa-link"></i></a>
 </h3>
-<p>To simulate the discrete uniform, we use <code><a href="https://rdrr.io/pkg/mosaic/man/resample.html">sample()</a></code>.</p>
+<p>To simulate the discrete uniform, we use <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample()</a></code>.</p>
 <blockquote>
 <p><em>Example</em>:<br>
-To simulate rolling a die 4 times, we use <code><a href="https://rdrr.io/pkg/mosaic/man/resample.html">sample()</a></code>.</p>
+To simulate rolling a die 4 times, we use <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample()</a></code>.</p>
 </blockquote>
 <div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">61</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">4</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">4</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 4 2 2 1</code></pre>
 <p>Let’s roll it 10,000 times and find</p>
 <div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span><span class="op">&lt;-</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">1</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">results</span><span class="op">&lt;-</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">1</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">sample</span>,data<span class="op">=</span><span class="va">results</span>,format<span class="op">=</span><span class="st">"percent"</span><span class="op">)</span></code></pre></div>
 <pre><code>## sample
 ##     1     2     3     4     5     6 
 ## 16.40 16.46 16.83 17.15 16.92 16.24</code></pre>
 <div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">mean</a></span><span class="op">(</span><span class="op">~</span><span class="va">sample</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="op">~</span><span class="va">sample</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 3.5045</code></pre>
 <div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">var</a></span><span class="op">(</span><span class="op">~</span><span class="va">sample</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fl">10000</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">var</a></span><span class="op">(</span><span class="op">~</span><span class="va">sample</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fl">10000</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span></code></pre></div>
 <pre><code>## [1] 2.87598</code></pre>
-<p>Again as a reminder, we multiply by <span class="math inline">\(\frac{(10000-1)}{10000}\)</span> because the function <code><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">var()</a></code> is calculating a sample variance using <span class="math inline">\(n-1\)</span> in the denominator but we need the population variance.</p>
+<p>Again as a reminder, we multiply by <span class="math inline">\(\frac{(10000-1)}{10000}\)</span> because the function <code><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">var()</a></code> is calculating a sample variance using <span class="math inline">\(n-1\)</span> in the denominator but we need the population variance.</p>
 </div>
 <div id="binomial-distribution" class="section level3" number="12.2.3">
 <h3>
@@ -206,7 +206,7 @@ f_X(x)=\mbox{P}(X=x)={20 \choose x}0.5^x (1-0.5)^{20-x}
 \]</span></p>
 <div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span><span class="op">&lt;-</span><span class="fl">0</span><span class="op">:</span><span class="fl">8</span>
-<span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">20</span>,<span class="va">x</span><span class="op">)</span><span class="op">*</span><span class="fl">0.5</span><span class="op">^</span><span class="va">x</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fl">.5</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">20</span><span class="op">-</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">20</span>,<span class="va">x</span><span class="op">)</span><span class="op">*</span><span class="fl">0.5</span><span class="op">^</span><span class="va">x</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fl">.5</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">20</span><span class="op">-</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.2517223</code></pre>
 </div>
 <div id="software-functions" class="section level3" number="12.2.4">
@@ -250,7 +250,7 @@ Figure 12.1: The pmf of a binomial random variable
 <pre><code>## [1] 0.2517223</code></pre>
 <div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## or </span>
-<span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">8</span>,<span class="fl">20</span>,<span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">8</span>,<span class="fl">20</span>,<span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.2517223</code></pre>
 </div>
 <div id="poisson-distribution" class="section level3" number="12.2.5">
@@ -288,7 +288,7 @@ Suppose fleet vehicles arrive to a maintenance garage at an average rate of 0.4 
 <pre><code>## [1] 0.9755894</code></pre>
 <div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## or</span>
-<span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">2.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">2.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.9755894</code></pre>
 <div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">##P(X&gt;=2)=1-P(X&lt;2)=1-P(X&lt;=1)</span>
@@ -296,7 +296,7 @@ Suppose fleet vehicles arrive to a maintenance garage at an average rate of 0.4 
 <pre><code>## [1] 0.7689218</code></pre>
 <div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## or</span>
-<span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">1000</span>,<span class="fl">2.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">1000</span>,<span class="fl">2.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.7689218</code></pre>
 <p>Note that when considering <span class="math inline">\(\mbox{P}(X\geq 2)\)</span>, we recognize that this is equivalent to <span class="math inline">\(1-\mbox{P}(X\leq 1)\)</span>. We can use <code><a href="https://rdrr.io/r/stats/Poisson.html">ppois()</a></code> to find this probability.</p>
 <p>When considering <span class="math inline">\(\mbox{P}(2\leq X \leq 8)\)</span>, we need to make sure we formulate this correctly. Below are two possible methods:</p>
@@ -306,7 +306,7 @@ Suppose fleet vehicles arrive to a maintenance garage at an average rate of 0.4 
 <pre><code>## [1] 0.766489</code></pre>
 <div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## or</span>
-<span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">8</span>,<span class="fl">2.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">8</span>,<span class="fl">2.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.766489</code></pre>
 <p>To find the median and the 95th percentiles, we use <code>qpois</code>:</p>
 <div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
@@ -375,7 +375,7 @@ Figure 12.4: The pmf of a hypergeometric random variable.
 <pre><code>## [1] 0.0007223942</code></pre>
 <div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">##P(2 &lt;= X &lt;=5)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">dhyper</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">8</span>,<span class="fl">12</span>,<span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">dhyper</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">8</span>,<span class="fl">12</span>,<span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.8119711</code></pre>
 </div>
 </div>
@@ -423,11 +423,11 @@ Figure 12.5: The pmf for binomail in Homework Problem 1a.
 <pre><code>## [1] 0.009629773</code></pre>
 <div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## or, using R</span>
-<span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">15</span>,<span class="fl">15</span>,<span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">15</span>,<span class="fl">15</span>,<span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.009629773</code></pre>
 <div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## or</span>
-<span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">1</span>,<span class="fl">15</span>,<span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">1</span>,<span class="fl">15</span>,<span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.009629773</code></pre>
 <div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## or</span>
@@ -498,7 +498,7 @@ Figure 12.5: The pmf for binomail in Homework Problem 1a.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-09.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
